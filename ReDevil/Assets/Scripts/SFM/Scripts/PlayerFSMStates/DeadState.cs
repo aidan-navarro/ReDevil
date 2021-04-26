@@ -11,17 +11,21 @@ public class DeadState : FSMState
 		stateID = FSMStateID.Dead;
 	}
 
-	//Reason
-	public override void Reason( Transform player, Transform npc)
-	{
-        PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        //do nothing
-        pc.UpdateState("Dead");
-    }
+
 	//Act
 	public override void Act( Transform player, Transform npc)
 	{
+        PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        pc.UpdateState("Dead");
         //do nothing
-	}
+    }
+
+    //Reason
+    public override void Reason(Transform player, Transform npc)
+    {
+        
+        //do nothing.  Player is dead.  There is no transition to a new state
+        
+    }
 
 }
