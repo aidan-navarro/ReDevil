@@ -1,0 +1,81 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerAttack : MonoBehaviour
+{
+    //left and right hitboxes
+    public Collider2D hitBox;
+    public SpriteRenderer sprite;
+    public float dmg;
+
+
+    //player variable so we can determine the direction
+    private Player player;
+
+    //variable to determine the enemy
+    private BaseMinion enemy;
+
+    private void Start()
+    {
+        player = FindObjectOfType<Player>();
+        TurnOffHitbox();
+    }
+
+    //this might not be needed
+    private void Update()
+    {
+        if(Input.GetButtonDown("Attack"))
+        {
+            //To Turn on the Correct hitbox
+            if((player.facingLeft && sprite.CompareTag("LeftHitBox")) || (!player.facingLeft && sprite.CompareTag("RightHitBox")))
+            {
+                Debug.Log("attacking");
+                Attack();
+            }
+            
+        }
+    }
+
+    //determine which way the opponent is facing, and turn on the hitbox
+    private void TurnOnHitbox()
+    {
+        hitBox.enabled = true;
+        sprite.enabled = true;
+    }
+
+    //for end of the coroutine, turn off the hitbox
+    private void TurnOffHitbox()
+    {
+        hitBox.enabled = false;
+        sprite.enabled = false;
+    }
+
+    public void Attack()
+    {
+        StartCoroutine(DealDamageTest(dmg));
+    }
+
+    public IEnumerator DealDamageTest(float damage)
+    {
+        //determine which way we are facing and turn on the correct hitbox
+        TurnOnHitbox();
+        if(enemy != null)
+        {
+            enemy.Damage(dmg);
+        }
+        yield return new WaitForSeconds(1);
+        TurnOffHitbox();
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.isTrigger == true && collision.CompareTag("Enemy"))
+        {
+            enemy = collision.GetComponent<BaseMinion>();
+            Attack();   
+        }
+    }
+}
