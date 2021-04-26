@@ -27,7 +27,9 @@ public class KnockbackState : FSMState
             pc.Damage();
             pc.KnockBack();
         }
-        
+
+        pc.UpdateState("Knockback");
+
     }
 
     //Reason: Put any possible transitions here
@@ -52,7 +54,6 @@ public class KnockbackState : FSMState
         {
             pc.PerformTransition(Transition.Airborne);
         }
-
 
         //dead transition
         if (pc.health <= 0)
