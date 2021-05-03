@@ -18,7 +18,8 @@ public class GroundAttack2State : FSMState
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
     {
-        
+        Debug.Log("Second Chain Attack");
+
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();

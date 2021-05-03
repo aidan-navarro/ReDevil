@@ -98,7 +98,7 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         //update the combo count
         groundHitCounter++;
-
+        Debug.Log("GroundHitCount: " + groundHitCounter);
         //Turn the hitbox on to deal massive damage
         TurnOnHitbox();
 
@@ -137,7 +137,7 @@ public class PlayerAttack : MonoBehaviour
         CheckGroundHit(attackCollider, transform.forward, 10);
 
         //let the hit process so that we don't end up cancelling before damage is dealt
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); // may be too small of a window for ground lag
 
         //allow the player state to check for a cancel (dash or attack chain)
         checkCancel = true;
