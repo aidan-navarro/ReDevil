@@ -31,7 +31,7 @@ public abstract class FSMState
             return;
         }
 
-        //Since this is a Deterministc FSM,
+        //Since this is a Deterministic FSM,
         //Check if the current transition was already inside the map
         if (map.ContainsKey(transition))
         {

@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+// <dev notes> 
+// Everything that inherits from this class will have its own update function
+// the updates and fixed update functions will have their own overrides for different classes that are inheriting this FSM
 public class FSM : MonoBehaviour 
 {
     //Player Transform

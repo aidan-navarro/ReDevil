@@ -26,7 +26,7 @@ public class JumpingState : FSMState
         {
             //Player has begun to jump
             Vector2 newVel = rig.velocity;
-            newVel.y = pc.GetJumpPower();
+            newVel.y = pc.jumpPower;
             rig.velocity = newVel;
 
             Debug.Log("Player State: Jumping");
@@ -50,12 +50,14 @@ public class JumpingState : FSMState
         }
 
         //attack transition
-        if (pc.GetAttackButtonDown() && pc.moveVector.y <= -0.45f)
+        // note: vertical has not been used yet
+        //       Vertical is being used when the analog stick is being pointed downward.
+        if (Input.GetButtonDown("Attack") && pc.vertical <= -0.45f) 
         {
             pc.PerformTransition(Transition.AirDownStrike);
         }
 
-        if (pc.GetHealth() <= 0)
+        if (pc.health <= 0)
         {
             Debug.Log("Transition to Dead");
             pc.PerformTransition(Transition.NoHealth);

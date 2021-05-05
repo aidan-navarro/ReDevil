@@ -34,7 +34,7 @@ public class Flamethrower : MonoBehaviour
                 Vector2 position = this.gameObject.transform.position;
 
                 PlayerFSMController pc = hits[i].collider.transform.GetComponent<PlayerFSMController>();
-                pc.KnockbackTransition(damage, knockbackPower, position);
+                pc.KnockbackTransition(damage, knockbackPower, position); 
 
                 return true;
             }

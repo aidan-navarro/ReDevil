@@ -18,29 +18,31 @@ public class MoveState : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        pc.horizontal = Input.GetAxis("Horizontal");
+        pc.vertical = Input.GetAxis("Vertical");
         isMoving = true;
 
         pc.TouchingFloorOrWall();
-        //pc.CheckDashInput();
+        pc.CheckDashInput();
 
         pc.UpdateState("Moving");
 
-        if (pc.moveVector.x > 0f)
+        if (pc.horizontal > 0f)
         {
             pc.direction = 1;
             pc.facingLeft = false;
-            Vector2 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
+            Vector2 newMoveSpeed = Vector2.right * pc.moveSpeed;
             newMoveSpeed.y = rig.velocity.y;
 
             rig.velocity = newMoveSpeed;
 
             pc.FlipPlayer();
         }
-        else if (pc.moveVector.x < 0f)
+        else if (pc.horizontal < 0f)
         {
             pc.direction = -1;
             pc.facingLeft = true;
-            Vector2 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
+            Vector2 newMoveSpeed = Vector2.left * pc.moveSpeed;
             newMoveSpeed.y = rig.velocity.y;
 
             rig.velocity = newMoveSpeed;
@@ -63,6 +65,8 @@ public class MoveState : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        pc.horizontal = Input.GetAxis("Horizontal");
+        pc.vertical = Input.GetAxis("Vertical");
 
         bool grounded = pc.GetisGrounded();
         bool cD = pc.GetCanDash();
@@ -70,7 +74,6 @@ public class MoveState : FSMState
         bool onWall = pc.GetisTouchingWall();
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
-        bool jumpButtonDown = pc.GetJumpButtonDown();
 
         //knockback transition
         if (!invincible && kbTransition)
@@ -81,7 +84,15 @@ public class MoveState : FSMState
         //dash transition
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
         {
-            pc.PerformTransition(Transition.Dash);
+            // Addition: if the player is moving on the ground and dashing, Dash attack
+            if (pc.GetisGrounded())
+            {
+                pc.PerformTransition(Transition.DashAttack);
+            }
+            else
+            {
+                pc.PerformTransition(Transition.Dash);
+            }
         }
 
         //idle transition
@@ -91,12 +102,11 @@ public class MoveState : FSMState
         }
 
         //jump transition
-        //jump transition
-        if (jumpButtonDown && onWall)
+        if (Input.GetButtonDown("Jump") && onWall)
         {
             pc.PerformTransition(Transition.WallJump);
         }
-        else if (jumpButtonDown)
+        else if (Input.GetButtonDown("Jump"))
         {
             pc.PerformTransition(Transition.Jump);
         }
@@ -108,7 +118,7 @@ public class MoveState : FSMState
         }
 
         //dead transition
-        if (pc.GetHealth() <= 0)
+        if (pc.health <= 0)
         {
             pc.PerformTransition(Transition.NoHealth);
         }

@@ -98,7 +98,7 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         //update the combo count
         groundHitCounter++;
-
+        Debug.Log("GroundHitCount: " + groundHitCounter);
         //Turn the hitbox on to deal massive damage
         TurnOnHitbox();
 
@@ -131,13 +131,13 @@ public class PlayerAttack : MonoBehaviour
         }
         */
 
-        pc.GetRigidbody2D().velocity = new Vector2(0, 0);
+        pc.rig.velocity = new Vector2(0, 0);
 
         //let a hit process
         CheckGroundHit(attackCollider, transform.forward, 10);
 
         //let the hit process so that we don't end up cancelling before damage is dealt
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); // may be too small of a window for ground lag
 
         //allow the player state to check for a cancel (dash or attack chain)
         checkCancel = true;
@@ -230,10 +230,10 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         
         //disable all movement of the player so we can't strafe in midair.  We want to move straight down and only straight down.
-        pc.GetRigidbody2D().velocity = new Vector2(0, 0);
+        pc.rig.velocity = new Vector2(0, 0);
 
         //set velocity to the downward motion
-        pc.GetRigidbody2D().velocity = Vector3.down * pc.dashSpeed;
+        pc.rig.velocity = Vector3.down * pc.dashSpeed;
 
         //while the player is not grounded
         while (!pc.GetisGrounded())
@@ -358,10 +358,12 @@ public class PlayerAttack : MonoBehaviour
         {
             //check which cancel has occured
             //ground attack cancel
-            if (pc.GetAttackButtonDown() && pc.GetisGrounded())
+            if (Input.GetButtonDown("Attack") && pc.GetisGrounded())
             {
                 //turn on variable to change to the correct state
                 //use ground hit counter to determine which state is correct
+                
+                // Vincent's notes: I'm looking into the inspector and I don't see this getting triggered
                 switch (groundHitCounter)
                 {
                     case 1: //we are currently on first ground attack
@@ -385,9 +387,12 @@ public class PlayerAttack : MonoBehaviour
 
     public void CheckDashCancel()
     {
-        //pc.CheckDashInput();
+        pc.CheckDashInput();
+
+        // whenever the window for cancel is true, the player can act into a dash transition
         if (checkCancel)
         {
+            // this should transition into the ground attack
             if ((pc.leftTriggerDown || pc.rightTriggerDown) && pc.GetisGrounded())
             {
                 Debug.Log("Dash Cancel Input");

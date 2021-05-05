@@ -60,10 +60,21 @@ public class IdlingState : FSMState
         }
 
         //dash transition
+        // to add: Implement the ability to do the ground dash
+
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
         {
-                pc.PerformTransition(Transition.Dash);            
+            // ground dash transition, if the player is on the ground, register a dash attack
+            if (pc.GetisGrounded())
+            {
+                pc.PerformTransition(Transition.DashAttack);
+            }
+            else
+            {
+                pc.PerformTransition(Transition.Dash);
+            }
         }
+
 
         //jump transition
         if (jumpButtonDown && onWall)
