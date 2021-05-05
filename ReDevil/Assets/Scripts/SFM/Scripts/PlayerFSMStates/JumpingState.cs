@@ -50,7 +50,9 @@ public class JumpingState : FSMState
         }
 
         //attack transition
-        if (Input.GetButtonDown("Attack") && pc.vertical <= -0.45f)
+        // note: vertical has not been used yet
+        //       Vertical is being used when the analog stick is being pointed downward.
+        if (Input.GetButtonDown("Attack") && pc.vertical <= -0.45f) 
         {
             pc.PerformTransition(Transition.AirDownStrike);
         }

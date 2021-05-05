@@ -23,6 +23,7 @@ public class PlayerFSMController : AdvancedFSM
     //meter variables
     //-------------------------------------------------------------------
     public float health;
+
     //get and set functions for health
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; }
@@ -176,10 +177,12 @@ public class PlayerFSMController : AdvancedFSM
         IdlingState idling = new IdlingState();
 
         //create transitions for the follow state
+        // TO ADD: add the transition to when I execute a ground dash attack from idling 
         idling.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while idle, transition to dead
         idling.AddTransition(Transition.Move, FSMStateID.Moving);  // if I start moving on ground while idle, transition to moving
         idling.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to Jump State
         idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
+        idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking);
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         idling.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
@@ -188,11 +191,14 @@ public class PlayerFSMController : AdvancedFSM
         MoveState moving = new MoveState();
 
         //create transitions for the follow state
+        // TO ADD: add the transition to when I execute a ground dash attack from moving 
+
         moving.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while moving, transition to dead
         moving.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i stop moving, transition to idling
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
         moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -205,6 +211,10 @@ public class PlayerFSMController : AdvancedFSM
         dashing.AddTransition(Transition.WallSlide, FSMStateID.WallSliding); //if dash ends in midair and hit a wall, wall sliding
         dashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
         dashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
+
+        // Addition: State for a ground dash attack
+        GroundDashAttack groundDash = new GroundDashAttack();
+
 
         //create the Wall Slide state
         WallSlideState wallSliding = new WallSlideState();
@@ -341,6 +351,7 @@ public class PlayerFSMController : AdvancedFSM
     public void CheckDashInput()
     {
         //only check for these inputs if the dash has not ended
+
         //left trigger check
         if (Input.GetAxisRaw("DashLeft") != 0)
         {
@@ -411,6 +422,7 @@ public class PlayerFSMController : AdvancedFSM
 
     public void UpdateState(string state)
     {
+        // On screen display of whatever state that the character is in.
         stateText.text = state;
     }
 

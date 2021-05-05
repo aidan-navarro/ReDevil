@@ -362,6 +362,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 //turn on variable to change to the correct state
                 //use ground hit counter to determine which state is correct
+                
+                // Vincent's notes: I'm looking into the inspector and I don't see this getting triggered
                 switch (groundHitCounter)
                 {
                     case 1: //we are currently on first ground attack
@@ -386,6 +388,8 @@ public class PlayerAttack : MonoBehaviour
     public void CheckDashCancel()
     {
         pc.CheckDashInput();
+
+        // whenever the window for cancel is true, the player can act into a dash transition
         if (checkCancel)
         {
             if ((pc.leftTriggerDown || pc.rightTriggerDown) && pc.GetisGrounded())
