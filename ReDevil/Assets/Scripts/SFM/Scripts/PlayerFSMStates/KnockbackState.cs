@@ -56,7 +56,7 @@ public class KnockbackState : FSMState
         }
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             pc.PerformTransition(Transition.NoHealth);
         }

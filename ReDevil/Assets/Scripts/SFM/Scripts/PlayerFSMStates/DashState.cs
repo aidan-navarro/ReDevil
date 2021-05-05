@@ -24,8 +24,8 @@ public class DashState : FSMState
     {
         Debug.Log("Player State: Dashing");
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
+        //pc.horizontal = Input.GetAxis("Horizontal");
+        //pc.vertical = Input.GetAxis("Vertical");
         bool enterKnockback = pc.GetKbTransition();
 
         pc.UpdateState("Dashing");
@@ -42,16 +42,16 @@ public class DashState : FSMState
             dashStarted = true;
             dashEnded = false;
             //set the value of gravscale so we can reset the correct value
-            gravScale = pc.rig.gravityScale;
+            gravScale = pc.GetRigidbody2D().gravityScale;
 
             //set the players gravity scale to 0 to allow the dash to occur properly
-            pc.rig.gravityScale = 0f;
+            pc.GetRigidbody2D().gravityScale = 0f;
 
             //ONLY ONCE, set the starting dash position based on the players current transformation. This should only occur the first time
             pc.SetDashStartPos(pc.transform.position);
 
             //determine direction of the dash.  Only change direction and facing left variables
-            if (pc.horizontal > 0f)
+            if (pc.moveVector.x > 0f)
             {
                 pc.direction = 1;
                 pc.facingLeft = false;
@@ -59,7 +59,7 @@ public class DashState : FSMState
 
                 pc.FlipPlayer();
             }
-            else if (pc.horizontal < 0f)
+            else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
                 pc.facingLeft = true;
@@ -81,7 +81,7 @@ public class DashState : FSMState
         dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
 
         //set the velocity to allow the dash to occur
-        pc.rig.velocity = Vector2.right * pc.direction * pc.dashSpeed;
+        pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed;
 
         //get a variable to determine if we are hitting a wall
         onWall = pc.GetisTouchingWall();
@@ -92,7 +92,7 @@ public class DashState : FSMState
             if (dashDistance >= pc.dashLength)
             {
                 pc.SetCanDash(true);
-                pc.rig.gravityScale = gravScale;
+                pc.GetRigidbody2D().gravityScale = gravScale;
                 dashStarted = false;
                 dashEnded = true;
             }
@@ -100,7 +100,7 @@ public class DashState : FSMState
             if (enterKnockback)
             {
                 pc.SetCanDash(true);
-                pc.rig.gravityScale = gravScale;
+                pc.GetRigidbody2D().gravityScale = gravScale;
                 dashStarted = false;
                 dashEnded = true;
             }
@@ -109,7 +109,7 @@ public class DashState : FSMState
             if (onWall)
             {
                 pc.SetCanDash(true);
-                pc.rig.gravityScale = gravScale;
+                pc.GetRigidbody2D().gravityScale = gravScale;
                 dashStarted = false;
                 dashEnded = true;
             }
@@ -122,8 +122,8 @@ public class DashState : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
+        //pc.horizontal = Input.GetAxis("Horizontal");
+        //pc.vertical = Input.GetAxis("Vertical");
 
         bool grounded = pc.GetisGrounded();
         bool invincible = pc.GetInvincible();
@@ -163,7 +163,7 @@ public class DashState : FSMState
         
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             pc.PerformTransition(Transition.NoHealth);
         }

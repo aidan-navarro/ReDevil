@@ -131,7 +131,7 @@ public class PlayerAttack : MonoBehaviour
         }
         */
 
-        pc.rig.velocity = new Vector2(0, 0);
+        pc.GetRigidbody2D().velocity = new Vector2(0, 0);
 
         //let a hit process
         CheckGroundHit(attackCollider, transform.forward, 10);
@@ -230,10 +230,10 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         
         //disable all movement of the player so we can't strafe in midair.  We want to move straight down and only straight down.
-        pc.rig.velocity = new Vector2(0, 0);
+        pc.GetRigidbody2D().velocity = new Vector2(0, 0);
 
         //set velocity to the downward motion
-        pc.rig.velocity = Vector3.down * pc.dashSpeed;
+        pc.GetRigidbody2D().velocity = Vector3.down * pc.dashSpeed;
 
         //while the player is not grounded
         while (!pc.GetisGrounded())
@@ -358,7 +358,7 @@ public class PlayerAttack : MonoBehaviour
         {
             //check which cancel has occured
             //ground attack cancel
-            if (Input.GetButtonDown("Attack") && pc.GetisGrounded())
+            if (pc.GetAttackButtonDown() && pc.GetisGrounded())
             {
                 //turn on variable to change to the correct state
                 //use ground hit counter to determine which state is correct
@@ -385,7 +385,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void CheckDashCancel()
     {
-        pc.CheckDashInput();
+        //pc.CheckDashInput();
         if (checkCancel)
         {
             if ((pc.leftTriggerDown || pc.rightTriggerDown) && pc.GetisGrounded())

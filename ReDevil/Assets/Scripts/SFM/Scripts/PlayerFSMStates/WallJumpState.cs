@@ -19,10 +19,10 @@ public class WallJumpState : FSMState
 
 
             //Player has begun to jump
-            Vector2 newVel = pc.rig.velocity;
-            newVel.y = pc.jumpPower;
-            newVel.x = (pc.jumpPower / 2) * -pc.direction;
-            pc.rig.velocity = newVel;
+            Vector2 newVel = pc.GetRigidbody2D().velocity;
+            newVel.y = pc.GetJumpPower();
+            newVel.x = (pc.GetJumpPower() / 2) * -pc.direction;
+            pc.GetRigidbody2D().velocity = newVel;
 
         pc.UpdateState("Wall Jumping");
         hasJumped = true;
@@ -49,7 +49,7 @@ public class WallJumpState : FSMState
         }
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             pc.PerformTransition(Transition.NoHealth);
         }
