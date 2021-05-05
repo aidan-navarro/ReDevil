@@ -44,16 +44,13 @@ public class GroundAttack3State : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
-        //no attack transition out of this one.  This is the big hit.  Better commit to it you ballsy little shit
-        patk.ReInitializeTransitions();
-
         //knockback transition
         if (pc.GetInvincible() && pc.GetKbTransition())
         {
             pc.PerformTransition(Transition.Knockback);
         }
 
-        if (!patk.attacking)
+        if (patk.idleTransition)
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
@@ -64,7 +61,7 @@ public class GroundAttack3State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.DashAttack);
+            pc.PerformTransition(Transition.Dash);
         }
 
         //dead transition

@@ -21,6 +21,7 @@ public class GroundDashAttack : FSMState
         Debug.Log("Creating the Dash Attack");
         // make a state ID for the ground dash, 
         stateID = FSMStateID.DashAttacking;
+
         // initialize any grounded variables
         isGrounded = false;
         dashAttackStarted = false;
