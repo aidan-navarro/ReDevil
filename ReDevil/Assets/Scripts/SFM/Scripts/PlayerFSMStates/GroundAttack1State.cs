@@ -59,19 +59,22 @@ public class GroundAttack1State : FSMState
             pc.PerformTransition(Transition.GroundAttack2);
         }
 
-        if (!patk.attacking)
+        if (patk.dashTransition) //if dash cancel = true, change to dash state
+        {
+            Debug.Log("Transition to Dash");
+            attackStarted = false;
+            patk.ReInitializeTransitions();
+            pc.PerformTransition(Transition.Dash); // not particularly 
+        }
+
+        if (patk.idleTransition)
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.Idle);
         }
 
-        if(patk.dashTransition) //if dash cancel = true, change to dash state
-        {
-            attackStarted = false;
-            patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.DashAttack); // not particularly 
-        }
+        
 
         //dead transition
         if (pc.health <= 0)

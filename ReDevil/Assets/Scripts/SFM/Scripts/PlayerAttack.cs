@@ -156,6 +156,8 @@ public class PlayerAttack : MonoBehaviour
         attacking = false;
 
         groundHitCounter = 0;
+
+        idleTransition = true;
     }
 
     //collision detection for the hit utilizing collider.cast method for the ground chain attack
@@ -402,6 +404,7 @@ public class PlayerAttack : MonoBehaviour
                 StopGroundAttack();
                 StopAirDownStrikeAttack();
                 dashTransition = true;
+                Debug.Log(dashTransition);
             }
         }
     }

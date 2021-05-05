@@ -89,10 +89,10 @@ public class MoveState : FSMState
             {
                 pc.PerformTransition(Transition.DashAttack);
             }
-            else
-            {
-                pc.PerformTransition(Transition.Dash);
-            }
+            //else
+            //{
+            //    pc.PerformTransition(Transition.Dash);
+            //}
         }
 
         //idle transition
