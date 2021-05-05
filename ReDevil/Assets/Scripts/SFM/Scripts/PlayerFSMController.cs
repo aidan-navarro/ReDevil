@@ -181,6 +181,7 @@ public class PlayerFSMController : AdvancedFSM
         idling.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while idle, transition to dead
         idling.AddTransition(Transition.Move, FSMStateID.Moving);  // if I start moving on ground while idle, transition to moving
         idling.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to Jump State
+        idling.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
         //idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
         idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // if I
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
