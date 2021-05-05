@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{4935e283-35b5-416d-8c03-f06e981f0371}">
+		<property name="assetPath">
+			<value>HorrorTheme.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>164.625</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{16e9f75c-d99a-4fa7-b74f-23ae0d431828}</destination>
+		</relationship>
+	</object>
+</objects>
