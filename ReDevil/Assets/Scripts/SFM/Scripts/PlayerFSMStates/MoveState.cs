@@ -84,7 +84,15 @@ public class MoveState : FSMState
         //dash transition
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
         {
-            pc.PerformTransition(Transition.Dash);
+            // Addition: if the player is moving on the ground and dashing, Dash attack
+            if (pc.GetisGrounded())
+            {
+                pc.PerformTransition(Transition.DashAttack);
+            }
+            else
+            {
+                pc.PerformTransition(Transition.Dash);
+            }
         }
 
         //idle transition
@@ -93,7 +101,6 @@ public class MoveState : FSMState
             pc.PerformTransition(Transition.Idle);
         }
 
-        //jump transition
         //jump transition
         if (Input.GetButtonDown("Jump") && onWall)
         {

@@ -70,7 +70,7 @@ public class GroundAttack2State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.Dash);
+            pc.PerformTransition(Transition.DashAttack);
         }
 
         //dead transition

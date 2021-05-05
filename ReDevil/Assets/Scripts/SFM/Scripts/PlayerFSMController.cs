@@ -212,13 +212,7 @@ public class PlayerFSMController : AdvancedFSM
         dashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
         dashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
-        // Addition: State for a ground dash attack
-        GroundDashAttack groundDashAttack = new GroundDashAttack();
-
-        groundDashAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
-        groundDashAttack.AddTransition(Transition.Idle, FSMStateID.Idling);
-        groundDashAttack.AddTransition(Transition.Move, FSMStateID.Moving);
-        groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
+        
         // omitting wall slide and airborne since the dash is happening on the ground
 
         //create the Wall Slide state
@@ -269,13 +263,20 @@ public class PlayerFSMController : AdvancedFSM
         knockback.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);
         //if the knockback has occured, transition to iframes;
 
+        // Addition: State for a ground dash attack
+        GroundDashAttack groundDashAttack = new GroundDashAttack();
+
+        groundDashAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        groundDashAttack.AddTransition(Transition.Idle, FSMStateID.Idling);
+        groundDashAttack.AddTransition(Transition.Move, FSMStateID.Moving);
+        groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
 
         // TO ADD: add the transition to when I execute a ground dash attack from ground attack 1 
         GroundAttack1State ga1 = new GroundAttack1State();
 
         ga1.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga1.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga1.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga1.AddTransition(Transition.GroundAttack2, FSMStateID.GroundSecondStrike);
         ga1.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -284,7 +285,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga2.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga2.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga2.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga2.AddTransition(Transition.GroundAttack3, FSMStateID.GroundThirdStrike);
         ga2.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -293,7 +294,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga3.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga3.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga3.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga3.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
         AirDownStrikeState airDownStrike = new AirDownStrikeState();
