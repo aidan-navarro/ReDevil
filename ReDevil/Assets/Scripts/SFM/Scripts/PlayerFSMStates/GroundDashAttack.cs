@@ -122,6 +122,7 @@ public class GroundDashAttack : FSMState
        // throw new System.NotImplementedException();
     }
 
+    // basic reasoning logic for the transitions exiting ground dahs
     public override void Reason(Transform player, Transform npc)
     {
         Rigidbody2D m_rb = player.GetComponent<Rigidbody2D>(); // attached physics body
@@ -130,22 +131,40 @@ public class GroundDashAttack : FSMState
         pc.vertical = Input.GetAxis("Vertical");
 
         isGrounded = pc.GetisGrounded();
+        bool invincible = pc.GetInvincible();
+        bool kbTransition = pc.GetKbTransition();
 
-        if (onWall)
+        if (endDash)
         {
-            pc.PerformTransition(Transition.WallSlide);
-        }
+            // just in case
+            if (onWall)
+            {
+                pc.PerformTransition(Transition.WallSlide);
+            }
 
-        if (isGrounded && (dashDistance >= pc.dashLength))
-        {
-            pc.PerformTransition(Transition.Idle);
-        }
+            // moving transition
+            if (pc.horizontal > 0 || pc.horizontal < 0)
+            {
+                pc.PerformTransition(Transition.Move);
+            }
 
-        //dead transition
-        if (pc.health <= 0)
-        {
-            pc.PerformTransition(Transition.NoHealth);
+            if (isGrounded && (dashDistance >= pc.dashLength))
+            {
+                Debug.Log("End Ground Dash");
+                pc.PerformTransition(Transition.Idle);
+            }
+            else if (isGrounded && onWall)
+            {
+                Debug.Log("End Ground Dash Hit Wall");
+                pc.PerformTransition(Transition.Idle);
+            }
+
+            //dead transition
+            if (pc.health <= 0)
+            {
+                pc.PerformTransition(Transition.NoHealth);
+            }
+            // throw new System.NotImplementedException();
         }
-        throw new System.NotImplementedException();
     }
 }

@@ -392,6 +392,7 @@ public class PlayerAttack : MonoBehaviour
         // whenever the window for cancel is true, the player can act into a dash transition
         if (checkCancel)
         {
+            // this should transition into the ground attack
             if ((pc.leftTriggerDown || pc.rightTriggerDown) && pc.GetisGrounded())
             {
                 Debug.Log("Dash Cancel Input");

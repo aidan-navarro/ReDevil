@@ -182,7 +182,7 @@ public class PlayerFSMController : AdvancedFSM
         idling.AddTransition(Transition.Move, FSMStateID.Moving);  // if I start moving on ground while idle, transition to moving
         idling.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to Jump State
         idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
-        idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking);
+        idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // if I
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         idling.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
@@ -197,7 +197,7 @@ public class PlayerFSMController : AdvancedFSM
         moving.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i stop moving, transition to idling
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
-        moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        moving.AddTransition(Transition.Dash, FSMStateID.Dashing); // replace with the current dash attack
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -213,8 +213,13 @@ public class PlayerFSMController : AdvancedFSM
         dashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
         // Addition: State for a ground dash attack
-        GroundDashAttack groundDash = new GroundDashAttack();
+        GroundDashAttack groundDashAttack = new GroundDashAttack();
 
+        groundDashAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        groundDashAttack.AddTransition(Transition.Idle, FSMStateID.Idling);
+        groundDashAttack.AddTransition(Transition.Move, FSMStateID.Moving);
+        groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
+        // omitting wall slide and airborne since the dash is happening on the ground
 
         //create the Wall Slide state
         WallSlideState wallSliding = new WallSlideState();
@@ -264,6 +269,8 @@ public class PlayerFSMController : AdvancedFSM
         knockback.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);
         //if the knockback has occured, transition to iframes;
 
+
+        // TO ADD: add the transition to when I execute a ground dash attack from ground attack 1 
         GroundAttack1State ga1 = new GroundAttack1State();
 
         ga1.AddTransition(Transition.NoHealth, FSMStateID.Dead);
@@ -272,6 +279,7 @@ public class PlayerFSMController : AdvancedFSM
         ga1.AddTransition(Transition.GroundAttack2, FSMStateID.GroundSecondStrike);
         ga1.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
+        // TO ADD: add the transition to when I execute a ground dash attack from ground attack 2
         GroundAttack2State ga2 = new GroundAttack2State();
 
         ga2.AddTransition(Transition.NoHealth, FSMStateID.Dead);
@@ -280,6 +288,7 @@ public class PlayerFSMController : AdvancedFSM
         ga2.AddTransition(Transition.GroundAttack3, FSMStateID.GroundThirdStrike);
         ga2.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
+        // TO ADD: add the transition to when I execute a ground dash attack from ground attack 3???
         GroundAttack3State ga3 = new GroundAttack3State();
 
         ga3.AddTransition(Transition.NoHealth, FSMStateID.Dead);
@@ -309,6 +318,7 @@ public class PlayerFSMController : AdvancedFSM
         AddFSMState(knockback);
 
         //attack state list
+        AddFSMState(groundDashAttack); // adding to the attack states
         AddFSMState(ga1);
         AddFSMState(ga2);
         AddFSMState(ga3);
