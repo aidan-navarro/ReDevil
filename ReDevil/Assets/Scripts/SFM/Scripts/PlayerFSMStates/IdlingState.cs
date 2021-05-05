@@ -64,7 +64,7 @@ public class IdlingState : FSMState
 
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
         {
-            // ground dash transition, if the player is on the ground, register a dash attack
+            //ground dash transition, if the player is on the ground, register a dash attack
             if (pc.GetisGrounded())
             {
                 pc.PerformTransition(Transition.DashAttack);
@@ -92,7 +92,12 @@ public class IdlingState : FSMState
             pc.PerformTransition(Transition.Move);
         }
 
-        
+
+        //airborne transition when walking off an edge
+        if (!grounded)
+        {
+            pc.PerformTransition(Transition.Airborne);
+        }
 
         //dead transition
         if (pc.health <= 0)

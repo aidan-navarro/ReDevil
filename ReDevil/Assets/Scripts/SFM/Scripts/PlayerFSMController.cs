@@ -181,7 +181,8 @@ public class PlayerFSMController : AdvancedFSM
         idling.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while idle, transition to dead
         idling.AddTransition(Transition.Move, FSMStateID.Moving);  // if I start moving on ground while idle, transition to moving
         idling.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to Jump State
-        idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
+        idling.AddTransition(Transition.Airborne, FSMStateID.Midair);
+        //idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
         idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // if I
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -197,7 +198,7 @@ public class PlayerFSMController : AdvancedFSM
         moving.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i stop moving, transition to idling
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
-        moving.AddTransition(Transition.Dash, FSMStateID.Dashing); // replace with the current dash attack
+        //moving.AddTransition(Transition.Dash, FSMStateID.Dashing); // replace with the current dash attack
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -276,7 +277,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga1.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga1.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
+        ga1.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga1.AddTransition(Transition.GroundAttack2, FSMStateID.GroundSecondStrike);
         ga1.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -285,7 +286,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga2.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga2.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
+        ga2.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga2.AddTransition(Transition.GroundAttack3, FSMStateID.GroundThirdStrike);
         ga2.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -294,7 +295,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga3.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga3.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
+        ga3.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga3.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
         AirDownStrikeState airDownStrike = new AirDownStrikeState();

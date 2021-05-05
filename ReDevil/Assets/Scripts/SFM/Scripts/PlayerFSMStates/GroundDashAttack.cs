@@ -136,6 +136,13 @@ public class GroundDashAttack : FSMState
 
         if (endDash)
         {
+
+            //knockback transition
+            if (!invincible && kbTransition)
+            {
+                pc.PerformTransition(Transition.Knockback);
+            }
+
             // just in case
             if (onWall)
             {
@@ -157,14 +164,14 @@ public class GroundDashAttack : FSMState
             {
                 Debug.Log("End Ground Dash Hit Wall");
                 pc.PerformTransition(Transition.Idle);
-            }
-
-            //dead transition
-            if (pc.health <= 0)
-            {
-                pc.PerformTransition(Transition.NoHealth);
-            }
+            }  
             // throw new System.NotImplementedException();
+        }
+
+        //dead transition
+        if (pc.health <= 0)
+        {
+            pc.PerformTransition(Transition.NoHealth);
         }
     }
 }
