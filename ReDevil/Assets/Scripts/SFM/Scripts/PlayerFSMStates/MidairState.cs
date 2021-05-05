@@ -100,7 +100,7 @@ public class MidairState : FSMState
 
         //have to track if we are not touching a wall as well because of some weird ass bug where if you latch onto a wall
         //sometimes it also determines your touching the ground
-        else if (grounded)
+        if (grounded)
         {
             pc.PerformTransition(Transition.Idle);
         }

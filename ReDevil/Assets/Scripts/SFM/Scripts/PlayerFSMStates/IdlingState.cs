@@ -19,6 +19,7 @@ public class IdlingState : FSMState
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
     {
+        Debug.Log("Idling");
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
@@ -69,10 +70,10 @@ public class IdlingState : FSMState
             {
                 pc.PerformTransition(Transition.DashAttack);
             }
-            else
-            {
-                pc.PerformTransition(Transition.Dash);
-            }
+            //else
+            //{
+            //    pc.PerformTransition(Transition.Dash);
+            //}
         }
 
 

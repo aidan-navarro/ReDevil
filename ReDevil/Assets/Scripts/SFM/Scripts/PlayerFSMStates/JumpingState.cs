@@ -22,8 +22,7 @@ public class JumpingState : FSMState
         bool grounded = pc.GetisGrounded();
         pc.UpdateState("Jump");
 
-        if (grounded)
-        {
+
             //Player has begun to jump
             Vector2 newVel = rig.velocity;
             newVel.y = pc.jumpPower;
@@ -31,7 +30,6 @@ public class JumpingState : FSMState
 
             Debug.Log("Player State: Jumping");
             hasJumped = true;
-        }
         
     }
 
@@ -48,7 +46,10 @@ public class JumpingState : FSMState
         {
             pc.PerformTransition(Transition.Knockback);
         }
-
+        if (hasJumped)
+        {
+            pc.PerformTransition(Transition.Airborne);
+        }
         //attack transition
         // note: vertical has not been used yet
         //       Vertical is being used when the analog stick is being pointed downward.
@@ -63,10 +64,6 @@ public class JumpingState : FSMState
             pc.PerformTransition(Transition.NoHealth);
         }
 
-        if (hasJumped)
-        {
-            pc.PerformTransition(Transition.Airborne);
-        }
-
     }
+
 }
