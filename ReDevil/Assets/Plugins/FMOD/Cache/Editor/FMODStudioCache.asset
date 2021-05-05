@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3086617260883287005
+--- !u!114 &-9157219387409339443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,15 +12,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../../../FMOD Studio/ReDevil/Build/Desktop/Master.strings.bank
+  Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637558359738538290
+  lastModified: 637558389401067380
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 730
+    Value: 786
   Exists: 1
+--- !u!114 &-6493067781008567190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HorrorTheme 2
+  m_EditorClassIdentifier: 
+  Path: event:/HorrorTheme 2
+  guid: f02484ef3adb7a449bee682d7f60d159
+  Banks:
+  - {fileID: 2785196730321733074}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 164625
+--- !u!114 &-5398779544050403912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  guid: ea3a17300e017b4f886ca68e98ab9f9b
+  Banks:
+  - {fileID: 2785196730321733074}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 164625
+--- !u!114 &-543195573425204383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HorrorTheme
+  m_EditorClassIdentifier: 
+  Path: event:/HorrorTheme
+  guid: 3e4e216898fec546b2bf3ffbc4a79df6
+  Banks: []
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 164625
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,41 +102,19 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -3086617260883287005}
-  - {fileID: 6280102764603528955}
+  - {fileID: -9157219387409339443}
+  - {fileID: 2785196730321733074}
   EditorEvents:
-  - {fileID: 5003455784755471256}
+  - {fileID: -5398779544050403912}
+  - {fileID: -6493067781008567190}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 6280102764603528955}
+  - {fileID: 2785196730321733074}
   StringsBanks:
-  - {fileID: -3086617260883287005}
-  stringsBankWriteTime: 637558359738538290
+  - {fileID: -9157219387409339443}
+  stringsBankWriteTime: 637558389401067380
   cacheVersion: 6
---- !u!114 &5003455784755471256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music
-  m_EditorClassIdentifier: 
-  Path: event:/Music
-  guid: 495adeb670d9d44e92ecac989b5ed59b
-  Banks:
-  - {fileID: 6280102764603528955}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 164625
---- !u!114 &6280102764603528955
+--- !u!114 &2785196730321733074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: ../../../FMOD Studio/ReDevil/Build/Desktop/Master.bank
+  Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637558359738518278
+  lastModified: 637558389401057375
   LoadResult: 0
   FileSizes: []
   Exists: 1
