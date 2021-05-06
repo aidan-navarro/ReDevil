@@ -82,12 +82,35 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637558419887752439
+  lastModified: 637558424279049354
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 830
   Exists: 1
+--- !u!114 &-1908654176008838737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music2
+  m_EditorClassIdentifier: 
+  Path: event:/Music2
+  guid: 0aa09ba99973fe4c84d6a857c2c8126d
+  Banks:
+  - {fileID: 2785196730321733074}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 25000
 --- !u!114 &-1129445716179754349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,13 +172,13 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -5398779544050403912}
   - {fileID: -6493067781008567190}
-  - {fileID: 7806454464688488225}
+  - {fileID: -1908654176008838737}
   EditorParameters: []
   MasterBanks:
   - {fileID: 2785196730321733074}
   StringsBanks:
   - {fileID: -4424746422557670049}
-  stringsBankWriteTime: 637558419887752439
+  stringsBankWriteTime: 637558424279049354
   cacheVersion: 6
 --- !u!114 &2350018937040025616
 MonoBehaviour:
@@ -191,7 +214,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637558419887742428
+  lastModified: 637558424279029340
   LoadResult: 0
   FileSizes: []
   Exists: 1
