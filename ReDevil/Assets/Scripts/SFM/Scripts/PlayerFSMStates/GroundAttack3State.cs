@@ -65,7 +65,7 @@ public class GroundAttack3State : FSMState
         }
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             attackStarted = false;
             patk.ReInitializeTransitions();

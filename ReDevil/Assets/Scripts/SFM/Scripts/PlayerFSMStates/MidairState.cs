@@ -17,8 +17,6 @@ public class MidairState : FSMState
         Debug.Log("State ID: Midair");
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
 
         pc.UpdateState("In Midair");
 
@@ -26,24 +24,24 @@ public class MidairState : FSMState
         pc.TouchingFloorOrWall();
 
         //check if a dash is input
-        pc.CheckDashInput();
+        //pc.CheckDashInput();
 
-        if (pc.horizontal > 0f)
+        if (pc.moveVector.x > 0f)
         {
             pc.direction = 1;
             pc.facingLeft = false;
-            Vector2 newMoveSpeed = Vector2.right * pc.moveSpeed;
+            Vector2 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
             newMoveSpeed.y = rig.velocity.y;
 
             rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
 
             pc.FlipPlayer();
         }
-        else if (pc.horizontal < 0f)
+        else if (pc.moveVector.x < 0f)
         {
             pc.direction = -1;
             pc.facingLeft = true;
-            Vector2 newMoveSpeed = Vector2.left * pc.moveSpeed;
+            Vector2 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
             newMoveSpeed.y = rig.velocity.y;
 
             rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
@@ -64,8 +62,6 @@ public class MidairState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
 
         bool grounded = pc.GetisGrounded();
         bool onWall = pc.GetisTouchingWall();
@@ -73,6 +69,7 @@ public class MidairState : FSMState
         bool dashAllowed = pc.GetDashInputAllowed();
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
+        bool attackButtonDown = pc.GetAttackButtonDown();
 
         //knockback transition
         if (!invincible && kbTransition)
@@ -81,7 +78,7 @@ public class MidairState : FSMState
         }
 
         //attack transition
-        if (Input.GetButtonDown("Attack") && pc.vertical <= -0.45f )
+        if (attackButtonDown && pc.moveVector.y <= -0.45f )
         {
             pc.PerformTransition(Transition.AirDownStrike);
         }
@@ -106,7 +103,7 @@ public class MidairState : FSMState
         }
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             pc.PerformTransition(Transition.NoHealth);
         }

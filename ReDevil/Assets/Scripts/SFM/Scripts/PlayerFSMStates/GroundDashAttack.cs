@@ -36,8 +36,8 @@ public class GroundDashAttack : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
         // get the player's input 
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
+        //pc.horizontal = Input.GetAxis("Horizontal");
+        //pc.vertical = Input.GetAxis("Vertical");
 
         bool enterKnockback = pc.GetKbTransition(); // should find a new state for knockback off of grounded dash attack
 
@@ -54,12 +54,12 @@ public class GroundDashAttack : FSMState
             endDash = false;
 
             // store the value of gravity... though this is on the ground so just in case
-            prevGravityScale = pc.rig.gravityScale; 
-            pc.rig.gravityScale = 0;
+            prevGravityScale = pc.GetRigidbody2D().gravityScale; 
+            pc.GetRigidbody2D().gravityScale = 0;
 
             pc.SetDashStartPos(pc.transform.position); // utilize some of the existing dash logic
 
-            if (pc.horizontal > 0f)
+            if (pc.moveVector.x > 0f)
             {
                 pc.direction = 1;
                 pc.facingLeft = false;
@@ -67,7 +67,7 @@ public class GroundDashAttack : FSMState
 
                 pc.FlipPlayer();
             }
-            else if (pc.horizontal < 0f)
+            else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
                 pc.facingLeft = true;
@@ -86,7 +86,7 @@ public class GroundDashAttack : FSMState
         // dashing total distance
         dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
 
-        pc.rig.velocity = Vector2.right * pc.direction * pc.dashSpeed; // commit to the dash
+        pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed; // commit to the dash
 
         onWall = pc.GetisTouchingWall();
 
@@ -97,7 +97,7 @@ public class GroundDashAttack : FSMState
             if (dashDistance >= pc.dashLength)
             {
                 pc.SetCanDash(true);
-                pc.rig.gravityScale = prevGravityScale;
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
                 endDash = true;
             }
@@ -106,7 +106,7 @@ public class GroundDashAttack : FSMState
             if (enterKnockback)
             {
                 pc.SetCanDash(true);
-                pc.rig.gravityScale = prevGravityScale;
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
                 endDash = true;
             }
@@ -115,7 +115,7 @@ public class GroundDashAttack : FSMState
             if (onWall)
             {
                 pc.SetCanDash(true);
-                pc.rig.gravityScale = prevGravityScale;
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
                 endDash = true;
             }
@@ -128,8 +128,8 @@ public class GroundDashAttack : FSMState
     {
         Rigidbody2D m_rb = player.GetComponent<Rigidbody2D>(); // attached physics body
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
+        //pc.horizontal = Input.GetAxis("Horizontal");
+        //pc.vertical = Input.GetAxis("Vertical");
 
         isGrounded = pc.GetisGrounded();
         bool invincible = pc.GetInvincible();
@@ -144,7 +144,7 @@ public class GroundDashAttack : FSMState
             }
 
             // moving transition
-            if (pc.horizontal > 0 || pc.horizontal < 0)
+            if (pc.moveVector.x > 0 || pc.moveVector.x < 0)
             {
                 pc.PerformTransition(Transition.Move);
             }
@@ -161,7 +161,7 @@ public class GroundDashAttack : FSMState
             }
 
             //dead transition
-            if (pc.health <= 0)
+            if (pc.GetHealth() <= 0)
             {
                 pc.PerformTransition(Transition.NoHealth);
             }

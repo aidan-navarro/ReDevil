@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using System;
 
 //FSM Class for the Player which also contains variables + unique functions for the player
 public class PlayerFSMController : AdvancedFSM
@@ -20,10 +22,9 @@ public class PlayerFSMController : AdvancedFSM
     public Text stateText;
 
     //-------------------------------------------------------------------
-    //meter variables
+    //Meter variables
     //-------------------------------------------------------------------
-    public float health;
-
+    private float health;
     //get and set functions for health
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; }
@@ -31,7 +32,7 @@ public class PlayerFSMController : AdvancedFSM
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
 
-    public float soul;
+    private float soul;
     //get and set functions for soul
     public float GetSoul() { return soul; }
     public void SetSoul(float insoul) { soul = insoul; }
@@ -72,10 +73,13 @@ public class PlayerFSMController : AdvancedFSM
     //movement variables
     //-------------------------------------------------------------------
 
-    public Rigidbody2D rig;
+    private Rigidbody2D rig;
+    public Rigidbody2D GetRigidbody2D() { return rig; }
+
     private float gravityScale;
 
-    public float moveSpeed;
+    [SerializeField]
+    private float moveSpeed = 10;
     //get and set functions for movement speed
     public float GetMoveSpeed() { return moveSpeed; }
     public void SetMoveSpeed(float inMoveSpeed) { moveSpeed = inMoveSpeed; }
@@ -105,14 +109,19 @@ public class PlayerFSMController : AdvancedFSM
     //variables to detect controller input
     //-------------------------------------------------------------------
     [System.NonSerialized]
-    public float horizontal;
-    [System.NonSerialized]
-    public float vertical;
+    public Vector2 moveVector;
 
     [System.NonSerialized]
     public bool leftTriggerDown;
     [System.NonSerialized]
     public bool rightTriggerDown;
+
+    [System.NonSerialized]
+    private bool attackButtonDown;
+    public bool GetAttackButtonDown() { return attackButtonDown; }
+    [System.NonSerialized]
+    private bool jumpButtonDown;
+    public bool GetJumpButtonDown() { return jumpButtonDown; }
 
     //variables for determining direction faced
     [System.NonSerialized]
@@ -132,9 +141,15 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetisTouchingWall() { return isTouchingWall; }
     public void SetisTouchingWall(bool inIsTouchingWall) { isTouchingWall = inIsTouchingWall; }
 
-    public float jumpPower;
+    [SerializeField]
+    private float jumpPower = 10;
+    public float GetJumpPower() { return jumpPower; }
+    public void SetJumpPower(float newJumpPower) { jumpPower = newJumpPower; }
 
-    
+    // Player Input
+    private PlayerInput playerInput;
+    private GameplayControls gameplayControls;
+
 
     //initialize FSM
     protected override void Initialize()
@@ -158,7 +173,105 @@ public class PlayerFSMController : AdvancedFSM
         //box collider
         col = GetComponent<BoxCollider2D>();
 
+        //Player Input Setup
+        gameplayControls = new GameplayControls();
+        playerInput = GetComponent<PlayerInput>();
+
+        playerInput.onActionTriggered += OnActionTriggered;
+
         ConstructFSM();
+    }
+
+    private void OnActionTriggered(InputAction.CallbackContext obj)
+    {
+        if (obj.action.name == gameplayControls.Gameplay.Jump.name)
+        {
+            OnJump(obj);
+        }
+
+        if (obj.action.name == gameplayControls.Gameplay.Movement.name)
+        {
+            OnMove(obj);
+        }
+
+        if (obj.action.name == gameplayControls.Gameplay.Attack.name)
+        {
+            OnAttack(obj);
+        }
+
+        if (obj.action.name == gameplayControls.Gameplay.DashLeft.name)
+        {
+            OnDashLeft(obj);
+        }
+
+        if (obj.action.name == gameplayControls.Gameplay.DashRight.name)
+        {
+            OnDashRight(obj);
+        }
+    }
+
+    private void OnDashRight(InputAction.CallbackContext obj)
+    {
+        if (obj.started)
+        {
+            rightTriggerDown = true;
+        }
+        else if (obj.canceled)
+        {
+            rightTriggerDown = false;
+            if (!leftTriggerDown)
+            {
+                dashInputAllowed = true;
+            }
+        }
+    }
+
+    private void OnDashLeft(InputAction.CallbackContext obj)
+    {
+        if (obj.started)
+        {
+            leftTriggerDown = true;
+        }
+        else if (obj.canceled)
+        {
+            leftTriggerDown = false;
+            if (!rightTriggerDown)
+            {
+                dashInputAllowed = true;
+            }
+        }
+    }
+
+    private void OnAttack(InputAction.CallbackContext obj)
+    {
+        if (obj.canceled)
+        {
+            attackButtonDown = false;
+        }
+
+        else
+        {
+            attackButtonDown = true;
+        }
+    }
+
+    private void OnMove(InputAction.CallbackContext obj)
+    {
+        moveVector = obj.ReadValue<Vector2>();  
+    }
+
+    private void OnJump(InputAction.CallbackContext obj)
+    {
+        if (obj.canceled)
+        {
+            jumpButtonDown = false;
+        }
+
+        else
+        {
+            jumpButtonDown = true;
+        }
+        
     }
 
     protected override void FSMUpdate()
@@ -177,13 +290,11 @@ public class PlayerFSMController : AdvancedFSM
         IdlingState idling = new IdlingState();
 
         //create transitions for the follow state
-        // TO ADD: add the transition to when I execute a ground dash attack from idling 
         idling.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while idle, transition to dead
         idling.AddTransition(Transition.Move, FSMStateID.Moving);  // if I start moving on ground while idle, transition to moving
         idling.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to Jump State
-        idling.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
-        //idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
-        idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // if I
+        idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
+        idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking);
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         idling.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
@@ -192,13 +303,11 @@ public class PlayerFSMController : AdvancedFSM
         MoveState moving = new MoveState();
 
         //create transitions for the follow state
-        // TO ADD: add the transition to when I execute a ground dash attack from moving 
-
         moving.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while moving, transition to dead
         moving.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i stop moving, transition to idling
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
-        //moving.AddTransition(Transition.Dash, FSMStateID.Dashing); // replace with the current dash attack
+        moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -212,9 +321,6 @@ public class PlayerFSMController : AdvancedFSM
         dashing.AddTransition(Transition.WallSlide, FSMStateID.WallSliding); //if dash ends in midair and hit a wall, wall sliding
         dashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
         dashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
-
-        
-        // omitting wall slide and airborne since the dash is happening on the ground
 
         //create the Wall Slide state
         WallSlideState wallSliding = new WallSlideState();
@@ -272,30 +378,30 @@ public class PlayerFSMController : AdvancedFSM
         groundDashAttack.AddTransition(Transition.Move, FSMStateID.Moving);
         groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
 
-        // TO ADD: add the transition to when I execute a ground dash attack from ground attack 1 
         GroundAttack1State ga1 = new GroundAttack1State();
 
         ga1.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga1.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
         ga1.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga1.AddTransition(Transition.GroundAttack2, FSMStateID.GroundSecondStrike);
         ga1.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
-        // TO ADD: add the transition to when I execute a ground dash attack from ground attack 2
         GroundAttack2State ga2 = new GroundAttack2State();
 
         ga2.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga2.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
         ga2.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        ga2.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga2.AddTransition(Transition.GroundAttack3, FSMStateID.GroundThirdStrike);
         ga2.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
-        // TO ADD: add the transition to when I execute a ground dash attack from ground attack 3???
         GroundAttack3State ga3 = new GroundAttack3State();
 
         ga3.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga3.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
         ga3.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        ga3.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga3.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
         AirDownStrikeState airDownStrike = new AirDownStrikeState();
@@ -360,48 +466,47 @@ public class PlayerFSMController : AdvancedFSM
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.6f), 0f, groundLayer.value);
     }
 
-    public void CheckDashInput()
-    {
-        //only check for these inputs if the dash has not ended
+    //public void CheckDashInput()
+    //{
+    //    //only check for these inputs if the dash has not ended
+    //    //left trigger check
+    //    if (Input.GetAxisRaw("DashLeft") != 0)
+    //    {
+    //        if (!leftTriggerDown)
+    //        {
+    //            leftTriggerDown = true;
+    //        }
+    //    }
 
-        //left trigger check
-        if (Input.GetAxisRaw("DashLeft") != 0)
-        {
-            if (!leftTriggerDown)
-            {
-                leftTriggerDown = true;
-            }
-        }
+    //    if (Input.GetAxisRaw("DashLeft") == 0)
+    //    {
+    //        leftTriggerDown = false;
+    //        if (!rightTriggerDown)
+    //        {
+    //            dashInputAllowed = true;
+    //        }
 
-        if (Input.GetAxisRaw("DashLeft") == 0)
-        {
-            leftTriggerDown = false;
-            if (!rightTriggerDown)
-            {
-                dashInputAllowed = true;
-            }
+    //    }
 
-        }
+    //    //right trigger check
+    //    if (Input.GetAxisRaw("DashRight") != 0)
+    //    {
+    //        if (!rightTriggerDown)
+    //        {
+    //            rightTriggerDown = true;
+    //        }
+    //    }
+    //    if (Input.GetAxisRaw("DashRight") == 0)
+    //    {
+    //        rightTriggerDown = false;
+    //        //only if the left trigger is not down
+    //        if (!leftTriggerDown)
+    //        {
+    //            dashInputAllowed = true;
+    //        }
 
-        //right trigger check
-        if (Input.GetAxisRaw("DashRight") != 0)
-        {
-            if (!rightTriggerDown)
-            {
-                rightTriggerDown = true;
-            }
-        }
-        if (Input.GetAxisRaw("DashRight") == 0)
-        {
-            rightTriggerDown = false;
-            //only if the left trigger is not down
-            if (!leftTriggerDown)
-            {
-                dashInputAllowed = true;
-            }
-
-        }
-    }
+    //    }
+    //}
 
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
@@ -434,7 +539,6 @@ public class PlayerFSMController : AdvancedFSM
 
     public void UpdateState(string state)
     {
-        // On screen display of whatever state that the character is in.
         stateText.text = state;
     }
 

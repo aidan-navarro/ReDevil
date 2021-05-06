@@ -30,7 +30,7 @@ public class IdlingState : FSMState
 
         pc.TouchingFloorOrWall();
 
-        pc.CheckDashInput();
+        //pc.CheckDashInput();
         pc.UpdateState("Idle");
     }
 
@@ -38,8 +38,6 @@ public class IdlingState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
 
         bool grounded = pc.GetisGrounded();
         bool cD = pc.GetCanDash();
@@ -47,6 +45,8 @@ public class IdlingState : FSMState
         bool onWall = pc.GetisTouchingWall();
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
+        bool attackButtonDown = pc.GetAttackButtonDown();
+        bool jumpButtonDown = pc.GetJumpButtonDown();
 
         //knockback transition
         if(!invincible && kbTransition)
@@ -55,7 +55,7 @@ public class IdlingState : FSMState
         }
 
         //attack transition
-        if (Input.GetButtonDown("Attack") && grounded)
+        if (attackButtonDown && grounded)
         {
             pc.PerformTransition(Transition.GroundAttack1);
         }
@@ -78,17 +78,17 @@ public class IdlingState : FSMState
 
 
         //jump transition
-        if (Input.GetButtonDown("Jump") && onWall)
+        if (jumpButtonDown && onWall)
         {
             pc.PerformTransition(Transition.WallJump);
         }
-        else if (Input.GetButtonDown("Jump"))
+        else if (jumpButtonDown)
         {
             pc.PerformTransition(Transition.Jump);
         }
 
         //move transition
-        else if (pc.horizontal < 0f || pc.horizontal > 0f)
+        else if (pc.moveVector.x < 0f || pc.moveVector.x > 0f)
         {
             pc.PerformTransition(Transition.Move);
         }
@@ -99,7 +99,7 @@ public class IdlingState : FSMState
         }
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             pc.PerformTransition(Transition.NoHealth);
         }

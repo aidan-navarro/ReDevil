@@ -23,7 +23,7 @@ public class WallSlideState : FSMState
         if (rig.velocity.y < 0f)
         {
             Vector2 newVel = rig.velocity;
-            newVel.y = -pc.moveSpeed / pc.slideSpeed;
+            newVel.y = -pc.GetMoveSpeed() / pc.slideSpeed;
             rig.velocity = newVel;
         }
 
@@ -34,8 +34,6 @@ public class WallSlideState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-        pc.horizontal = Input.GetAxis("Horizontal");
-        pc.vertical = Input.GetAxis("Vertical");
 
         bool grounded = pc.GetisGrounded();
         bool onWall = pc.GetisTouchingWall();
@@ -51,13 +49,13 @@ public class WallSlideState : FSMState
 
 
         //jump transition
-        if (Input.GetButtonDown("Jump"))
+        if (pc.GetJumpButtonDown())
         {
             pc.PerformTransition(Transition.WallJump);
         }
 
         //transition to airborne, just letting go of the wall
-        if ((pc.horizontal < 0f && currentDir == 1) || (pc.horizontal > 0f && currentDir == -1) || !onWall)
+        if ((pc.moveVector.x < 0f && currentDir == 1) || (pc.moveVector.x > 0f && currentDir == -1) || !onWall)
         {
             pc.PerformTransition(Transition.Airborne);
         }
@@ -68,7 +66,7 @@ public class WallSlideState : FSMState
         }
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             pc.PerformTransition(Transition.NoHealth);
         }

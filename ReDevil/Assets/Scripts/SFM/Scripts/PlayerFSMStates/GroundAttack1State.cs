@@ -77,7 +77,7 @@ public class GroundAttack1State : FSMState
         
 
         //dead transition
-        if (pc.health <= 0)
+        if (pc.GetHealth() <= 0)
         {
             attackStarted = false;
             pc.PerformTransition(Transition.NoHealth);
