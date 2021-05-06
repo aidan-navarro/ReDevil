@@ -93,10 +93,13 @@ public class PlayerFSMController : AdvancedFSM
     //dashing variables
     public float dashSpeed; //how fast do we dash
     public float dashLength; //how far do we dash
+
+    //determines if the player is allowed to dash
     private bool canDash;
     public bool GetCanDash() { return canDash; }
     public void SetCanDash(bool inCanDash) { canDash = inCanDash; }
 
+    //checks if we are allowing a dash input to be read (pressing the controller button)
     private bool dashInputAllowed;
     public bool GetDashInputAllowed() { return dashInputAllowed; }
     public void SetDashInputAllowed(bool inDashInputAllowed) { dashInputAllowed = inDashInputAllowed; }

@@ -42,17 +42,17 @@ public class AirDownStrikeState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
-        //no attack transition out of this one.  This is the big hit.  Better commit to it you ballsy little shit
-        patk.ReInitializeTransitions();
+        bool invincible = pc.GetInvincible();
 
         //knockback transition
-        if (pc.GetInvincible() && pc.GetKbTransition())
+        if (!invincible && pc.GetKbTransition()) //if the player isnt in iframes, do a knockback
         {
+            attackStarted = false;
             pc.PerformTransition(Transition.Knockback);
         }
 
         //idle transition
-        if (!patk.attacking)
+        if (patk.idleTransition)
         {
             attackStarted = false;
             patk.ReInitializeTransitions();

@@ -46,9 +46,12 @@ public class GroundAttack2State : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
+        bool invincible = pc.GetInvincible();
+
         //knockback transition
-        if (pc.GetInvincible() && pc.GetKbTransition())
+        if (!invincible && pc.GetKbTransition()) //if the player isnt in iframes, do a knockback
         {
+            attackStarted = false;
             pc.PerformTransition(Transition.Knockback);
         }
 
