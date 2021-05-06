@@ -150,14 +150,15 @@ public class PlayerAttack : MonoBehaviour
         //turn off the hitbox
         TurnOffHitbox();
 
+        groundHitCounter = 0;
+
         //we can't check for a cancel anymore, set to false
         checkCancel = false;
 
         attacking = false;
 
-        groundHitCounter = 0;
-
         idleTransition = true;
+        Debug.Log("attack coroutine end");
     }
 
     //collision detection for the hit utilizing collider.cast method for the ground chain attack
@@ -369,10 +370,12 @@ public class PlayerAttack : MonoBehaviour
                 switch (groundHitCounter)
                 {
                     case 1: //we are currently on first ground attack
+                        StopGroundAttack();
                         groundAttack2Transition = true;
                         checkCancel = false;
                         break;
                     case 2: //we are currently on second ground attack
+                        StopGroundAttack();
                         groundAttack3Transition = true;
                         checkCancel = false;
                         break;
@@ -427,6 +430,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void ReInitializeTransitions()
     {
+        Debug.Log("reset transitions");
         idleTransition = false;
         dashTransition = false;
         groundAttack2Transition = false;

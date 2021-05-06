@@ -67,7 +67,7 @@ public class GroundAttack1State : FSMState
             pc.PerformTransition(Transition.Dash); // not particularly 
         }
 
-        if (patk.idleTransition)
+        if (patk.idleTransition && !patk.attacking)
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
