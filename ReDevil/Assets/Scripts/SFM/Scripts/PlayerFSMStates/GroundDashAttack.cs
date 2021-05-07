@@ -9,11 +9,12 @@ public class GroundDashAttack : FSMState
 
     // state variables
     private bool isGrounded; // need? the check to get in this transition would be if it was grounded already
-    private bool dashAttackStarted;
     private bool onWall; // if the player hits the wall any time during the update
     private float prevGravityScale;
     float dashDistance;
     private bool endDash;
+    private bool dashAttackStarted; // bool to check if the attack hitbox has started
+
 
     public GroundDashAttack()
     {
@@ -24,6 +25,7 @@ public class GroundDashAttack : FSMState
 
         // initialize any grounded variables
         isGrounded = false;
+
         dashAttackStarted = false;
         endDash = false;
     }
@@ -39,7 +41,8 @@ public class GroundDashAttack : FSMState
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
 
-        bool enterKnockback = pc.GetKbTransition(); // should find a new state for knockback off of grounded dash attack
+        bool enterKnockback = pc.GetKbTransition(); 
+        // should find a new state for knockback off of grounded dash attack
 
         pc.UpdateState("Ground Dash Attack");
 
@@ -49,7 +52,7 @@ public class GroundDashAttack : FSMState
         {
             pc.SetCanDash(false);
             pc.SetDashInputAllowed(false);
-
+            patk.StartDashAttack(); // Call the function for starting the dash attack
             dashAttackStarted = true; // so that we don't trigger this again
             endDash = false;
 
@@ -85,28 +88,38 @@ public class GroundDashAttack : FSMState
 
         // dashing total distance
         dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
-
         pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed; // commit to the dash
-
         onWall = pc.GetisTouchingWall();
 
+
         // logic to end the dashing
+        // if (!endDash) means that the dash is still in process
+        // and the following steps within this if statement are what can break out of this condition
         if (!endDash)
         {
+            // during the middle of the dash check if the 
+            // pseudo code
+            // if (dash hitbox contact)
+            // patk.EndDashAttack()
+
+
             //dashed max distance, end the dash.
             if (dashDistance >= pc.dashLength)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.EndDashAttack();
                 dashAttackStarted = false;
                 endDash = true;
             }
 
-            // tweak this maybe, because I may implement a different knockback
+            //tweak this maybe, because I may implement a different knockback
+            // this still enters the knockback state interestingly enough
             if (enterKnockback)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.EndDashAttack();
                 dashAttackStarted = false;
                 endDash = true;
             }
@@ -116,11 +129,11 @@ public class GroundDashAttack : FSMState
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.EndDashAttack();
                 dashAttackStarted = false;
                 endDash = true;
             }
         }
-       // throw new System.NotImplementedException();
     }
 
     // basic reasoning logic for the transitions exiting ground dahs
@@ -128,8 +141,10 @@ public class GroundDashAttack : FSMState
     {
         Rigidbody2D m_rb = player.GetComponent<Rigidbody2D>(); // attached physics body
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>(); // to reset the transitions out of dash attack
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
+
 
         isGrounded = pc.GetisGrounded();
         bool invincible = pc.GetInvincible();
@@ -137,6 +152,12 @@ public class GroundDashAttack : FSMState
 
         if (endDash)
         {
+            if (!invincible && kbTransition)
+            {
+                Debug.Log("Enter Knockback");
+                pc.PerformTransition(Transition.Knockback);
+            }
+
             // just in case
             if (onWall)
             {
@@ -160,12 +181,12 @@ public class GroundDashAttack : FSMState
                 pc.PerformTransition(Transition.Idle);
             }
 
-            //dead transition
-            if (pc.GetHealth() <= 0)
-            {
-                pc.PerformTransition(Transition.NoHealth);
-            }
-            // throw new System.NotImplementedException();
+        }
+
+        // dead transition at any point
+        if (pc.GetHealth() <= 0)
+        {
+            pc.PerformTransition(Transition.NoHealth);
         }
     }
 }

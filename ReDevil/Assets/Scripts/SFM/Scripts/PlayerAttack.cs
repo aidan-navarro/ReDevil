@@ -7,6 +7,8 @@ using UnityEngine;
 //INCLUDING INDIVIDUAL DAMAGE VARIABLES AND HITBOXES
 public class PlayerAttack : MonoBehaviour
 {
+    // consider making a specific attack collider for dash attacks?
+
     public Collider2D attackCollider;
     public SpriteRenderer sprite;
     //to compare if we hit a weakspot
@@ -16,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     public float groundHit1;
     public float groundHit2;
     public float groundHit3;
+    public float dashAttackValue; // Point values for dash attacking
 
     //to count what number attack chain we're on
     public int groundHitCounter;
@@ -35,6 +38,8 @@ public class PlayerAttack : MonoBehaviour
     //transition bools
     public bool idleTransition;
     public bool dashTransition;
+    public bool dashAttackTransition;
+
     public bool groundAttack2Transition;
     public bool groundAttack3Transition;
 
@@ -85,7 +90,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void StopGroundAttack()
     {
-        Debug.Log("stopping coroutine");
+        Debug.Log("stopping ground Attack coroutine");
         //In case an attack is not being cancelled out of
         TurnOffHitbox();
         attacking = false;
@@ -131,13 +136,14 @@ public class PlayerAttack : MonoBehaviour
         }
         */
 
+        // lock the player's position 
         pc.GetRigidbody2D().velocity = new Vector2(0, 0);
 
         //let a hit process
         CheckGroundHit(attackCollider, transform.forward, 10);
 
         //let the hit process so that we don't end up cancelling before damage is dealt
-        yield return new WaitForSeconds(0.1f); // may be too small of a window for ground lag
+        yield return new WaitForSeconds(0.1f); 
 
         //allow the player state to check for a cancel (dash or attack chain)
         checkCancel = true;
@@ -191,7 +197,7 @@ public class PlayerAttack : MonoBehaviour
                 float presentHealth = ec.health;
 
                 //if the present health goes below 0, set it to zero since you can't steal a negative soul value
-                if(presentHealth < 0)
+                if (presentHealth < 0)
                 {
                     presentHealth = 0;
                 }
@@ -204,7 +210,51 @@ public class PlayerAttack : MonoBehaviour
         }
         return false;
     }
-    #endregion 
+    #endregion
+
+    //------------------------------------------------------------
+    // Dash Attack Functions
+    //------------------------------------------------------------
+    #region click plus sign to hide/unhide code
+    public void StartDashAttack()
+    {
+        //StartCoroutine("EnableDashAttack");
+        Debug.Log("Start Dash Attack");
+        attacking = true;
+        TurnOnHitbox();
+
+        damage = dashAttackValue;
+
+
+    }
+
+    public void EndDashAttack()
+    {
+        attacking = false;
+        Debug.Log("Stop Dash Attack");
+        TurnOffHitbox();
+        //StopCoroutine("EnableDashAttack");
+    }
+
+    // Need an IEnumerator? don't need to delay it
+    public IEnumerator EnableDashAttack()
+    {
+        attacking = true;
+        yield return new WaitForSeconds(0.5f);
+    }
+    
+    private bool CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
+    {
+        RaycastHit2D[] hits = new RaycastHit2D[10];
+        ContactFilter2D filter = new ContactFilter2D();
+
+
+
+        return false;
+    }
+    #endregion
+
+
 
     //------------------------------------------------------------
     //Air Attack Functions

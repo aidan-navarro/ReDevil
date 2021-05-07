@@ -379,7 +379,7 @@ public class PlayerFSMController : AdvancedFSM
         groundDashAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         groundDashAttack.AddTransition(Transition.Idle, FSMStateID.Idling);
         groundDashAttack.AddTransition(Transition.Move, FSMStateID.Moving);
-        groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
+        groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); // doesn't get called but is this an issue?
 
         GroundAttack1State ga1 = new GroundAttack1State();
 

@@ -63,7 +63,6 @@ public class GroundAttack1State : FSMState
 
         if (patk.dashTransition) //if dash cancel = true, change to dash state
         {
-            Debug.Log("Transition to Dash");
             attackStarted = false;
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.Dash); // not particularly 

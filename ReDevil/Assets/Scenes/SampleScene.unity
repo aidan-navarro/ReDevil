@@ -2677,6 +2677,11 @@ PrefabInstance:
       propertyPath: airDownStrike
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5941117341249860993, guid: 69c30ee0916387442bdeef7357d4a1e1,
+        type: 3}
+      propertyPath: dashAttackValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
 --- !u!1 &1750530338
