@@ -35,10 +35,12 @@ public class PlayerAttack : MonoBehaviour
     private float damage;
     public bool attacking;
 
+    // dash attack specific, only want to have the dash attack trigger once on hit
+    public bool dashAttackContact;
+
     //transition bools
     public bool idleTransition;
     public bool dashTransition;
-    public bool dashAttackTransition;
 
     public bool groundAttack2Transition;
     public bool groundAttack3Transition;
@@ -221,13 +223,11 @@ public class PlayerAttack : MonoBehaviour
     {
         //StartCoroutine("EnableDashAttack");
         Debug.Log("Start Dash Attack");
-        attacking = true;
+        attacking = true; // use the same attacking variable?
         TurnOnHitbox();
-
         damage = dashAttackValue;
-
         CheckDashAttackHit(attackCollider, transform.forward, 10);
-        Debug.Log(attackCollider.transform.position);
+        Debug.Log(dashAttackContact);
     }
 
     public void EndDashAttack()
@@ -246,9 +246,9 @@ public class PlayerAttack : MonoBehaviour
     //    yield return new WaitForSeconds(0.5f);
     //}
 
-    private bool CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
+    private void CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
-        RaycastHit2D[] hits = new RaycastHit2D[10];
+        RaycastHit2D[] hits = new RaycastHit2D[1];
         ContactFilter2D filter = new ContactFilter2D();
 
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
@@ -256,13 +256,14 @@ public class PlayerAttack : MonoBehaviour
 
         for (int i = 0; i < numHits; i++)
         {
-            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy")) // this only registers frame 1
+            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy") && attacking) // this only registers frame 1
             {
-                Debug.Log("Hit an enemy in dash");
+                attacking = false;
+                dashAttackContact = true;
+                Debug.Log("Dash Attack Contact: " + dashAttackContact);
+                //break;
             }
         }
-
-        return false;
     }
     #endregion
 
@@ -495,6 +496,7 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("reset transitions");
         idleTransition = false;
         dashTransition = false;
+        dashAttackContact = false; // placing here so that the GDA state can pick up the contact first before changing the boolean back
         groundAttack2Transition = false;
         groundAttack3Transition = false;
     }

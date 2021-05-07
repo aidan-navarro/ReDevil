@@ -95,23 +95,37 @@ public class GroundDashAttack : FSMState
         // and the following steps within this if statement are what can break out of this condition
         if (!endDash)
         {
-            // during the middle of the dash check if the 
-            // pseudo code
-            // if (dash hitbox contact)
-            // patk.EndDashAttack()
-            if (dashDistance < pc.dashLength)
+            // if we're still in dash and the player hasn't contacted anyone yet
+            if (dashDistance < pc.dashLength && !patk.dashAttackContact)
             {
+                Debug.Log("Dashing");
                 patk.StartDashAttack();
             }
-            //dashed max distance, end the dash.
+            //dashed max distance or we hit someone, end the dash.
             else if (dashDistance >= pc.dashLength)
             {
+                Debug.Log("Dash Distance Reached");
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                dashAttackStarted = false;
+                endDash = true; 
                 patk.EndDashAttack();
+
+            }
+            else if (patk.dashAttackContact)
+            {
+                Debug.Log("Contact with Dash");
+                pc.SetCanDash(true);
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
                 endDash = true;
+                patk.EndDashAttack();
             }
+
+            // during the middle of the dash check if the 
+            // pseudo code
+            // else if (dash hitbox contact)
+            // patk.EndDashAttack()
 
             //tweak this maybe, because I may implement a different knockback
             // this still enters the knockback state interestingly enough
@@ -133,10 +147,18 @@ public class GroundDashAttack : FSMState
                 dashAttackStarted = false;
                 endDash = true;
             }
+            if (!isGrounded)
+            {
+                pc.SetCanDash(true);
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.EndDashAttack();
+                dashAttackStarted = false;
+                endDash = true;
+            }
         }
     }
 
-    // basic reasoning logic for the transitions exiting ground dahs
+    // basic reasoning logic for the transitions exiting ground dash
     public override void Reason(Transform player, Transform npc)
     {
         Rigidbody2D m_rb = player.GetComponent<Rigidbody2D>(); // attached physics body
@@ -150,6 +172,8 @@ public class GroundDashAttack : FSMState
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
 
+        
+
         if (endDash)
         {
             if (!invincible && kbTransition)
@@ -157,7 +181,13 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Enter Knockback");
                 pc.PerformTransition(Transition.Knockback);
             }
-
+            if (patk.dashAttackContact)
+            {
+                // works almost
+                Debug.Log("Go into Idle");
+                patk.ReInitializeTransitions(); // dash attack contact was never getting flicked earlier, so now right on transition the contact boolean will get flicked to false
+                pc.PerformTransition(Transition.Idle);
+            }
             // just in case
             if (onWall)
             {
