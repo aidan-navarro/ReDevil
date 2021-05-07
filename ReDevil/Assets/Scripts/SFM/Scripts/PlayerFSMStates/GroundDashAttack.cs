@@ -19,7 +19,6 @@ public class GroundDashAttack : FSMState
     public GroundDashAttack()
     {
         // calling the constructor in the Player FSMController class
-        Debug.Log("Creating the Dash Attack");
         // make a state ID for the ground dash, 
         stateID = FSMStateID.DashAttacking;
 
@@ -32,7 +31,7 @@ public class GroundDashAttack : FSMState
 
     public override void Act(Transform player, Transform npc)
     {
-        Debug.Log("Initiate Ground Dash Attack");
+        //Debug.Log("Initiate Ground Dash Attack");
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>(); // access the rigid body component attached to the player
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
@@ -52,7 +51,6 @@ public class GroundDashAttack : FSMState
         {
             pc.SetCanDash(false);
             pc.SetDashInputAllowed(false);
-            patk.StartDashAttack(); // Call the function for starting the dash attack
             dashAttackStarted = true; // so that we don't trigger this again
             endDash = false;
 
@@ -101,10 +99,12 @@ public class GroundDashAttack : FSMState
             // pseudo code
             // if (dash hitbox contact)
             // patk.EndDashAttack()
-
-
+            if (dashDistance < pc.dashLength)
+            {
+                patk.StartDashAttack();
+            }
             //dashed max distance, end the dash.
-            if (dashDistance >= pc.dashLength)
+            else if (dashDistance >= pc.dashLength)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;

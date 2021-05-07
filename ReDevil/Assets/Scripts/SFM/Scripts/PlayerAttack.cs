@@ -174,6 +174,7 @@ public class PlayerAttack : MonoBehaviour
         ContactFilter2D filter = new ContactFilter2D();
 
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
+        Debug.Log("Number Ground Hits: " + numHits);
 
         for (int i = 0; i < numHits; i++)
         {
@@ -225,7 +226,8 @@ public class PlayerAttack : MonoBehaviour
 
         damage = dashAttackValue;
 
-
+        CheckDashAttackHit(attackCollider, transform.forward, 10);
+        Debug.Log(attackCollider.transform.position);
     }
 
     public void EndDashAttack()
@@ -236,19 +238,29 @@ public class PlayerAttack : MonoBehaviour
         //StopCoroutine("EnableDashAttack");
     }
 
-    // Need an IEnumerator? don't need to delay it
-    public IEnumerator EnableDashAttack()
-    {
-        attacking = true;
-        yield return new WaitForSeconds(0.5f);
-    }
-    
+    //// Need an IEnumerator? don't need to delay it... 
+    //// unless I need to keep the duration of the box check
+    //public IEnumerator EnableDashAttack()
+    //{
+    //    attacking = true;
+    //    yield return new WaitForSeconds(0.5f);
+    //}
+
     private bool CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
         RaycastHit2D[] hits = new RaycastHit2D[10];
         ContactFilter2D filter = new ContactFilter2D();
 
+        int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
+        Debug.Log("NumHits: " + numHits);
 
+        for (int i = 0; i < numHits; i++)
+        {
+            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy")) // this only registers frame 1
+            {
+                Debug.Log("Hit an enemy in dash");
+            }
+        }
 
         return false;
     }
