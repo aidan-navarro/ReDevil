@@ -24,6 +24,7 @@ public enum Transition
     WallSlide,
     WallJump,
     Knockback,
+   
 
     //states for player attacks
     GroundAttack1,
@@ -68,6 +69,7 @@ public enum FSMStateID
     WallSliding, //the player is sliding on a wall
     WallJumping, //the player is jumping off the wall
     KnockedBack, //the player is being knocked back and taking damage
+    
 
     //player attacks
     GroundFirstStrike,

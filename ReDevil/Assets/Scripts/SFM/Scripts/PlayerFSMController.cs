@@ -419,6 +419,8 @@ public class PlayerFSMController : AdvancedFSM
         //there are no transitions out of the dead state
 
 
+
+
         //Add state to the state list
         AddFSMState(idling);
         AddFSMState(moving);
