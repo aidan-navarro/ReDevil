@@ -35,10 +35,12 @@ public class PlayerAttack : MonoBehaviour
     private float damage;
     public bool attacking;
 
+    // dash attack specific, only want to have the dash attack trigger once on hit
+    public bool dashAttackContact;
+
     //transition bools
     public bool idleTransition;
     public bool dashTransition;
-    public bool dashAttackTransition;
 
     public bool groundAttack2Transition;
     public bool groundAttack3Transition;
@@ -186,7 +188,7 @@ public class PlayerAttack : MonoBehaviour
 
                 DetectWeakspot(eCollider);
 
-                Vector3 position = this.gameObject.transform.position;
+                Vector3 position = this.gameObject.transform.position;  // this isn't getting used
 
                 //store the amount of hp the enemy has before the initial hit
                 float pastHealth = ec.health;
@@ -221,13 +223,11 @@ public class PlayerAttack : MonoBehaviour
     {
         //StartCoroutine("EnableDashAttack");
         Debug.Log("Start Dash Attack");
-        attacking = true;
+        attacking = true; // use the same attacking variable?
         TurnOnHitbox();
-
         damage = dashAttackValue;
-
         CheckDashAttackHit(attackCollider, transform.forward, 10);
-        Debug.Log(attackCollider.transform.position);
+        Debug.Log(dashAttackContact);
     }
 
     public void EndDashAttack()
@@ -246,7 +246,7 @@ public class PlayerAttack : MonoBehaviour
     //    yield return new WaitForSeconds(0.5f);
     //}
 
-    private bool CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
+    private void CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
         RaycastHit2D[] hits = new RaycastHit2D[10];
         ContactFilter2D filter = new ContactFilter2D();
@@ -256,13 +256,37 @@ public class PlayerAttack : MonoBehaviour
 
         for (int i = 0; i < numHits; i++)
         {
-            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy")) // this only registers frame 1
+            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy") && attacking) // this only registers frame 1
             {
-                Debug.Log("Hit an enemy in dash");
+                EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
+                Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
+                
+                DetectWeakspot(eCollider);
+
+                //store the amount of hp the enemy has before the initial hit
+                float pastHealth = ec.health;
+
+                //send all relative information to the player to take damage, and apply knockback
+                ec.TakeDamage(damage);
+
+                //store the amount of hp the enemy has after the hit
+                float presentHealth = ec.health;
+
+                //if the present health goes below 0, set it to zero since you can't steal a negative soul value
+                if (presentHealth < 0)
+                {
+                    presentHealth = 0;
+                }
+
+                //gain soul equal to the damage dealt to the enemy.
+                pc.SoulCalculator(pastHealth - presentHealth);
+
+                attacking = false;
+                dashAttackContact = true;
+                
+                // now take into account of knockback
             }
         }
-
-        return false;
     }
     #endregion
 
@@ -334,7 +358,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(endlag);
         //tell the player were not attacking anymore
         attacking = false;
-
+        idleTransition = true;
     }
 
     //collision detection for the hit utilizing collider.cast method for the ground chain attack
@@ -495,6 +519,7 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("reset transitions");
         idleTransition = false;
         dashTransition = false;
+        dashAttackContact = false; // placing here so that the GDA state can pick up the contact first before changing the boolean back
         groundAttack2Transition = false;
         groundAttack3Transition = false;
     }

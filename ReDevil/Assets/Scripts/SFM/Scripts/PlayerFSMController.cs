@@ -260,7 +260,7 @@ public class PlayerFSMController : AdvancedFSM
 
     private void OnMove(InputAction.CallbackContext obj)
     {
-        moveVector = obj.ReadValue<Vector2>();  
+        moveVector = obj.ReadValue<Vector2>();
     }
 
     private void OnJump(InputAction.CallbackContext obj)
@@ -274,7 +274,7 @@ public class PlayerFSMController : AdvancedFSM
         {
             jumpButtonDown = true;
         }
-        
+
     }
 
     protected override void FSMUpdate()
@@ -379,6 +379,7 @@ public class PlayerFSMController : AdvancedFSM
         groundDashAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         groundDashAttack.AddTransition(Transition.Idle, FSMStateID.Idling);
         groundDashAttack.AddTransition(Transition.Move, FSMStateID.Moving);
+        groundDashAttack.AddTransition(Transition.Airborne, FSMStateID.Midair);
         groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); // doesn't get called but is this an issue?
 
         GroundAttack1State ga1 = new GroundAttack1State();
@@ -522,7 +523,7 @@ public class PlayerFSMController : AdvancedFSM
     //deal damage to the player
     public void Damage()
     {
-            health -= damage;   
+        health -= damage;
     }
 
     //function to handle any increase or decrease of the soul meter.  when using meter, set value to a negative
@@ -530,11 +531,11 @@ public class PlayerFSMController : AdvancedFSM
     {
         soul += soulChange;
 
-        if(soul >= 300)
+        if (soul >= 300)
         {
             soul = 300;
         }
-        if(soul <= 0)
+        if (soul <= 0)
         {
             soul = 0;
         }
@@ -550,33 +551,67 @@ public class PlayerFSMController : AdvancedFSM
         //reinitialize velocity
         rig.velocity = Vector2.zero;
 
-            Vector2 currentPos = this.gameObject.transform.position; //player position
+        Vector2 currentPos = this.gameObject.transform.position; //player position
 
-            rig.gravityScale = gravityScale;
+        rig.gravityScale = gravityScale;
 
-            Vector2 kbDirection = (currentPos - enemyPos).normalized;
-            kbDirection = new Vector2(Mathf.Abs(kbDirection.x) / kbDirection.x, 1); //hard set y value to 1 to ensure enemy bounces up on knockback every time
+        Vector2 kbDirection = (currentPos - enemyPos).normalized;
+        kbDirection = new Vector2(Mathf.Abs(kbDirection.x) / kbDirection.x, 1); //hard set y value to 1 to ensure enemy bounces up on knockback every time
 
 
-            //under the EXTREMELY RARE CHANCE we land right on top of the enemy, set the knockback direction to be the opposite direction we are currently facing
-            if (kbDirection.x == 0 && facingLeft)
-            {
-                kbDirection = new Vector2(1, 1);
-            }
-            else if (kbDirection.x == 0 && !facingLeft)
-            {
-                kbDirection = new Vector2(-1, 1);
-            }
+        //under the EXTREMELY RARE CHANCE we land right on top of the enemy, set the knockback direction to be the opposite direction we are currently facing
+        if (kbDirection.x == 0 && facingLeft)
+        {
+            kbDirection = new Vector2(1, 1);
+        }
+        else if (kbDirection.x == 0 && !facingLeft)
+        {
+            kbDirection = new Vector2(-1, 1);
+        }
 
-            //ensure we change direction so we face away from the direction we are hit
-            if ((kbDirection.x < 0 && facingLeft) || (kbDirection.x > 0 && !facingLeft))
-            {
-                facingLeft = !facingLeft;
-                FlipPlayer();
-            }
+        //ensure we change direction so we face away from the direction we are hit
+        if ((kbDirection.x < 0 && facingLeft) || (kbDirection.x > 0 && !facingLeft))
+        {
+            facingLeft = !facingLeft;
+            FlipPlayer();
+        }
 
-            rig.velocity = Vector2.Scale(kbDirection, new Vector2(knockbackPower, 10));
+        rig.velocity = Vector2.Scale(kbDirection, new Vector2(knockbackPower, 10));
 
+    }
+
+    // Custom Knockback code when we hit the enemy
+    public void DashKnockback()
+    {
+        //reinitialize velocity
+        rig.velocity = Vector2.zero;
+
+        Vector2 currentPos = this.gameObject.transform.position; //player position
+
+        rig.gravityScale = gravityScale;
+
+        Vector2 kbDirection = (currentPos - enemyPos).normalized;
+        kbDirection = new Vector2(Mathf.Abs(kbDirection.x) / kbDirection.x, 1); //hard set y value to 1 to ensure enemy bounces up on knockback every time
+
+
+        //under the EXTREMELY RARE CHANCE we land right on top of the enemy, set the knockback direction to be the opposite direction we are currently facing
+        if (kbDirection.x == 0 && facingLeft)
+        {
+            kbDirection = new Vector2(1, 1);
+        }
+        else if (kbDirection.x == 0 && !facingLeft)
+        {
+            kbDirection = new Vector2(-1, 1);
+        }
+
+        //ensure we change direction so we face away from the direction we are hit
+        if ((kbDirection.x < 0 && facingLeft) || (kbDirection.x > 0 && !facingLeft))
+        {
+            facingLeft = !facingLeft;
+            FlipPlayer();
+        }
+        Vector2 kbOffset = new Vector2(kbDirection.x * 2, kbDirection.y);
+        rig.velocity = Vector2.Scale(kbDirection, new Vector2(knockbackPower, 15));
 
     }
 }
