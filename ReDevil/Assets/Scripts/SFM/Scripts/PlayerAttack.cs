@@ -188,7 +188,7 @@ public class PlayerAttack : MonoBehaviour
 
                 DetectWeakspot(eCollider);
 
-                Vector3 position = this.gameObject.transform.position;
+                Vector3 position = this.gameObject.transform.position;  // this isn't getting used
 
                 //store the amount of hp the enemy has before the initial hit
                 float pastHealth = ec.health;
@@ -248,7 +248,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
-        RaycastHit2D[] hits = new RaycastHit2D[1];
+        RaycastHit2D[] hits = new RaycastHit2D[10];
         ContactFilter2D filter = new ContactFilter2D();
 
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
@@ -258,10 +258,33 @@ public class PlayerAttack : MonoBehaviour
         {
             if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy") && attacking) // this only registers frame 1
             {
+                EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
+                Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
+                
+                DetectWeakspot(eCollider);
+
+                //store the amount of hp the enemy has before the initial hit
+                float pastHealth = ec.health;
+
+                //send all relative information to the player to take damage, and apply knockback
+                ec.TakeDamage(damage);
+
+                //store the amount of hp the enemy has after the hit
+                float presentHealth = ec.health;
+
+                //if the present health goes below 0, set it to zero since you can't steal a negative soul value
+                if (presentHealth < 0)
+                {
+                    presentHealth = 0;
+                }
+
+                //gain soul equal to the damage dealt to the enemy.
+                pc.SoulCalculator(pastHealth - presentHealth);
+
                 attacking = false;
                 dashAttackContact = true;
-                Debug.Log("Dash Attack Contact: " + dashAttackContact);
-                //break;
+                
+                // now take into account of knockback
             }
         }
     }
@@ -335,7 +358,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(endlag);
         //tell the player were not attacking anymore
         attacking = false;
-
+        idleTransition = true;
     }
 
     //collision detection for the hit utilizing collider.cast method for the ground chain attack

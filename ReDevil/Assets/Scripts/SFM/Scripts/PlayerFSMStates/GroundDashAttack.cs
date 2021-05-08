@@ -112,7 +112,7 @@ public class GroundDashAttack : FSMState
                 patk.EndDashAttack();
 
             }
-            else if (patk.dashAttackContact)
+            else if (patk.dashAttackContact) // change this into a knockback state?
             {
                 Debug.Log("Contact with Dash");
                 pc.SetCanDash(true);
@@ -161,7 +161,6 @@ public class GroundDashAttack : FSMState
     // basic reasoning logic for the transitions exiting ground dash
     public override void Reason(Transform player, Transform npc)
     {
-        Rigidbody2D m_rb = player.GetComponent<Rigidbody2D>(); // attached physics body
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>(); // to reset the transitions out of dash attack
         //pc.horizontal = Input.GetAxis("Horizontal");
@@ -186,7 +185,8 @@ public class GroundDashAttack : FSMState
                 // works almost
                 Debug.Log("Go into Idle");
                 patk.ReInitializeTransitions(); // dash attack contact was never getting flicked earlier, so now right on transition the contact boolean will get flicked to false
-                pc.PerformTransition(Transition.Idle);
+                pc.DashKnockback();
+                pc.PerformTransition(Transition.Airborne); // change this into custom knockback
             }
             // just in case
             if (onWall)
@@ -211,6 +211,13 @@ public class GroundDashAttack : FSMState
                 pc.PerformTransition(Transition.Idle);
             }
 
+            // if we ground dash off of the ledge
+            else if (!isGrounded)
+            {
+                Debug.Log("Dashed off ledge");
+                patk.ReInitializeTransitions();
+                pc.PerformTransition(Transition.Airborne);
+            }
         }
 
         // dead transition at any point
