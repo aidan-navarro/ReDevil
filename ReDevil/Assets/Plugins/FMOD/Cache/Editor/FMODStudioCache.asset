@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9157219387409339443
+--- !u!114 &-8934863835406628972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,19 +9,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  guid: ea3a17300e017b4f886ca68e98ab9f9b
+  Banks:
+  - {fileID: -7873545575545569416}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 164625
+--- !u!114 &-7873545575545569416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637560044935438130
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-7412684482190521568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637558405602192331
+  lastModified: 637560044935510558
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 786
-  Exists: 0
---- !u!114 &-6493067781008567190
+    Value: 830
+  Exists: 1
+--- !u!114 &-3770116055892962798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,13 +72,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
   m_Name: event:/HorrorTheme 2
   m_EditorClassIdentifier: 
   Path: event:/HorrorTheme 2
   guid: f02484ef3adb7a449bee682d7f60d159
   Banks:
-  - {fileID: 2785196730321733074}
+  - {fileID: 910848142130567433}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -44,7 +86,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 164625
---- !u!114 &-5398779544050403912
+--- !u!114 &-312972702583687481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,57 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music
-  m_EditorClassIdentifier: 
-  Path: event:/Music
-  guid: ea3a17300e017b4f886ca68e98ab9f9b
-  Banks:
-  - {fileID: 2785196730321733074}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 164625
---- !u!114 &-4424746422557670049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637558424279049354
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 830
-  Exists: 1
---- !u!114 &-1908654176008838737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
   m_Name: event:/Music2
   m_EditorClassIdentifier: 
   Path: event:/Music2
   guid: 0aa09ba99973fe4c84d6a857c2c8126d
   Banks:
-  - {fileID: 2785196730321733074}
+  - {fileID: -7873545575545569416}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -111,49 +109,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 25000
---- !u!114 &-1129445716179754349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD Project/ReDevil/Build/Desktop/Desktop/Master.strings.bank
-  Name: Desktop/Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637558406387639660
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 786
-  Exists: 0
---- !u!114 &-543195573425204383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/HorrorTheme
-  m_EditorClassIdentifier: 
-  Path: event:/HorrorTheme
-  guid: 3e4e216898fec546b2bf3ffbc4a79df6
-  Banks: []
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 164625
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,24 +118,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e8347c9e03bcac418d83c7496cdc817, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 2785196730321733074}
-  - {fileID: -4424746422557670049}
+  - {fileID: -7412684482190521568}
+  - {fileID: -7873545575545569416}
   EditorEvents:
-  - {fileID: -5398779544050403912}
-  - {fileID: -6493067781008567190}
-  - {fileID: -1908654176008838737}
+  - {fileID: -312972702583687481}
+  - {fileID: -8934863835406628972}
+  - {fileID: 8786860026960921506}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 2785196730321733074}
+  - {fileID: -7873545575545569416}
   StringsBanks:
-  - {fileID: -4424746422557670049}
-  stringsBankWriteTime: 637558424279049354
+  - {fileID: -7412684482190521568}
+  stringsBankWriteTime: 637560044935510558
   cacheVersion: 6
---- !u!114 &2350018937040025616
+--- !u!114 &496971200418760073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,17 +144,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Master.bank
+  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: FMOD Project/ReDevil/Build/Desktop/Desktop/Master.bank
-  Name: Desktop/Master
-  StudioPath: bank:/Master
-  lastModified: 637558406387619644
+  Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637560044935510558
   LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &2785196730321733074
+  FileSizes:
+  - Name: Desktop
+    Value: 830
+  Exists: 1
+--- !u!114 &910848142130567433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,17 +165,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
   Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637558424279029340
+  lastModified: 637560044935438130
   LoadResult: 0
   FileSizes: []
   Exists: 1
---- !u!114 &7806454464688488225
+--- !u!114 &5026350203802300121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,13 +184,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  guid: ea3a17300e017b4f886ca68e98ab9f9b
+  Banks:
+  - {fileID: 910848142130567433}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 164625
+--- !u!114 &8786860026960921506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
+  m_Name: event:/HorrorTheme 2
+  m_EditorClassIdentifier: 
+  Path: event:/HorrorTheme 2
+  guid: f02484ef3adb7a449bee682d7f60d159
+  Banks:
+  - {fileID: -7873545575545569416}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 164625
+--- !u!114 &9140638686745064061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
   m_Name: event:/Music2
   m_EditorClassIdentifier: 
   Path: event:/Music2
   guid: 0aa09ba99973fe4c84d6a857c2c8126d
   Banks:
-  - {fileID: 2785196730321733074}
+  - {fileID: 910848142130567433}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
