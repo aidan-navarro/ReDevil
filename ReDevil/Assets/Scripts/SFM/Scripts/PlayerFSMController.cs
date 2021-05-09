@@ -108,6 +108,10 @@ public class PlayerFSMController : AdvancedFSM
     public Vector2 GetDashStartPos() { return dashStartPos; }
     public void SetDashStartPos(Vector2 inDashStartPos) { dashStartPos = inDashStartPos; }
 
+    //respawn
+
+    public Vector3 respawnPoint;
+
     //-------------------------------------------------------------------
     //variables to detect controller input
     //-------------------------------------------------------------------
@@ -615,5 +619,13 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 kbOffset = new Vector2(kbDirection.x * 2, kbDirection.y);
         rig.velocity = Vector2.Scale(kbDirection, new Vector2(knockbackPower, 15));
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Checkpoint")
+        {
+            respawnPoint = other.transform.position;
+        }
     }
 }
