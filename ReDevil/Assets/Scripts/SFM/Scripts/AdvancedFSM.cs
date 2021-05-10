@@ -21,6 +21,7 @@ public enum Transition
     Airborne,
     Dash,
     DashAttack,
+    DashKnockback, // state for having the attack connect with the enemy
     WallSlide,
     WallJump,
     Knockback,
@@ -66,6 +67,7 @@ public enum FSMStateID
     Midair, //the player is out of jump, or is falling
     Dashing, //the player is dashing
     DashAttacking, // new addition, must test... the player is doing a dash attack on the ground
+    DashKnockingBack, // new addition, the player makes contact with the dash attack and is bounced the opposite direction
     WallSliding, //the player is sliding on a wall
     WallJumping, //the player is jumping off the wall
     KnockedBack, //the player is being knocked back and taking damage

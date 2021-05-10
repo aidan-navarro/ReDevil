@@ -11,14 +11,15 @@ public class GroundDashAttack : FSMState
     private bool isGrounded; // need? the check to get in this transition would be if it was grounded already
     private bool onWall; // if the player hits the wall any time during the update
     private float prevGravityScale;
-    float dashDistance;
+    private float dashDistance;
     private bool endDash;
     private bool dashAttackStarted; // bool to check if the attack hitbox has started
 
 
+
+    // calling the constructor in the Player FSMController class
     public GroundDashAttack()
     {
-        // calling the constructor in the Player FSMController class
         // make a state ID for the ground dash, 
         stateID = FSMStateID.DashAttacking;
 
@@ -40,7 +41,10 @@ public class GroundDashAttack : FSMState
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
 
-        bool enterKnockback = pc.GetKbTransition(); 
+        bool enterKnockback = pc.GetKbTransition();
+        bool enterDashKnockback = pc.GetDKBTransition();
+
+        Debug.Log("Dash Knockback State: " + enterDashKnockback);
         // should find a new state for knockback off of grounded dash attack
 
         pc.UpdateState("Ground Dash Attack");
@@ -98,7 +102,6 @@ public class GroundDashAttack : FSMState
             // if we're still in dash and the player hasn't contacted anyone yet
             if (dashDistance < pc.dashLength && !patk.dashAttackContact)
             {
-                Debug.Log("Dashing");
                 patk.StartDashAttack();
             }
             //dashed max distance or we hit someone, end the dash.
@@ -133,9 +136,10 @@ public class GroundDashAttack : FSMState
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
-                patk.EndDashAttack();
                 dashAttackStarted = false;
                 endDash = true;
+                patk.EndDashAttack();
+
             }
 
             //hit a wall.  end the dash
@@ -166,12 +170,11 @@ public class GroundDashAttack : FSMState
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
 
-
         isGrounded = pc.GetisGrounded();
+        //Debug.Log("IsGroundedCheck" + isGrounded);
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
-
-        
+        bool dkbTransition = pc.GetDKBTransition();
 
         if (endDash)
         {
@@ -180,29 +183,31 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Enter Knockback");
                 pc.PerformTransition(Transition.Knockback);
             }
-            if (patk.dashAttackContact)
+            if (patk.dashAttackContact && isGrounded)
             {
-                // works almost
-                Debug.Log("Go into Idle");
-                patk.ReInitializeTransitions(); // dash attack contact was never getting flicked earlier, so now right on transition the contact boolean will get flicked to false
-                pc.DashKnockback();
-                pc.PerformTransition(Transition.Airborne); // change this into custom knockback
+                Debug.Log("Transition to Dash Knockback");
+                // potential issue... is this going back to idle?
+                // patk.ReInitializeTransitions(); // dash attack contact was never getting flicked earlier, so now right on transition the contact boolean will get flicked to false
+                pc.PerformTransition(Transition.DashKnockback); // change this into custom knockback
             }
+
             // just in case
             if (onWall)
             {
                 pc.PerformTransition(Transition.WallSlide);
             }
 
-            // moving transition
-            if (pc.moveVector.x > 0 || pc.moveVector.x < 0)
-            {
-                pc.PerformTransition(Transition.Move);
-            }
+            //// moving transition
+            //if ((pc.moveVector.x > 0 || pc.moveVector.x < 0) && !patk.dashAttackContact)
+            //{
+            //    patk.ReInitializeTransitions();
+            //    pc.PerformTransition(Transition.Move);
+            //}
 
+          
             if (isGrounded && (dashDistance >= pc.dashLength))
             {
-                Debug.Log("End Ground Dash");
+                Debug.Log("Transition into Idle");
                 pc.PerformTransition(Transition.Idle);
             }
             else if (isGrounded && onWall)
@@ -210,7 +215,6 @@ public class GroundDashAttack : FSMState
                 Debug.Log("End Ground Dash Hit Wall");
                 pc.PerformTransition(Transition.Idle);
             }
-
             // if we ground dash off of the ledge
             else if (!isGrounded)
             {
