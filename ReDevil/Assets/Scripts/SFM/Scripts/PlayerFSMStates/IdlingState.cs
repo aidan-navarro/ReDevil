@@ -93,11 +93,6 @@ public class IdlingState : FSMState
             pc.PerformTransition(Transition.Move);
         }
 
-        if (!grounded)
-        {
-            pc.PerformTransition(Transition.Airborne);
-        }
-
         //dead transition
         if (pc.GetHealth() <= 0)
         {
