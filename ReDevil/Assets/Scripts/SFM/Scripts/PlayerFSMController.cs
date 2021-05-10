@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using System;
 
 //FSM Class for the Player which also contains variables + unique functions for the player
@@ -627,5 +628,16 @@ public class PlayerFSMController : AdvancedFSM
         {
             respawnPoint = other.transform.position;
         }
+    }
+
+    public void PlayPlayerDead()
+    {
+        StartCoroutine("PlayerDead");
+    }
+
+    public IEnumerator PlayerDead()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(1);
     }
 }
