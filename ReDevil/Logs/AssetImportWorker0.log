@@ -172,3 +172,19 @@ Received Import Request.
 Start importing Assets/Scripts/SFM/Scripts/PlayerFSMController.cs using Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ba2cf32e039a2a364ac6d34d2faa095') in 0.025788 seconds
   Import took 0.038080 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 2610.277562 seconds.
+  path: Assets/Scenes/TestDeathScene.unity
+  artifactKey: Guid(76c458294c6709e4f83fc736366ba53a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TestDeathScene.unity using Guid(76c458294c6709e4f83fc736366ba53a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d9c744f8a47f323d0edab88bcfe6b4f') in 0.115114 seconds
+  Import took 0.160106 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5408.635961 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(797d9e832f04b4e4095d0f787007749c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene.unity using Guid(797d9e832f04b4e4095d0f787007749c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbe8091bc73eafa82a0073cd884fd974') in 0.022498 seconds
+  Import took 0.050948 seconds .
+
