@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Full Soul Attack",
+                    "name": "Toggle Soul Armament",
                     "type": "Button",
                     "id": "a17b6638-c426-4b9b-8eda-7211fff192a0",
                     "expectedControlType": "Button",
@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Soul Power",
+                    "name": "Soul Power Shot",
                     "type": "Button",
                     "id": "c8a05d0f-1842-40a0-8fc0-f1ac5d1f0714",
                     "expectedControlType": "Button",
@@ -279,7 +279,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Full Soul Attack",
+                    "action": "Toggle Soul Armament",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -290,7 +290,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Full Soul Attack",
+                    "action": "Toggle Soul Armament",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -301,7 +301,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Soul Power",
+                    "action": "Soul Power Shot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -312,7 +312,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Soul Power",
+                    "action": "Soul Power Shot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

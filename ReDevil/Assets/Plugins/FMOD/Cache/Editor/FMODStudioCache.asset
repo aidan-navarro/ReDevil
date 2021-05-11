@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8934863835406628972
+--- !u!114 &-8585935342705954434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,61 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
-  m_Name: event:/Music
-  m_EditorClassIdentifier: 
-  Path: event:/Music
-  guid: ea3a17300e017b4f886ca68e98ab9f9b
-  Banks:
-  - {fileID: -7873545575545569416}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 164625
---- !u!114 &-7873545575545569416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637560044935438130
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-7412684482190521568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637560044935510558
+  lastModified: 637562747876463169
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 830
+    Value: 870
   Exists: 1
---- !u!114 &-3770116055892962798
+--- !u!114 &-6180859864720024101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,21 +30,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
-  m_Name: event:/HorrorTheme 2
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SwordSwing
   m_EditorClassIdentifier: 
-  Path: event:/HorrorTheme 2
-  guid: f02484ef3adb7a449bee682d7f60d159
+  Path: event:/SwordSwing
+  guid: bbd6fca684bc684682c9da4107abefed
   Banks:
-  - {fileID: 910848142130567433}
-  IsStream: 1
+  - {fileID: -2339709368400565707}
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 164625
---- !u!114 &-312972702583687481
+  Length: 1290
+--- !u!114 &-6045766439500508041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,13 +53,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/Music2
   m_EditorClassIdentifier: 
   Path: event:/Music2
   guid: 0aa09ba99973fe4c84d6a857c2c8126d
   Banks:
-  - {fileID: -7873545575545569416}
+  - {fileID: -2339709368400565707}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -109,6 +67,71 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 25000
+--- !u!114 &-2920312376515457815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  guid: ea3a17300e017b4f886ca68e98ab9f9b
+  Banks:
+  - {fileID: -2339709368400565707}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 164625
+--- !u!114 &-2339709368400565707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637562747876443159
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-21747707312214513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SwordSwing
+  m_EditorClassIdentifier: 
+  Path: event:/SwordSwing
+  guid: bbd6fca684bc684682c9da4107abefed
+  Banks:
+  - {fileID: -2339709368400565707}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1290
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,24 +141,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8347c9e03bcac418d83c7496cdc817, type: 3}
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7412684482190521568}
-  - {fileID: -7873545575545569416}
+  - {fileID: -8585935342705954434}
+  - {fileID: -2339709368400565707}
   EditorEvents:
-  - {fileID: -312972702583687481}
-  - {fileID: -8934863835406628972}
-  - {fileID: 8786860026960921506}
+  - {fileID: -6045766439500508041}
+  - {fileID: -2920312376515457815}
+  - {fileID: 268799825882280632}
+  - {fileID: -6180859864720024101}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7873545575545569416}
+  - {fileID: -2339709368400565707}
   StringsBanks:
-  - {fileID: -7412684482190521568}
-  stringsBankWriteTime: 637560044935510558
+  - {fileID: -8585935342705954434}
+  stringsBankWriteTime: 637562747876463169
   cacheVersion: 6
---- !u!114 &496971200418760073
+--- !u!114 &268799825882280632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,76 +168,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637560044935510558
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 830
-  Exists: 1
---- !u!114 &910848142130567433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dfc898f51efb24f9c52f3b8878d037, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637560044935438130
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &5026350203802300121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
-  m_Name: event:/Music
-  m_EditorClassIdentifier: 
-  Path: event:/Music
-  guid: ea3a17300e017b4f886ca68e98ab9f9b
-  Banks:
-  - {fileID: 910848142130567433}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 164625
---- !u!114 &8786860026960921506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/HorrorTheme 2
   m_EditorClassIdentifier: 
   Path: event:/HorrorTheme 2
   guid: f02484ef3adb7a449bee682d7f60d159
   Banks:
-  - {fileID: -7873545575545569416}
+  - {fileID: -2339709368400565707}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -221,26 +182,3 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 164625
---- !u!114 &9140638686745064061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fabcbf65e92ca34fb3cda30e5eb0086, type: 3}
-  m_Name: event:/Music2
-  m_EditorClassIdentifier: 
-  Path: event:/Music2
-  guid: 0aa09ba99973fe4c84d6a857c2c8126d
-  Banks:
-  - {fileID: 910848142130567433}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 25000

@@ -19,10 +19,15 @@ public class JumpingState : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
 
+
+        pc.TouchingFloorOrWall();
         bool grounded = pc.GetisGrounded();
+
+        
         pc.UpdateState("Jump");
 
-
+        if(grounded)
+        {
             //Player has begun to jump
             Vector2 newVel = rig.velocity;
             newVel.y = pc.GetJumpPower();
@@ -30,6 +35,8 @@ public class JumpingState : FSMState
 
             Debug.Log("Player State: Jumping");
             hasJumped = true;
+        }
+            
         
     }
 
@@ -40,13 +47,14 @@ public class JumpingState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
+        bool grounded = pc.GetisGrounded();
 
         //knockback transition
         if (!invincible && kbTransition)
         {
             pc.PerformTransition(Transition.Knockback);
         }
-        if (hasJumped)
+        if (hasJumped && !grounded)
         {
             pc.PerformTransition(Transition.Airborne);
         }

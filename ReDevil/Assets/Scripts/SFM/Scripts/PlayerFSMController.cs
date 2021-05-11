@@ -38,6 +38,13 @@ public class PlayerFSMController : AdvancedFSM
     public float GetSoul() { return soul; }
     public void SetSoul(float insoul) { soul = insoul; }
 
+    [SerializeField]
+    private List<SoulArmament> soulArmaments;
+
+    [SerializeField]
+    private SoulArmament selectedArament;
+    public SoulArmament CurrentArament => selectedArament;
+
     //-------------------------------------------------------------------
     //Variables for taking damage and knockback
     //-------------------------------------------------------------------
@@ -61,6 +68,14 @@ public class PlayerFSMController : AdvancedFSM
     private bool kbTransition; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
     public bool GetKbTransition() { return kbTransition; }
     public void SetKbTransition(bool inKbTransition) { kbTransition = inKbTransition; }
+
+    // TEST ---------- dash knockback specific --------------
+    private bool dkbTransition;
+    public bool GetDKBTransition() { return dkbTransition;  }
+    public void SetDKBTransition(bool inDKBTransition)
+    {
+        dkbTransition = inDKBTransition;
+    }
 
     private bool immobile; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
     public bool GetImmobile() { return immobile; }
@@ -130,6 +145,9 @@ public class PlayerFSMController : AdvancedFSM
     [System.NonSerialized]
     private bool jumpButtonDown;
     public bool GetJumpButtonDown() { return jumpButtonDown; }
+    [System.NonSerialized]
+    private bool soulAttackButtonDown;
+    public bool GetSoulAttackButtonDown() { return soulAttackButtonDown; }
 
     //variables for determining direction faced
     [System.NonSerialized]
@@ -216,6 +234,43 @@ public class PlayerFSMController : AdvancedFSM
         {
             OnDashRight(obj);
         }
+
+        if (obj.action.name == gameplayControls.Gameplay.ToggleSoulArmament.name)
+        {
+            OnToggleSoulArament(obj);
+        }
+
+        if (obj.action.name == gameplayControls.Gameplay.SoulPowerShot.name)
+        {
+            OnSoulShot(obj);
+        }
+    }
+
+    private void OnSoulShot(InputAction.CallbackContext obj)
+    {
+        if (obj.started)
+        {
+            soulAttackButtonDown = true;
+        }
+        else if (obj.canceled)
+        {
+            soulAttackButtonDown = false;  
+        }
+    }
+
+    private void OnToggleSoulArament(InputAction.CallbackContext obj)
+    {
+        if (CurrentStateID != FSMStateID.KnockedBack || CurrentStateID != FSMStateID.Dead)
+        {
+            if (selectedArament.IsActive)
+            {
+                selectedArament.DeActivateArament();
+            }
+            else
+            {
+                selectedArament.ActivateArament();
+            }
+        }
     }
 
     private void OnDashRight(InputAction.CallbackContext obj)
@@ -284,6 +339,15 @@ public class PlayerFSMController : AdvancedFSM
 
     protected override void FSMUpdate()
     {
+        if (selectedArament.IsActive)
+        {
+            SoulCalculator(-selectedArament.SoulCost * Time.deltaTime);
+            if (soul <= 0)
+            {
+                selectedArament.DeActivateArament();
+            }
+        }
+
         CurrentState.Reason(playerTransform, transform);
         CurrentState.Act(playerTransform, transform);
     }
@@ -306,6 +370,7 @@ public class PlayerFSMController : AdvancedFSM
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         idling.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
+        idling.AddTransition(Transition.SoulShot, FSMStateID.SoulShot);
 
         //create the Moving state
         MoveState moving = new MoveState();
@@ -350,6 +415,7 @@ public class PlayerFSMController : AdvancedFSM
         midair.AddTransition(Transition.Dash, FSMStateID.Dashing);
         midair.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         midair.AddTransition(Transition.AirDownStrike, FSMStateID.AirDownStrike);//air down strike
+        midair.AddTransition(Transition.SoulShot, FSMStateID.SoulShot);
 
         //create the Jumping state
         JumpingState jumping = new JumpingState();
@@ -359,7 +425,7 @@ public class PlayerFSMController : AdvancedFSM
         jumping.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i complete my jump, transition to midair movement
         jumping.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         jumping.AddTransition(Transition.AirDownStrike, FSMStateID.AirDownStrike);//air down strike
-
+        
         //create Wall Jumping State
         WallJumpState wallJumping = new WallJumpState();
 
@@ -385,7 +451,17 @@ public class PlayerFSMController : AdvancedFSM
         groundDashAttack.AddTransition(Transition.Idle, FSMStateID.Idling);
         groundDashAttack.AddTransition(Transition.Move, FSMStateID.Moving);
         groundDashAttack.AddTransition(Transition.Airborne, FSMStateID.Midair);
-        groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); // doesn't get called but is this an issue?
+        groundDashAttack.AddTransition(Transition.DashKnockback, FSMStateID.DashKnockingBack); // if contact with dash attack happens, transition here
+        groundDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
+
+        GroundDashKnockback groundDashKnockback = new GroundDashKnockback();
+
+        groundDashKnockback.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if we happen to die during this knockback 
+        groundDashKnockback.AddTransition(Transition.Idle, FSMStateID.Idling);
+        groundDashKnockback.AddTransition(Transition.Move, FSMStateID.Moving);
+        groundDashKnockback.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        groundDashKnockback.AddTransition(Transition.Airborne, FSMStateID.Midair); // transition into airborne from the knockback
+        groundDashKnockback.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);
 
         GroundAttack1State ga1 = new GroundAttack1State();
 
@@ -419,12 +495,17 @@ public class PlayerFSMController : AdvancedFSM
         airDownStrike.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack ends when landing
         airDownStrike.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
+        SoulShotState soulShotState = new SoulShotState();
+
+        soulShotState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        soulShotState.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
+        soulShotState.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i complete my jump, transition to midair movement
+        soulShotState.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
+
+
         //Create the Dead state
         DeadState dead = new DeadState();
         //there are no transitions out of the dead state
-
-
-
 
         //Add state to the state list
         AddFSMState(idling);
@@ -438,11 +519,12 @@ public class PlayerFSMController : AdvancedFSM
 
         //attack state list
         AddFSMState(groundDashAttack); // adding to the attack states
+        AddFSMState(groundDashKnockback); // adding right after dash attack
         AddFSMState(ga1);
         AddFSMState(ga2);
         AddFSMState(ga3);
         AddFSMState(airDownStrike);
-
+        AddFSMState(soulShotState);
 
         AddFSMState(dead);
 
@@ -521,10 +603,28 @@ public class PlayerFSMController : AdvancedFSM
 
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
-        SetDamage(dmg);
+        if (selectedArament.IsActive)
+        {
+            SoulCalculator(-dmg);
+            if (soul <= 0)
+            {
+                selectedArament.DeActivateArament();
+            }
+            return;
+        }
+        else
+        {
+            SetDamage(dmg);
+            SetKnockbackPower(kbPower);
+            SetEnemyPos(ePos);
+            kbTransition = true;
+        }
+    }
+
+    private void DashKnockbackTransition(float kbPower, Vector2 direction)
+    {
         SetKnockbackPower(kbPower);
-        SetEnemyPos(ePos);
-        kbTransition = true;
+        SetEnemyPos(direction);
     }
 
     //deal damage to the player
@@ -548,6 +648,7 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
+
     public void UpdateState(string state)
     {
         stateText.text = state;
@@ -564,7 +665,6 @@ public class PlayerFSMController : AdvancedFSM
 
         Vector2 kbDirection = (currentPos - enemyPos).normalized;
         kbDirection = new Vector2(Mathf.Abs(kbDirection.x) / kbDirection.x, 1); //hard set y value to 1 to ensure enemy bounces up on knockback every time
-
 
         //under the EXTREMELY RARE CHANCE we land right on top of the enemy, set the knockback direction to be the opposite direction we are currently facing
         if (kbDirection.x == 0 && facingLeft)
@@ -591,6 +691,39 @@ public class PlayerFSMController : AdvancedFSM
     public void DashKnockback()
     {
         //reinitialize velocity
+        //rig.velocity = Vector2.zero;
+        Vector2 currentPos = this.gameObject.transform.position; //player position
+        Vector2 kbDirection = new Vector2(0, 0);
+
+        if (facingLeft)
+        {
+            kbDirection = new Vector2(1, 1);
+            DashKnockbackTransition(20, currentPos - kbDirection);
+        }
+        else if (!facingLeft)
+        {
+            kbDirection = new Vector2(-1, 1);
+            DashKnockbackTransition(20, currentPos - kbDirection);
+        }
+
+
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+
+        Vector2 knockbackVector = (currentPos - enemyPos).normalized;
+        knockbackVector = new Vector2(Mathf.Abs(knockbackVector.x) / knockbackVector.x, 1); //hard set y value to 1 to ensure enemy bounces up on knockback every time
+
+        Debug.Log(knockbackVector);
+
+        //under the EXTREMELY RARE CHANCE we land right on top of the enemy, set the knockback direction to be the opposite direction we are currently facing
+        rig.velocity = Vector2.Scale(knockbackVector, new Vector2(knockbackPower, 10));
+
+    }
+
+    // code for airdash attack... not in use yet
+    public void AirDashKnockback()
+    {
+        //reinitialize velocity
         rig.velocity = Vector2.zero;
 
         Vector2 currentPos = this.gameObject.transform.position; //player position
@@ -599,7 +732,6 @@ public class PlayerFSMController : AdvancedFSM
 
         Vector2 kbDirection = (currentPos - enemyPos).normalized;
         kbDirection = new Vector2(Mathf.Abs(kbDirection.x) / kbDirection.x, 1); //hard set y value to 1 to ensure enemy bounces up on knockback every time
-
 
         //under the EXTREMELY RARE CHANCE we land right on top of the enemy, set the knockback direction to be the opposite direction we are currently facing
         if (kbDirection.x == 0 && facingLeft)
@@ -610,15 +742,9 @@ public class PlayerFSMController : AdvancedFSM
         {
             kbDirection = new Vector2(-1, 1);
         }
+        knockbackPower = kbDirection.x;
 
-        //ensure we change direction so we face away from the direction we are hit
-        if ((kbDirection.x < 0 && facingLeft) || (kbDirection.x > 0 && !facingLeft))
-        {
-            facingLeft = !facingLeft;
-            FlipPlayer();
-        }
-        Vector2 kbOffset = new Vector2(kbDirection.x * 2, kbDirection.y);
-        rig.velocity = Vector2.Scale(kbDirection, new Vector2(knockbackPower, 15));
+        rig.velocity = Vector2.Scale(kbDirection, new Vector2(knockbackPower, 10));
 
     }
 
