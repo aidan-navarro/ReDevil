@@ -395,3 +395,19 @@ System memory in use after: 65.4 MB.
 Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1859.
 Total: 1.847300 ms (FindLiveObjects: 0.185500 ms CreateObjectMapping: 0.053100 ms MarkObjects: 1.586400 ms  DeleteObjects: 0.020900 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 2610.277562 seconds.
+  path: Assets/Scenes/TestDeathScene.unity
+  artifactKey: Guid(76c458294c6709e4f83fc736366ba53a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TestDeathScene.unity using Guid(76c458294c6709e4f83fc736366ba53a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d9c744f8a47f323d0edab88bcfe6b4f') in 0.115114 seconds
+  Import took 0.160106 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5408.635961 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(797d9e832f04b4e4095d0f787007749c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene.unity using Guid(797d9e832f04b4e4095d0f787007749c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbe8091bc73eafa82a0073cd884fd974') in 0.022498 seconds
+  Import took 0.050948 seconds .
+
