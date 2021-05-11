@@ -15,12 +15,35 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637562668711243624
+  lastModified: 637562747876463169
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 870
   Exists: 1
+--- !u!114 &-6180859864720024101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SwordSwing
+  m_EditorClassIdentifier: 
+  Path: event:/SwordSwing
+  guid: bbd6fca684bc684682c9da4107abefed
+  Banks:
+  - {fileID: -2339709368400565707}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1290
 --- !u!114 &-6045766439500508041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +105,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637562668711233615
+  lastModified: 637562747876443159
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -128,13 +151,13 @@ MonoBehaviour:
   - {fileID: -6045766439500508041}
   - {fileID: -2920312376515457815}
   - {fileID: 268799825882280632}
-  - {fileID: -21747707312214513}
+  - {fileID: -6180859864720024101}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2339709368400565707}
   StringsBanks:
   - {fileID: -8585935342705954434}
-  stringsBankWriteTime: 637562668711243624
+  stringsBankWriteTime: 637562747876463169
   cacheVersion: 6
 --- !u!114 &268799825882280632
 MonoBehaviour:
