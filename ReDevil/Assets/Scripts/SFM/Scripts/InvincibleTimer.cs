@@ -42,4 +42,12 @@ public class InvincibleTimer : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Default");
 
     }
+
+    // Testing purposes, timer for the dash attack
+    public IEnumerator DashKnockbackTimer()
+    {
+        // get a delay timer set in the player controller?
+        yield return new WaitForSeconds(0.5f);
+        pc.SetDKBTransition(false);
+    }
 }

@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
     public bool attacking;
 
     // dash attack specific, only want to have the dash attack trigger once on hit
-    public bool dashAttackContact;
+    public bool dashAttackContact; // going to get flicked back to false once it hits
 
     //transition bools
     public bool idleTransition;
@@ -233,7 +233,6 @@ public class PlayerAttack : MonoBehaviour
     public void EndDashAttack()
     {
         attacking = false;
-        Debug.Log("Stop Dash Attack");
         TurnOffHitbox();
         //StopCoroutine("EnableDashAttack");
     }
@@ -283,7 +282,6 @@ public class PlayerAttack : MonoBehaviour
 
                 attacking = false;
                 dashAttackContact = true;
-                
                 // now take into account of knockback
             }
         }

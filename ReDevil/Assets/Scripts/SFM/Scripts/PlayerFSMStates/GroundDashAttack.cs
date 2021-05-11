@@ -188,6 +188,9 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Transition to Dash Knockback");
                 // potential issue... is this going back to idle?
                 // patk.ReInitializeTransitions(); // dash attack contact was never getting flicked earlier, so now right on transition the contact boolean will get flicked to false
+
+                pc.DashKnockback(); // using the custom dash Knockback
+                pc.SetDKBTransition(true); // hit the transition to true just before we hit the knockback state
                 pc.PerformTransition(Transition.DashKnockback); // change this into custom knockback
             }
 

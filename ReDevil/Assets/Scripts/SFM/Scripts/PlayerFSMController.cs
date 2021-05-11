@@ -62,12 +62,17 @@ public class PlayerFSMController : AdvancedFSM
     public void SetKbTransition(bool inKbTransition) { kbTransition = inKbTransition; }
 
     // TEST ---------- dash knockback specific --------------
+
+    [SerializeField]
+    private float dashKnockbackPower;
+
     private bool dkbTransition;
     public bool GetDKBTransition() { return dkbTransition;  }
     public void SetDKBTransition(bool inDKBTransition)
     {
         dkbTransition = inDKBTransition;
     }
+    // END TEST -----------------------
 
     private bool immobile; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
     public bool GetImmobile() { return immobile; }
@@ -537,11 +542,11 @@ public class PlayerFSMController : AdvancedFSM
         kbTransition = true;
     }
 
-    private void DashKnockbackTransition(float kbPower, Vector2 direction)
-    {
-        SetKnockbackPower(kbPower);
-        SetEnemyPos(direction);
-    }
+    //private void DashKnockbackTransition(float kbPower, Vector2 direction)
+    //{
+    //    SetKnockbackPower(kbPower);
+    //    SetEnemyPos(direction);
+    //}
 
     //deal damage to the player
     public void Damage()
@@ -613,26 +618,22 @@ public class PlayerFSMController : AdvancedFSM
         if (facingLeft)
         {
             kbDirection = new Vector2(1, 1);
-            DashKnockbackTransition(20, currentPos - kbDirection);
+            //DashKnockbackTransition(20, currentPos - kbDirection);
         }
         else if (!facingLeft)
         {
             kbDirection = new Vector2(-1, 1);
-            DashKnockbackTransition(20, currentPos - kbDirection);
+            //DashKnockbackTransition(20, currentPos - kbDirection);
         }
-
 
         rig.velocity = Vector2.zero;
         rig.gravityScale = gravityScale;
 
-        Vector2 knockbackVector = (currentPos - enemyPos).normalized;
-        knockbackVector = new Vector2(Mathf.Abs(knockbackVector.x) / knockbackVector.x, 1); //hard set y value to 1 to ensure enemy bounces up on knockback every time
+        //Debug.Log(kbDirection);
 
-        Debug.Log(knockbackVector);
-
-        //under the EXTREMELY RARE CHANCE we land right on top of the enemy, set the knockback direction to be the opposite direction we are currently facing
-        rig.velocity = Vector2.Scale(knockbackVector, new Vector2(knockbackPower, 10));
-
+        // Dash Knockback Power set in the inspector at value 20
+        rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
+        Debug.Log(rig.velocity);
     }
 
     // code for airdash attack... not in use yet
