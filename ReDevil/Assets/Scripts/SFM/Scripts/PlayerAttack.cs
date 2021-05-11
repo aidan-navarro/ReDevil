@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     public SpriteRenderer sprite;
     //to compare if we hit a weakspot
     public PhysicsMaterial2D weakSpot;
+    public GameObject soulShot;
 
     //damage amounts for each hit of the ground hit chain
     public float groundHit1;
@@ -44,6 +46,8 @@ public class PlayerAttack : MonoBehaviour
 
     public bool groundAttack2Transition;
     public bool groundAttack3Transition;
+
+    public bool soulShotTransition;
 
 
     public bool checkCancel; //extra safety measure checking when we are able to cancel an attack;
@@ -288,6 +292,50 @@ public class PlayerAttack : MonoBehaviour
     }
     #endregion
 
+    //------------------------------------------------------------
+    // Soul Shot Functions
+    //------------------------------------------------------------
+    public void SoulShotAttack()
+    {
+        StartCoroutine("EnableSoulShotAttack");
+    }
+    public IEnumerator EnableSoulShotAttack()
+    {
+        attacking = true;
+        pc.GetRigidbody2D().velocity = new Vector2(0, 0);
+
+        //fire off a soul shot in the direction the player is facing
+        GameObject soulShotBullet = Instantiate(soulShot, attackCollider.gameObject.transform.position, soulShot.transform.rotation);
+        if(pc.facingLeft)
+        {
+            soulShotBullet.GetComponent<Bullet>().direction = new Vector2(-1, 0);
+        }
+        else
+        {
+            soulShotBullet.GetComponent<Bullet>().direction = new Vector2(1, 0);
+        }
+
+        pc.SoulCalculator(-soulShotBullet.GetComponent<SoulShot>().soulCost);
+
+        //let the hit process so that we don't end up cancelling before damage is dealt
+        yield return new WaitForSeconds(0.1f);
+
+        //allow the player state to check for a cancel (dash or attack chain)
+        checkCancel = true;
+
+        //play the animation here
+
+        //wait for the attack to end.  During this timeframe the attack can be cancelled
+        yield return new WaitForSeconds(endlag);
+
+        //we can't check for a cancel anymore, set to false
+        checkCancel = false;
+
+        attacking = false;
+
+        idleTransition = true;
+        Debug.Log("soul shot attack coroutine end");
+    }
 
 
     //------------------------------------------------------------

@@ -43,7 +43,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Full Soul Attack"",
+                    ""name"": ""Toggle Soul Armament"",
                     ""type"": ""Button"",
                     ""id"": ""a17b6638-c426-4b9b-8eda-7211fff192a0"",
                     ""expectedControlType"": ""Button"",
@@ -51,7 +51,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Soul Power"",
+                    ""name"": ""Soul Power Shot"",
                     ""type"": ""Button"",
                     ""id"": ""c8a05d0f-1842-40a0-8fc0-f1ac5d1f0714"",
                     ""expectedControlType"": ""Button"",
@@ -292,7 +292,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Full Soul Attack"",
+                    ""action"": ""Toggle Soul Armament"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -303,7 +303,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Full Soul Attack"",
+                    ""action"": ""Toggle Soul Armament"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -314,7 +314,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Soul Power"",
+                    ""action"": ""Soul Power Shot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -325,7 +325,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Soul Power"",
+                    ""action"": ""Soul Power Shot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -411,8 +411,8 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
-        m_Gameplay_FullSoulAttack = m_Gameplay.FindAction("Full Soul Attack", throwIfNotFound: true);
-        m_Gameplay_SoulPower = m_Gameplay.FindAction("Soul Power", throwIfNotFound: true);
+        m_Gameplay_ToggleSoulArmament = m_Gameplay.FindAction("Toggle Soul Armament", throwIfNotFound: true);
+        m_Gameplay_SoulPowerShot = m_Gameplay.FindAction("Soul Power Shot", throwIfNotFound: true);
         m_Gameplay_DashLeft = m_Gameplay.FindAction("Dash Left", throwIfNotFound: true);
         m_Gameplay_DashRight = m_Gameplay.FindAction("Dash Right", throwIfNotFound: true);
     }
@@ -467,8 +467,8 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Attack;
-    private readonly InputAction m_Gameplay_FullSoulAttack;
-    private readonly InputAction m_Gameplay_SoulPower;
+    private readonly InputAction m_Gameplay_ToggleSoulArmament;
+    private readonly InputAction m_Gameplay_SoulPowerShot;
     private readonly InputAction m_Gameplay_DashLeft;
     private readonly InputAction m_Gameplay_DashRight;
     public struct GameplayActions
@@ -478,8 +478,8 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
-        public InputAction @FullSoulAttack => m_Wrapper.m_Gameplay_FullSoulAttack;
-        public InputAction @SoulPower => m_Wrapper.m_Gameplay_SoulPower;
+        public InputAction @ToggleSoulArmament => m_Wrapper.m_Gameplay_ToggleSoulArmament;
+        public InputAction @SoulPowerShot => m_Wrapper.m_Gameplay_SoulPowerShot;
         public InputAction @DashLeft => m_Wrapper.m_Gameplay_DashLeft;
         public InputAction @DashRight => m_Wrapper.m_Gameplay_DashRight;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -500,12 +500,12 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Attack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
-                @FullSoulAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFullSoulAttack;
-                @FullSoulAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFullSoulAttack;
-                @FullSoulAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFullSoulAttack;
-                @SoulPower.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSoulPower;
-                @SoulPower.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSoulPower;
-                @SoulPower.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSoulPower;
+                @ToggleSoulArmament.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleSoulArmament;
+                @ToggleSoulArmament.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleSoulArmament;
+                @ToggleSoulArmament.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleSoulArmament;
+                @SoulPowerShot.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSoulPowerShot;
+                @SoulPowerShot.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSoulPowerShot;
+                @SoulPowerShot.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSoulPowerShot;
                 @DashLeft.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashLeft;
                 @DashLeft.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashLeft;
                 @DashLeft.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashLeft;
@@ -525,12 +525,12 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
-                @FullSoulAttack.started += instance.OnFullSoulAttack;
-                @FullSoulAttack.performed += instance.OnFullSoulAttack;
-                @FullSoulAttack.canceled += instance.OnFullSoulAttack;
-                @SoulPower.started += instance.OnSoulPower;
-                @SoulPower.performed += instance.OnSoulPower;
-                @SoulPower.canceled += instance.OnSoulPower;
+                @ToggleSoulArmament.started += instance.OnToggleSoulArmament;
+                @ToggleSoulArmament.performed += instance.OnToggleSoulArmament;
+                @ToggleSoulArmament.canceled += instance.OnToggleSoulArmament;
+                @SoulPowerShot.started += instance.OnSoulPowerShot;
+                @SoulPowerShot.performed += instance.OnSoulPowerShot;
+                @SoulPowerShot.canceled += instance.OnSoulPowerShot;
                 @DashLeft.started += instance.OnDashLeft;
                 @DashLeft.performed += instance.OnDashLeft;
                 @DashLeft.canceled += instance.OnDashLeft;
@@ -564,8 +564,8 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnFullSoulAttack(InputAction.CallbackContext context);
-        void OnSoulPower(InputAction.CallbackContext context);
+        void OnToggleSoulArmament(InputAction.CallbackContext context);
+        void OnSoulPowerShot(InputAction.CallbackContext context);
         void OnDashLeft(InputAction.CallbackContext context);
         void OnDashRight(InputAction.CallbackContext context);
     }

@@ -37,6 +37,13 @@ public class PlayerFSMController : AdvancedFSM
     public float GetSoul() { return soul; }
     public void SetSoul(float insoul) { soul = insoul; }
 
+    [SerializeField]
+    private List<SoulArmament> soulArmaments;
+
+    [SerializeField]
+    private SoulArmament selectedArament;
+    public SoulArmament CurrentArament => selectedArament;
+
     //-------------------------------------------------------------------
     //Variables for taking damage and knockback
     //-------------------------------------------------------------------
@@ -138,6 +145,9 @@ public class PlayerFSMController : AdvancedFSM
     [System.NonSerialized]
     private bool jumpButtonDown;
     public bool GetJumpButtonDown() { return jumpButtonDown; }
+    [System.NonSerialized]
+    private bool soulAttackButtonDown;
+    public bool GetSoulAttackButtonDown() { return soulAttackButtonDown; }
 
     //variables for determining direction faced
     [System.NonSerialized]
@@ -224,6 +234,43 @@ public class PlayerFSMController : AdvancedFSM
         {
             OnDashRight(obj);
         }
+
+        if (obj.action.name == gameplayControls.Gameplay.ToggleSoulArmament.name)
+        {
+            OnToggleSoulArament(obj);
+        }
+
+        if (obj.action.name == gameplayControls.Gameplay.SoulPowerShot.name)
+        {
+            OnSoulShot(obj);
+        }
+    }
+
+    private void OnSoulShot(InputAction.CallbackContext obj)
+    {
+        if (obj.started)
+        {
+            soulAttackButtonDown = true;
+        }
+        else if (obj.canceled)
+        {
+            soulAttackButtonDown = false;  
+        }
+    }
+
+    private void OnToggleSoulArament(InputAction.CallbackContext obj)
+    {
+        if (CurrentStateID != FSMStateID.KnockedBack || CurrentStateID != FSMStateID.Dead)
+        {
+            if (selectedArament.IsActive)
+            {
+                selectedArament.DeActivateArament();
+            }
+            else
+            {
+                selectedArament.ActivateArament();
+            }
+        }
     }
 
     private void OnDashRight(InputAction.CallbackContext obj)
@@ -292,6 +339,15 @@ public class PlayerFSMController : AdvancedFSM
 
     protected override void FSMUpdate()
     {
+        if (selectedArament.IsActive)
+        {
+            SoulCalculator(-selectedArament.SoulCost * Time.deltaTime);
+            if (soul <= 0)
+            {
+                selectedArament.DeActivateArament();
+            }
+        }
+
         CurrentState.Reason(playerTransform, transform);
         CurrentState.Act(playerTransform, transform);
     }
@@ -314,6 +370,7 @@ public class PlayerFSMController : AdvancedFSM
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         idling.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
+        idling.AddTransition(Transition.SoulShot, FSMStateID.SoulShot);
 
         //create the Moving state
         MoveState moving = new MoveState();
@@ -358,6 +415,7 @@ public class PlayerFSMController : AdvancedFSM
         midair.AddTransition(Transition.Dash, FSMStateID.Dashing);
         midair.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         midair.AddTransition(Transition.AirDownStrike, FSMStateID.AirDownStrike);//air down strike
+        midair.AddTransition(Transition.SoulShot, FSMStateID.SoulShot);
 
         //create the Jumping state
         JumpingState jumping = new JumpingState();
@@ -367,7 +425,7 @@ public class PlayerFSMController : AdvancedFSM
         jumping.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i complete my jump, transition to midair movement
         jumping.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         jumping.AddTransition(Transition.AirDownStrike, FSMStateID.AirDownStrike);//air down strike
-
+        
         //create Wall Jumping State
         WallJumpState wallJumping = new WallJumpState();
 
@@ -437,6 +495,14 @@ public class PlayerFSMController : AdvancedFSM
         airDownStrike.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack ends when landing
         airDownStrike.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
+        SoulShotState soulShotState = new SoulShotState();
+
+        soulShotState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        soulShotState.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
+        soulShotState.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i complete my jump, transition to midair movement
+        soulShotState.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
+
+
         //Create the Dead state
         DeadState dead = new DeadState();
         //there are no transitions out of the dead state
@@ -458,6 +524,7 @@ public class PlayerFSMController : AdvancedFSM
         AddFSMState(ga2);
         AddFSMState(ga3);
         AddFSMState(airDownStrike);
+        AddFSMState(soulShotState);
 
         AddFSMState(dead);
 
@@ -536,10 +603,22 @@ public class PlayerFSMController : AdvancedFSM
 
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
-        SetDamage(dmg);
-        SetKnockbackPower(kbPower);
-        SetEnemyPos(ePos);
-        kbTransition = true;
+        if (selectedArament.IsActive)
+        {
+            SoulCalculator(-dmg);
+            if (soul <= 0)
+            {
+                selectedArament.DeActivateArament();
+            }
+            return;
+        }
+        else
+        {
+            SetDamage(dmg);
+            SetKnockbackPower(kbPower);
+            SetEnemyPos(ePos);
+            kbTransition = true;
+        }
     }
 
     //private void DashKnockbackTransition(float kbPower, Vector2 direction)
@@ -568,6 +647,7 @@ public class PlayerFSMController : AdvancedFSM
             soul = 0;
         }
     }
+
 
     public void UpdateState(string state)
     {
