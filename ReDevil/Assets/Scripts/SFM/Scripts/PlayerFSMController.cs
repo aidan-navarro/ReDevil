@@ -188,6 +188,7 @@ public class PlayerFSMController : AdvancedFSM
         gravityScale = rig.gravityScale;
 
         health = 100;
+        dashKnockbackPower = 1;
 
         leftTriggerDown = false;
         rightTriggerDown = false;
