@@ -18,6 +18,7 @@ public class DeadState : FSMState
 	{
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         pc.UpdateState("Dead");
+        pc.CurrentArament.DeActivateArament();
         SceneManager.LoadScene(1);
         //do nothing
     }

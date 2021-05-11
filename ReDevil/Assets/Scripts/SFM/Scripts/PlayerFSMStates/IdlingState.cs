@@ -47,6 +47,7 @@ public class IdlingState : FSMState
         bool kbTransition = pc.GetKbTransition();
         bool attackButtonDown = pc.GetAttackButtonDown();
         bool jumpButtonDown = pc.GetJumpButtonDown();
+        bool soulAttackButtonDown = pc.GetSoulAttackButtonDown();
 
         //knockback transition
         if(!invincible && kbTransition)
@@ -58,6 +59,11 @@ public class IdlingState : FSMState
         if (attackButtonDown && grounded)
         {
             pc.PerformTransition(Transition.GroundAttack1);
+        }
+
+        if (soulAttackButtonDown && pc.GetSoul() >= player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost)
+        {
+            pc.PerformTransition(Transition.SoulShot);
         }
 
         //dash transition

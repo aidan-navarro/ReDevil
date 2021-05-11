@@ -70,6 +70,7 @@ public class MidairState : FSMState
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
         bool attackButtonDown = pc.GetAttackButtonDown();
+        bool soulAttackButtonDown = pc.GetSoulAttackButtonDown();
 
         //knockback transition
         if (!invincible && kbTransition)
@@ -81,6 +82,11 @@ public class MidairState : FSMState
         if (attackButtonDown && pc.moveVector.y <= -0.45f )
         {
             pc.PerformTransition(Transition.AirDownStrike);
+        }
+
+        if (soulAttackButtonDown && pc.GetSoul() >= player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost)
+        {
+            pc.PerformTransition(Transition.SoulShot);
         }
 
         //dash transition

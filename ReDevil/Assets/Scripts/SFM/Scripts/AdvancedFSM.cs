@@ -31,6 +31,7 @@ public enum Transition
     GroundAttack2,
     GroundAttack3,
     AirDownStrike,
+    SoulShot,
 
     //states for the enemy
     EnemyNoHealth,
@@ -76,6 +77,7 @@ public enum FSMStateID
     GroundSecondStrike,
     GroundThirdStrike,
     AirDownStrike,
+    SoulShot,
 
     //for enemy
     EnemyDead,
