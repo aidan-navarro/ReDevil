@@ -47,7 +47,7 @@ public class InvincibleTimer : MonoBehaviour
     public IEnumerator DashKnockbackTimer()
     {
         // get a delay timer set in the player controller?
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         pc.SetDKBTransition(false);
     }
 }

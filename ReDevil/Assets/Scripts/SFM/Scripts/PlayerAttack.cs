@@ -229,6 +229,7 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Start Dash Attack");
         attacking = true; // use the same attacking variable?
         TurnOnHitbox();
+        ShrinkHitbox();
         damage = dashAttackValue;
         CheckDashAttackHit(attackCollider, transform.forward, 10);
         Debug.Log(dashAttackContact);
@@ -238,6 +239,7 @@ public class PlayerAttack : MonoBehaviour
     {
         attacking = false;
         TurnOffHitbox();
+        RevertHitbox();
         //StopCoroutine("EnableDashAttack");
     }
 
@@ -480,6 +482,16 @@ public class PlayerAttack : MonoBehaviour
     {
         attackCollider.enabled = false;
         sprite.enabled = false;
+    }
+
+    private void ShrinkHitbox()
+    {
+        attackCollider.transform.localScale = new Vector2(0.5f, 0.5f);
+    }
+
+    private void RevertHitbox()
+    {
+        attackCollider.transform.localScale = new Vector2(1.0f, 1.0f);
     }
 
     //------------------------------------------------------------
