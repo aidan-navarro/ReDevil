@@ -15,11 +15,11 @@ C:/Users/Raquel/Documents/prototype_01/ReDevil/ReDevil
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-49518
+53254
 Successfully changed project path to: C:/Users/Raquel/Documents/prototype_01/ReDevil/ReDevil
 C:/Users/Raquel/Documents/prototype_01/ReDevil/ReDevil
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 133.95 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 97.23 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.0f1 (3721df5a8b28)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/Resources/UnitySubsystems
@@ -35,365 +35,142 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56412
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56340
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.009401 seconds.
+Registered in 0.003195 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 81.43 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 42.91 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in 13.959 seconds
+- Completed reload, in  3.408 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.013528 seconds.
+Registered in 0.110453 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.43 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 45.89 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
+RefreshInfo: StopAssetImportingV2(NoUpdateAssetOptions) scanfilter: 
+RefreshProfiler: Total: 0.000ms
 Mono: successfully reloaded assembly
-- Completed reload, in  4.147 seconds
+- Completed reload, in  1.341 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
-Refreshing native plugins compatible for Editor in 0.98 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.32 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1421 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 64.9 MB.
-System memory in use after: 65.0 MB.
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 43.7 MB.
+System memory in use after: 43.8 MB.
 
-Unloading 33 unused Assets to reduce memory usage. Loaded Objects now: 1849.
-Total: 5.871800 ms (FindLiveObjects: 0.416500 ms CreateObjectMapping: 0.118400 ms MarkObjects: 5.184700 ms  DeleteObjects: 0.149300 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Scripts/SFM/Scripts/FSM.cs
-  artifactKey: Guid(6bc851bcd1609274c8eb765badd4ced6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/FSM.cs using Guid(6bc851bcd1609274c8eb765badd4ced6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba2b98e3f3156ac964a447f7eee9b009') in 0.102196 seconds
-  Import took 0.112481 seconds .
+Unloading 75 unused Assets to reduce memory usage. Loaded Objects now: 2210.
+Total: 3.017800 ms (FindLiveObjects: 0.522200 ms CreateObjectMapping: 0.187300 ms MarkObjects: 2.195400 ms  DeleteObjects: 0.111100 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 68.222098 seconds.
-  path: Assets/Scripts/SFM/Scripts/PlayerAttack.cs
-  artifactKey: Guid(f0ca982729a390d4b91a2f51362d6f54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerAttack.cs using Guid(f0ca982729a390d4b91a2f51362d6f54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e36cdbc511ad1b36074a5b370930e23c') in 0.020515 seconds
-  Import took 0.031643 seconds .
+  path: Assets/Scripts/SFM
+  artifactKey: Guid(f49a889969d7e8f478c0a449d4b4796b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SFM using Guid(f49a889969d7e8f478c0a449d4b4796b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c2817e0220d88eac40e09b5796ceb2d') in 0.008763 seconds
+  Import took 0.012376 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.101790 seconds.
-  path: Assets/Scripts/SFM/Scripts/PlayerAttack.cs
-  artifactKey: Guid(f0ca982729a390d4b91a2f51362d6f54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerAttack.cs using Guid(f0ca982729a390d4b91a2f51362d6f54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e36cdbc511ad1b36074a5b370930e23c') in 0.010256 seconds
-  Import took 0.037547 seconds .
+  Time since last request: 0.000473 seconds.
+  path: Assets/Scripts/SFM/Scripts
+  artifactKey: Guid(44dcf8c592f8f3f47805d449a56ae9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SFM/Scripts using Guid(44dcf8c592f8f3f47805d449a56ae9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df249470dbb8fbf526122815838e948d') in 0.008887 seconds
+  Import took 0.012549 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 239.779085 seconds.
-  path: Assets/Scripts/SFM/Scripts/PlayerFSMStates/IdlingState.cs
-  artifactKey: Guid(f74f2c401bc15884684562aba8b6be30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerFSMStates/IdlingState.cs using Guid(f74f2c401bc15884684562aba8b6be30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '083ca0747af97236c256bd9ac1c9dad2') in 0.012166 seconds
-  Import took 0.017276 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000678 seconds.
-  path: Assets/Scripts/SFM/Scripts/PlayerFSMStates/IdlingState.cs
-  artifactKey: Guid(f74f2c401bc15884684562aba8b6be30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerFSMStates/IdlingState.cs using Guid(f74f2c401bc15884684562aba8b6be30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '083ca0747af97236c256bd9ac1c9dad2') in 0.003484 seconds
-  Import took 0.008188 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002224 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.37 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.772 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.38 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1415 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 64.9 MB.
-System memory in use after: 65.0 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1851.
-Total: 2.058900 ms (FindLiveObjects: 0.275800 ms CreateObjectMapping: 0.060000 ms MarkObjects: 1.699500 ms  DeleteObjects: 0.022500 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 1977.061348 seconds.
-  path: Assets/Scripts/SFM/Scripts/PlayerFSMStates/MoveState.cs
-  artifactKey: Guid(0f757787fac2928469d047b1ada92d26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerFSMStates/MoveState.cs using Guid(0f757787fac2928469d047b1ada92d26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb0e0cf79d50f7f4441d1d852c67c120') in 0.017690 seconds
-  Import took 0.022856 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012688 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.54 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.641 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 2.15 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1415 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 65.0 MB.
-System memory in use after: 65.1 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1853.
-Total: 6.885800 ms (FindLiveObjects: 0.950300 ms CreateObjectMapping: 0.315600 ms MarkObjects: 5.511200 ms  DeleteObjects: 0.105000 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003400 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.991 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.61 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1415 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 65.1 MB.
-System memory in use after: 65.2 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1855.
-Total: 3.847100 ms (FindLiveObjects: 0.417400 ms CreateObjectMapping: 0.218700 ms MarkObjects: 3.160300 ms  DeleteObjects: 0.043100 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 3944.338983 seconds.
-  path: Assets/Scripts/SFM/Scripts/AdvancedFSM.cs
-  artifactKey: Guid(73adacc691d3ff243b2853f1015587f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/AdvancedFSM.cs using Guid(73adacc691d3ff243b2853f1015587f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a146c53d37a7568ccdd8be4798ff341') in 0.010719 seconds
-  Import took 0.014501 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.703762 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates
-  artifactKey: Guid(dc621b9cbaefdb64aa0047771c9c89b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates using Guid(dc621b9cbaefdb64aa0047771c9c89b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aef26d7961a0184866cdf016fbbf239a') in 0.016690 seconds
-  Import took 0.024147 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.203301 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM
-  artifactKey: Guid(bedd0349a824c674fb6d075aa17afdce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM using Guid(bedd0349a824c674fb6d075aa17afdce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21da22c98788daa696a44e4f1abd16cf') in 0.014823 seconds
-  Import took 0.018419 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.562749 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiAttackState.cs
-  artifactKey: Guid(0269049fef58cc047a400168e17a3cea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiAttackState.cs using Guid(0269049fef58cc047a400168e17a3cea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '384d622366c7d48f4f9dfe0f31665065') in 0.015019 seconds
-  Import took 0.018766 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.005294 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiAttackState.cs
-  artifactKey: Guid(0269049fef58cc047a400168e17a3cea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiAttackState.cs using Guid(0269049fef58cc047a400168e17a3cea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '384d622366c7d48f4f9dfe0f31665065') in 0.004189 seconds
-  Import took 0.009624 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.635014 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiFSMController.cs
-  artifactKey: Guid(e1f45ea03edc4ee4d9a9d9d8e94505da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiFSMController.cs using Guid(e1f45ea03edc4ee4d9a9d9d8e94505da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f305e0fd3dd16f8dcaa9693e2062a83') in 0.012081 seconds
-  Import took 0.016554 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.864498 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiIdleState.cs
-  artifactKey: Guid(5fd0196002c123440b8837acc71322af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Waniguchi FSM/WaniguchiIdleState.cs using Guid(5fd0196002c123440b8837acc71322af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69253648921265b0d1302f179568c31b') in 0.028394 seconds
-  Import took 0.032638 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 68.313352 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Nodeppou FSM
-  artifactKey: Guid(4822684aececff34c8993e7c59948ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Nodeppou FSM using Guid(4822684aececff34c8993e7c59948ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5262e0d0abc208b67f5bcbce93d6c959') in 0.011812 seconds
-  Import took 0.015322 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 17.916746 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM
-  artifactKey: Guid(b2b9ae1be11756d4bb4fa34102fdb532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM using Guid(b2b9ae1be11756d4bb4fa34102fdb532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2384fcf952c3e042fb2d02cfe876ccfa') in 0.013517 seconds
-  Import took 0.018985 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.215096 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM/ShutenDojiIdleState.cs
-  artifactKey: Guid(78b12386b0732214fbb87b196a995e90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM/ShutenDojiIdleState.cs using Guid(78b12386b0732214fbb87b196a995e90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c2259d678b8426f49aad2c389a3f1da') in 0.013612 seconds
-  Import took 0.028677 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.309426 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM/ShutenDojiFSMController.cs
-  artifactKey: Guid(d6ddf04541d058d4caf95a7710e81d87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM/ShutenDojiFSMController.cs using Guid(d6ddf04541d058d4caf95a7710e81d87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08b6d2fed34b05200baa0475e9dcdcf1') in 0.016317 seconds
-  Import took 0.019896 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.355837 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM/ShutenDojiAttackState.cs
-  artifactKey: Guid(58a610f097978a14299558ec345e492a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/ShutenDoji FSM/ShutenDojiAttackState.cs using Guid(58a610f097978a14299558ec345e492a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f90b688e004301a0fb49056efa68d3ba') in 0.009373 seconds
-  Import took 0.012667 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002899 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.44 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.965 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.48 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1415 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 65.2 MB.
-System memory in use after: 65.3 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1857.
-Total: 3.127400 ms (FindLiveObjects: 0.245400 ms CreateObjectMapping: 0.090100 ms MarkObjects: 2.755600 ms  DeleteObjects: 0.034200 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 726.477056 seconds.
-  path: Assets/Scripts/SFM/Scripts/PlayerFSMStates/DeadState.cs
-  artifactKey: Guid(9fec973380282874f924cd0eb90f45b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerFSMStates/DeadState.cs using Guid(9fec973380282874f924cd0eb90f45b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd41d89edec41db68b91da562eb3e5e83') in 0.014899 seconds
-  Import took 0.019561 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 533.980323 seconds.
+  Time since last request: 10.873587 seconds.
   path: Assets/Scripts/SFM/Scripts/PlayerFSMController.cs
   artifactKey: Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerFSMController.cs using Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1a360eb91cf4423edbbd2366972793e') in 0.029783 seconds
-  Import took 0.040113 seconds .
+Start importing Assets/Scripts/SFM/Scripts/PlayerFSMController.cs using Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f95e7697ec599337d2c663c5573cb579') in 0.036447 seconds
+  Import took 0.040110 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.007792 seconds.
+  Time since last request: 0.002638 seconds.
   path: Assets/Scripts/SFM/Scripts/PlayerFSMController.cs
   artifactKey: Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/PlayerFSMController.cs using Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1a360eb91cf4423edbbd2366972793e') in 0.027216 seconds
-  Import took 0.037597 seconds .
+Start importing Assets/Scripts/SFM/Scripts/PlayerFSMController.cs using Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f95e7697ec599337d2c663c5573cb579') in 0.002504 seconds
+  Import took 0.005788 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 5.336701 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM
-  artifactKey: Guid(002254a184fc4484898bea30b789826b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM using Guid(002254a184fc4484898bea30b789826b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63065e8b5009dfaae226677c6132ad5b') in 0.011480 seconds
-  Import took 0.023090 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.086746 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeIdleState.cs
-  artifactKey: Guid(0b432a69ab1f32a4c982955044c79154) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeIdleState.cs using Guid(0b432a69ab1f32a4c982955044c79154) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '994c5a56b7140847d772a83c0aa0e2e7') in 0.019312 seconds
-  Import took 0.024270 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.154640 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeFSMController.cs
-  artifactKey: Guid(ee0d76a5c02a5a74892e4aa2ab6725e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeFSMController.cs using Guid(ee0d76a5c02a5a74892e4aa2ab6725e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53341bca4e6a3a1e99f728a178fb27ad') in 0.016759 seconds
-  Import took 0.023226 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.570090 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeAttackState.cs
-  artifactKey: Guid(558685822d9a2424a9c792c0f3aab40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeAttackState.cs using Guid(558685822d9a2424a9c792c0f3aab40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c317b5629c320e7dc491b3e59a794a57') in 0.010418 seconds
-  Import took 0.014982 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000695 seconds.
-  path: Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeAttackState.cs
-  artifactKey: Guid(558685822d9a2424a9c792c0f3aab40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/SFM/Scripts/EnemyFSMStates/Chochin Obake FSM/ChochinObakeAttackState.cs using Guid(558685822d9a2424a9c792c0f3aab40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c317b5629c320e7dc491b3e59a794a57') in 0.005926 seconds
-  Import took 0.013262 seconds .
+  Time since last request: 1878.986963 seconds.
+  path: Assets/Scripts/SFM/Scripts/PlayerFSMController.cs
+  artifactKey: Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SFM/Scripts/PlayerFSMController.cs using Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39b3658b19d8be3e99c47a643293677d') in 0.018002 seconds
+  Import took 0.165453 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.005411 seconds.
+Registered in 0.006433 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.38 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 2.69 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
+RefreshInfo: StopAssetImportingV2(NoUpdateAssetOptions) scanfilter: 
+RefreshProfiler: Total: 0.000ms
 Mono: successfully reloaded assembly
-- Completed reload, in  1.054 seconds
+- Completed reload, in  4.426 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.44 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 2.94 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1415 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 65.3 MB.
-System memory in use after: 65.4 MB.
+Unloading 915 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 61.8 MB.
+System memory in use after: 62.0 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1859.
-Total: 1.847300 ms (FindLiveObjects: 0.185500 ms CreateObjectMapping: 0.053100 ms MarkObjects: 1.586400 ms  DeleteObjects: 0.020900 ms)
+Unloading 64 unused Assets to reduce memory usage. Loaded Objects now: 2212.
+Total: 18.594500 ms (FindLiveObjects: 1.619900 ms CreateObjectMapping: 0.415400 ms MarkObjects: 16.416100 ms  DeleteObjects: 0.130000 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.012670 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 2.33 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+RefreshInfo: StopAssetImportingV2(NoUpdateAssetOptions) scanfilter: 
+RefreshProfiler: Total: 0.000ms
+Mono: successfully reloaded assembly
+- Completed reload, in  3.972 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 915 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 62.0 MB.
+System memory in use after: 62.1 MB.
+
+Unloading 64 unused Assets to reduce memory usage. Loaded Objects now: 2214.
+Total: 15.370100 ms (FindLiveObjects: 1.276400 ms CreateObjectMapping: 0.327200 ms MarkObjects: 13.650600 ms  DeleteObjects: 0.111200 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 7282.641534 seconds.
+  path: Assets/Scripts/SFM/Scripts/PlayerFSMController.cs
+  artifactKey: Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SFM/Scripts/PlayerFSMController.cs using Guid(29cdda1e468c7f242a82a008d25e1560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ba2cf32e039a2a364ac6d34d2faa095') in 0.025788 seconds
+  Import took 0.038080 seconds .
 
 ========================================================================
 Received Import Request.
