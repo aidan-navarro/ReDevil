@@ -18,17 +18,16 @@ public class DeadState : FSMState
 	{
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         pc.UpdateState("Dead");
-       // pc.PlayPlayerDead;
-
+        SceneManager.LoadScene(1);
         //do nothing
     }
 
     //Reason
     public override void Reason(Transform player, Transform npc)
     {
-
+        
         //do nothing.  Player is dead.  There is no transition to a new state
-
+        
     }
 
 }
