@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Developer's notes:
-// This script will be used to 
+// This script will be used to monitor the ground dash attack state
+// the player's ground dash while not attacking will be considered an attack
 public class GroundDashAttack : FSMState
 {
 
@@ -37,18 +38,12 @@ public class GroundDashAttack : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
-        // get the player's input 
-        //pc.horizontal = Input.GetAxis("Horizontal");
-        //pc.vertical = Input.GetAxis("Vertical");
-
         bool enterKnockback = pc.GetKbTransition();
         bool enterDashKnockback = pc.GetDKBTransition();
 
-        Debug.Log("Dash Knockback State: " + enterDashKnockback);
         // should find a new state for knockback off of grounded dash attack
 
         pc.UpdateState("Ground Dash Attack");
-
         pc.TouchingFloorOrWall();
 
         if (!dashAttackStarted)
@@ -68,7 +63,6 @@ public class GroundDashAttack : FSMState
             {
                 pc.direction = 1;
                 pc.facingLeft = false;
-
 
                 pc.FlipPlayer();
             }
@@ -92,6 +86,7 @@ public class GroundDashAttack : FSMState
         dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
         pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed; // commit to the dash
         onWall = pc.GetisTouchingWall();
+        Debug.Log("Ground Dash Distance: " + dashDistance);
 
 
         // logic to end the dashing
@@ -124,6 +119,8 @@ public class GroundDashAttack : FSMState
                 endDash = true;
                 patk.EndDashAttack();
             }
+            // make a break out condition if we get stuck on a corner
+
 
             // during the middle of the dash check if the 
             // pseudo code
@@ -170,7 +167,9 @@ public class GroundDashAttack : FSMState
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
 
+        // do we need these double calls if they're being affected in Act?
         isGrounded = pc.GetisGrounded();
+        onWall = pc.GetisTouchingWall();
         //Debug.Log("IsGroundedCheck" + isGrounded);
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
@@ -210,18 +209,15 @@ public class GroundDashAttack : FSMState
           
             if (isGrounded && (dashDistance >= pc.dashLength))
             {
-                Debug.Log("Transition into Idle");
                 pc.PerformTransition(Transition.Idle);
             }
             else if (isGrounded && onWall)
             {
-                Debug.Log("End Ground Dash Hit Wall");
                 pc.PerformTransition(Transition.Idle);
             }
             // if we ground dash off of the ledge
             else if (!isGrounded)
             {
-                Debug.Log("Dashed off ledge");
                 patk.ReInitializeTransitions();
                 pc.PerformTransition(Transition.Airborne);
             }

@@ -10,7 +10,7 @@ public class DashState : FSMState
     private float gravScale; //the players gravity scale
     float dashDistance;
     private bool dashEnded; //to let the reason occur that the dash ended
-
+    bool floorOrWall;
     //Constructor
     public DashState()
     {
@@ -32,7 +32,9 @@ public class DashState : FSMState
 
         //to check if we touch a wall to transition to idle and end the dash
         pc.TouchingFloorOrWall();
+        onWall = pc.GetisTouchingWall();
 
+        Debug.Log("touching floor or wall? -> " + onWall);
         //We only want to track this at the very start of the dash so it is not recalculated
         if(!dashStarted)
         {
@@ -67,6 +69,9 @@ public class DashState : FSMState
                 pc.FlipPlayer();
 
             }
+
+            // TO ADD: break out of state if we're stuck too long in one position
+
             else //no input detected.  stop speed and set bool to not moving to transition to idle
             {
                 //dont change direction

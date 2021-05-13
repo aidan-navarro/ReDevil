@@ -53,6 +53,7 @@ public class MidairState : FSMState
             }
 
             // TO DO -> Use the dash attack contact boolean to determine this state's condition... 
+            // FIXED -> just needed to get the boolean for whether or not it was touching the ground
             else //no input detected.  stop speed and set bool to not moving to transition to idle
             {
                 //stop momentum movement
@@ -97,7 +98,10 @@ public class MidairState : FSMState
         //dash transition
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
         {
-            pc.PerformTransition(Transition.Dash);
+            // this does work
+            Debug.Log("Commence Air Dash Attack");
+            pc.PerformTransition(Transition.AirDashAttack);
+            // switch to dash attack state
         }
 
 
