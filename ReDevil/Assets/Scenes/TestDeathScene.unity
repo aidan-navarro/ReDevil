@@ -494,3 +494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e135c41f193a875428208e91aa829ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  keyDown: 0
+  maxIndex: 3
+  csButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
