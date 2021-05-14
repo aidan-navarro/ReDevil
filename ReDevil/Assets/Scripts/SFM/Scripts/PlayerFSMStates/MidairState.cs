@@ -25,36 +25,42 @@ public class MidairState : FSMState
 
         //check if a dash is input
         //pc.CheckDashInput();
-
-        if (pc.moveVector.x > 0f)
+        if (!pc.GetDKBTransition()) // if we aren't knocked back from a dash attack
         {
-            pc.direction = 1;
-            pc.facingLeft = false;
-            Vector2 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
-            newMoveSpeed.y = rig.velocity.y;
+            Debug.Log("Normal Midair Behaviour");
+            if (pc.moveVector.x > 0f)
+            {
+                pc.direction = 1;
+                pc.facingLeft = false;
+                Vector2 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
 
-            rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+                rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
 
-            pc.FlipPlayer();
-        }
-        else if (pc.moveVector.x < 0f)
-        {
-            pc.direction = -1;
-            pc.facingLeft = true;
-            Vector2 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
-            newMoveSpeed.y = rig.velocity.y;
+                pc.FlipPlayer();
+            }
+            else if (pc.moveVector.x < 0f)
+            {
+                pc.direction = -1;
+                pc.facingLeft = true;
+                Vector2 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
 
-            rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+                rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
 
-            pc.FlipPlayer();
+                pc.FlipPlayer();
 
-        }
-        else //no input detected.  stop speed and set bool to not moving to transition to idle
-        {
-            //stop momentum movement
-            Vector2 newMoveSpeed = Vector2.zero;
-            newMoveSpeed.y = rig.velocity.y;
-            rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+            }
+
+            // TO DO -> Use the dash attack contact boolean to determine this state's condition... 
+            // FIXED -> just needed to get the boolean for whether or not it was touching the ground
+            else //no input detected.  stop speed and set bool to not moving to transition to idle
+            {
+                //stop momentum movement
+                Vector2 newMoveSpeed = Vector2.zero;
+                newMoveSpeed.y = rig.velocity.y;
+                rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+            }
         }
     }
 
@@ -92,7 +98,10 @@ public class MidairState : FSMState
         //dash transition
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
         {
-            pc.PerformTransition(Transition.Dash);
+            // this does work
+            Debug.Log("Commence Air Dash Attack");
+            pc.PerformTransition(Transition.AirDashAttack);
+            // switch to dash attack state
         }
 
 

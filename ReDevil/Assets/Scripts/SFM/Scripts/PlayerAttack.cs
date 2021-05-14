@@ -38,7 +38,8 @@ public class PlayerAttack : MonoBehaviour
     public bool attacking;
 
     // dash attack specific, only want to have the dash attack trigger once on hit
-    public bool dashAttackContact;
+    public bool dashAttackContact; // going to get flicked back to false once it hits
+    public bool airDashAttackContact; // dash attack in the air
 
     //transition bools
     public bool idleTransition;
@@ -229,16 +230,18 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Start Dash Attack");
         attacking = true; // use the same attacking variable?
         TurnOnHitbox();
+        ShrinkHitbox();
         damage = dashAttackValue;
         CheckDashAttackHit(attackCollider, transform.forward, 10);
-        Debug.Log(dashAttackContact);
+        Debug.Log("Ground Dash Attack: " + dashAttackContact);
+        Debug.Log("Air Dash Attack: " + airDashAttackContact);
     }
 
     public void EndDashAttack()
     {
         attacking = false;
-        Debug.Log("Stop Dash Attack");
         TurnOffHitbox();
+        RevertHitbox();
         //StopCoroutine("EnableDashAttack");
     }
 
@@ -286,9 +289,16 @@ public class PlayerAttack : MonoBehaviour
                 pc.SoulCalculator(pastHealth - presentHealth);
 
                 attacking = false;
-                dashAttackContact = true;
-                
-                // now take into account of knockback
+                if (pc.GetisGrounded())
+                {
+                    Debug.Log("Ground Hit");
+                    dashAttackContact = true;
+                }// now take into account of knockback
+                else if (!pc.GetisGrounded())
+                {
+                    Debug.Log("Air Hit");
+                    airDashAttackContact = true;
+                }
             }
         }
     }
@@ -484,6 +494,17 @@ public class PlayerAttack : MonoBehaviour
         sprite.enabled = false;
     }
 
+    // Dash Attack Specific, scaling down the hitbox so that the player is a bit closer to the enemy on dash
+    private void ShrinkHitbox()
+    {
+        attackCollider.transform.localScale = new Vector2(0.5f, 0.5f);
+    }
+
+    private void RevertHitbox()
+    {
+        attackCollider.transform.localScale = new Vector2(1.0f, 1.0f);
+    }
+
     //------------------------------------------------------------
     //cancels
     //------------------------------------------------------------
@@ -568,6 +589,7 @@ public class PlayerAttack : MonoBehaviour
         idleTransition = false;
         dashTransition = false;
         dashAttackContact = false; // placing here so that the GDA state can pick up the contact first before changing the boolean back
+        airDashAttackContact = false;
         groundAttack2Transition = false;
         groundAttack3Transition = false;
     }
