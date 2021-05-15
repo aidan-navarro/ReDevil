@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class DeadState : FSMState
-{ 
+{
+    
 
 	//Constructor
     public DeadState()
@@ -18,8 +19,8 @@ public class DeadState : FSMState
 	{
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         pc.UpdateState("Dead");
-       // pc.PlayPlayerDead;
-
+       pc.PlayPlayerDead();
+      
         //do nothing
     }
 

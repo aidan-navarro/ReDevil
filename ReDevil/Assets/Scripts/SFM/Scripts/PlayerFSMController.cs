@@ -131,7 +131,7 @@ public class PlayerFSMController : AdvancedFSM
 
     //respawn
 
-    public Vector3 respawnPoint;
+    public RespawnManager respawnPoint;
 
     //-------------------------------------------------------------------
     //variables to detect controller input
@@ -194,6 +194,9 @@ public class PlayerFSMController : AdvancedFSM
 
         health = 100;
         dashKnockbackPower = 1;
+
+        respawnPoint = FindObjectOfType<RespawnManager>();
+        transform.position = respawnPoint.respawnPoint;
 
         leftTriggerDown = false;
         rightTriggerDown = false;
@@ -749,9 +752,9 @@ public class PlayerFSMController : AdvancedFSM
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Checkpoint")
+        if (other.tag == "CheckPoint")
         {
-            respawnPoint = other.transform.position;
+            respawnPoint.respawnPoint = other.transform.position;
         }
     }
 
@@ -765,4 +768,8 @@ public class PlayerFSMController : AdvancedFSM
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
+
+    
+
+    
 }
