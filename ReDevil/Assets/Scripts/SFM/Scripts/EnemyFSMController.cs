@@ -37,9 +37,11 @@ public class EnemyFSMController : AdvancedFSM
     public Vector2 GetCurrentPos() { return currentPos; }
     public void SetCurrentPos(Vector2 inCurrentPos) { currentPos = inCurrentPos; }
 
-    protected bool isGrounded; //required for enemies that jump
+    [SerializeField]
+    private bool isGrounded; //required for enemies that jump
     public bool GetisGrounded() { return isGrounded; }
     public void SetisGrounded(bool inIsGrounded) { isGrounded = inIsGrounded; }
+    private Vector2 m_vDebugGround; // checking the grounded feet position vector
 
     protected bool isTouchingWall; //may be needed.  leave here for now
     public bool GetisTouchingWall() { return isTouchingWall; }
@@ -72,7 +74,7 @@ public class EnemyFSMController : AdvancedFSM
 
         //set currentPos
         currentPos = rig.position;
-
+        m_vDebugGround = rig.position;
         ConstructFSM();
     }
 
@@ -138,7 +140,9 @@ public class EnemyFSMController : AdvancedFSM
         //equation values to determine if the player is on the ground
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
-        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        m_vDebugGround = feetPos;
+        Vector2 resizeCol = Vector2.Scale(col.size, transform.localScale);
+        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(resizeCol.x - 0.2f, 0.1f), 0f, groundLayer.value);
     }
 
     public virtual void CheckRange(Transform player)
@@ -201,5 +205,12 @@ public class EnemyFSMController : AdvancedFSM
     public void Killed()
     {
         Destroy(this.gameObject);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(m_vDebugGround, 0.1f);
+        Gizmos.color = Color.green;
+
     }
 }
