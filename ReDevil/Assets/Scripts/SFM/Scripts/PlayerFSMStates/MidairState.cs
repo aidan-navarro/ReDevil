@@ -14,7 +14,7 @@ public class MidairState : FSMState
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
     {
-        Debug.Log("State ID: Midair");
+        //Debug.Log("State ID: Midair");
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
 
@@ -27,7 +27,7 @@ public class MidairState : FSMState
         //pc.CheckDashInput();
         if (!pc.GetDKBTransition()) // if we aren't knocked back from a dash attack
         {
-            Debug.Log("Normal Midair Behaviour");
+            //Debug.Log("Normal Midair Behaviour");
             if (pc.moveVector.x > 0f)
             {
                 pc.direction = 1;
@@ -99,7 +99,7 @@ public class MidairState : FSMState
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
         {
             // this does work
-            Debug.Log("Commence Air Dash Attack");
+            //Debug.Log("Commence Air Dash Attack");
             pc.PerformTransition(Transition.AirDashAttack);
             // switch to dash attack state
         }

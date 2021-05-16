@@ -164,6 +164,7 @@ public class PlayerFSMController : AdvancedFSM
 
 
     //jump variables
+    [SerializeField]
     private bool isGrounded; //variable to determine if the player is grounded.  the player can only jump if on the ground.
     public bool GetisGrounded() { return isGrounded; }
     public void SetisGrounded(bool inIsGrounded) { isGrounded = inIsGrounded; }

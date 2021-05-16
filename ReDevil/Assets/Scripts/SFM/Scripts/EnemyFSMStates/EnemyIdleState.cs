@@ -82,7 +82,7 @@ public class EnemyIdleState : FSMState
         if(timer >= ec.attackInterval)
         {
             timer = 0;
-            atkTransition = true;
+            atkTransition = true; // this holds true for all enemies.
         }
 
     }

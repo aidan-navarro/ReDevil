@@ -49,7 +49,11 @@ public class WaniguchiFSMController : EnemyFSMController
         WaniguchiAttackState ndpAttack = new WaniguchiAttackState();
         ndpAttack.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
         ndpAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        ndpAttack.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair); // the attack state will transition right into the midair state
 
+        WaniguchiAirState ndpAirState = new WaniguchiAirState();
+        ndpAirState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        ndpAirState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling); // The ideal result is that from midair, we transition to the idle state and stop moving when we land
 
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
@@ -59,6 +63,7 @@ public class WaniguchiFSMController : EnemyFSMController
         //Add state to the state list
         AddFSMState(enemyIdle);
         AddFSMState(ndpAttack);
+        AddFSMState(ndpAirState);
         AddFSMState(enemyDead);
 
     }
@@ -87,6 +92,7 @@ public class WaniguchiFSMController : EnemyFSMController
 
     public void WaniguchiAttack()
     {
+
         if(!facingRight)
         {
             rig.velocity = atkDirectionRight * new Vector2(-1, 1);
@@ -96,5 +102,10 @@ public class WaniguchiFSMController : EnemyFSMController
             rig.velocity = atkDirectionRight;
         }
         
+    }
+
+    public void WaniguchiStop()
+    {
+        rig.velocity = Vector2.zero;
     }
 }

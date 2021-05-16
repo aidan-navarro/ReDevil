@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class WaniguchiAttackState : FSMState
 {
-    bool hasLanded;
-    bool atkStart;
+    //bool hasLanded;
+
+    bool isGrounded;
+    bool atkStart; // utilize attack start for 
 
     //Constructor
     public WaniguchiAttackState()
     {
         stateID = FSMStateID.WaniguchiAttacking;
-        hasLanded = false;
+        //hasLanded = false;
+
+        isGrounded = false;
         atkStart = false;
     }
 
@@ -25,35 +29,44 @@ public class WaniguchiAttackState : FSMState
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
 
+        ec.TouchingFloor();
+        isGrounded = ec.GetisGrounded(); 
+        
         //reset variables
-        if (hasLanded)
-        {
-            hasLanded = false;
-        }
-        if (atkStart && !ec.attacking)
+        //if (hasLanded)
+        //{
+        //    hasLanded = false;
+        //}
+        if (atkStart && !ec.attacking) // reset
         {
             atkStart = false;
         }
-        
-        if(!atkStart)
+
+        // this is fine
+        if (!atkStart)
         {
             //set an initial velocity for the waniguchi to jump
             ec.WaniguchiAttack();
             atkStart = true;
-        }
-        if(atkStart)
-        {
-            ec.TouchingFloor();
-            //if waniguchi has landed
-            if(ec.GetisGrounded())
-            {
-                ec.SetCurrentPos(ec.rig.position);
-                ec.rig.position = ec.GetCurrentPos();
-                ec.attacking = false;
-                hasLanded = true;
-            }
+            ec.attacking = atkStart;
         }
 
+       
+        //if(atkStart) // here's the issue right now
+        //{
+        //    ec.TouchingFloor();  // this is getting called first.  NEed to check instead if we're going into the midair state, then do THIS check in that state
+        //    //if waniguchi has landed
+        //    if(ec.GetisGrounded())
+        //    {
+        //ec.TouchingFloor();
+        //bool isGrounded = ec.GetisGrounded();
+
+        ////ec.SetCurrentPos(ec.rig.position); // all we've set is the position, we haven't done anything with the velocity
+        ////ec.rig.position = ec.GetCurrentPos();
+        //// ec.attacking = false;
+        //hasLanded = ec.GetisGrounded();
+        //    }
+        //}
 
     }
 
@@ -62,10 +75,19 @@ public class WaniguchiAttackState : FSMState
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
 
-        //the moment waniguchi is grounded again from our temp bool, transition back to idle
-        if (hasLanded)
+        // new change: set the attacking method to transition over to airborne
+        ec.TouchingFloor();
+        isGrounded = ec.GetisGrounded();
+        //Debug.Log("GroundCheck: " + hasLanded);
+        
+        if (atkStart && !isGrounded) // this is not getting called
         {
-            ec.PerformTransition(Transition.WaniguchiIdle);
+            Debug.Log("Waniguchi jump: " + atkStart); // this is getting called too quickly
+            ec.PerformTransition(Transition.WaniguchiAirborne);
+            atkStart = false;
+        } else
+        {
+            Debug.Log("Not going into the Airborne State");
         }
 
         //dead transition

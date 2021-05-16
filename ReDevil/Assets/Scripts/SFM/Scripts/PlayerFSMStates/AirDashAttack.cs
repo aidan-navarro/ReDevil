@@ -74,9 +74,9 @@ public class AirDashAttack : FSMState
         pc.TouchingFloorOrWall();
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
-        Debug.Log("Dash Distance: " + dashDistance);
-        Debug.Log("Grounded??? -> " + isGrounded);
-        Debug.Log("On Wall??? -> " + onWall);
+        //Debug.Log("Dash Distance: " + dashDistance);
+        //Debug.Log("Grounded??? -> " + isGrounded);
+        //Debug.Log("On Wall??? -> " + onWall);
 
         // during dash
         if (!endDash)
@@ -157,7 +157,6 @@ public class AirDashAttack : FSMState
             Debug.Log("FinishDash");
             if (!invincible && kbTransition)
             {
-                Debug.Log("");
                 pc.PerformTransition(Transition.Knockback);
             }
             if (patk.airDashAttackContact)
@@ -177,7 +176,7 @@ public class AirDashAttack : FSMState
 
             if (dashDistance >= pc.dashLength)
             {
-                Debug.Log("ReachAirDashDistance");
+                //Debug.Log("ReachAirDashDistance");
                 patk.ReInitializeTransitions();
                 pc.PerformTransition(Transition.Airborne);
             }
