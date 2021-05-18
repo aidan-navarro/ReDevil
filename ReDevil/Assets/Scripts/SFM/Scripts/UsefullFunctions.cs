@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class UsefullFunctions  {
+public static class UsefullFunctions  {
 
 	
 	public static void DebugRay (Vector3 origin, Vector3 v, Color c) 
@@ -18,4 +18,10 @@ public class UsefullFunctions  {
 			return v;
 	
 	}
+
+	public static float Vec2Magnitude (Vector2 a)
+    {
+		float result = a.x * a.x + a.y * a.y;
+		return result;
+    }
 }

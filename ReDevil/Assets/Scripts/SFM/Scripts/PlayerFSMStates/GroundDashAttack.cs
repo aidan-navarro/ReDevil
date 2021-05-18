@@ -86,7 +86,7 @@ public class GroundDashAttack : FSMState
         dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
         pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed; // commit to the dash
         onWall = pc.GetisTouchingWall();
-        Debug.Log("Ground Dash Distance: " + dashDistance);
+        //Debug.Log("Ground Dash Distance: " + dashDistance);
 
 
         // logic to end the dashing

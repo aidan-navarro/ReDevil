@@ -70,10 +70,8 @@ public class PlayerFSMController : AdvancedFSM
     public void SetKbTransition(bool inKbTransition) { kbTransition = inKbTransition; }
 
     // TEST ---------- dash knockback specific --------------
-
     [SerializeField]
     private float dashKnockbackPower;
-
     private bool dkbTransition;
     public bool GetDKBTransition() { return dkbTransition;  }
     public void SetDKBTransition(bool inDKBTransition)
@@ -129,8 +127,18 @@ public class PlayerFSMController : AdvancedFSM
     public Vector2 GetDashStartPos() { return dashStartPos; }
     public void SetDashStartPos(Vector2 inDashStartPos) { dashStartPos = inDashStartPos; }
 
+    // ----------------- TEST: Omnidirectional Air Dash trajectory -------------------
+    // Take the input from move vector, and use a separate dash vector to 
+    [SerializeField]
+    private int airDashCount;
+    public int GetAirDashCount() { return airDashCount; }
+    public void SetAirDashCount(int dash) { airDashCount = dash; }
+    public void IncrementAirDashCount() { airDashCount++; }
+    
+    protected Vector2 dashPath;
+    public Vector2 GetDashPath() { return dashPath; }
+    public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; } 
     //respawn
-
     public RespawnManager respawnPoint;
 
     //-------------------------------------------------------------------
@@ -205,6 +213,8 @@ public class PlayerFSMController : AdvancedFSM
         canDash = true;
         dashInputAllowed = true;
         invincible = false;
+
+        // counting the amount of airdashes
 
         //box collider
         col = GetComponent<BoxCollider2D>();

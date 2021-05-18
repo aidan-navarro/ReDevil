@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 //This state is for midair movement
 public class MidairState : FSMState
 {
+    
+    // state variables
+    // use these to acquire input axes for air dash ability
+    
+    public override void EnterStateInit()
+    {
+        base.EnterStateInit();
+    }
+
     //Constructor
     public MidairState()
     {
@@ -20,6 +30,29 @@ public class MidairState : FSMState
 
         pc.UpdateState("In Midair");
 
+        // Setting the Dash Vector, we only want to change this whenever the player hasn't gone
+        // into dash. That way we avoid mid-air path change
+        // We're using the move vector from the Player FSM Controller to dictate the dash path
+        if (pc.GetCanDash())
+        {
+            Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                pc.SetDashPath(pc.moveVector);
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
+        }
+        Debug.Log(pc.GetDashPath());
         //first check if we are touching a wall or floor
         pc.TouchingFloorOrWall();
 
@@ -52,7 +85,6 @@ public class MidairState : FSMState
 
             }
 
-            // TO DO -> Use the dash attack contact boolean to determine this state's condition... 
             // FIXED -> just needed to get the boolean for whether or not it was touching the ground
             else //no input detected.  stop speed and set bool to not moving to transition to idle
             {
@@ -100,6 +132,8 @@ public class MidairState : FSMState
         {
             // this does work
             //Debug.Log("Commence Air Dash Attack");
+
+            // TO DO: find a way to pass in the analog direction for the air dash attack state 
             pc.PerformTransition(Transition.AirDashAttack);
             // switch to dash attack state
         }
@@ -114,6 +148,7 @@ public class MidairState : FSMState
         //sometimes it also determines your touching the ground
         if (grounded)
         {
+            pc.SetDashPath(Vector2.zero); // reset the dash path
             pc.PerformTransition(Transition.Idle);
         }
 

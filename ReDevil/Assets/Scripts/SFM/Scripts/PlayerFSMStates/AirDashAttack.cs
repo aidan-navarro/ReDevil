@@ -47,6 +47,7 @@ public class AirDashAttack : FSMState
 
             pc.SetDashStartPos(pc.transform.position);
 
+            // must change this logic as well
             if (pc.moveVector.x > 0f)
             {
                 pc.direction = 1;
@@ -67,10 +68,24 @@ public class AirDashAttack : FSMState
             }
         }
         // total distance of dash... make a different length?
+
+        // TO DO: replace this current logic 
         Vector2 dashSP = pc.GetDashStartPos();
 
-        dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
-        pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed;
+        // figure out the dash distance for aerial dashing
+        // turn dash distance into a magnitude instead of simply an x check
+
+        Vector2 playerPos = new Vector2(pc.transform.position.x, pc.transform.position.y);
+        Vector2 dashDiff = dashSP - playerPos;
+
+        //dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
+        // instead of checking the x distance, we're instead checking the whole magnitude of the vector
+        dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
+        Debug.Log("Dash Dist: " + dashDistance);
+        // velocity must also change to account for the dash position that we set
+        // create a boolean to lock any change to the dash vector while we dash
+        pc.GetRigidbody2D().velocity = pc.GetDashPath() /** pc.direction*/ * pc.dashSpeed;
+       
         pc.TouchingFloorOrWall();
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
@@ -81,11 +96,14 @@ public class AirDashAttack : FSMState
         // during dash
         if (!endDash)
         {
-            if (dashDistance < pc.dashLength && !patk.airDashAttackContact)
+            // checking the square magnitude of the dash distance, to circumvent a sqrt check
+            if (dashDistance < pc.dashLength * pc.dashLength && !patk.airDashAttackContact)
             {
-                patk.StartDashAttack();
+                Vector2 vAbsDash = pc.GetDashPath();
+                vAbsDash.x = Mathf.Abs(vAbsDash.x);
+                patk.StartAirDashAttack(vAbsDash);
             }
-            else if (dashDistance >= pc.dashLength)
+            else if (dashDistance >= pc.dashLength * pc.dashLength)
             {
                 Debug.Log("Reached Air Dash Attack distance");
                 pc.SetCanDash(true);
@@ -154,7 +172,6 @@ public class AirDashAttack : FSMState
         // end of dash
         if (endDash)
         {
-            Debug.Log("FinishDash");
             if (!invincible && kbTransition)
             {
                 pc.PerformTransition(Transition.Knockback);
@@ -174,7 +191,8 @@ public class AirDashAttack : FSMState
                 pc.PerformTransition(Transition.WallSlide);
             }
 
-            if (dashDistance >= pc.dashLength)
+            // checking the square magnitude of the dash distance, to circumvent a sqrt check
+            if (dashDistance >= pc.dashLength * pc.dashLength)
             {
                 //Debug.Log("ReachAirDashDistance");
                 patk.ReInitializeTransitions();
