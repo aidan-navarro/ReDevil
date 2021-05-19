@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 //This state is for midair movement
 public class MidairState : FSMState
@@ -29,7 +28,7 @@ public class MidairState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
 
         pc.UpdateState("In Midair");
-
+        pc.CheckAirDash();
         // Setting the Dash Vector, we only want to change this whenever the player hasn't gone
         // into dash. That way we avoid mid-air path change
         // We're using the move vector from the Player FSM Controller to dictate the dash path
@@ -52,7 +51,7 @@ public class MidairState : FSMState
                 }
             }
         }
-        Debug.Log(pc.GetDashPath());
+        //Debug.Log(pc.GetDashPath());
         //first check if we are touching a wall or floor
         pc.TouchingFloorOrWall();
 
@@ -110,6 +109,8 @@ public class MidairState : FSMState
         bool attackButtonDown = pc.GetAttackButtonDown();
         bool soulAttackButtonDown = pc.GetSoulAttackButtonDown();
 
+        pc.CheckAirDash();
+
         //knockback transition
         if (!invincible && kbTransition)
         {
@@ -128,12 +129,13 @@ public class MidairState : FSMState
         }
 
         //dash transition
-        if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed)
+        if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed )
         {
             // this does work
             //Debug.Log("Commence Air Dash Attack");
 
             // TO DO: find a way to pass in the analog direction for the air dash attack state 
+            pc.IncrementAirDashCount();
             pc.PerformTransition(Transition.AirDashAttack);
             // switch to dash attack state
         }
@@ -148,7 +150,7 @@ public class MidairState : FSMState
         //sometimes it also determines your touching the ground
         if (grounded)
         {
-            pc.SetDashPath(Vector2.zero); // reset the dash path
+            //pc.SetDashPath(Vector2.zero); // reset the dash path
             pc.PerformTransition(Transition.Idle);
         }
 

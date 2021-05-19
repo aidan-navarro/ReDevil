@@ -246,7 +246,6 @@ public class PlayerAttack : MonoBehaviour
         ShrinkHitbox();
         damage = dashAttackValue;
         CheckDashAttackHit(attackCollider, transform.forward, 10);
-        
     }
 
     public void EndDashAttack()
@@ -305,11 +304,16 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Debug.Log("Ground Hit");
                     dashAttackContact = true;
-                }// now take into account of knockback
+                }
                 else if (!pc.GetisGrounded()) // we're going to be using a new dash attack function
                 {
                     Debug.Log("Air Hit");
                     airDashAttackContact = true;
+                    if (presentHealth == 0)
+                    {
+                        Debug.Log("Killed Enemy in Air");
+                        pc.DecrementAirDashCount();
+                    }
                 }
             }
         }

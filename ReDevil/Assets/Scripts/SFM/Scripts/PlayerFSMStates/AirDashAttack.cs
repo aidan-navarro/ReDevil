@@ -84,7 +84,7 @@ public class AirDashAttack : FSMState
         Debug.Log("Dash Dist: " + dashDistance);
         // velocity must also change to account for the dash position that we set
         // create a boolean to lock any change to the dash vector while we dash
-        pc.GetRigidbody2D().velocity = pc.GetDashPath() /** pc.direction*/ * pc.dashSpeed;
+        pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
        
         pc.TouchingFloorOrWall();
         isGrounded = pc.GetisGrounded();

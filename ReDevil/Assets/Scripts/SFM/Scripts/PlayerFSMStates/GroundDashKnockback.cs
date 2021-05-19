@@ -22,6 +22,29 @@ public class GroundDashKnockback : FSMState
         timer.StartCoroutine("DashKnockbackTimer");
 
         pc.UpdateState("Hit Enemy");
+
+        if (pc.GetCanDash())
+        {
+            Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                pc.SetDashPath(pc.moveVector);
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
+        }
+        Debug.Log(pc.GetDashPath());
+
+
         pc.TouchingFloorOrWall();
 
     }
@@ -59,6 +82,7 @@ public class GroundDashKnockback : FSMState
             timer.StopCoroutine("DashKnockbackTimer");
             pc.SetDKBTransition(false);
             patk.ReInitializeTransitions();
+            pc.IncrementAirDashCount();
             pc.PerformTransition(Transition.Dash);
         }
 
