@@ -2662,16 +2662,6 @@ PrefabInstance:
       propertyPath: stateText
       value: 
       objectReference: {fileID: 83276686}
-    - target: {fileID: 1575489276398568400, guid: 69c30ee0916387442bdeef7357d4a1e1,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 1575489276398568401, guid: 69c30ee0916387442bdeef7357d4a1e1,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 7431913495d402c4597035c370b510b9, type: 2}
     - target: {fileID: 1575489276398568402, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_RootOrder
