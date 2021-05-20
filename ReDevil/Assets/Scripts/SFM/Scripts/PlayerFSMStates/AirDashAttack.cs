@@ -58,7 +58,7 @@ public class AirDashAttack : FSMState
             else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
-                pc.facingLeft = false;
+                pc.facingLeft = true;
 
                // pc.FlipPlayer();
             }
@@ -104,7 +104,7 @@ public class AirDashAttack : FSMState
             }
             else if (dashDistance >= pc.dashLength * pc.dashLength)
             {
-                Debug.Log("Reached Air Dash Attack distance");
+                //Debug.Log("Reached Air Dash Attack distance");
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
@@ -186,9 +186,9 @@ public class AirDashAttack : FSMState
                     // if the enemy is overhead 
                     if (checkAtkVector.y > 0.0f)
                     {
-                        pc.AirDashBottomKnockback();
+                        pc.AirDashBottomKnockback2(pc.GetDashPath());
                     } 
-                    // if the player is overhead, use the regular Dash Knockbakc function
+                    // if the player is overhead, use the regular Dash Knockback function, it's modified to account for off the ground contact
                     else
                     {
                         pc.DashKnockback();

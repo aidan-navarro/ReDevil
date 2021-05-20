@@ -751,6 +751,7 @@ public class PlayerFSMController : AdvancedFSM
             kbDirection = new Vector2(-1, 1);
             //DashKnockbackTransition(20, currentPos - kbDirection);
         }
+        Debug.Log("Is Facing left => " + facingLeft);
 
         rig.velocity = Vector2.zero;
         rig.gravityScale = gravityScale;
@@ -763,9 +764,9 @@ public class PlayerFSMController : AdvancedFSM
             rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
         } else
         {
-            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower + 1, 12));
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 12));
         }
-        Debug.Log(rig.velocity);
+        Debug.Log("Result Velocity: "+rig.velocity);
     }
 
     // code for airdash attack... not in use yet
@@ -799,10 +800,20 @@ public class PlayerFSMController : AdvancedFSM
         rig.velocity = Vector2.zero;
 
         rig.gravityScale = gravityScale;
-
+        
         // have the character simply pop downward uppon hitting the bottom
         //rig.velocity = new Vector2(0.0f, -10.0f);
         rig.AddForce(Vector2.down, ForceMode2D.Impulse);    
+    }
+
+    public void AirDashBottomKnockback2(Vector2 dashVector)
+    {
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+        Vector2 bounceVector = Vector2.Reflect(dashVector, Vector2.down);
+
+        Debug.Log("Bounce Vector: " + bounceVector);
+        rig.AddForce(bounceVector * dashSpeed / 2, ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
