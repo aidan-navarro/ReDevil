@@ -81,7 +81,6 @@ public class AirDashAttack : FSMState
         //dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
         // instead of checking the x distance, we're instead checking the whole magnitude of the vector
         dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
-        Debug.Log("Dash Dist: " + dashDistance);
         // velocity must also change to account for the dash position that we set
         // create a boolean to lock any change to the dash vector while we dash
         pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
@@ -178,7 +177,29 @@ public class AirDashAttack : FSMState
             }
             if (patk.airDashAttackContact)
             {
-                pc.AirDashKnockback();
+                // check the angle in which the player makes contact with an enemy
+                Vector2 checkAtkVector = patk.GetNormalizedAttackVector();
+                // vertical hit angle (top or bottom)
+                if (Mathf.Abs(checkAtkVector.y) > Mathf.Abs(checkAtkVector.x))
+                {
+                    Debug.Log("Hitting from the top or bottom");
+                    // if the enemy is overhead 
+                    if (checkAtkVector.y > 0.0f)
+                    {
+                        pc.AirDashBottomKnockback();
+                    } 
+                    // if the player is overhead, use the regular Dash Knockbakc function
+                    else
+                    {
+                        pc.DashKnockback();
+                    }
+                } 
+                // hitting the enemy from the side
+                else
+                {
+                    pc.AirDashKnockback();
+
+                }
                 pc.SetDKBTransition(true);
                 pc.PerformTransition(Transition.DashKnockback); // still need to test this
 

@@ -134,8 +134,8 @@ public class MidairState : FSMState
             // this does work
             //Debug.Log("Commence Air Dash Attack");
 
-            // TO DO: find a way to pass in the analog direction for the air dash attack state 
             pc.IncrementAirDashCount();
+            // check using a boolean if we've hit an enemy already            
             pc.PerformTransition(Transition.AirDashAttack);
             // switch to dash attack state
         }

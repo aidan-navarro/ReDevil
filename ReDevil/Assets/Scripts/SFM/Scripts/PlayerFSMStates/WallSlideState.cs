@@ -26,8 +26,10 @@ public class WallSlideState : FSMState
             newVel.y = -pc.GetMoveSpeed() / pc.slideSpeed;
             rig.velocity = newVel;
         }
-        pc.CheckAirDash();
+
+        // touching the wall will reset the air dash count
         pc.ResetAirDashCount();
+        pc.CheckAirDash();
 
         pc.UpdateState("Wall Sliding");
     }

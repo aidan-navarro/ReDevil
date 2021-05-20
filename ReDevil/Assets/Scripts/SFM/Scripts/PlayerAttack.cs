@@ -44,16 +44,21 @@ public class PlayerAttack : MonoBehaviour
     //transition bools
     public bool idleTransition;
     public bool dashTransition;
-
     public bool groundAttack2Transition;
     public bool groundAttack3Transition;
-
     public bool soulShotTransition;
 
 
     public bool checkCancel; //extra safety measure checking when we are able to cancel an attack;
     public bool GetCheckCancel() { return checkCancel; }
     public void SetCheckCancel(bool inCheckCancel) { checkCancel = inCheckCancel; }
+
+    [SerializeField]
+    private Vector2 attackVector;
+    public Vector2 GetAttackVector() { return attackVector; }
+    public Vector2 GetNormalizedAttackVector() { return attackVector.normalized; }
+    public void SetAttackVector(Vector2 inAttackVector) {  attackVector = inAttackVector; }
+
 
     private PlayerFSMController pc;
 
@@ -272,6 +277,7 @@ public class PlayerAttack : MonoBehaviour
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
        // Debug.Log("NumHits: " + numHits);
 
+        // should the hit register`
         for (int i = 0; i < numHits; i++)
         {
             if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy") && attacking) // this only registers frame 1
@@ -298,6 +304,7 @@ public class PlayerAttack : MonoBehaviour
 
                 //gain soul equal to the damage dealt to the enemy.
                 pc.SoulCalculator(pastHealth - presentHealth);
+                attackVector = ec.transform.position - pc.transform.position;
 
                 attacking = false;
                 if (pc.GetisGrounded())
@@ -309,6 +316,8 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Debug.Log("Air Hit");
                     airDashAttackContact = true;
+                    // get and normalize the attack vector 
+                    Debug.Log("Attack Vector: " + attackVector.normalized);
                     if (presentHealth == 0)
                     {
                         Debug.Log("Killed Enemy in Air");

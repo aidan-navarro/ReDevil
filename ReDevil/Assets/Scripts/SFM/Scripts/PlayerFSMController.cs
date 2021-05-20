@@ -71,7 +71,7 @@ public class PlayerFSMController : AdvancedFSM
 
     // TEST ---------- dash knockback specific --------------
     [SerializeField]
-    private float dashKnockbackPower;
+    private float dashKnockbackPower; // currently set in the inspector to 3
     private bool dkbTransition;
     public bool GetDKBTransition() { return dkbTransition;  }
     public void SetDKBTransition(bool inDKBTransition)
@@ -209,7 +209,7 @@ public class PlayerFSMController : AdvancedFSM
         gravityScale = rig.gravityScale;
 
         health = 100;
-        dashKnockbackPower = 1;
+        dashKnockbackPower = 3;
 
         respawnPoint = FindObjectOfType<RespawnManager>();
         transform.position = respawnPoint.respawnPoint;
@@ -758,7 +758,13 @@ public class PlayerFSMController : AdvancedFSM
         //Debug.Log(kbDirection);
 
         // Dash Knockback Power set in the inspector at value 20
-        rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
+        if (isGrounded)
+        {
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
+        } else
+        {
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower + 1, 12));
+        }
         Debug.Log(rig.velocity);
     }
 
@@ -768,13 +774,35 @@ public class PlayerFSMController : AdvancedFSM
         //reinitialize velocity
         rig.velocity = Vector2.zero;
 
-        Vector2 currentPos = this.gameObject.transform.position; //player position
-
         rig.gravityScale = gravityScale;
 
         // have the character simply pop upward
         rig.velocity = new Vector2(0.0f, 10.0f);
 
+    }
+
+    public void SideDashKnockback(Vector2 atkVector)
+    {
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+        Vector2 bounceVector = atkVector;
+        bounceVector.y = Mathf.Abs(bounceVector.y);
+
+        rig.AddForce(bounceVector, ForceMode2D.Impulse);
+
+    }
+
+    public void AirDashBottomKnockback()
+    {
+        Debug.Log("BottomKnockback");
+        //reinitialize velocity
+        rig.velocity = Vector2.zero;
+
+        rig.gravityScale = gravityScale;
+
+        // have the character simply pop downward uppon hitting the bottom
+        //rig.velocity = new Vector2(0.0f, -10.0f);
+        rig.AddForce(Vector2.down, ForceMode2D.Impulse);    
     }
 
     private void OnTriggerEnter2D(Collider2D other)
