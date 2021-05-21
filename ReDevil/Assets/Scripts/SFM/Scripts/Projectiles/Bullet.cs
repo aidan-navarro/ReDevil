@@ -47,6 +47,10 @@ public class Bullet : MonoBehaviour
 
             //make sure physics don't affect the enemy hit
             ec.rig.position = ec.currentPos;
+            ec.rig.velocity = Vector2.zero;
+
+            // specific condition if the enemy is the mobile one
+
 
             Destroy(this.gameObject);
         }

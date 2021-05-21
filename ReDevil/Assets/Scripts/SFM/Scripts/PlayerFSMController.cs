@@ -25,6 +25,7 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     //Meter variables
     //-------------------------------------------------------------------
+    [SerializeField]
     private float health;
     //get and set functions for health
     public float GetHealth() { return health; }
@@ -34,7 +35,7 @@ public class PlayerFSMController : AdvancedFSM
     
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
-
+    [SerializeField]
     private float soul;
     //get and set functions for soul
     public float GetSoul() { return soul; }
@@ -72,10 +73,8 @@ public class PlayerFSMController : AdvancedFSM
     public void SetKbTransition(bool inKbTransition) { kbTransition = inKbTransition; }
 
     // TEST ---------- dash knockback specific --------------
-
     [SerializeField]
     private float dashKnockbackPower;
-
     private bool dkbTransition;
     public bool GetDKBTransition() { return dkbTransition;  }
     public void SetDKBTransition(bool inDKBTransition)
@@ -131,8 +130,25 @@ public class PlayerFSMController : AdvancedFSM
     public Vector2 GetDashStartPos() { return dashStartPos; }
     public void SetDashStartPos(Vector2 inDashStartPos) { dashStartPos = inDashStartPos; }
 
-    //respawn
+    // ----------------- TEST: Omnidirectional Air Dash trajectory -------------------
+    // Take the input from move vector, and use a separate dash vector to 
+    [SerializeField] private int airDashCount;
+    [SerializeField] private int airDashLimit; // set value in inspector
+    public int GetAirDashCount() { return airDashCount; }
+    public void SetAirDashCount(int dash) { airDashCount = dash; }
+    public void IncrementAirDashCount() { airDashCount++; }
+    public void DecrementAirDashCount() { airDashCount--; }
+    public void ResetAirDashCount() { airDashCount = 0; }
 
+
+    // ----------------- END TEST REGION -----------------------
+
+    // Dash Attack Path functions
+    protected Vector2 dashPath;
+    public Vector2 GetDashPath() { return dashPath; }
+    public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; } 
+ 
+    //respawn
     public RespawnManager respawnPoint;
 
     // soul
@@ -170,6 +186,7 @@ public class PlayerFSMController : AdvancedFSM
 
 
     //jump variables
+    [SerializeField]
     private bool isGrounded; //variable to determine if the player is grounded.  the player can only jump if on the ground.
     public bool GetisGrounded() { return isGrounded; }
     public void SetisGrounded(bool inIsGrounded) { isGrounded = inIsGrounded; }
@@ -206,9 +223,14 @@ public class PlayerFSMController : AdvancedFSM
         leftTriggerDown = false;
         rightTriggerDown = false;
 
+        airDashCount = 0;
+        airDashLimit = 2; // hard code
+
         canDash = true;
         dashInputAllowed = true;
         invincible = false;
+
+        // counting the amount of airdashes
 
         //box collider
         col = GetComponent<BoxCollider2D>();
@@ -593,6 +615,18 @@ public class PlayerFSMController : AdvancedFSM
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, groundLayer.value);
     }
 
+    // check for the air dash limit
+    public void CheckAirDash()
+    {
+        if (airDashCount < airDashLimit)
+        {
+            canDash = true;
+        } else
+        {
+            canDash = false;
+        }
+    }
+
     //public void CheckDashInput()
     //{
     //    //only check for these inputs if the dash has not ended
@@ -651,12 +685,6 @@ public class PlayerFSMController : AdvancedFSM
             kbTransition = true;
         }
     }
-
-    //private void DashKnockbackTransition(float kbPower, Vector2 direction)
-    //{
-    //    SetKnockbackPower(kbPower);
-    //    SetEnemyPos(direction);
-    //}
 
     //deal damage to the player
    public void Damage()

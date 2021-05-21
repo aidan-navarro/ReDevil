@@ -277,7 +277,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4c5c574c-5aa9-4112-931e-006a317dc081"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -288,7 +288,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bc2b401b-5aaf-425b-9121-6f16624cca52"",
-                    ""path"": ""<Keyboard>/b"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -310,7 +310,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a5ce2192-05e7-4b0f-bd36-5567c491f64d"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -343,7 +343,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""14a8de45-1805-4212-9680-ecbfa5c38037"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/u"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -365,7 +365,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e7c888d4-6379-422f-b864-891c7c98952e"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/u"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

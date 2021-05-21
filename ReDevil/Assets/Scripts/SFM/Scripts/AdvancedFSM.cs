@@ -39,7 +39,6 @@ public enum Transition
     //states for the enemy
     EnemyNoHealth,
 
-
     //attack states for individual minion ememies
     NodeppouIdle,
     NodeppouAttack,
@@ -55,6 +54,7 @@ public enum Transition
 
     WaniguchiIdle,
     WaniguchiAttack,
+    WaniguchiAirborne  // new transition for when Waniguchi is in the air after the attack jump
 
 
 }
@@ -108,7 +108,7 @@ public enum FSMStateID
     //Waniguchi
     WaniguchiIdling,
     WaniguchiAttacking,
-
+    WaniguchiMidair // state for when the waniguchi is in the air
 }
 
 public class AdvancedFSM : FSM 

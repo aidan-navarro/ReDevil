@@ -227,14 +227,25 @@ public class PlayerAttack : MonoBehaviour
     public void StartDashAttack()
     {
         //StartCoroutine("EnableDashAttack");
-        Debug.Log("Start Dash Attack");
+        //Debug.Log("Start Dash Attack");
         attacking = true; // use the same attacking variable?
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
         CheckDashAttackHit(attackCollider, transform.forward, 10);
-        Debug.Log("Ground Dash Attack: " + dashAttackContact);
-        Debug.Log("Air Dash Attack: " + airDashAttackContact);
+        //Debug.Log("Ground Dash Attack: " + dashAttackContact);
+        //Debug.Log("Air Dash Attack: " + airDashAttackContact);
+    }
+
+    public void StartAirDashAttack(Vector2 position)
+    {
+        attacking = true;
+        // test, replace the 
+        attackCollider.transform.localPosition = position;
+        TurnOnHitbox();
+        ShrinkHitbox();
+        damage = dashAttackValue;
+        CheckDashAttackHit(attackCollider, transform.forward, 10);
     }
 
     public void EndDashAttack()
@@ -259,7 +270,7 @@ public class PlayerAttack : MonoBehaviour
         ContactFilter2D filter = new ContactFilter2D();
 
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
-        Debug.Log("NumHits: " + numHits);
+       // Debug.Log("NumHits: " + numHits);
 
         for (int i = 0; i < numHits; i++)
         {
@@ -293,11 +304,16 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Debug.Log("Ground Hit");
                     dashAttackContact = true;
-                }// now take into account of knockback
-                else if (!pc.GetisGrounded())
+                }
+                else if (!pc.GetisGrounded()) // we're going to be using a new dash attack function
                 {
                     Debug.Log("Air Hit");
                     airDashAttackContact = true;
+                    if (presentHealth == 0)
+                    {
+                        Debug.Log("Killed Enemy in Air");
+                        pc.DecrementAirDashCount();
+                    }
                 }
             }
         }
@@ -502,6 +518,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void RevertHitbox()
     {
+        attackCollider.transform.localPosition = new Vector2(1.0f, 0.0f);
         attackCollider.transform.localScale = new Vector2(1.0f, 1.0f);
     }
 
@@ -582,6 +599,7 @@ public class PlayerAttack : MonoBehaviour
         }
         
     }
+    #endregion
 
     public void ReInitializeTransitions()
     {
@@ -593,5 +611,4 @@ public class PlayerAttack : MonoBehaviour
         groundAttack2Transition = false;
         groundAttack3Transition = false;
     }
-    #endregion
 }

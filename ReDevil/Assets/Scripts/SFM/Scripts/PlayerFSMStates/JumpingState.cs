@@ -19,7 +19,6 @@ public class JumpingState : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
 
-
         pc.TouchingFloorOrWall();
         bool grounded = pc.GetisGrounded();
 
