@@ -25,6 +25,7 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     //Meter variables
     //-------------------------------------------------------------------
+    [SerializeField]
     private float health;
     //get and set functions for health
     public float GetHealth() { return health; }
@@ -32,7 +33,7 @@ public class PlayerFSMController : AdvancedFSM
 
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
-
+    [SerializeField]
     private float soul;
     //get and set functions for soul
     public float GetSoul() { return soul; }

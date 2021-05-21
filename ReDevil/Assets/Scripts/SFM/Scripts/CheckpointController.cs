@@ -27,6 +27,12 @@ public class CheckpointController : MonoBehaviour
         {
             cpSpriteRenderer.sprite = cpTriggered;
             cpReached = true;
+
+            //Raquel if you see this code this is what I was talking about doing for your pickup items
+            //Make a temporary variable (PlayerFSMController pc)
+            //and set its value to be the object you just confirmed is the player you collided with
+            //Then call its function
+            //PlayerFSMController pc = other.GetComponent<PlayerFSMController>();
         }
     }
 }
