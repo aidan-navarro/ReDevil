@@ -30,6 +30,8 @@ public class PlayerFSMController : AdvancedFSM
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; }
 
+    public int maxHealth;
+    
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
 
@@ -133,6 +135,10 @@ public class PlayerFSMController : AdvancedFSM
 
     public RespawnManager respawnPoint;
 
+    // soul
+
+    public int currentSoulNum;
+
     //-------------------------------------------------------------------
     //variables to detect controller input
     //-------------------------------------------------------------------
@@ -192,7 +198,7 @@ public class PlayerFSMController : AdvancedFSM
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
 
-        health = 100;
+        //health = 100;
         dashKnockbackPower = 1;
 
         
@@ -653,10 +659,10 @@ public class PlayerFSMController : AdvancedFSM
     //}
 
     //deal damage to the player
-    public void Damage()
-    {
-        health -= damage;
-    }
+   public void Damage()
+   {
+       health -= damage;
+   }
 
     //function to handle any increase or decrease of the soul meter.  when using meter, set value to a negative
     public void SoulCalculator(float soulChange)
@@ -775,7 +781,26 @@ public class PlayerFSMController : AdvancedFSM
         SceneManager.LoadScene(1);
     }
 
+    public void AddSoul(int soulAdd)
+    {
+        currentSoulNum += soulAdd;
+        Debug.Log("soul: " + currentSoulNum);
+    }
     
-
     
+    public void HealPlayer(int healAmount)
+    {
+        health += healAmount;
+        Debug.Log("health: " + health);
+    
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }    
+    }
+    
+    void Start()
+    {
+        health = maxHealth;
+    }
 }
