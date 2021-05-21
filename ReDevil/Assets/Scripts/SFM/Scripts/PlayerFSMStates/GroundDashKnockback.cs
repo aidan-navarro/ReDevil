@@ -80,8 +80,15 @@ public class GroundDashKnockback : FSMState
             timer.StopCoroutine("DashKnockbackTimer");
             pc.SetDKBTransition(false);
             patk.ReInitializeTransitions();
-            pc.IncrementAirDashCount();
-            pc.PerformTransition(Transition.Dash);
+            if (grounded)
+            {
+                pc.PerformTransition(Transition.Dash);
+            }
+            else
+            {
+                pc.IncrementAirDashCount();
+                pc.PerformTransition(Transition.AirDash);
+            }
         }
 
 

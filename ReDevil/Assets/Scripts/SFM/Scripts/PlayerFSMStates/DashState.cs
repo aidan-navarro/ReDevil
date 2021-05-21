@@ -108,8 +108,7 @@ public class DashState : FSMState
             pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
         }
 
-        //get a variable to determine if we are hitting a wall
-        onWall = pc.GetisTouchingWall();
+        
 
         if(!dashEnded)
         {
@@ -128,13 +127,7 @@ public class DashState : FSMState
                 pc.GetRigidbody2D().gravityScale = gravScale;
                 dashStarted = false;
                 dashEnded = true;
-            } else if (!isGrounded && (dashDistance < pc.dashLength * pc.dashLength))
-            {
-                if (isGrounded)
-                {
-                    Debug.Log("Breakoutcase");
-                }
-            }
+            } 
 
             if (enterKnockback)
             {

@@ -38,6 +38,7 @@ public class MidairState : FSMState
             if (pc.moveVector != Vector2.zero)
             {
                 pc.SetDashPath(pc.moveVector);
+               
             }
             else
             { // should the analog stick not be pointed, the player should still dash horizontally

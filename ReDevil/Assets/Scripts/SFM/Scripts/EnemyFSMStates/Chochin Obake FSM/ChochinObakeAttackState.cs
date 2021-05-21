@@ -37,7 +37,7 @@ public class ChochinObakeAttackState : FSMState
             }
             else
             {
-                Debug.Log(bulletDirection);
+                //Debug.Log(bulletDirection);
                 ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, bulletDirection, ec.projectileSpeed);
             }
             
