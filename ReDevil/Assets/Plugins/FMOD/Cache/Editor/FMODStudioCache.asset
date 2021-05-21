@@ -48,7 +48,7 @@ MonoBehaviour:
   - {fileID: 1149553343516350785}
   StringsBanks:
   - {fileID: 2963554395431899856}
-  stringsBankWriteTime: 637567764639783900
+  stringsBankWriteTime: 637570281562663217
   cacheVersion: 6
 --- !u!114 &1149553343516350785
 MonoBehaviour:
@@ -65,7 +65,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637567764639753865
+  lastModified: 637570281562526350
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -107,11 +107,11 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637567764639783900
+  lastModified: 637570281562663217
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 870
+    Value: 882
   Exists: 1
 --- !u!114 &3585599333606253556
 MonoBehaviour:

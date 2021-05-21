@@ -20,23 +20,64 @@ public class PlayerFSMController : AdvancedFSM
     private BoxCollider2D col; //the players box collider
     public LayerMask groundLayer;
 
-    public Text stateText;
+    //-------------------------------------------------------------------
+    //Player HUD Variables
+    //-------------------------------------------------------------------
+    [SerializeField]
+    private Text stateText;
+    [SerializeField]
+    private Text healthText;
+    [SerializeField]
+    private Text SoulText;
+    [SerializeField]
+    private GameObject healthBar;
+    [SerializeField]
+    private GameObject SoulLv1Bar;
+    [SerializeField]
+    private GameObject SoulLv2Bar;
+    [SerializeField]
+    private GameObject SoulLv3Bar;
 
     //-------------------------------------------------------------------
     //Meter variables
     //-------------------------------------------------------------------
     private float health;
+    [SerializeField]
+    private float MaxHealth;
     //get and set functions for health
     public float GetHealth() { return health; }
-    public void SetHealth(float inHealth) { health = inHealth; }
+    public void SetHealth(float inHealth) { health = inHealth; UpdateHealthHud(); }
 
+    private void UpdateHealthHud()
+    {
+        healthText.text = health.ToString();
+        healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+    }
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
 
     private float soul;
     //get and set functions for soul
+    [SerializeField]
+    private float soulLevel1Limit;
+    [SerializeField]
+    private float soulLevel2Limit;
+    [SerializeField]
+    private float soulLevel3Limit;
+
     public float GetSoul() { return soul; }
-    public void SetSoul(float insoul) { soul = insoul; }
+    public void SetSoul(float insoul) { soul = insoul; UpdateSoulHud(); }
+
+    private void UpdateSoulHud()
+    {
+        SoulText.text = ((int)soul).ToString();
+
+        SoulLv1Bar.transform.localScale = new Vector3(soul >= soulLevel1Limit ? 1 : soul / soulLevel1Limit, SoulLv1Bar.transform.localScale.y, SoulLv1Bar.transform.localScale.z);
+        if (soul > soulLevel1Limit) SoulLv2Bar.transform.localScale = new Vector3(soul >= soulLevel2Limit ? 1 : (soul - soulLevel1Limit) / (soulLevel2Limit - soulLevel1Limit), SoulLv2Bar.transform.localScale.y, SoulLv2Bar.transform.localScale.z);
+        else { SoulLv2Bar.transform.localScale = new Vector3(0, SoulLv2Bar.transform.localScale.y, SoulLv2Bar.transform.localScale.z); }
+        if (soul > soulLevel2Limit) SoulLv3Bar.transform.localScale = new Vector3(soul >= soulLevel3Limit ? 1 : (soul - soulLevel2Limit) / (soulLevel3Limit - soulLevel2Limit), SoulLv3Bar.transform.localScale.y, SoulLv3Bar.transform.localScale.z);
+        else { SoulLv3Bar.transform.localScale = new Vector3(0, SoulLv3Bar.transform.localScale.y, SoulLv3Bar.transform.localScale.z); }
+    }
 
     [SerializeField]
     private List<SoulArmament> soulArmaments;
@@ -201,7 +242,7 @@ public class PlayerFSMController : AdvancedFSM
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
 
-        health = 100;
+        SetHealth(MaxHealth);
         dashKnockbackPower = 1;
 
         respawnPoint = FindObjectOfType<RespawnManager>();
@@ -661,6 +702,7 @@ public class PlayerFSMController : AdvancedFSM
     public void Damage()
     {
         health -= damage;
+        UpdateHealthHud();
     }
 
     //function to handle any increase or decrease of the soul meter.  when using meter, set value to a negative
@@ -668,14 +710,16 @@ public class PlayerFSMController : AdvancedFSM
     {
         soul += soulChange;
 
-        if (soul >= 300)
+        if (soul >= soulLevel3Limit)
         {
-            soul = 300;
+            soul = soulLevel3Limit;
         }
         if (soul <= 0)
         {
             soul = 0;
         }
+
+        UpdateSoulHud();
     }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Workspace" id="{4fadf495-98d2-409d-bd41-b513329ae39c}">
 		<property name="builtBanksOutputDirectory">
 			<value>Build</value>
@@ -19,11 +19,17 @@
 		<relationship name="masterBankFolder">
 			<destination>{afc451cc-68a1-4ce6-86e5-f3e63f560294}</destination>
 		</relationship>
+		<relationship name="masterSandboxFolder">
+			<destination>{3c650f71-8e21-4400-bf3d-d996286e2c12}</destination>
+		</relationship>
 		<relationship name="masterAssetFolder">
 			<destination>{16e9f75c-d99a-4fa7-b74f-23ae0d431828}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{b6c253d3-0758-4ed0-971d-a5ee1bf39ecc}</destination>
+		</relationship>
+		<relationship name="profilerSessionFolder">
+			<destination>{9a655f91-2df5-4ebd-b8da-c62226206949}</destination>
 		</relationship>
 		<relationship name="platforms">
 			<destination>{3f487dda-ff0c-437f-9bb1-7365b29ab95e}</destination>
