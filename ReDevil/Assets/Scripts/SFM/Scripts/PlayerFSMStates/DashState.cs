@@ -5,6 +5,7 @@ using UnityEngine;
 public class DashState : FSMState
 {
     //to ensure the dash only occurs once
+    private bool isGrounded;
     private bool onWall;
     private bool dashStarted;
     private float gravScale; //the players gravity scale
@@ -33,6 +34,7 @@ public class DashState : FSMState
         //to check if we touch a wall to transition to idle and end the dash
         pc.TouchingFloorOrWall();
         onWall = pc.GetisTouchingWall();
+        isGrounded = pc.GetisGrounded();
 
         Debug.Log("touching floor or wall? -> " + onWall);
         //We only want to track this at the very start of the dash so it is not recalculated
@@ -82,11 +84,28 @@ public class DashState : FSMState
         //get the dash start pos as set within the if loop
         Vector2 dashSP = pc.GetDashStartPos();
 
-        //calculate the dash total distance
-        dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
+        // dash cancel conditions
+        if (isGrounded)
+        {
+            //calculate the dash total distance
+            dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
 
-        //set the velocity to allow the dash to occur
-        pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed;
+            //set the velocity to allow the dash to occur
+            pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed;
+        }
+        else
+        {
+            Vector2 playerPos = new Vector2(pc.transform.position.x, pc.transform.position.y);
+            Vector2 dashDiff = dashSP - playerPos;
+
+            //dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
+            // instead of checking the x distance, we're instead checking the whole magnitude of the vector
+            dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
+            Debug.Log("Dash Dist: " + dashDistance);
+            // velocity must also change to account for the dash position that we set
+            // create a boolean to lock any change to the dash vector while we dash
+            pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
+        }
 
         //get a variable to determine if we are hitting a wall
         onWall = pc.GetisTouchingWall();
@@ -94,7 +113,15 @@ public class DashState : FSMState
         if(!dashEnded)
         {
             //dashed max distance, end the dash.
-            if (dashDistance >= pc.dashLength)
+            
+            if (isGrounded && (dashDistance >= pc.dashLength))
+            {
+                pc.SetCanDash(true);
+                pc.GetRigidbody2D().gravityScale = gravScale;
+                dashStarted = false;
+                dashEnded = true;
+            } 
+            else if (!isGrounded && (dashDistance >= pc.dashLength * pc.dashLength))
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = gravScale;
@@ -150,6 +177,7 @@ public class DashState : FSMState
                 pc.PerformTransition(Transition.WallSlide);
                 //check if were on the ground or not while hitting the wall to end the dash
             }
+
             if (grounded && onWall)
             {
                 pc.PerformTransition(Transition.Idle);
@@ -158,7 +186,14 @@ public class DashState : FSMState
             else if (grounded && (dashDistance >= pc.dashLength))
             {
                 pc.PerformTransition(Transition.Idle);
+            } 
+            // specific case if we air dash down and hit the ground... not perfect
+            else if (grounded && (dashDistance < pc.dashLength * pc.dashLength) && (pc.GetDashPath().y < 0.0f))
+            {
+                pc.PerformTransition(Transition.Idle);
+                
             }
+
             //airborne transition when walking off an edge
             else if (!grounded)
             {

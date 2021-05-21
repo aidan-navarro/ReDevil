@@ -26,6 +26,8 @@ public class WallSlideState : FSMState
             newVel.y = -pc.GetMoveSpeed() / pc.slideSpeed;
             rig.velocity = newVel;
         }
+        pc.CheckAirDash();
+        pc.ResetAirDashCount();
 
         pc.UpdateState("Wall Sliding");
     }

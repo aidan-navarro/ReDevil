@@ -13,7 +13,7 @@ public class IdlingState : FSMState
 
     public override void EnterStateInit()
     {
-        base.EnterStateInit();
+        base.EnterStateInit();        
     }
 
     //Act: What are we doing in this state?
@@ -28,8 +28,9 @@ public class IdlingState : FSMState
         newMoveSpeed.y = rig.velocity.y;
         rig.velocity = newMoveSpeed;
 
+        pc.ResetAirDashCount(); // any time we return to idle state, this count gets reset
         pc.TouchingFloorOrWall();
-
+        pc.CheckAirDash();
         //pc.CheckDashInput();
         pc.UpdateState("Idle");
     }
