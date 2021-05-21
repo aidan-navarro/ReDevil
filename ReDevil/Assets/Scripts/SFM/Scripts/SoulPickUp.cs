@@ -22,9 +22,11 @@ public class SoulPickUp : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-           // collision = other.GetComponent<PlayerFSMController>();
-            //PlayerFSMController.addSoul = other.GetComponent<PlayerFSMController>();
-            FindObjectOfType<PlayerFSMController>().AddSoul(value);
+           //when dealing with collisions, if we're checking for a specific thing,
+           //make a temporary variable (left of the equal sign)
+           //and make it equal whatever element we want from what we collided with
+            PlayerFSMController pc = collision.GetComponent<PlayerFSMController>();
+            pc.AddSoul(value);
             Destroy(gameObject);
         }
     }

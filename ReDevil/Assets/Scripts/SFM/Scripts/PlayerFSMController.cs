@@ -153,7 +153,7 @@ public class PlayerFSMController : AdvancedFSM
 
     // soul
 
-    public int currentSoulNum;
+    
 
     //-------------------------------------------------------------------
     //variables to detect controller input
@@ -215,7 +215,7 @@ public class PlayerFSMController : AdvancedFSM
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
 
-        //health = 100;
+        health = maxHealth;
         dashKnockbackPower = 1;
 
         
@@ -811,8 +811,8 @@ public class PlayerFSMController : AdvancedFSM
 
     public void AddSoul(int soulAdd)
     {
-        currentSoulNum += soulAdd;
-        Debug.Log("soul: " + currentSoulNum);
+        soul += soulAdd;
+        Debug.Log("soul: " + soul);
     }
     
     
@@ -827,8 +827,5 @@ public class PlayerFSMController : AdvancedFSM
         }    
     }
     
-    void Start()
-    {
-        health = maxHealth;
-    }
+    
 }
