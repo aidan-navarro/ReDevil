@@ -212,8 +212,7 @@ public class PlayerFSMController : AdvancedFSM
         health = 100;
         dashKnockbackPower = 1;
 
-        respawnPoint = FindObjectOfType<RespawnManager>();
-        transform.position = respawnPoint.respawnPoint;
+        
 
         leftTriggerDown = false;
         rightTriggerDown = false;
@@ -237,6 +236,13 @@ public class PlayerFSMController : AdvancedFSM
         playerInput.onActionTriggered += OnActionTriggered;
 
         ConstructFSM();
+    }
+
+    private void Awake()
+    {
+        respawnPoint = FindObjectOfType<RespawnManager>();
+        transform.position = respawnPoint.respawnPoint;
+        Debug.Log("Respawn Location; " + respawnPoint.respawnPoint + "// ID; " + respawnPoint.rand);
     }
 
     private void OnActionTriggered(InputAction.CallbackContext obj)

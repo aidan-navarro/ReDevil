@@ -10,13 +10,12 @@ public class SceneTimeWait : MonoBehaviour
 
     
 
+    private static RespawnManager respawn;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-       //StartCoroutine("testWait");
-      
-
+        respawn = FindObjectOfType<RespawnManager>();
     }
 
     // Update is called once per frame
@@ -39,23 +38,19 @@ public class SceneTimeWait : MonoBehaviour
     
    public void RestartOption()
     {
-        Destroy(gameObject);
-           SceneManager.LoadScene(0);
-     
+        
+        Destroy(respawn.gameObject);
+        SceneManager.LoadScene(0);
     }
 
     public void WithdrawOption()
     {
-        Destroy(gameObject);
+        
+        Destroy(respawn.gameObject);
         SceneManager.LoadScene(2);
     }
 
 
-    public IEnumerator testWait()
-    {
-        yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene(0);
-    }
 
 
 }
