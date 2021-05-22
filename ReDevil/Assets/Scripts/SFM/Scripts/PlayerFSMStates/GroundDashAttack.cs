@@ -115,6 +115,8 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Contact with Dash");
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.firstDashContact = true;
+
                 dashAttackStarted = false;
                 endDash = true;
                 patk.EndDashAttack();

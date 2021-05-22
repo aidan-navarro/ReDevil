@@ -434,6 +434,14 @@ public class PlayerFSMController : AdvancedFSM
         dashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
         dashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
+        AirDashNormal airDashing = new AirDashNormal();
+        //create transitions for the dash state
+        airDashing.AddTransition(Transition.NoHealth, FSMStateID.Dead); //if i die while dashing, transition to dead
+        airDashing.AddTransition(Transition.Idle, FSMStateID.Idling); //if dash ends on the ground OR they hit a wall while on ground, idle
+        airDashing.AddTransition(Transition.WallSlide, FSMStateID.WallSliding); //if dash ends in midair and hit a wall, wall sliding
+        airDashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
+        airDashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
+
         //create the Wall Slide state
         WallSlideState wallSliding = new WallSlideState();
 
@@ -511,6 +519,7 @@ public class PlayerFSMController : AdvancedFSM
         groundDashKnockback.AddTransition(Transition.Idle, FSMStateID.Idling);
         groundDashKnockback.AddTransition(Transition.Move, FSMStateID.Moving);
         groundDashKnockback.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        groundDashKnockback.AddTransition(Transition.AirDash, FSMStateID.AirDashing); // test, airdashcancel
         groundDashKnockback.AddTransition(Transition.Airborne, FSMStateID.Midair); // transition into airborne from the knockback
         groundDashKnockback.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);
 
@@ -562,6 +571,7 @@ public class PlayerFSMController : AdvancedFSM
         AddFSMState(idling);
         AddFSMState(moving);
         AddFSMState(dashing);
+        AddFSMState(airDashing);
         AddFSMState(jumping);
         AddFSMState(wallSliding);
         AddFSMState(midair);
@@ -764,11 +774,17 @@ public class PlayerFSMController : AdvancedFSM
         rig.velocity = Vector2.zero;
         rig.gravityScale = gravityScale;
 
-        //Debug.Log(kbDirection);
+        // Dash Knockback Vector
+        if (isGrounded)
+        {
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
+        }
+        else
+        {
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 12));
+        }
+        Debug.Log("Result Velocity: " + rig.velocity);
 
-        // Dash Knockback Power set in the inspector at value 20
-        rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
-        Debug.Log(rig.velocity);
     }
 
     // code for airdash attack... not in use yet
@@ -784,6 +800,39 @@ public class PlayerFSMController : AdvancedFSM
         // have the character simply pop upward
         rig.velocity = new Vector2(0.0f, 10.0f);
 
+    }
+
+    // on the second hit of air dash
+    public void SideDashKnockback(Vector2 atkVector)
+    {
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+        Vector2 bounceVector = atkVector;
+        bounceVector.x *= -1;
+        bounceVector.y = Mathf.Abs(bounceVector.y) * -1;
+        rig.AddForce(bounceVector * dashSpeed / 2, ForceMode2D.Impulse);
+    }
+
+    // knocking straight back down.  Leave here just in case
+    public void AirDashBottomKnockback()
+    {
+        Debug.Log("BottomKnockback");
+        //reinitialize velocity
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+
+        // have the character simply pop downward uppon hitting the bottom
+        //rig.velocity = new Vector2(0.0f, -10.0f);
+        rig.AddForce(Vector2.down, ForceMode2D.Impulse);
+    }
+
+    public void AirDashBottomKnockback2(Vector2 dashVector)
+    {
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+        Vector2 bounceVector = Vector2.Reflect(dashVector, Vector2.down);
+        Debug.Log("Bounce Vector: " + bounceVector);
+        rig.AddForce(bounceVector * dashSpeed / 2, ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
