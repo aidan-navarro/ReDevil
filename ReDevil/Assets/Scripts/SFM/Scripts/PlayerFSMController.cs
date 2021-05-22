@@ -31,6 +31,8 @@ public class PlayerFSMController : AdvancedFSM
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; }
 
+    public int maxHealth;
+    
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
     [SerializeField]
@@ -72,7 +74,7 @@ public class PlayerFSMController : AdvancedFSM
 
     // TEST ---------- dash knockback specific --------------
     [SerializeField]
-    private float dashKnockbackPower; // currently set in the inspector to 3
+    private float dashKnockbackPower;
     private bool dkbTransition;
     public bool GetDKBTransition() { return dkbTransition;  }
     public void SetDKBTransition(bool inDKBTransition)
@@ -149,6 +151,10 @@ public class PlayerFSMController : AdvancedFSM
     //respawn
     public RespawnManager respawnPoint;
 
+    // soul
+
+    
+
     //-------------------------------------------------------------------
     //variables to detect controller input
     //-------------------------------------------------------------------
@@ -209,11 +215,8 @@ public class PlayerFSMController : AdvancedFSM
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
 
-        health = 100;
-        dashKnockbackPower = 3;
-
-        respawnPoint = FindObjectOfType<RespawnManager>();
-        transform.position = respawnPoint.respawnPoint;
+        health = maxHealth;
+        dashKnockbackPower = 1;
 
         leftTriggerDown = false;
         rightTriggerDown = false;
@@ -237,6 +240,11 @@ public class PlayerFSMController : AdvancedFSM
         playerInput.onActionTriggered += OnActionTriggered;
 
         ConstructFSM();
+    }
+
+    private void Awake()
+    {
+        StartCoroutine(StartDelay());
     }
 
     private void OnActionTriggered(InputAction.CallbackContext obj)
@@ -426,15 +434,6 @@ public class PlayerFSMController : AdvancedFSM
         dashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
         dashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
-        AirDashNormal airDashing = new AirDashNormal();
-
-        //create transitions for the dash state
-        airDashing.AddTransition(Transition.NoHealth, FSMStateID.Dead); //if i die while dashing, transition to dead
-        airDashing.AddTransition(Transition.Idle, FSMStateID.Idling); //if dash ends on the ground OR they hit a wall while on ground, idle
-        airDashing.AddTransition(Transition.WallSlide, FSMStateID.WallSliding); //if dash ends in midair and hit a wall, wall sliding
-        airDashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
-        airDashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
-
         //create the Wall Slide state
         WallSlideState wallSliding = new WallSlideState();
 
@@ -512,7 +511,6 @@ public class PlayerFSMController : AdvancedFSM
         groundDashKnockback.AddTransition(Transition.Idle, FSMStateID.Idling);
         groundDashKnockback.AddTransition(Transition.Move, FSMStateID.Moving);
         groundDashKnockback.AddTransition(Transition.Dash, FSMStateID.Dashing);
-        groundDashKnockback.AddTransition(Transition.AirDash, FSMStateID.AirDashing); // test, airdashcancel
         groundDashKnockback.AddTransition(Transition.Airborne, FSMStateID.Midair); // transition into airborne from the knockback
         groundDashKnockback.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);
 
@@ -564,7 +562,6 @@ public class PlayerFSMController : AdvancedFSM
         AddFSMState(idling);
         AddFSMState(moving);
         AddFSMState(dashing);
-        AddFSMState(airDashing);
         AddFSMState(jumping);
         AddFSMState(wallSliding);
         AddFSMState(midair);
@@ -686,10 +683,10 @@ public class PlayerFSMController : AdvancedFSM
     }
 
     //deal damage to the player
-    public void Damage()
-    {
-        health -= damage;
-    }
+   public void Damage()
+   {
+       health -= damage;
+   }
 
     //function to handle any increase or decrease of the soul meter.  when using meter, set value to a negative
     public void SoulCalculator(float soulChange)
@@ -763,20 +760,15 @@ public class PlayerFSMController : AdvancedFSM
             kbDirection = new Vector2(-1, 1);
             //DashKnockbackTransition(20, currentPos - kbDirection);
         }
-        Debug.Log("Is Facing left => " + facingLeft);
 
         rig.velocity = Vector2.zero;
         rig.gravityScale = gravityScale;
 
-        // Dash Knockback Vector
-        if (isGrounded)
-        {
-            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
-        } else
-        {
-            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 12));
-        }
-        Debug.Log("Result Velocity: "+rig.velocity);
+        //Debug.Log(kbDirection);
+
+        // Dash Knockback Power set in the inspector at value 20
+        rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
+        Debug.Log(rig.velocity);
     }
 
     // code for airdash attack... not in use yet
@@ -785,46 +777,13 @@ public class PlayerFSMController : AdvancedFSM
         //reinitialize velocity
         rig.velocity = Vector2.zero;
 
+        Vector2 currentPos = this.gameObject.transform.position; //player position
+
         rig.gravityScale = gravityScale;
 
         // have the character simply pop upward
         rig.velocity = new Vector2(0.0f, 10.0f);
-    }
 
-    // on the second hit of air dash
-    public void SideDashKnockback(Vector2 atkVector)
-    {
-        rig.velocity = Vector2.zero;
-        rig.gravityScale = gravityScale;
-        Vector2 bounceVector = atkVector;
-        bounceVector.x *= -1;
-        bounceVector.y = Mathf.Abs(bounceVector.y) * -1;
-
-        rig.AddForce(bounceVector * dashSpeed/2, ForceMode2D.Impulse);
-
-    }
-
-    public void AirDashBottomKnockback()
-    {
-        Debug.Log("BottomKnockback");
-        //reinitialize velocity
-        rig.velocity = Vector2.zero;
-
-        rig.gravityScale = gravityScale;
-        
-        // have the character simply pop downward uppon hitting the bottom
-        //rig.velocity = new Vector2(0.0f, -10.0f);
-        rig.AddForce(Vector2.down, ForceMode2D.Impulse);    
-    }
-
-    public void AirDashBottomKnockback2(Vector2 dashVector)
-    {
-        rig.velocity = Vector2.zero;
-        rig.gravityScale = gravityScale;
-        Vector2 bounceVector = Vector2.Reflect(dashVector, Vector2.down);
-
-        Debug.Log("Bounce Vector: " + bounceVector);
-        rig.AddForce(bounceVector * dashSpeed / 2, ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -846,7 +805,30 @@ public class PlayerFSMController : AdvancedFSM
         SceneManager.LoadScene(1);
     }
 
+    public void AddSoul(int soulAdd)
+    {
+        soul += soulAdd;
+        Debug.Log("soul: " + soul);
+    }
     
-
     
+    public void HealPlayer(int healAmount)
+    {
+        health += healAmount;
+        Debug.Log("health: " + health);
+    
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }    
+    }
+    
+    //Coroutine Created due to a bug where character would be set before respawnpoint could be set.  Using the start function did not work
+    private IEnumerator StartDelay()
+    {
+        respawnPoint = FindObjectOfType<RespawnManager>();
+        transform.position = respawnPoint.respawnPoint;
+        Debug.Log("Respawn Location; " + respawnPoint.respawnPoint + "// ID; " + respawnPoint.rand);
+        yield return new WaitForEndOfFrame();
+    }
 }

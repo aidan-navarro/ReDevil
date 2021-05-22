@@ -40,9 +40,9 @@ MonoBehaviour:
   - {fileID: 1149553343516350785}
   EditorEvents:
   - {fileID: 3585599333606253556}
-  - {fileID: -388164487858964447}
   - {fileID: 5645659211587581071}
   - {fileID: 1463152534022509714}
+  - {fileID: 2663467878571479146}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1149553343516350785}
@@ -92,6 +92,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 164625
+--- !u!114 &2663467878571479146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SwordSwing
+  m_EditorClassIdentifier: 
+  Path: event:/SwordSwing
+  guid: bbd6fca684bc684682c9da4107abefed
+  Banks:
+  - {fileID: 1149553343516350785}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1290
 --- !u!114 &2963554395431899856
 MonoBehaviour:
   m_ObjectHideFlags: 0
