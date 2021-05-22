@@ -21,6 +21,7 @@ public class IdlingState : FSMState
     {
         Debug.Log("Idling");
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
         //stop momentum movement
@@ -28,6 +29,7 @@ public class IdlingState : FSMState
         newMoveSpeed.y = rig.velocity.y;
         rig.velocity = newMoveSpeed;
 
+        patk.firstDashContact = false;
         pc.ResetAirDashCount(); // any time we return to idle state, this count gets reset
         pc.TouchingFloorOrWall();
         pc.CheckAirDash(); // to reset the air dash

@@ -40,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
     // dash attack specific, only want to have the dash attack trigger once on hit
     public bool dashAttackContact; // going to get flicked back to false once it hits
     public bool airDashAttackContact; // dash attack in the air
+    public bool firstDashContact; // condition if the first dash attack has connected then change knockback properties
 
     //transition bools
     public bool idleTransition;
@@ -67,6 +68,7 @@ public class PlayerAttack : MonoBehaviour
     {
         pc = gameObject.GetComponent<PlayerFSMController>();
         attacking = false;
+        firstDashContact = false;
         TurnOffHitbox();
         checkCancel = false;
     }
@@ -318,6 +320,7 @@ public class PlayerAttack : MonoBehaviour
                     airDashAttackContact = true;
                     // get and normalize the attack vector 
                     Debug.Log("Attack Vector: " + attackVector.normalized);
+         
                     if (presentHealth == 0)
                     {
                         Debug.Log("Killed Enemy in Air");

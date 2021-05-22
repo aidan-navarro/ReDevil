@@ -87,7 +87,7 @@ public class GroundDashKnockback : FSMState
             else
             {
                 pc.IncrementAirDashCount();
-                pc.PerformTransition(Transition.AirDash);
+                pc.PerformTransition(Transition.AirDashAttack);
             }
         }
 

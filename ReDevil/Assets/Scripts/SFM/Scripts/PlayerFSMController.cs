@@ -768,9 +768,7 @@ public class PlayerFSMController : AdvancedFSM
         rig.velocity = Vector2.zero;
         rig.gravityScale = gravityScale;
 
-        //Debug.Log(kbDirection);
-
-        // Dash Knockback Power set in the inspector at value 20
+        // Dash Knockback Vector
         if (isGrounded)
         {
             rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
@@ -791,17 +789,18 @@ public class PlayerFSMController : AdvancedFSM
 
         // have the character simply pop upward
         rig.velocity = new Vector2(0.0f, 10.0f);
-
     }
 
+    // on the second hit of air dash
     public void SideDashKnockback(Vector2 atkVector)
     {
         rig.velocity = Vector2.zero;
         rig.gravityScale = gravityScale;
         Vector2 bounceVector = atkVector;
-        bounceVector.y = Mathf.Abs(bounceVector.y);
+        bounceVector.x *= -1;
+        bounceVector.y = Mathf.Abs(bounceVector.y) * -1;
 
-        rig.AddForce(bounceVector, ForceMode2D.Impulse);
+        rig.AddForce(bounceVector * dashSpeed/2, ForceMode2D.Impulse);
 
     }
 

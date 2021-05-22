@@ -53,14 +53,14 @@ public class AirDashAttack : FSMState
                 pc.direction = 1;
                 pc.facingLeft = false;
 
-                //pc.FlipPlayer();
+                pc.FlipPlayer();
             } 
             else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
                 pc.facingLeft = true;
 
-               // pc.FlipPlayer();
+                pc.FlipPlayer();
             }
             else
             {
@@ -197,9 +197,16 @@ public class AirDashAttack : FSMState
                 // hitting the enemy from the side
                 else
                 {
-                    pc.AirDashKnockback();
+                    if (!patk.firstDashContact)
+                    {
+                        pc.AirDashKnockback();
+                    } else
+                    {
+                        pc.SideDashKnockback(pc.GetDashPath());
+                    }
 
                 }
+                patk.firstDashContact = true;
                 pc.SetDKBTransition(true);
                 pc.PerformTransition(Transition.DashKnockback); // still need to test this
 
