@@ -218,8 +218,6 @@ public class PlayerFSMController : AdvancedFSM
         health = maxHealth;
         dashKnockbackPower = 1;
 
-        
-
         leftTriggerDown = false;
         rightTriggerDown = false;
 
@@ -246,9 +244,7 @@ public class PlayerFSMController : AdvancedFSM
 
     private void Awake()
     {
-        respawnPoint = FindObjectOfType<RespawnManager>();
-        transform.position = respawnPoint.respawnPoint;
-        Debug.Log("Respawn Location; " + respawnPoint.respawnPoint + "// ID; " + respawnPoint.rand);
+        StartCoroutine(StartDelay());
     }
 
     private void OnActionTriggered(InputAction.CallbackContext obj)
@@ -827,5 +823,12 @@ public class PlayerFSMController : AdvancedFSM
         }    
     }
     
-    
+    //Coroutine Created due to a bug where character would be set before respawnpoint could be set.  Using the start function did not work
+    private IEnumerator StartDelay()
+    {
+        respawnPoint = FindObjectOfType<RespawnManager>();
+        transform.position = respawnPoint.respawnPoint;
+        Debug.Log("Respawn Location; " + respawnPoint.respawnPoint + "// ID; " + respawnPoint.rand);
+        yield return new WaitForEndOfFrame();
+    }
 }
