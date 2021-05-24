@@ -24,6 +24,8 @@ public class WallJumpState : FSMState
             newVel.x = (pc.GetJumpPower() / 2) * -pc.direction;
             pc.GetRigidbody2D().velocity = newVel;
 
+        pc.soundManager.PlayJump();
+
         pc.UpdateState("Wall Jumping");
         hasJumped = true;
 

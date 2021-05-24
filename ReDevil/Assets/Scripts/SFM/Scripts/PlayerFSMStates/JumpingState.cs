@@ -27,11 +27,13 @@ public class JumpingState : FSMState
 
         if(grounded)
         {
+
             //Player has begun to jump
             Vector2 newVel = rig.velocity;
             newVel.y = pc.GetJumpPower();
             rig.velocity = newVel;
 
+            pc.soundManager.PlayJump();
             Debug.Log("Player State: Jumping");
             hasJumped = true;
         }
