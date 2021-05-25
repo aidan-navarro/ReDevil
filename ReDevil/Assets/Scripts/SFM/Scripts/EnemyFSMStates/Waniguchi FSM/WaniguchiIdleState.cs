@@ -18,7 +18,6 @@ public class WaniguchiIdleState : EnemyIdleState
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
 
         wc.TouchingFloor();
-        Debug.Log("Entering Idle State");
         
     }
     public override void Reason(Transform player, Transform npc)

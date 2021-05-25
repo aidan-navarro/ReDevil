@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayOption()
     {
-        Destroy(gameObject);
+       
         SceneManager.LoadScene(0);
     }
 

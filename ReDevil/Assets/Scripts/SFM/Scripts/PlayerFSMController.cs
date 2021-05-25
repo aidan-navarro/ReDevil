@@ -17,68 +17,29 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     //Floor and Wall Collision Variables
     //-------------------------------------------------------------------
-    private BoxCollider2D col; //the players box collider
+    private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
 
-    //-------------------------------------------------------------------
-    //Player HUD Variables
-    //-------------------------------------------------------------------
-    [SerializeField]
-    private Text stateText;
-    [SerializeField]
-    private Text healthText;
-    [SerializeField]
-    private Text SoulText;
-    [SerializeField]
-    private GameObject healthBar;
-    [SerializeField]
-    private GameObject SoulLv1Bar;
-    [SerializeField]
-    private GameObject SoulLv2Bar;
-    [SerializeField]
-    private GameObject SoulLv3Bar;
+    public Text stateText;
 
     //-------------------------------------------------------------------
     //Meter variables
     //-------------------------------------------------------------------
     [SerializeField]
     private float health;
-    [SerializeField]
-    private float MaxHealth;
     //get and set functions for health
     public float GetHealth() { return health; }
-    public void SetHealth(float inHealth) { health = inHealth; UpdateHealthHud(); }
+    public void SetHealth(float inHealth) { health = inHealth; }
 
-    private void UpdateHealthHud()
-    {
-        healthText.text = health.ToString();
-        healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-    }
+    public int maxHealth;
+    
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
     [SerializeField]
     private float soul;
     //get and set functions for soul
-    [SerializeField]
-    private float soulLevel1Limit;
-    [SerializeField]
-    private float soulLevel2Limit;
-    [SerializeField]
-    private float soulLevel3Limit;
-
     public float GetSoul() { return soul; }
-    public void SetSoul(float insoul) { soul = insoul; UpdateSoulHud(); }
-
-    private void UpdateSoulHud()
-    {
-        SoulText.text = ((int)soul).ToString();
-
-        SoulLv1Bar.transform.localScale = new Vector3(soul >= soulLevel1Limit ? 1 : soul / soulLevel1Limit, SoulLv1Bar.transform.localScale.y, SoulLv1Bar.transform.localScale.z);
-        if (soul > soulLevel1Limit) SoulLv2Bar.transform.localScale = new Vector3(soul >= soulLevel2Limit ? 1 : (soul - soulLevel1Limit) / (soulLevel2Limit - soulLevel1Limit), SoulLv2Bar.transform.localScale.y, SoulLv2Bar.transform.localScale.z);
-        else { SoulLv2Bar.transform.localScale = new Vector3(0, SoulLv2Bar.transform.localScale.y, SoulLv2Bar.transform.localScale.z); }
-        if (soul > soulLevel2Limit) SoulLv3Bar.transform.localScale = new Vector3(soul >= soulLevel3Limit ? 1 : (soul - soulLevel2Limit) / (soulLevel3Limit - soulLevel2Limit), SoulLv3Bar.transform.localScale.y, SoulLv3Bar.transform.localScale.z);
-        else { SoulLv3Bar.transform.localScale = new Vector3(0, SoulLv3Bar.transform.localScale.y, SoulLv3Bar.transform.localScale.z); }
-    }
+    public void SetSoul(float insoul) { soul = insoul; }
 
     [SerializeField]
     private List<SoulArmament> soulArmaments;
@@ -190,6 +151,7 @@ public class PlayerFSMController : AdvancedFSM
     //respawn
     public RespawnManager respawnPoint;
 
+
     //-------------------------------------------------------------------
     //variables to detect controller input
     //-------------------------------------------------------------------
@@ -239,6 +201,9 @@ public class PlayerFSMController : AdvancedFSM
     private PlayerInput playerInput;
     private GameplayControls gameplayControls;
 
+    //Player Sound
+    public PlayerSoundManager soundManager; 
+
 
     //initialize FSM
     protected override void Initialize()
@@ -250,11 +215,8 @@ public class PlayerFSMController : AdvancedFSM
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
 
-        SetHealth(MaxHealth);
+        health = maxHealth;
         dashKnockbackPower = 1;
-
-        respawnPoint = FindObjectOfType<RespawnManager>();
-        transform.position = respawnPoint.respawnPoint;
 
         leftTriggerDown = false;
         rightTriggerDown = false;
@@ -269,7 +231,7 @@ public class PlayerFSMController : AdvancedFSM
         // counting the amount of airdashes
 
         //box collider
-        col = GetComponent<BoxCollider2D>();
+        col = GetComponent<CapsuleCollider2D>();
 
         //Player Input Setup
         gameplayControls = new GameplayControls();
@@ -278,6 +240,11 @@ public class PlayerFSMController : AdvancedFSM
         playerInput.onActionTriggered += OnActionTriggered;
 
         ConstructFSM();
+    }
+
+    private void Awake()
+    {
+        StartCoroutine(StartDelay());
     }
 
     private void OnActionTriggered(InputAction.CallbackContext obj)
@@ -467,6 +434,14 @@ public class PlayerFSMController : AdvancedFSM
         dashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
         dashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
+        AirDashNormal airDashing = new AirDashNormal();
+        //create transitions for the dash state
+        airDashing.AddTransition(Transition.NoHealth, FSMStateID.Dead); //if i die while dashing, transition to dead
+        airDashing.AddTransition(Transition.Idle, FSMStateID.Idling); //if dash ends on the ground OR they hit a wall while on ground, idle
+        airDashing.AddTransition(Transition.WallSlide, FSMStateID.WallSliding); //if dash ends in midair and hit a wall, wall sliding
+        airDashing.AddTransition(Transition.Airborne, FSMStateID.Midair); //if the dash ends midair, airborne
+        airDashing.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
+
         //create the Wall Slide state
         WallSlideState wallSliding = new WallSlideState();
 
@@ -544,6 +519,7 @@ public class PlayerFSMController : AdvancedFSM
         groundDashKnockback.AddTransition(Transition.Idle, FSMStateID.Idling);
         groundDashKnockback.AddTransition(Transition.Move, FSMStateID.Moving);
         groundDashKnockback.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        groundDashKnockback.AddTransition(Transition.AirDash, FSMStateID.AirDashing); // test, airdashcancel
         groundDashKnockback.AddTransition(Transition.Airborne, FSMStateID.Midair); // transition into airborne from the knockback
         groundDashKnockback.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);
 
@@ -595,6 +571,7 @@ public class PlayerFSMController : AdvancedFSM
         AddFSMState(idling);
         AddFSMState(moving);
         AddFSMState(dashing);
+        AddFSMState(airDashing);
         AddFSMState(jumping);
         AddFSMState(wallSliding);
         AddFSMState(midair);
@@ -716,27 +693,24 @@ public class PlayerFSMController : AdvancedFSM
     }
 
     //deal damage to the player
-    public void TakeDamage()
-    {
-        health -= damage;
-        UpdateHealthHud();
-    }
+   public void Damage()
+   {
+       health -= damage;
+   }
 
     //function to handle any increase or decrease of the soul meter.  when using meter, set value to a negative
     public void SoulCalculator(float soulChange)
     {
         soul += soulChange;
 
-        if (soul >= soulLevel3Limit)
+        if (soul >= 300)
         {
-            soul = soulLevel3Limit;
+            soul = 300;
         }
         if (soul <= 0)
         {
             soul = 0;
         }
-
-        UpdateSoulHud();
     }
 
 
@@ -800,11 +774,17 @@ public class PlayerFSMController : AdvancedFSM
         rig.velocity = Vector2.zero;
         rig.gravityScale = gravityScale;
 
-        //Debug.Log(kbDirection);
+        // Dash Knockback Vector
+        if (isGrounded)
+        {
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
+        }
+        else
+        {
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 12));
+        }
+        Debug.Log("Result Velocity: " + rig.velocity);
 
-        // Dash Knockback Power set in the inspector at value 20
-        rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
-        Debug.Log(rig.velocity);
     }
 
     // code for airdash attack... not in use yet
@@ -820,6 +800,39 @@ public class PlayerFSMController : AdvancedFSM
         // have the character simply pop upward
         rig.velocity = new Vector2(0.0f, 10.0f);
 
+    }
+
+    // on the second hit of air dash
+    public void SideDashKnockback(Vector2 atkVector)
+    {
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+        Vector2 bounceVector = atkVector;
+        bounceVector.x *= -1;
+        bounceVector.y = Mathf.Abs(bounceVector.y) * -1;
+        rig.AddForce(bounceVector * dashSpeed / 2, ForceMode2D.Impulse);
+    }
+
+    // knocking straight back down.  Leave here just in case
+    public void AirDashBottomKnockback()
+    {
+        Debug.Log("BottomKnockback");
+        //reinitialize velocity
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+
+        // have the character simply pop downward uppon hitting the bottom
+        //rig.velocity = new Vector2(0.0f, -10.0f);
+        rig.AddForce(Vector2.down, ForceMode2D.Impulse);
+    }
+
+    public void AirDashBottomKnockback2(Vector2 dashVector)
+    {
+        rig.velocity = Vector2.zero;
+        rig.gravityScale = gravityScale;
+        Vector2 bounceVector = Vector2.Reflect(dashVector, Vector2.down);
+        Debug.Log("Bounce Vector: " + bounceVector);
+        rig.AddForce(bounceVector * dashSpeed / 2, ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -841,7 +854,30 @@ public class PlayerFSMController : AdvancedFSM
         SceneManager.LoadScene(1);
     }
 
+    public void AddSoul(int soulAdd)
+    {
+        soul += soulAdd;
+        Debug.Log("soul: " + soul);
+    }
     
-
     
+    public void HealPlayer(int healAmount)
+    {
+        health += healAmount;
+        Debug.Log("health: " + health);
+    
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }    
+    }
+    
+    //Coroutine Created due to a bug where character would be set before respawnpoint could be set.  Using the start function did not work
+    private IEnumerator StartDelay()
+    {
+        respawnPoint = FindObjectOfType<RespawnManager>();
+        transform.position = respawnPoint.respawnPoint;
+        Debug.Log("Respawn Location; " + respawnPoint.respawnPoint + "// ID; " + respawnPoint.rand);
+        yield return new WaitForEndOfFrame();
+    }
 }

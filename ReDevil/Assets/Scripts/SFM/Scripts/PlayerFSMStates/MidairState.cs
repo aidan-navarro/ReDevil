@@ -38,6 +38,7 @@ public class MidairState : FSMState
             if (pc.moveVector != Vector2.zero)
             {
                 pc.SetDashPath(pc.moveVector);
+               
             }
             else
             { // should the analog stick not be pointed, the player should still dash horizontally
@@ -134,8 +135,8 @@ public class MidairState : FSMState
             // this does work
             //Debug.Log("Commence Air Dash Attack");
 
-            // TO DO: find a way to pass in the analog direction for the air dash attack state 
             pc.IncrementAirDashCount();
+            // check using a boolean if we've hit an enemy already            
             pc.PerformTransition(Transition.AirDashAttack);
             // switch to dash attack state
         }
@@ -143,6 +144,7 @@ public class MidairState : FSMState
 
         if (onWall)
         {
+            pc.soundManager.PlayLanding();
             pc.PerformTransition(Transition.WallSlide);
         }
 
@@ -150,6 +152,7 @@ public class MidairState : FSMState
         //sometimes it also determines your touching the ground
         if (grounded)
         {
+            pc.soundManager.PlayLanding();
             //pc.SetDashPath(Vector2.zero); // reset the dash path
             pc.PerformTransition(Transition.Idle);
         }

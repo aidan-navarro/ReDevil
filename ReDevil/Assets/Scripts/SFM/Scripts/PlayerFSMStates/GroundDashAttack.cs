@@ -115,6 +115,8 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Contact with Dash");
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.firstDashContact = true;
+
                 dashAttackStarted = false;
                 endDash = true;
                 patk.EndDashAttack();
@@ -182,7 +184,7 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Enter Knockback");
                 pc.PerformTransition(Transition.Knockback);
             }
-            if (patk.dashAttackContact && isGrounded)
+            if (patk.dashAttackContact)
             {
                 Debug.Log("Transition to Dash Knockback");
                 // potential issue... is this going back to idle?
