@@ -144,6 +144,7 @@ public class MidairState : FSMState
 
         if (onWall)
         {
+            pc.soundManager.PlayLanding();
             pc.PerformTransition(Transition.WallSlide);
         }
 
@@ -151,6 +152,7 @@ public class MidairState : FSMState
         //sometimes it also determines your touching the ground
         if (grounded)
         {
+            pc.soundManager.PlayLanding();
             //pc.SetDashPath(Vector2.zero); // reset the dash path
             pc.PerformTransition(Transition.Idle);
         }

@@ -17,7 +17,7 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     //Floor and Wall Collision Variables
     //-------------------------------------------------------------------
-    private BoxCollider2D col; //the players box collider
+    private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
 
     public Text stateText;
@@ -151,9 +151,6 @@ public class PlayerFSMController : AdvancedFSM
     //respawn
     public RespawnManager respawnPoint;
 
-    // soul
-
-    
 
     //-------------------------------------------------------------------
     //variables to detect controller input
@@ -204,6 +201,9 @@ public class PlayerFSMController : AdvancedFSM
     private PlayerInput playerInput;
     private GameplayControls gameplayControls;
 
+    //Player Sound
+    public PlayerSoundManager soundManager; 
+
 
     //initialize FSM
     protected override void Initialize()
@@ -231,7 +231,7 @@ public class PlayerFSMController : AdvancedFSM
         // counting the amount of airdashes
 
         //box collider
-        col = GetComponent<BoxCollider2D>();
+        col = GetComponent<CapsuleCollider2D>();
 
         //Player Input Setup
         gameplayControls = new GameplayControls();

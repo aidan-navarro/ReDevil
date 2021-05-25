@@ -1882,47 +1882,19 @@ PrefabInstance:
       propertyPath: stateText
       value: 
       objectReference: {fileID: 779559158}
-    - target: {fileID: 455885227, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_BiasY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 455885227, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_ScreenY
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 455885227, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_DeadZoneWidth
-      value: 0.269
-      objectReference: {fileID: 0}
-    - target: {fileID: 455885227, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_DeadZoneHeight
-      value: 0.512
-      objectReference: {fileID: 0}
-    - target: {fileID: 455885227, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_TrackedObjectOffset.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 511205096, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 511205097, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.5973332
-      objectReference: {fileID: 0}
     - target: {fileID: 511205097, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5600004
-      objectReference: {fileID: 0}
-    - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.5973332
+      value: 2.0720005
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5600004
+      value: 2.0720005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575489276325362628, guid: 69c30ee0916387442bdeef7357d4a1e1,
+        type: 3}
+      propertyPath: m_AllowMSAA
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362628, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -2312,7 +2284,7 @@ Grid:
   m_GameObject: {fileID: 1533897011}
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: -0.001, y: -0.001, z: 0}
+  m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &1533897013
