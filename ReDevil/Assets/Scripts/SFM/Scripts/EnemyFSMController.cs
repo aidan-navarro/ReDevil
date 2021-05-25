@@ -12,11 +12,13 @@ public class EnemyFSMController : AdvancedFSM
 
     protected BoxCollider2D col; //the enemy collider
     public LayerMask groundLayer;
+    public LayerMask playerLayer;
 
     public Rigidbody2D rig;
     protected float gravityScale;
 
     public float health;
+    public float maxHealth;
     //get and set functions for health
 
     public float range;//The enemy will only attack in this range
@@ -102,7 +104,7 @@ public class EnemyFSMController : AdvancedFSM
     public void SpriteFlip()
     {
         facingRight = !facingRight;
-        this.transform.localScale = Vector2.Scale(this.transform.localScale, new Vector2(-1f, 1f));
+        transform.localScale = Vector2.Scale(transform.localScale, new Vector2(-1f, 1f));
     }
 
     //this function is virtual to adjust for enemies that this will cause glitches for
@@ -114,7 +116,7 @@ public class EnemyFSMController : AdvancedFSM
             rig.velocity = Vector2.zero;
             rig.position = currentPos; //THIS SPECIFIC LINE OF CODE WILL CAUSE ISSUES WITH ENEMIES THAT MOVE TO ATTACK
 
-            Vector2 position = this.gameObject.transform.position;
+            Vector2 position = gameObject.transform.position;
 
             //send all relative information to the player to take damage, and apply knockback
             PlayerFSMController pc = collision.transform.GetComponent<PlayerFSMController>();

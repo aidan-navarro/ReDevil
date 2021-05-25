@@ -25,7 +25,7 @@ public class KnockbackState : FSMState
         if(!pc.GetInvincible())
         {
             timer.StartCoroutine("Timer");
-            pc.Damage();
+            pc.TakeDamage();
             pc.KnockBack();
         }
 
