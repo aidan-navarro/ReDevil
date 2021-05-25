@@ -85,28 +85,28 @@ public class DashState : FSMState
         Vector2 dashSP = pc.GetDashStartPos();
 
         // dash cancel conditions
-        if (isGrounded)
-        {
-            //calculate the dash total distance
-            dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
+        //if (isGrounded)
+        //{
+        //    //calculate the dash total distance
+       dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
 
-            //set the velocity to allow the dash to occur
-            pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed;
-        }
-        else
-        {
-            Vector2 playerPos = new Vector2(pc.transform.position.x, pc.transform.position.y);
-            Vector2 dashDiff = dashSP - playerPos;
+       //set the velocity to allow the dash to occur
+       pc.GetRigidbody2D().velocity = Vector2.right * pc.direction * pc.dashSpeed;
+        //}
+        //else
+        //{
+        //    Vector2 playerPos = new Vector2(pc.transform.position.x, pc.transform.position.y);
+        //    Vector2 dashDiff = dashSP - playerPos;
 
-            //dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
-            // instead of checking the x distance, we're instead checking the whole magnitude of the vector
-            dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
-            //Debug.Log("Dash Dist: " + dashDistance);
+        //    //dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
+        //    // instead of checking the x distance, we're instead checking the whole magnitude of the vector
+        //    dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
+        //    //Debug.Log("Dash Dist: " + dashDistance);
 
-            // velocity must also change to account for the dash position that we set
-            // create a boolean to lock any change to the dash vector while we dash
-            pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
-        }
+        //    // velocity must also change to account for the dash position that we set
+        //    // create a boolean to lock any change to the dash vector while we dash
+        //    pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
+        //}
 
         
 
@@ -121,13 +121,20 @@ public class DashState : FSMState
                 dashStarted = false;
                 dashEnded = true;
             } 
-            else if (!isGrounded && (dashDistance >= pc.dashLength * pc.dashLength))
+            //else if (!isGrounded && (dashDistance >= pc.dashLength * pc.dashLength))
+            //{
+            //    pc.SetCanDash(true);
+            //    pc.GetRigidbody2D().gravityScale = gravScale;
+            //    dashStarted = false;
+            //    dashEnded = true;
+            //} 
+            else if (!isGrounded)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = gravScale;
                 dashStarted = false;
                 dashEnded = true;
-            } 
+            }
 
             if (enterKnockback)
             {
@@ -187,16 +194,10 @@ public class DashState : FSMState
             {
                 pc.PerformTransition(Transition.Idle);
             } 
-            // specific case if we air dash down and hit the ground... not perfect, not working
-            else if (grounded && (dashDistance < pc.dashLength * pc.dashLength) && (pc.moveVector.y <= 0.0f))
-            {
-                Debug.Log("Dash into Ground");
-                pc.PerformTransition(Transition.Idle);
-                
-            }
+           
 
             //airborne transition when walking off an edge
-            else if (!grounded)
+            if (!grounded)
             {
                 pc.PerformTransition(Transition.Airborne);
             }
