@@ -66,6 +66,7 @@ public class ChochinObakeFSMController : EnemyFSMController
 
     public override void InstantiateProjectile(GameObject bullet, Vector3 pos, Quaternion rot, Vector2 rightDirection, float inSpeed)
     {
+        Debug.Log("Bullet speed: " + inSpeed);
         GameObject bulletClone;
         bulletClone = Instantiate(bullet, pos, rot) as GameObject;
         bulletClone.GetComponent<Bullet>().speed = inSpeed;
