@@ -762,12 +762,12 @@ public class PlayerFSMController : AdvancedFSM
 
         if (facingLeft)
         {
-            kbDirection = new Vector2(1, 1);
+            kbDirection = new Vector2(1, 0);
             //DashKnockbackTransition(20, currentPos - kbDirection);
         }
         else if (!facingLeft)
         {
-            kbDirection = new Vector2(-1, 1);
+            kbDirection = new Vector2(-1, 0);
             //DashKnockbackTransition(20, currentPos - kbDirection);
         }
 
@@ -777,10 +777,11 @@ public class PlayerFSMController : AdvancedFSM
         // Dash Knockback Vector
         if (isGrounded)
         {
-            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 10));
+            rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower* 2, 10));
         }
         else
         {
+            kbDirection.y = 1;
             rig.velocity = Vector2.Scale(kbDirection, new Vector2(dashKnockbackPower, 12));
         }
         Debug.Log("Result Velocity: " + rig.velocity);
