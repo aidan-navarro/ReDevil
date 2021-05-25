@@ -716,7 +716,7 @@ public class PlayerFSMController : AdvancedFSM
     }
 
     //deal damage to the player
-    public void Damage()
+    public void TakeDamage()
     {
         health -= damage;
         UpdateHealthHud();
