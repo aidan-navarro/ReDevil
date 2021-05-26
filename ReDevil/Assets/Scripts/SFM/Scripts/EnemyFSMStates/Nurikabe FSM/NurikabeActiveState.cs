@@ -6,15 +6,21 @@ public class NurikabeActiveState : FSMState
 {
     public NurikabeActiveState()
     {
-        stateID = FSMStateID.NurikabeIdling;
+        stateID = FSMStateID.NurikabeActivating;
     }
     public override void Act(Transform player, Transform npc)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Checking Active");
+
     }
 
     public override void Reason(Transform player, Transform npc)
     {
-        throw new System.NotImplementedException();
+        NurikabeFSMController ec = npc.GetComponent<NurikabeFSMController>();
+        ec.timer = 0;
+        if (ec.health <= 0)
+        {
+            ec.PerformTransition(Transition.EnemyNoHealth);
+        }
     }
 }

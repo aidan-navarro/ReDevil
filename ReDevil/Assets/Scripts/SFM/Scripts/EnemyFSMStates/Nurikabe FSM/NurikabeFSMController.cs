@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class NurikabeFSMController : EnemyFSMController
 {
-    [SerializeField] private Transform idlePoint;
-    [SerializeField] private Transform activePoint;
+    [SerializeField] private Vector2 idlePoint;
+    public Vector2 GetIdlePoint() { return idlePoint; }
+    
+    [SerializeField] private Vector2 activePoint;
+    public Vector2 GetActivePoint() { return activePoint; }
+
+    public float timer;
+
     // Start is called before the first frame update
     protected override void Initialize()
     {
@@ -19,6 +25,9 @@ public class NurikabeFSMController : EnemyFSMController
         }
         gravityScale = rig.gravityScale;
 
+        idlePoint = new Vector2(transform.position.x, transform.position.y);
+        activePoint = new Vector2(transform.position.x, transform.position.y + 10);
+        timer = 0;
         //box collider
         col = GetComponent<BoxCollider2D>();
 
@@ -38,8 +47,30 @@ public class NurikabeFSMController : EnemyFSMController
     {
         NurikabeIdleState nurikabeIdle = new NurikabeIdleState();
 
+        nurikabeIdle.AddTransition(Transition.NurikabeRise, FSMStateID.NurikabeRising); // from the rest state, if player is in range, then rise
+        nurikabeIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+
         NurikabeRisingState nurikabeRising = new NurikabeRisingState();
 
+        nurikabeRising.AddTransition(Transition.NurikabeActive, FSMStateID.NurikabeActivating);
+        nurikabeRising.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+
         NurikabeActiveState nurikabeActive = new NurikabeActiveState();
+        nurikabeActive.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+
+        EnemyDeadState enemyDead = new EnemyDeadState();
+
+        AddFSMState(nurikabeIdle);
+        AddFSMState(nurikabeRising);
+        AddFSMState(nurikabeActive);
+        AddFSMState(enemyDead);
+
+    }
+
+    public void ActivateNurikabe(Vector2 startPos, Vector2 endPos, float timer)
+    {
+        Rigidbody2D rig = GetComponent<Rigidbody2D>();
+
+        rig.position = Vector2.Lerp(startPos, endPos, timer);
     }
 }

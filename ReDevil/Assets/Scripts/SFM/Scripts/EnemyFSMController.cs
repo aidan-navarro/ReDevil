@@ -110,6 +110,7 @@ public class EnemyFSMController : AdvancedFSM
     //this function is virtual to adjust for enemies that this will cause glitches for
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        // TO DO: make a check here specifically for nurikabe
         if (collision.transform.CompareTag("Player"))
         {
             StartCoroutine(EnemyIFrames());
