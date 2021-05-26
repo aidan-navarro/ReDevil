@@ -286,7 +286,13 @@ public class PlayerFSMController : AdvancedFSM
 
     private void Awake()
     {
-        StartCoroutine(StartDelay());
+        respawnPoint = FindObjectOfType<RespawnManager>();
+        //used to prevent if the respawnpoint isnt initialized.  if the player reads first dont set a respawn point
+        if(respawnPoint.initialized)
+        {
+            transform.position = respawnPoint.respawnPoint;
+        }
+        
     }
 
     private void OnActionTriggered(InputAction.CallbackContext obj)
