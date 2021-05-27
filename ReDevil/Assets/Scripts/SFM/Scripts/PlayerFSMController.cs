@@ -19,6 +19,7 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
+    public LayerMask invisWallLayer;
 
     //-------------------------------------------------------------------
     //Player HUD Variables
@@ -235,6 +236,11 @@ public class PlayerFSMController : AdvancedFSM
     public void SetisTouchingWall(bool inIsTouchingWall) { isTouchingWall = inIsTouchingWall; }
 
     [SerializeField]
+    private bool isTouchingInvisibleWall;
+    public bool GetisTouchingInvisibleWall() { return isTouchingInvisibleWall; }
+    public void SetisTouchingInvisibleWall(bool inIsTouchingInvisibleWall) { isTouchingInvisibleWall = inIsTouchingInvisibleWall; }
+
+    [SerializeField]
     private float jumpPower = 10;
     public float GetJumpPower() { return jumpPower; }
     public void SetJumpPower(float newJumpPower) { jumpPower = newJumpPower; }
@@ -286,7 +292,13 @@ public class PlayerFSMController : AdvancedFSM
 
     private void Awake()
     {
-        StartCoroutine(StartDelay());
+        respawnPoint = FindObjectOfType<RespawnManager>();
+        //used to prevent if the respawnpoint isnt initialized.  if the player reads first dont set a respawn point
+        if(respawnPoint.initialized)
+        {
+            transform.position = respawnPoint.respawnPoint;
+        }
+        
     }
 
     private void OnActionTriggered(InputAction.CallbackContext obj)
@@ -661,6 +673,29 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, groundLayer.value);
+    }
+
+    public void TouchingInvisibleWall()
+    {
+        //make temp bools to check top and side
+        Vector2 feetPos = col.bounds.center;
+        feetPos.y -= col.bounds.extents.y;
+        bool isTouchingTop = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
+
+        //Check if the side is touching an invisible wall
+        Vector2 sidePos = col.bounds.center;
+        sidePos.x += col.bounds.extents.x * direction;
+        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, invisWallLayer.value);
+
+        //if either touching side OR top, set is touching invisible wall to true
+        if(isTouchingTop || isTouchingSide)
+        {
+            isTouchingInvisibleWall = true;
+        }
+        else
+        {
+            isTouchingInvisibleWall = false;
+        }
     }
 
     // check for the air dash limit

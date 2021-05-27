@@ -33,6 +33,7 @@ public class IdlingState : FSMState
         pc.ResetAirDashCount(); // any time we return to idle state, this count gets reset
         pc.TouchingFloorOrWall();
         pc.CheckAirDash(); // to reset the air dash
+        pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
         pc.UpdateState("Idle");
     }

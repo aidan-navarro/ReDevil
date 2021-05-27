@@ -23,6 +23,7 @@ public class MoveState : FSMState
         isMoving = true;
 
         pc.TouchingFloorOrWall();
+        pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
 
         pc.UpdateState("Moving");
