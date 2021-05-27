@@ -2488,10 +2488,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 325350197}
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: MaxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 325350202}
@@ -2515,36 +2511,6 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 325350201}
-    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: soulLevel1Limit
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: soulLevel2Limit
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: soulLevel3Limit
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 511205097, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.59733295
-      objectReference: {fileID: 0}
-    - target: {fileID: 511205097, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5599995
-      objectReference: {fileID: 0}
-    - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.59733295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5599995
-      objectReference: {fileID: 0}
     - target: {fileID: 1575489276398568402, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_RootOrder

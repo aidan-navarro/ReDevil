@@ -19,6 +19,7 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
+    public LayerMask invisWallLayer;
 
     //-------------------------------------------------------------------
     //Player HUD Variables
@@ -233,6 +234,11 @@ public class PlayerFSMController : AdvancedFSM
     private bool isTouchingWall;
     public bool GetisTouchingWall() { return isTouchingWall; }
     public void SetisTouchingWall(bool inIsTouchingWall) { isTouchingWall = inIsTouchingWall; }
+
+    [SerializeField]
+    private bool isTouchingInvisibleWall;
+    public bool GetisTouchingInvisibleWall() { return isTouchingInvisibleWall; }
+    public void SetisTouchingInvisibleWall(bool inIsTouchingInvisibleWall) { isTouchingInvisibleWall = inIsTouchingInvisibleWall; }
 
     [SerializeField]
     private float jumpPower = 10;
@@ -667,6 +673,14 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, groundLayer.value);
+    }
+
+    public void TouchingInvisibleWall()
+    {
+        //Check if the side is touching an invisible wall
+        Vector2 sidePos = col.bounds.center;
+        sidePos.x += col.bounds.extents.x * direction;
+        isTouchingInvisibleWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, invisWallLayer.value);
     }
 
     // check for the air dash limit

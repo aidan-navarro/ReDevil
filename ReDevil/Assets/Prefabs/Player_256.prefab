@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511205095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5973332, y: 1.5600004, z: -10}
+  m_LocalPosition: {x: -0.59733295, y: 1.5599995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455885226}
@@ -296,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575489276325362631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5973332, y: 1.5600004, z: -10}
+  m_LocalPosition: {x: -0.59733295, y: 1.5599995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1575489276398568402}
@@ -516,10 +516,22 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  invisWallLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   stateText: {fileID: 0}
+  healthText: {fileID: 0}
+  SoulText: {fileID: 0}
+  healthBar: {fileID: 0}
+  SoulLv1Bar: {fileID: 0}
+  SoulLv2Bar: {fileID: 0}
+  SoulLv3Bar: {fileID: 0}
   health: 0
-  maxHealth: 100
+  MaxHealth: 100
   soul: 0
+  soulLevel1Limit: 100
+  soulLevel2Limit: 200
+  soulLevel3Limit: 300
   soulArmaments:
   - {fileID: 243560149}
   selectedArament: {fileID: 243560149}
@@ -533,6 +545,7 @@ MonoBehaviour:
   airDashLimit: 0
   respawnPoint: {fileID: 0}
   isGrounded: 0
+  isTouchingInvisibleWall: 0
   jumpPower: 14
   soundManager: {fileID: 569388361}
 --- !u!114 &5941117341249860993
@@ -554,9 +567,9 @@ MonoBehaviour:
   groundHit1: 10
   groundHit2: 20
   groundHit3: 40
-  dashAttackValue: 10
+  dashAttackValue: 15
   groundHitCounter: 0
-  airDownStrike: 20
+  airDownStrike: 50
   endlag: 1
   enemyHitboxes: []
   attacking: 0
