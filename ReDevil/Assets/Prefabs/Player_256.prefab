@@ -153,25 +153,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: -1.04, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
-  m_LookaheadIgnoreY: 0
+  m_TrackedObjectOffset: {x: 0, y: -1, z: 0}
+  m_LookaheadTime: 0.1
+  m_LookaheadSmoothing: 5.4
+  m_LookaheadIgnoreY: 1
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.592
+  m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.093
-  m_DeadZoneHeight: 0.5
+  m_DeadZoneWidth: 0.269
+  m_DeadZoneHeight: 0.512
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
-  m_BiasY: -0.15300055
+  m_BiasY: 0
   m_CenterOnActivate: 0
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
@@ -194,6 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 511205097}
   - component: {fileID: 511205096}
+  - component: {fileID: 883189261}
   m_Layer: 0
   m_Name: Player Cinemachine Camera
   m_TagString: Untagged
@@ -209,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511205095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2, z: -10}
+  m_LocalPosition: {x: -0.59733295, y: 1.5599995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455885226}
@@ -238,7 +239,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1575489276398568402}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -251,6 +252,23 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 455885226}
+--- !u!114 &883189261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511205095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 0}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1 &1575489276325362631
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575489276325362631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2, z: -10}
+  m_LocalPosition: {x: -0.59733295, y: 1.5599995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1575489276398568402}
@@ -311,7 +329,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -383,9 +401,11 @@ GameObject:
   - component: {fileID: 123211769}
   - component: {fileID: 5941117341249860993}
   - component: {fileID: 6778170230176033772}
+  - component: {fileID: 4225471945767981086}
   - component: {fileID: 1575489276398568400}
   - component: {fileID: 1575489276398568401}
   - component: {fileID: 1059789039}
+  - component: {fileID: 569388361}
   m_Layer: 0
   m_Name: Player_256
   m_TagString: Player
@@ -496,7 +516,22 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  invisWallLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   stateText: {fileID: 0}
+  healthText: {fileID: 0}
+  SoulText: {fileID: 0}
+  healthBar: {fileID: 0}
+  SoulLv1Bar: {fileID: 0}
+  SoulLv2Bar: {fileID: 0}
+  SoulLv3Bar: {fileID: 0}
+  health: 0
+  MaxHealth: 100
+  soul: 0
+  soulLevel1Limit: 100
+  soulLevel2Limit: 200
+  soulLevel3Limit: 300
   soulArmaments:
   - {fileID: 243560149}
   selectedArament: {fileID: 243560149}
@@ -507,9 +542,12 @@ MonoBehaviour:
   dashSpeed: 20
   dashLength: 5
   airDashCount: 0
+  airDashLimit: 0
   respawnPoint: {fileID: 0}
   isGrounded: 0
+  isTouchingInvisibleWall: 0
   jumpPower: 14
+  soundManager: {fileID: 569388361}
 --- !u!114 &5941117341249860993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,20 +567,22 @@ MonoBehaviour:
   groundHit1: 10
   groundHit2: 20
   groundHit3: 40
-  dashAttackValue: 10
+  dashAttackValue: 15
   groundHitCounter: 0
-  airDownStrike: 20
+  airDownStrike: 50
   endlag: 1
   enemyHitboxes: []
   attacking: 0
   dashAttackContact: 0
   airDashAttackContact: 0
+  firstDashContact: 0
   idleTransition: 0
   dashTransition: 0
   groundAttack2Transition: 0
   groundAttack3Transition: 0
   soulShotTransition: 0
   checkCancel: 0
+  attackVector: {x: 0, y: 0}
 --- !u!114 &6778170230176033772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +597,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immobileTime: 1
   iFrameTime: 2
+--- !u!70 &4225471945767981086
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575489276398568413}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.69, y: 1.92}
+  m_Direction: 0
 --- !u!61 &1575489276398568400
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -564,7 +620,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575489276398568413}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -635,6 +691,19 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &569388361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575489276398568413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4318f89bb183744a9952002c3f744e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepTimer: 0.25
 --- !u!1 &1575489276433007819
 GameObject:
   m_ObjectHideFlags: 0

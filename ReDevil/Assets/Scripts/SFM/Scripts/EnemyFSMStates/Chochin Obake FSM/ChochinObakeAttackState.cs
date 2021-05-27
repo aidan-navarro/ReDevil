@@ -30,6 +30,7 @@ public class ChochinObakeAttackState : FSMState
         if (!bulletFired)
         {
             Vector2 bulletDirection = pc.GetRigidbody2D().position - ec.currentPos;
+            Vector2 bulletDirectionNormalized = bulletDirection.normalized;
             if(bulletDirection.x < 1 && bulletDirection.x > -1)
             {
                 //do nothing.  maybe anim for enemy not seeing the player
@@ -37,8 +38,8 @@ public class ChochinObakeAttackState : FSMState
             }
             else
             {
-                Debug.Log(bulletDirection);
-                ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, bulletDirection, ec.projectileSpeed);
+                //Debug.Log(bulletDirection);
+                ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, bulletDirectionNormalized, ec.projectileSpeed);
             }
             
         }

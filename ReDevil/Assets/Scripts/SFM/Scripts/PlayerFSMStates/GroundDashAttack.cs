@@ -15,6 +15,7 @@ public class GroundDashAttack : FSMState
     private float dashDistance;
     private bool endDash;
     private bool dashAttackStarted; // bool to check if the attack hitbox has started
+    private bool touchingInvisWall;
 
 
 
@@ -45,6 +46,7 @@ public class GroundDashAttack : FSMState
 
         pc.UpdateState("Ground Dash Attack");
         pc.TouchingFloorOrWall();
+        pc.TouchingInvisibleWall();
 
         if (!dashAttackStarted)
         {
@@ -115,6 +117,8 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Contact with Dash");
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.firstDashContact = true;
+
                 dashAttackStarted = false;
                 endDash = true;
                 patk.EndDashAttack();
@@ -156,6 +160,15 @@ public class GroundDashAttack : FSMState
                 dashAttackStarted = false;
                 endDash = true;
             }
+
+            if(touchingInvisWall)
+            {
+                pc.SetCanDash(true);
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.EndDashAttack();
+                dashAttackStarted = false;
+                endDash = true;
+            }
         }
     }
 
@@ -170,10 +183,12 @@ public class GroundDashAttack : FSMState
         // do we need these double calls if they're being affected in Act?
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
+        touchingInvisWall = pc.GetisTouchingInvisibleWall();
         //Debug.Log("IsGroundedCheck" + isGrounded);
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
         bool dkbTransition = pc.GetDKBTransition();
+        
 
         if (endDash)
         {
@@ -182,7 +197,7 @@ public class GroundDashAttack : FSMState
                 Debug.Log("Enter Knockback");
                 pc.PerformTransition(Transition.Knockback);
             }
-            if (patk.dashAttackContact && isGrounded)
+            if (patk.dashAttackContact)
             {
                 Debug.Log("Transition to Dash Knockback");
                 // potential issue... is this going back to idle?
@@ -206,6 +221,13 @@ public class GroundDashAttack : FSMState
             //    pc.PerformTransition(Transition.Move);
             //}
 
+            //idle transitions
+            if(touchingInvisWall)
+            {
+                Debug.Log("Touching Invisible Wall");
+                pc.PerformTransition(Transition.Idle);
+
+            }
           
             if (isGrounded && (dashDistance >= pc.dashLength))
             {

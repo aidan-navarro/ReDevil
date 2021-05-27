@@ -21,8 +21,9 @@ public enum Transition
     Airborne,
     Dash,
     DashAttack,
-    AirDashAttack, // state for air dash attack
     DashKnockback, // state for having the attack connect with the enemy
+    AirDash,       // Transition into Air Dash State
+    AirDashAttack, // state for air dash attack
     AirDashKnockback,
     WallSlide,
     WallJump,
@@ -54,9 +55,14 @@ public enum Transition
 
     WaniguchiIdle,
     WaniguchiAttack,
-    WaniguchiAirborne  // new transition for when Waniguchi is in the air after the attack jump
+    WaniguchiAirborne,  // new transition for when Waniguchi is in the air after the attack jump
 
-
+    OniIdle,
+    OniChase,
+    OniClubSmash,
+    OniBoulderPut,
+    OniCycloneSmash,
+    OniJumpSmash,
 }
 
 public enum FSMStateID
@@ -70,8 +76,9 @@ public enum FSMStateID
     Midair, //the player is out of jump, or is falling
     Dashing, //the player is dashing
     DashAttacking, // new addition, must test... the player is doing a dash attack on the ground
-    AirDashAttacking, // new addition, air dash attack
     DashKnockingBack, // new addition, the player makes contact with the dash attack and is bounced the opposite direction
+    AirDashing, // Specific case when after the player is bouncing from airdash hit
+    AirDashAttacking, // new addition, air dash attack
     AirDashKnockingBack, // new addition, hitting the enemy during air dash
     WallSliding, //the player is sliding on a wall
     WallJumping, //the player is jumping off the wall
@@ -108,7 +115,15 @@ public enum FSMStateID
     //Waniguchi
     WaniguchiIdling,
     WaniguchiAttacking,
-    WaniguchiMidair // state for when the waniguchi is in the air
+    WaniguchiMidair, // state for when the waniguchi is in the air
+
+    // Oni
+    OniIdling,
+    OniChasing,
+    OniClubSmashing,
+    OniBoulderPutting,
+    OniCycloneSmashing,
+    OniJumpSmashing,
 }
 
 public class AdvancedFSM : FSM 

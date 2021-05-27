@@ -25,7 +25,6 @@ public class GroundDashKnockback : FSMState
 
         if (pc.GetCanDash())
         {
-            Debug.Log("Changing dash path");
             if (pc.moveVector != Vector2.zero)
             {
                 pc.SetDashPath(pc.moveVector);
@@ -42,7 +41,6 @@ public class GroundDashKnockback : FSMState
                 }
             }
         }
-        Debug.Log(pc.GetDashPath());
 
 
         pc.TouchingFloorOrWall();
@@ -82,8 +80,15 @@ public class GroundDashKnockback : FSMState
             timer.StopCoroutine("DashKnockbackTimer");
             pc.SetDKBTransition(false);
             patk.ReInitializeTransitions();
-            pc.IncrementAirDashCount();
-            pc.PerformTransition(Transition.Dash);
+            if (grounded)
+            {
+                pc.PerformTransition(Transition.Dash);
+            }
+            else
+            {
+                pc.IncrementAirDashCount();
+                pc.PerformTransition(Transition.AirDashAttack);
+            }
         }
 
 

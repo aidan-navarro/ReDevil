@@ -23,9 +23,11 @@ public class MoveState : FSMState
         isMoving = true;
 
         pc.TouchingFloorOrWall();
+        pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
 
         pc.UpdateState("Moving");
+        pc.soundManager.PlayRun();
 
         if (pc.moveVector.x > 0f)
         {
@@ -78,6 +80,7 @@ public class MoveState : FSMState
         //knockback transition
         if (!invincible && kbTransition)
         {
+            pc.soundManager.StopRun();
             pc.PerformTransition(Transition.Knockback);
         }
 
@@ -87,6 +90,7 @@ public class MoveState : FSMState
             // Addition: if the player is moving on the ground and dashing, Dash attack
             if (pc.GetisGrounded())
             {
+                pc.soundManager.StopRun();
                 pc.PerformTransition(Transition.DashAttack);
             }
             //else
@@ -98,28 +102,33 @@ public class MoveState : FSMState
         //idle transition
         if (!isMoving)
         {
+            pc.soundManager.StopRun();
             pc.PerformTransition(Transition.Idle);
         }
 
         //jump transition
         if (pc.GetJumpButtonDown() && onWall)
         {
+            pc.soundManager.StopRun();
             pc.PerformTransition(Transition.WallJump);
         }
         else if (pc.GetJumpButtonDown())
         {
+            pc.soundManager.StopRun();
             pc.PerformTransition(Transition.Jump);
         }
 
         //airborne transition when walking off an edge
         if (!grounded)
         {
+            pc.soundManager.StopRun();
             pc.PerformTransition(Transition.Airborne);
         }
 
         //dead transition
         if (pc.GetHealth() <= 0)
         {
+            pc.soundManager.StopRun();
             pc.PerformTransition(Transition.NoHealth);
         }
 

@@ -14,6 +14,7 @@ public class WallSlideState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
         pc.TouchingFloorOrWall();
@@ -26,8 +27,11 @@ public class WallSlideState : FSMState
             newVel.y = -pc.GetMoveSpeed() / pc.slideSpeed;
             rig.velocity = newVel;
         }
-        pc.CheckAirDash();
+
+        patk.firstDashContact = false;
+        // touching the wall will reset the air dash count
         pc.ResetAirDashCount();
+        pc.CheckAirDash();
 
         pc.UpdateState("Wall Sliding");
     }
