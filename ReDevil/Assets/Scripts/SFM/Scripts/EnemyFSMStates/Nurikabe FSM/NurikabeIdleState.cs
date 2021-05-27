@@ -5,12 +5,12 @@ using UnityEngine;
 public class NurikabeIdleState : EnemyIdleState
 {
     // Start is called before the first frame update
-    private bool rangeTrigger;
+    //private bool rangeTrigger;
 
     public NurikabeIdleState()
     {
         stateID = FSMStateID.NurikabeIdling;
-        rangeTrigger = false;
+      //  rangeTrigger = false;
     }
 
     public override void EnterStateInit()

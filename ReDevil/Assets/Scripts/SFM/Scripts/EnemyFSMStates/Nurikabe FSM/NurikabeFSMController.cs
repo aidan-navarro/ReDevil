@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NurikabeFSMController : EnemyFSMController
-{
+{    
+    // use this value to adjust how high
+    [Header("Nurikabe Settings")]
+    [SerializeField] private float riseValue;
+    [SerializeField] private float riseSpeed;
+    public float GetRiseSpeed() { return riseSpeed; }
     [SerializeField] private Vector2 idlePoint;
     public Vector2 GetIdlePoint() { return idlePoint; }
     
@@ -26,7 +31,7 @@ public class NurikabeFSMController : EnemyFSMController
         gravityScale = rig.gravityScale;
 
         idlePoint = new Vector2(transform.position.x, transform.position.y);
-        activePoint = new Vector2(transform.position.x, transform.position.y + 10);
+        activePoint = new Vector2(transform.position.x, transform.position.y + riseValue);
         timer = 0;
         //box collider
         col = GetComponent<BoxCollider2D>();
@@ -72,5 +77,12 @@ public class NurikabeFSMController : EnemyFSMController
         Rigidbody2D rig = GetComponent<Rigidbody2D>();
 
         rig.position = Vector2.Lerp(startPos, endPos, timer);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(idlePoint, 0.1f);
+        Gizmos.DrawWireSphere(activePoint, 0.1f);
     }
 }

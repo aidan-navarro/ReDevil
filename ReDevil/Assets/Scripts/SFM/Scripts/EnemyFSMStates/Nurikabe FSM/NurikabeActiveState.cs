@@ -8,11 +8,18 @@ public class NurikabeActiveState : FSMState
     {
         stateID = FSMStateID.NurikabeActivating;
     }
+
+    public override void EnterStateInit()
+    {
+        base.EnterStateInit();
+        // trigger Nurikabe specific boolean
+
+    }
+
     public override void Act(Transform player, Transform npc)
     {
         
         Debug.Log("Checking Active");
-
     }
 
     public override void Reason(Transform player, Transform npc)

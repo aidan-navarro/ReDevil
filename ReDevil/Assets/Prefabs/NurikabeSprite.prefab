@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4185239371265568231}
   - component: {fileID: 549075422211723395}
   - component: {fileID: 5161010132675448416}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: NurikabeSprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -162,6 +162,8 @@ MonoBehaviour:
   currentPos: {x: 0, y: 0}
   isGrounded: 0
   airborneEnemy: 0
+  riseValue: 5
+  riseSpeed: 1
   idlePoint: {x: 0, y: 0}
   activePoint: {x: 0, y: 0}
   timer: 0

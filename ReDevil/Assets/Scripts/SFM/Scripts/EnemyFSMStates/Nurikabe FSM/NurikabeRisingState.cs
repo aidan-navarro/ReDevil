@@ -21,22 +21,25 @@ public class NurikabeRisingState : FSMState
 
         Debug.Log("Start Pos: " + startPos);
         Debug.Log("End Pos: " + endPos);
-        nc.timer += Time.deltaTime;
+        nc.timer += Time.deltaTime * nc.GetRiseSpeed();
 
         Vector2 test = Vector2.Lerp(startPos, endPos, nc.timer);
         Debug.Log("Test -> " + test);
 
         nc.ActivateNurikabe(startPos, endPos, nc.timer);
-        nc.SetCurrentPos(nc.transform.position);
 
     }
 
     public override void Reason(Transform player, Transform npc)
     {
         NurikabeFSMController nc = npc.GetComponent<NurikabeFSMController>();
+        nc.SetCurrentPos(nc.transform.position);
 
-        if (nc.currentPos.y >= endPos.y)
+        // the timer call is working
+        // instead of comparing position, we'll call the interpolation time
+        if ((nc.timer) >= 1)
         {
+            Debug.Log("Reach");
             nc.PerformTransition(Transition.NurikabeActive);
         }
 

@@ -35,6 +35,7 @@ public class EnemyFSMController : AdvancedFSM
     public Vector2 atkDirectionRight; //the direction we want a projectile to move in the RIGHT direction.  Used to calculate projectile direction
     public float projectileSpeed;
 
+    // do we need this to be public if we already ahve an accessor
     public Vector2 currentPos; //this variable is to reset the initial position of the enemy when colliding with the player
     public Vector2 GetCurrentPos() { return currentPos; }
     public void SetCurrentPos(Vector2 inCurrentPos) { currentPos = inCurrentPos; }
@@ -56,6 +57,9 @@ public class EnemyFSMController : AdvancedFSM
     public void SetAtkTransition(bool inAtkTransition) { atkTransition = inAtkTransition; }
 
     public bool airborneEnemy; //Check this if the enemy is meant to stay in the air
+
+    //-------------- NURIKABE SPECIFIC ------------------
+    private bool ActiveNurikabe;
 
     //initialize FSM
     protected override void Initialize()
