@@ -230,6 +230,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 488521022}
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: stateText
       value: 
       objectReference: {fileID: 1339279065}
