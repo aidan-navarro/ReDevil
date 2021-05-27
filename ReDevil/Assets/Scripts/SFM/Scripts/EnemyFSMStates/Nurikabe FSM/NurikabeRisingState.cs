@@ -27,9 +27,7 @@ public class NurikabeRisingState : FSMState
         Debug.Log("Test -> " + test);
 
         nc.ActivateNurikabe(startPos, endPos, nc.timer);
-        nc.SetCurrentPos(test);
-        // must test this for smooth transition
-
+        nc.SetCurrentPos(nc.transform.position);
 
     }
 
@@ -39,7 +37,6 @@ public class NurikabeRisingState : FSMState
 
         if (nc.currentPos.y >= endPos.y)
         {
-            Debug.Log("ActivePosition");
             nc.PerformTransition(Transition.NurikabeActive);
         }
 
