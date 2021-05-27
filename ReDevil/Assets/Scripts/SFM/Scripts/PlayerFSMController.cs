@@ -677,10 +677,25 @@ public class PlayerFSMController : AdvancedFSM
 
     public void TouchingInvisibleWall()
     {
+        //make temp bools to check top and side
+        Vector2 feetPos = col.bounds.center;
+        feetPos.y -= col.bounds.extents.y;
+        bool isTouchingTop = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
+
         //Check if the side is touching an invisible wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        isTouchingInvisibleWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, invisWallLayer.value);
+        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, invisWallLayer.value);
+
+        //if either touching side OR top, set is touching invisible wall to true
+        if(isTouchingTop || isTouchingSide)
+        {
+            isTouchingInvisibleWall = true;
+        }
+        else
+        {
+            isTouchingInvisibleWall = false;
+        }
     }
 
     // check for the air dash limit
