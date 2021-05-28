@@ -113,5 +113,6 @@ public class NurikabeFSMController : EnemyFSMController
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(idlePoint, 0.1f);
         Gizmos.DrawWireSphere(activePoint, 0.1f);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
