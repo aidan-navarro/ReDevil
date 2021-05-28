@@ -56,6 +56,7 @@ public enum Transition
     WaniguchiIdle,
     WaniguchiAttack,
     WaniguchiAirborne,  // new transition for when Waniguchi is in the air after the attack jump
+    WaniguchiKnockback,
 
     OniIdle,
     OniChase,
@@ -120,6 +121,7 @@ public enum FSMStateID
     WaniguchiIdling,
     WaniguchiAttacking,
     WaniguchiMidair, // state for when the waniguchi is in the air
+    WaniguchiKnockingBack,
 
     // Oni
     OniIdling,

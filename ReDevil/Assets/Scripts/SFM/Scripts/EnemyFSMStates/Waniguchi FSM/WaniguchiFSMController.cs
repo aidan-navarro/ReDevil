@@ -5,6 +5,8 @@ using UnityEngine;
 public class WaniguchiFSMController : EnemyFSMController
 {
     public bool attacking;
+    [SerializeField]
+    private Vector2 knockbackVel;
 
     //initialize FSM
     protected override void Initialize()
@@ -101,7 +103,18 @@ public class WaniguchiFSMController : EnemyFSMController
         {
             rig.velocity = atkDirectionRight;
         }
-        
+    }
+
+    public void WaniguchiKnockback()
+    {
+        if (!facingRight)
+        {
+            rig.velocity = knockbackVel * new Vector2(-1, 1);
+        }
+        else if (facingRight)
+        {
+            rig.velocity = knockbackVel;
+        }
     }
 
     public void WaniguchiStop()

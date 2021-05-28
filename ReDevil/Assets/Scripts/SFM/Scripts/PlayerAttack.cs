@@ -460,6 +460,7 @@ public class PlayerAttack : MonoBehaviour
             //if the hit of the collider is NOT trigger AND is an enemy
             if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy"))
             {
+                
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
