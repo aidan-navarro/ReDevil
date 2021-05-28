@@ -17,6 +17,8 @@ public class NurikabeFSMController : EnemyFSMController
 
     public float timer;
 
+
+
     // Start is called before the first frame update
     protected override void Initialize()
     {
@@ -72,11 +74,36 @@ public class NurikabeFSMController : EnemyFSMController
 
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Hit Nurikabe");
+        // TO DO: make a check here specifically for nurikabe
+        //if (collision.transform.CompareTag("Player"))
+        //{
+        //    StartCoroutine(EnemyIFrames());
+        //    rig.velocity = Vector2.zero;
+        //    rig.position = currentPos; //THIS SPECIFIC LINE OF CODE WILL CAUSE ISSUES WITH ENEMIES THAT MOVE TO ATTACK
+
+        //    Vector2 position = gameObject.transform.position;
+
+        //    //send all relative information to the player to take damage, and apply knockback
+        //    PlayerFSMController pc = collision.transform.GetComponent<PlayerFSMController>();
+        //    pc.KnockbackTransition(damage, knockbackPower, position);
+
+        //    StartCoroutine(EnemyIFrames());
+        //}
+    }
+
     public void ActivateNurikabe(Vector2 startPos, Vector2 endPos, float timer)
     {
         Rigidbody2D rig = GetComponent<Rigidbody2D>();
 
         rig.position = Vector2.Lerp(startPos, endPos, timer);
+    }
+
+    public void SetActiveLayer()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Ground");
     }
 
     private void OnDrawGizmos()

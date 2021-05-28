@@ -20,6 +20,7 @@ public class PlayerFSMController : AdvancedFSM
     private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
     public LayerMask invisWallLayer;
+    public LayerMask nurikabeLayer; // specific Nurikabe functionality
 
     //-------------------------------------------------------------------
     //Player HUD Variables
@@ -240,6 +241,10 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetisTouchingInvisibleWall() { return isTouchingInvisibleWall; }
     public void SetisTouchingInvisibleWall(bool inIsTouchingInvisibleWall) { isTouchingInvisibleWall = inIsTouchingInvisibleWall; }
 
+    [SerializeField]
+    private bool isTouchingNurikabe;
+    public bool GetisTouchingNurikabe() { return isTouchingNurikabe; }
+    public void SetisTouchingNurikabe(bool inIsTouchingNurikabe) { isTouchingNurikabe = inIsTouchingNurikabe; } 
     [SerializeField]
     private float jumpPower = 10;
     public float GetJumpPower() { return jumpPower; }
@@ -696,6 +701,20 @@ public class PlayerFSMController : AdvancedFSM
         {
             isTouchingInvisibleWall = false;
         }
+    }
+
+    // nurikabe test
+    public void TouchingNurikabe()
+    {
+        //equation values to determine if the player is on the ground
+        Vector2 feetPos = col.bounds.center;
+        feetPos.y -= col.bounds.extents.y;
+        isTouchingNurikabe = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, nurikabeLayer.value);
+
+        //equation values to determine if the player is on a wall
+        Vector2 sidePos = col.bounds.center;
+        sidePos.x += col.bounds.extents.x * direction;
+        isTouchingNurikabe = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, nurikabeLayer.value);
     }
 
     // check for the air dash limit

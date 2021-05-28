@@ -13,13 +13,15 @@ public class NurikabeActiveState : FSMState
     {
         base.EnterStateInit();
         // trigger Nurikabe specific boolean
-
+        
     }
 
     public override void Act(Transform player, Transform npc)
     {
         
         Debug.Log("Checking Active");
+        NurikabeFSMController nc = npc.GetComponent<NurikabeFSMController>();
+        nc.SetActiveLayer();
     }
 
     public override void Reason(Transform player, Transform npc)

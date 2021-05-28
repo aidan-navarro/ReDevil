@@ -2521,6 +2521,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 325350201}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: nurikabeLayer.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 1575489276398568402, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_RootOrder
@@ -3746,11 +3750,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1881911363023968712, guid: 929e48bb45a632c4d95c03dc255c2c4c,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 3835043981361580806, guid: 929e48bb45a632c4d95c03dc255c2c4c,
         type: 3}
       propertyPath: m_BodyType
@@ -3760,6 +3759,11 @@ PrefabInstance:
         type: 3}
       propertyPath: range
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161010132675448416, guid: 929e48bb45a632c4d95c03dc255c2c4c,
+        type: 3}
+      propertyPath: riseValue
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5161010132675448416, guid: 929e48bb45a632c4d95c03dc255c2c4c,
         type: 3}
@@ -3779,12 +3783,12 @@ PrefabInstance:
     - target: {fileID: 7163132277719363652, guid: 929e48bb45a632c4d95c03dc255c2c4c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.04
+      value: -8.29
       objectReference: {fileID: 0}
     - target: {fileID: 7163132277719363652, guid: 929e48bb45a632c4d95c03dc255c2c4c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.36
+      value: -6.03
       objectReference: {fileID: 0}
     - target: {fileID: 7163132277719363652, guid: 929e48bb45a632c4d95c03dc255c2c4c,
         type: 3}
