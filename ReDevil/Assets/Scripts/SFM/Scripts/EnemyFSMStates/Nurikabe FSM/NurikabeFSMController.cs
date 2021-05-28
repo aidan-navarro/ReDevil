@@ -17,6 +17,7 @@ public class NurikabeFSMController : EnemyFSMController
 
     public float timer;
 
+    public bool isActive;
 
 
     // Start is called before the first frame update
@@ -32,12 +33,13 @@ public class NurikabeFSMController : EnemyFSMController
         }
         gravityScale = rig.gravityScale;
 
-        idlePoint = new Vector2(transform.position.x, transform.position.y);
-        activePoint = new Vector2(transform.position.x, transform.position.y + riseValue);
+        idlePoint = new Vector2(transform.position.x, transform.position.y - riseValue);
+        activePoint = new Vector2(transform.position.x, transform.position.y);
+        transform.position = idlePoint;
         timer = 0;
         //box collider
         col = GetComponent<BoxCollider2D>();
-
+        isActive = false;
         //set currentPos
         currentPos = rig.position;
 
@@ -78,20 +80,20 @@ public class NurikabeFSMController : EnemyFSMController
     {
         Debug.Log("Hit Nurikabe");
         // TO DO: make a check here specifically for nurikabe
-        //if (collision.transform.CompareTag("Player"))
-        //{
-        //    StartCoroutine(EnemyIFrames());
-        //    rig.velocity = Vector2.zero;
-        //    rig.position = currentPos; //THIS SPECIFIC LINE OF CODE WILL CAUSE ISSUES WITH ENEMIES THAT MOVE TO ATTACK
+        if (collision.transform.CompareTag("Player") && !isActive)
+        {
+            StartCoroutine(EnemyIFrames());
+            rig.velocity = Vector2.zero;
+            rig.position = currentPos; //THIS SPECIFIC LINE OF CODE WILL CAUSE ISSUES WITH ENEMIES THAT MOVE TO ATTACK
 
-        //    Vector2 position = gameObject.transform.position;
+            Vector2 position = gameObject.transform.position;
 
-        //    //send all relative information to the player to take damage, and apply knockback
-        //    PlayerFSMController pc = collision.transform.GetComponent<PlayerFSMController>();
-        //    pc.KnockbackTransition(damage, knockbackPower, position);
+            //send all relative information to the player to take damage, and apply knockback
+            PlayerFSMController pc = collision.transform.GetComponent<PlayerFSMController>();
+            pc.KnockbackTransition(damage, knockbackPower, position);
 
-        //    StartCoroutine(EnemyIFrames());
-        //}
+            StartCoroutine(EnemyIFrames());
+        }
     }
 
     public void ActivateNurikabe(Vector2 startPos, Vector2 endPos, float timer)
