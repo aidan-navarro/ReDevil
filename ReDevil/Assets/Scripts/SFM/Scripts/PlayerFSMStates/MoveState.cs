@@ -21,7 +21,10 @@ public class MoveState : FSMState
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
         isMoving = true;
+        bool grounded = pc.GetisGrounded();
 
+        pc.SetNoFrictionMaterial();
+        pc.SlopeCheck();
         pc.TouchingFloorOrWall();
         pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
@@ -33,19 +36,47 @@ public class MoveState : FSMState
         {
             pc.direction = 1;
             pc.facingLeft = false;
-            Vector2 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
-            newMoveSpeed.y = rig.velocity.y;
 
+            //create newMoveSpeed variable that will be used in the if statement
+            Vector2 newMoveSpeed = Vector2.zero;
+            
+
+            //determine velocity based on if we are on a slope or flat ground
+            if (grounded && !pc.isOnSlope)
+            {
+                Debug.Log("OnFlat Ground");
+                newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
+            }
+            else if (grounded && pc.isOnSlope)
+            {
+                newMoveSpeed.Set(pc.slopeNormalPerp.x * pc.GetMoveSpeed() * -1, pc.slopeNormalPerp.y * pc.GetMoveSpeed() * -1);
+            }
+
+            //set the new velocity
             rig.velocity = newMoveSpeed;
 
+            //flip the player
             pc.FlipPlayer();
         }
         else if (pc.moveVector.x < 0f)
         {
             pc.direction = -1;
             pc.facingLeft = true;
-            Vector2 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
-            newMoveSpeed.y = rig.velocity.y;
+            //create newMoveSpeed variable that will be used in the if statement
+            Vector2 newMoveSpeed = Vector2.zero;
+
+            //determine velocity based on if we are on a slope or flat ground
+            if (grounded && !pc.isOnSlope)
+            {
+                Debug.Log("OnFlat Ground");
+                newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
+            }
+            else if (grounded && pc.isOnSlope)
+            {
+                newMoveSpeed.Set(pc.slopeNormalPerp.x * pc.GetMoveSpeed(), pc.slopeNormalPerp.y * pc.GetMoveSpeed());
+            }
 
             rig.velocity = newMoveSpeed;
 
@@ -60,6 +91,8 @@ public class MoveState : FSMState
             rig.velocity = newMoveSpeed;
             isMoving = false;
         }
+
+        
     }
 
     //Reason: Put any possible transitions here

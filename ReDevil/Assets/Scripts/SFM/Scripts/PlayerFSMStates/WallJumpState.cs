@@ -17,9 +17,10 @@ public class WallJumpState : FSMState
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
 
+        pc.SetNoFrictionMaterial();
 
-            //Player has begun to jump
-            Vector2 newVel = pc.GetRigidbody2D().velocity;
+        //Player has begun to jump
+        Vector2 newVel = pc.GetRigidbody2D().velocity;
             newVel.y = pc.GetJumpPower();
             newVel.x = (pc.GetJumpPower() / 2) * -pc.direction;
             pc.GetRigidbody2D().velocity = newVel;

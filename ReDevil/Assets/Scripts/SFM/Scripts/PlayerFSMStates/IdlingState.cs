@@ -24,10 +24,9 @@ public class IdlingState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
-        //stop momentum movement
-        Vector2 newMoveSpeed = Vector2.zero;
-        newMoveSpeed.y = rig.velocity.y;
-        rig.velocity = newMoveSpeed;
+        //set friction material
+        pc.SlopeCheck();
+        pc.SetFrictionMaterial();     
 
         patk.firstDashContact = false;
         pc.ResetAirDashCount(); // any time we return to idle state, this count gets reset
