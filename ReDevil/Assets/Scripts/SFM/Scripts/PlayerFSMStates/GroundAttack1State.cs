@@ -24,6 +24,13 @@ public class GroundAttack1State : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
+        //set friction material
+        pc.SetFrictionMaterial();
+
+        //stop momentum movement
+        Vector2 newMoveSpeed = Vector2.zero;
+        rig.velocity = newMoveSpeed;
+
         pc.UpdateState("Ground Attack 1");
 
         if (!attackStarted)
@@ -65,7 +72,7 @@ public class GroundAttack1State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.Dash); // not particularly 
+            pc.PerformTransition(Transition.DashAttack); // not particularly 
         }
 
         if (patk.idleTransition && !patk.attacking)

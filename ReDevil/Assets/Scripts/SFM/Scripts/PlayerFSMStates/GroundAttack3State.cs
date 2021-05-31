@@ -23,6 +23,13 @@ public class GroundAttack3State : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
+        //set friction material
+        pc.SetFrictionMaterial();
+
+        //stop momentum movement
+        Vector2 newMoveSpeed = Vector2.zero;
+        rig.velocity = newMoveSpeed;
+
         pc.UpdateState("Ground Attack 3");
 
         if (!attackStarted)
@@ -64,7 +71,7 @@ public class GroundAttack3State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.Dash);
+            pc.PerformTransition(Transition.DashAttack);
         }
 
         //dead transition

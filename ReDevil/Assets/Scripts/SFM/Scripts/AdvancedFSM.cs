@@ -63,6 +63,10 @@ public enum Transition
     OniBoulderPut,
     OniCycloneSmash,
     OniJumpSmash,
+
+    NurikabeIdle,
+    NurikabeRise,
+    NurikabeActive,
 }
 
 public enum FSMStateID
@@ -124,6 +128,11 @@ public enum FSMStateID
     OniBoulderPutting,
     OniCycloneSmashing,
     OniJumpSmashing,
+
+    // Nurikabe
+    NurikabeIdling,
+    NurikabeRising,
+    NurikabeActivating,
 }
 
 public class AdvancedFSM : FSM 

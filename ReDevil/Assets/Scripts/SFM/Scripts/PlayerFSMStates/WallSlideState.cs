@@ -17,7 +17,10 @@ public class WallSlideState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
+        pc.SetNoFrictionMaterial();
+
         pc.TouchingFloorOrWall();
+        
         Vector3 wallInitPos = pc.transform.position;
 
 

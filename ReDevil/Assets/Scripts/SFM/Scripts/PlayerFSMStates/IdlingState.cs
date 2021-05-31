@@ -24,15 +24,15 @@ public class IdlingState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
-        //stop momentum movement
-        Vector2 newMoveSpeed = Vector2.zero;
-        newMoveSpeed.y = rig.velocity.y;
-        rig.velocity = newMoveSpeed;
+        //set friction material
+        pc.SlopeCheck();
+        pc.SetFrictionMaterial();     
 
         patk.firstDashContact = false;
         pc.ResetAirDashCount(); // any time we return to idle state, this count gets reset
         pc.TouchingFloorOrWall();
         pc.CheckAirDash(); // to reset the air dash
+        pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
         pc.UpdateState("Idle");
     }
@@ -100,6 +100,12 @@ public class IdlingState : FSMState
         else if (pc.moveVector.x < 0f || pc.moveVector.x > 0f)
         {
             pc.PerformTransition(Transition.Move);
+        }
+
+        //airborne transition since idle state is the default.  In case we start level in midair.
+        if(!grounded)
+        {
+            pc.PerformTransition(Transition.Airborne);
         }
 
         //dead transition

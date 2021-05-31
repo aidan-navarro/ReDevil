@@ -101,8 +101,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   rig: {fileID: 0}
-  health: 50
+  health: 15
+  maxHealth: 0
   range: 10
   damage: 5
   attackInterval: 5

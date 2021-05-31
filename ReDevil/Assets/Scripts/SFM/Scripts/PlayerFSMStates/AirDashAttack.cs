@@ -11,6 +11,7 @@ public class AirDashAttack : FSMState
     private float dashDistance;
     private bool endDash;
     private bool dashAttackStarted;
+    private bool touchingInvisWall;
 
     public AirDashAttack()
     {
@@ -34,6 +35,7 @@ public class AirDashAttack : FSMState
 
         pc.UpdateState("Air Dash Attack");
         pc.TouchingFloorOrWall();
+        pc.TouchingInvisibleWall();
 
         if (!dashAttackStarted)
         {
@@ -150,6 +152,15 @@ public class AirDashAttack : FSMState
                 patk.EndDashAttack();
             }
 
+            if (touchingInvisWall)
+            {
+                pc.SetCanDash(true);
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.EndDashAttack();
+                dashAttackStarted = false;
+                endDash = true;
+            }
+
             // we must create a condition where if the player is stuck on something, break out of the condition
 
         }
@@ -163,6 +174,7 @@ public class AirDashAttack : FSMState
 
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
+        touchingInvisWall = pc.GetisTouchingInvisibleWall();
 
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
@@ -217,6 +229,14 @@ public class AirDashAttack : FSMState
             {
                 patk.ReInitializeTransitions();
                 pc.PerformTransition(Transition.WallSlide);
+            }
+
+            //if we touch an invisible wall, we should not wall slide, put on airborne
+            if (touchingInvisWall)
+            {
+                Debug.Log("Touching Invisible Wall");
+                pc.PerformTransition(Transition.Airborne);
+
             }
 
             // checking the square magnitude of the dash distance, to circumvent a sqrt check

@@ -8,6 +8,8 @@ public class RespawnManager : MonoBehaviour
 
     public Vector2 respawnPoint;
 
+    public bool initialized = false;
+
     public int rand;
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class RespawnManager : MonoBehaviour
             Debug.Log("Set Respawnpoint: " + respawnPoint);
             rand = Random.Range(1, 100);
             instance = this;
+            initialized = true;
             DontDestroyOnLoad(gameObject);
         }
 
