@@ -22,6 +22,22 @@ public class PlayerFSMController : AdvancedFSM
     public LayerMask invisWallLayer;
     public LayerMask nurikabeLayer; // specific Nurikabe functionality
 
+    //used for slope functionality
+    [SerializeField]
+    private PhysicsMaterial2D noFriction;
+    [SerializeField]
+    private PhysicsMaterial2D friction;
+    private Vector2 colliderSize;
+    [SerializeField]
+    float slopeCheckDistance;
+
+    private float slopeDownAngle;
+    private float slopeDownAngleOld;
+    public Vector2 slopeNormalPerp;
+    public bool isOnSlope;
+
+    private float slopeSideAngle;
+
     //-------------------------------------------------------------------
     //Player HUD Variables
     //-------------------------------------------------------------------
@@ -283,8 +299,9 @@ public class PlayerFSMController : AdvancedFSM
 
         // counting the amount of airdashes
 
-        //box collider
+        //capsule collider
         col = GetComponent<CapsuleCollider2D>();
+        colliderSize = col.size;
 
         //Player Input Setup
         gameplayControls = new GameplayControls();
@@ -665,6 +682,72 @@ public class PlayerFSMController : AdvancedFSM
             playerFlipped = false;
         }
 
+    }
+
+    //Functions to set friction material.  This allows you to stand on a slope 
+
+    public void SetFrictionMaterial()
+    {
+        rig.sharedMaterial = friction;
+    }
+
+    public void SetNoFrictionMaterial()
+    {
+        rig.sharedMaterial = noFriction;
+    }
+
+    //Functions to handle movement on a slope
+    public void SlopeCheck()
+    {
+        Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
+
+        SlopeCheckHorizontal(checkPos);
+        SlopeCheckVertical(checkPos);
+    }
+
+    public void SlopeCheckHorizontal(Vector2 checkPos)
+    {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, groundLayer);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, groundLayer);
+
+        if(slopeHitFront)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+        }
+        else if(slopeHitBack)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else
+        {
+            slopeSideAngle = 0.0f;
+            isOnSlope = false;
+        }
+    }
+
+    public void SlopeCheckVertical(Vector2 checkPos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundLayer);
+
+        if(hit)
+        {
+            slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if(slopeDownAngle != slopeDownAngleOld)
+            {
+                isOnSlope = true;
+            }
+
+
+            slopeDownAngleOld = slopeDownAngle;
+
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+            Debug.DrawRay(hit.point, slopeNormalPerp, Color.red);
+        }
     }
 
     public void TouchingFloorOrWall()
