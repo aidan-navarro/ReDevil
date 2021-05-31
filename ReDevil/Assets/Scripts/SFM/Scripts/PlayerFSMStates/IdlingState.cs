@@ -102,6 +102,12 @@ public class IdlingState : FSMState
             pc.PerformTransition(Transition.Move);
         }
 
+        //airborne transition since idle state is the default.  In case we start level in midair.
+        if(!grounded)
+        {
+            pc.PerformTransition(Transition.Airborne);
+        }
+
         //dead transition
         if (pc.GetHealth() <= 0)
         {
