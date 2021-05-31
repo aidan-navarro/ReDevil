@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System;
 
 public class OniFSMController : EnemyFSMController
 {
@@ -8,6 +10,9 @@ public class OniFSMController : EnemyFSMController
     public GameObject boulderPrehab;
     [SerializeField]
     private Transform firepoint;
+
+    [SerializeField]
+    private Transform pillarSpawnPoint;
     [SerializeField]
     private Transform clubAttackPoint;
     [SerializeField]
@@ -35,6 +40,8 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private List<Transform> arenaPoints;
     public List<Transform> ArenaTransforms => arenaPoints;
+    [SerializeField]
+    private float playerPointLineRange = 0.5f;
 
     //initialize FSM
     protected override void Initialize()
@@ -70,18 +77,19 @@ public class OniFSMController : EnemyFSMController
         //Create States in each enemies inheriting FSM Controller
         //
 
-        OniIdleState idleState = new OniIdleState();
+        OniIdleState oniIdleState = new OniIdleState();
 
-        idleState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
-        idleState.AddTransition(Transition.OniBoulderPut, FSMStateID.OniBoulderPutting);
-        idleState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
-        idleState.AddTransition(Transition.OniChase, FSMStateID.OniChasing);
-        idleState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
+        oniIdleState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        oniIdleState.AddTransition(Transition.OniBoulderPut, FSMStateID.OniBoulderPutting);
+        oniIdleState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
+        oniIdleState.AddTransition(Transition.OniChase, FSMStateID.OniChasing);
+        oniIdleState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
 
         OniChaseState oniChaseState = new OniChaseState();
         oniChaseState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         oniChaseState.AddTransition(Transition.OniBoulderPut, FSMStateID.OniBoulderPutting);
         oniChaseState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
+        oniChaseState.AddTransition(Transition.OniClubSmash, FSMStateID.OniClubSmashing);
         oniChaseState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
 
         BoulderPuttState boulderPuttState = new BoulderPuttState();
@@ -103,6 +111,15 @@ public class OniFSMController : EnemyFSMController
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
         //there are no transitions out of the dead state
+
+        AddFSMState(oniIdleState);
+        AddFSMState(oniChaseState);
+        AddFSMState(boulderPuttState);
+        AddFSMState(clubSmashState);
+        AddFSMState(jumpingSmashState);
+        AddFSMState(cycloneSmasherState);
+
+        AddFSMState(enemyDead);
     }
 
     public void ClubSmashAttack()
@@ -130,4 +147,47 @@ public class OniFSMController : EnemyFSMController
         rig.velocity = newVel;
     }
 
+    public GameObject SpawnPillar(bool inFront)
+    {
+        Vector3 PillarSpawn = new Vector3();
+
+        // Find the position to spawn in the pillar
+
+        if (inFront)
+        {
+            PillarSpawn = pillarSpawnPoint.position;
+        }
+        else
+        {
+            bool playerInBetween = false;
+
+            foreach (Transform arenaTransform in ArenaTransforms) // Find the furtherest point away from the oni that has the player in between them
+            {
+                // To determine if the arenaPoint is in between the oni and player I'll use DistancePointLine
+                playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
+                
+                if (playerInBetween && Vector3.Distance(transform.position, PillarSpawn) < Vector3.Distance(transform.position, arenaTransform.position))
+                {
+                    PillarSpawn = arenaTransform.position;
+                }
+            }
+        }
+
+        return Instantiate(pillarPrehab, PillarSpawn, pillarPrehab.transform.rotation);
+    }
+
+    public void BoulderPut()
+    {
+        InstantiateProjectile(boulderPrehab, firepoint.position, boulderPrehab.transform.rotation, (playerTransform.position - firepoint.transform.position).normalized, boulderPrehab.GetComponent<Bullet>().speed);
+    }
+
+    public void MoveTowardsPlayer()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, chaseSpeed * Time.deltaTime);
+    }
+
+    public bool IsUnderHalfHealth()
+    {
+        return (health < maxHealth / 2);
+    }
 }

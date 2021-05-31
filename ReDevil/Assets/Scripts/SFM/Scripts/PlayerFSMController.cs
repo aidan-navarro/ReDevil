@@ -49,7 +49,7 @@ public class PlayerFSMController : AdvancedFSM
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealthHud(); }
 
-    private void UpdateHealthHud()
+    public void UpdateHealthHud()
     {
         healthText.text = health.ToString();
         healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
