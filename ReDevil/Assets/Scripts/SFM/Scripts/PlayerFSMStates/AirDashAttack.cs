@@ -15,7 +15,6 @@ public class AirDashAttack : FSMState
 
     public AirDashAttack()
     {
-        Debug.Log("Create AirDash");
         stateID = FSMStateID.AirDashAttacking;
 
         // initialize variables

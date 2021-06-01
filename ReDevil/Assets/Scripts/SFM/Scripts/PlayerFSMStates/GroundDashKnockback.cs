@@ -15,6 +15,8 @@ public class GroundDashKnockback : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         pc = player.GetComponent<PlayerFSMController>();
+
+        // utilizing the timer class to activate a timer
         InvincibleTimer timer = pc.GetComponent<InvincibleTimer>();
 
         // set the dkb transition to false... stay within the DKB state until landing on the ground;
@@ -63,7 +65,6 @@ public class GroundDashKnockback : FSMState
         //// this grounded check is being called first... boolean wrapper value needed 
         if (grounded && !pc.GetDKBTransition())
         {
-            Debug.Log("hello");
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.Idle);
         }

@@ -16,9 +16,9 @@ public class NurikabeFSMController : EnemyFSMController
     public Vector2 GetActivePoint() { return activePoint; }
 
     public float timer;
-
     public bool isActive;
 
+    [SerializeField] private Vector2 flinchVector;
 
     // Start is called before the first frame update
     protected override void Initialize()
@@ -106,6 +106,20 @@ public class NurikabeFSMController : EnemyFSMController
     public void SetActiveLayer()
     {
         gameObject.layer = LayerMask.NameToLayer("Ground");
+    }
+
+    public void NurikabeFlinch()
+    {
+        if (facingRight)
+        {
+            rig.AddForce(flinchVector, ForceMode2D.Impulse);
+        } 
+        else
+        {
+            flinchVector.x *= -1;
+            rig.AddForce(flinchVector, ForceMode2D.Impulse);
+
+        }
     }
 
     private void OnDrawGizmos()

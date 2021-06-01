@@ -58,9 +58,14 @@ public class EnemyFSMController : AdvancedFSM
 
     public bool airborneEnemy; //Check this if the enemy is meant to stay in the air
 
-    //-------------- NURIKABE SPECIFIC ------------------
-    private bool ActiveNurikabe;
+    // ----------------- Hit Logic (boolean trigger for all enemies)... -----------------------
+    [SerializeField] protected bool isHit;
+    public bool GetIsHit() { return isHit; }
+    public void SetIsHit(bool inIsHit) { isHit = inIsHit; }
 
+    [SerializeField] protected bool enemyFlinch;
+    public bool GetEnemyFlinch() { return enemyFlinch; }
+    public void SetEnemyFlinch(bool inEnemyFlinch) { enemyFlinch = inEnemyFlinch; }
     //initialize FSM
     protected override void Initialize()
     {
@@ -114,7 +119,6 @@ public class EnemyFSMController : AdvancedFSM
     //this function is virtual to adjust for enemies that this will cause glitches for
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        // TO DO: make a check here specifically for nurikabe
         if (collision.transform.CompareTag("Player"))
         {
             StartCoroutine(EnemyIFrames());
@@ -129,6 +133,12 @@ public class EnemyFSMController : AdvancedFSM
 
             StartCoroutine(EnemyIFrames());
         }
+    }
+
+    //----------- TEST: Flinching overrideable function ------------
+    public virtual void FlinchEnemy(Vector2 flinchKB)
+    {
+        Debug.Log("base Flinch");
     }
 
     public IEnumerator EnemyIFrames()

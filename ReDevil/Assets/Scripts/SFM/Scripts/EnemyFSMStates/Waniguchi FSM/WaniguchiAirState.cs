@@ -8,7 +8,6 @@ public class WaniguchiAirState : FSMState
     private bool isGrounded;
     public WaniguchiAirState()
     {
-        Debug.Log("Creating Waniguchi Aerial State");
         stateID = FSMStateID.WaniguchiMidair;
     }
 
@@ -55,6 +54,12 @@ public class WaniguchiAirState : FSMState
             Debug.Log("Landed");
             ec.PerformTransition(Transition.WaniguchiIdle);
         }
+
+        if (ec.GetEnemyFlinch())
+        {
+            ec.PerformTransition(Transition.WaniguchiFlinch);
+        }
+
 
         if (ec.health <= 0)
         {

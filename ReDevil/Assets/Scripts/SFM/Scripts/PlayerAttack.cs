@@ -188,7 +188,6 @@ public class PlayerAttack : MonoBehaviour
         ContactFilter2D filter = new ContactFilter2D();
 
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
-        Debug.Log("Number Ground Hits: " + numHits);
 
         for (int i = 0; i < numHits; i++)
         {
@@ -198,6 +197,7 @@ public class PlayerAttack : MonoBehaviour
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
+                // register a hit
                 DetectWeakspot(eCollider);
 
                 Vector3 position = this.gameObject.transform.position;  // this isn't getting used
@@ -210,8 +210,15 @@ public class PlayerAttack : MonoBehaviour
 
                 //store the amount of hp the enemy has after the hit
                 float presentHealth = ec.health;
+                attackVector = ec.transform.position - pc.transform.position;
 
-                //if the present health goes below 0, set it to zero since you can't steal a negative soul value
+                ec.SetIsHit(true);
+                if (groundHitCounter >= 3)
+                {
+                    ec.SetEnemyFlinch(true);
+                    Debug.Log("Flinch Enemy");
+                }
+                    //if the present health goes below 0, set it to zero since you can't steal a negative soul value
                 if (presentHealth < 0)
                 {
                     presentHealth = 0;
@@ -286,7 +293,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
-                
+
+                ec.SetIsHit(true);
                 DetectWeakspot(eCollider);
 
                 //store the amount of hp the enemy has before the initial hit
@@ -307,6 +315,7 @@ public class PlayerAttack : MonoBehaviour
                 //gain soul equal to the damage dealt to the enemy.
                 pc.SoulCalculator(pastHealth - presentHealth);
                 attackVector = ec.transform.position - pc.transform.position;
+                ec.SetEnemyFlinch(true);
 
                 attacking = false;
                 if (pc.GetisGrounded())
