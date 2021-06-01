@@ -216,7 +216,6 @@ public class PlayerAttack : MonoBehaviour
                 if (groundHitCounter >= 3)
                 {
                     ec.SetEnemyFlinch(true);
-                    Debug.Log("Flinch Enemy");
                 }
                     //if the present health goes below 0, set it to zero since you can't steal a negative soul value
                 if (presentHealth < 0)
@@ -315,6 +314,7 @@ public class PlayerAttack : MonoBehaviour
                 //gain soul equal to the damage dealt to the enemy.
                 pc.SoulCalculator(pastHealth - presentHealth);
                 attackVector = ec.transform.position - pc.transform.position;
+
                 ec.SetEnemyFlinch(true);
 
                 attacking = false;
@@ -328,7 +328,6 @@ public class PlayerAttack : MonoBehaviour
                     Debug.Log("Air Hit");
                     airDashAttackContact = true;
                     // get and normalize the attack vector 
-                    Debug.Log("Attack Vector: " + attackVector.normalized);
          
                     if (presentHealth == 0)
                     {
@@ -495,6 +494,7 @@ public class PlayerAttack : MonoBehaviour
 
                 //send all relative information to the player to take damage, and apply knockback
                 ec.TakeDamage(damage);
+                ec.SetEnemyFlinch(true);
 
                 //store the amount of hp the enemy has after the hit
                 float presentHealth = ec.health;

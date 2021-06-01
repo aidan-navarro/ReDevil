@@ -42,12 +42,14 @@ public enum Transition
 
     //attack states for individual minion ememies
     NodeppouIdle,
+    NodeppouFlinch,
     NodeppouAttack,
 
     ShutenDojiIdle,
     ShutenDojiAttack,
 
     BasanIdle,
+    BasanFlinch,
     BasanAttack,
 
     ChochinObakeIdle,
@@ -104,6 +106,7 @@ public enum FSMStateID
 
     //Nodeppou
     NodeppouIdling,
+    NodeppouFlinching, // flinching
     NodeppouAttacking,
 
     //ShutenDoji
@@ -111,6 +114,7 @@ public enum FSMStateID
     ShutenDojiAttacking,
 
     BasanIdling,
+    BasanFlinching,
     BasanAttacking,
 
     //ChochinObake

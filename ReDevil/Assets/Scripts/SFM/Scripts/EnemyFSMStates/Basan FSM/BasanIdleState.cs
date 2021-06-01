@@ -75,17 +75,29 @@ public class BasanIdleState : EnemyIdleState
             atkTransition = true;
         }
 
+        if (ec.GetIsHit())
+        {
+            Debug.Log("Hit Basan");
+            timer = 0;
+            ec.SetIsHit(false);
+        }
+
     }
 
 
     public override void Reason(Transform player, Transform npc)
     {
-        EnemyFSMController ec = npc.GetComponent<EnemyFSMController>();
+        BasanFSMController ec = npc.GetComponent<BasanFSMController>();
 
         //attack transition
         if (atkTransition)
         {
             ec.PerformTransition(Transition.BasanAttack);
+        }
+
+        if (ec.GetEnemyFlinch())
+        {
+            ec.PerformTransition(Transition.BasanFlinch);
         }
 
         //dead transition

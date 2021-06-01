@@ -104,9 +104,15 @@ public class WaniguchiFSMController : EnemyFSMController
     public override void FlinchEnemy(Vector2 flinchKB)
     {
         //base.FlinchEnemy(flinchKB);
-        Debug.Log("Waniguchi Flinch");
         //rig.AddForce(flinchKB, ForceMode2D.Impulse);
-        WaniguchiKnockback();
+        if (facingRight)
+        {
+            rig.velocity = flinchKB * new Vector2(-1, 1);
+        }
+        else if (!facingRight)
+        {
+            rig.velocity = flinchKB;
+        }
     }
 
     public void WaniguchiAttack()
@@ -119,18 +125,6 @@ public class WaniguchiFSMController : EnemyFSMController
         else if(facingRight)
         {
             rig.velocity = atkDirectionRight;
-        }
-    }
-
-    public void WaniguchiKnockback()
-    {
-        if (facingRight)
-        {
-            rig.velocity = knockbackVel * new Vector2(-1, 1);
-        }
-        else if (!facingRight)
-        {
-            rig.velocity = knockbackVel;
         }
     }
 

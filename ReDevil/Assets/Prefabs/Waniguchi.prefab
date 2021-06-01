@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2055195221196047188}
   - component: {fileID: 6812406579473504763}
   - component: {fileID: 2195217055851651137}
+  - component: {fileID: 6123721141825723268}
   m_Layer: 0
   m_Name: Waniguchi
   m_TagString: Enemy
@@ -100,8 +101,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   rig: {fileID: 0}
-  health: 50
+  health: 500
+  maxHealth: 0
   range: 10
   damage: 10
   attackInterval: 5
@@ -109,8 +114,12 @@ MonoBehaviour:
   atkDirectionRight: {x: 5, y: 5}
   projectileSpeed: 0
   currentPos: {x: 0, y: 0}
+  isGrounded: 0
   airborneEnemy: 0
+  isHit: 0
+  enemyFlinch: 0
   attacking: 0
+  knockbackVel: {x: 0, y: 0}
 --- !u!61 &6812406579473504763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,3 +167,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6123721141825723268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485466783634990665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306a1a46319508143ab3da41cb8beedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackTimer: 0.5

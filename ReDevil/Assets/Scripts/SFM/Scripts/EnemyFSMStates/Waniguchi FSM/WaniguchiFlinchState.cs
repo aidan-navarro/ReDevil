@@ -24,7 +24,8 @@ public class WaniguchiFlinchState : FSMState
     {
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
         et = wc.GetComponent<EnemyTimer>();
-        
+        Debug.Log("Waniguchi Flinch");
+
         wc.FlinchEnemy(wc.GetKnockbackVel());
         wc.SetEnemyFlinch(false);
         et.StartCoroutine("EnemyKnockbackTimer");
