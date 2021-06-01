@@ -41,6 +41,7 @@ public class GroundDashAttack : FSMState
 
         bool enterKnockback = pc.GetKbTransition();
         bool enterDashKnockback = pc.GetDKBTransition();
+        pc.SetNoFrictionMaterial();
 
         // should find a new state for knockback off of grounded dash attack
 

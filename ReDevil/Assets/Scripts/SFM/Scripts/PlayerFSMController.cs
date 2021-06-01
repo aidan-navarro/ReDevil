@@ -20,6 +20,23 @@ public class PlayerFSMController : AdvancedFSM
     private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
     public LayerMask invisWallLayer;
+    public LayerMask nurikabeLayer; // specific Nurikabe functionality
+
+    //used for slope functionality
+    [SerializeField]
+    private PhysicsMaterial2D noFriction;
+    [SerializeField]
+    private PhysicsMaterial2D friction;
+    private Vector2 colliderSize;
+    [SerializeField]
+    float slopeCheckDistance;
+
+    private float slopeDownAngle;
+    private float slopeDownAngleOld;
+    public Vector2 slopeNormalPerp;
+    public bool isOnSlope;
+
+    private float slopeSideAngle;
 
     //-------------------------------------------------------------------
     //Player HUD Variables
@@ -241,6 +258,10 @@ public class PlayerFSMController : AdvancedFSM
     public void SetisTouchingInvisibleWall(bool inIsTouchingInvisibleWall) { isTouchingInvisibleWall = inIsTouchingInvisibleWall; }
 
     [SerializeField]
+    private bool isTouchingNurikabe;
+    public bool GetisTouchingNurikabe() { return isTouchingNurikabe; }
+    public void SetisTouchingNurikabe(bool inIsTouchingNurikabe) { isTouchingNurikabe = inIsTouchingNurikabe; } 
+    [SerializeField]
     private float jumpPower = 10;
     public float GetJumpPower() { return jumpPower; }
     public void SetJumpPower(float newJumpPower) { jumpPower = newJumpPower; }
@@ -278,8 +299,9 @@ public class PlayerFSMController : AdvancedFSM
 
         // counting the amount of airdashes
 
-        //box collider
+        //capsule collider
         col = GetComponent<CapsuleCollider2D>();
+        colliderSize = col.size;
 
         //Player Input Setup
         gameplayControls = new GameplayControls();
@@ -464,6 +486,7 @@ public class PlayerFSMController : AdvancedFSM
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         idling.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
         idling.AddTransition(Transition.SoulShot, FSMStateID.SoulShot);
+        idling.AddTransition(Transition.Airborne, FSMStateID.Midair);
 
         //create the Moving state
         MoveState moving = new MoveState();
@@ -473,7 +496,7 @@ public class PlayerFSMController : AdvancedFSM
         moving.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i stop moving, transition to idling
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
-        moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        //moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -513,7 +536,7 @@ public class PlayerFSMController : AdvancedFSM
         midair.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while midair, transition to dead
         midair.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i land on the ground, transition to idling
         midair.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);  //if i touch a wall while falling, transition to sall sliding
-        midair.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        //midair.AddTransition(Transition.Dash, FSMStateID.Dashing);
         midair.AddTransition(Transition.AirDashAttack, FSMStateID.AirDashAttacking);
         midair.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         midair.AddTransition(Transition.AirDownStrike, FSMStateID.AirDownStrike);//air down strike
@@ -581,7 +604,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga1.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga1.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga1.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        //ga1.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga1.AddTransition(Transition.GroundAttack2, FSMStateID.GroundSecondStrike);
         ga1.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -590,7 +613,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga2.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga2.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga2.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        //ga2.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga2.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga2.AddTransition(Transition.GroundAttack3, FSMStateID.GroundThirdStrike);
         ga2.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -599,7 +622,7 @@ public class PlayerFSMController : AdvancedFSM
 
         ga3.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         ga3.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
-        ga3.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
+        //ga3.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga3.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga3.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -662,6 +685,72 @@ public class PlayerFSMController : AdvancedFSM
 
     }
 
+    //Functions to set friction material.  This allows you to stand on a slope 
+
+    public void SetFrictionMaterial()
+    {
+        rig.sharedMaterial = friction;
+    }
+
+    public void SetNoFrictionMaterial()
+    {
+        rig.sharedMaterial = noFriction;
+    }
+
+    //Functions to handle movement on a slope
+    public void SlopeCheck()
+    {
+        Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
+
+        SlopeCheckHorizontal(checkPos);
+        SlopeCheckVertical(checkPos);
+    }
+
+    public void SlopeCheckHorizontal(Vector2 checkPos)
+    {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, groundLayer);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, groundLayer);
+
+        if(slopeHitFront)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+        }
+        else if(slopeHitBack)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else
+        {
+            slopeSideAngle = 0.0f;
+            isOnSlope = false;
+        }
+    }
+
+    public void SlopeCheckVertical(Vector2 checkPos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundLayer);
+
+        if(hit)
+        {
+            slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if(slopeDownAngle != slopeDownAngleOld)
+            {
+                isOnSlope = true;
+            }
+
+
+            slopeDownAngleOld = slopeDownAngle;
+
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+            Debug.DrawRay(hit.point, slopeNormalPerp, Color.red);
+        }
+    }
+
     public void TouchingFloorOrWall()
     {
         //equation values to determine if the player is on the ground
@@ -696,6 +785,20 @@ public class PlayerFSMController : AdvancedFSM
         {
             isTouchingInvisibleWall = false;
         }
+    }
+
+    // nurikabe test
+    public void TouchingNurikabe()
+    {
+        //equation values to determine if the player is on the ground
+        Vector2 feetPos = col.bounds.center;
+        feetPos.y -= col.bounds.extents.y;
+        isTouchingNurikabe = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, nurikabeLayer.value);
+
+        //equation values to determine if the player is on a wall
+        Vector2 sidePos = col.bounds.center;
+        sidePos.x += col.bounds.extents.x * direction;
+        isTouchingNurikabe = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, nurikabeLayer.value);
     }
 
     // check for the air dash limit

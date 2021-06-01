@@ -17,6 +17,7 @@ public class CineMachineSwitcher : MonoBehaviour
     private CinemachineVirtualCamera vcam2; //room cam
 
     private Animator animator;
+    [SerializeField]
     private bool playerCamera = true;
 
     private void Awake()
