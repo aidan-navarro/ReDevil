@@ -31,12 +31,17 @@ public class NodeppouIdleState : EnemyIdleState
     }
     public override void Reason(Transform player, Transform npc)
     {
-        EnemyFSMController ec = npc.GetComponent<EnemyFSMController>();
+        NodeppouFSMController ec = npc.GetComponent<NodeppouFSMController>();
 
         //attack transition
         if (atkTransition)
         {
             ec.PerformTransition(Transition.NodeppouAttack);
+        }
+
+        if (ec.GetEnemyFlinch())
+        {
+            ec.PerformTransition(Transition.NodeppouFlinch);
         }
 
         //dead transition
