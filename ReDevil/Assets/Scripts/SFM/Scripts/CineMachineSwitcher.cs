@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 
 public class CineMachineSwitcher : MonoBehaviour
@@ -34,34 +36,47 @@ public class CineMachineSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        action.performed += _ => SwitchPriority();
+       // action.performed += _ => SwitchPriority();
     }
 
-    private void SwitchState()
-    {
-        if (playerCamera)
-        {
-            animator.Play("BossRoomCam");
-        }
-        else
-        {
-            animator.Play("PlayersCam");
-        }
-        playerCamera = !playerCamera;
-    }
+   //private void SwitchState()
+   //{
+   //    if (playerCamera)
+   //    {
+   //        animator.Play("BossRoomCam");
+   //    }
+   //    else
+   //    {
+   //        animator.Play("PlayersCam");
+   //    }
+   //    playerCamera = !playerCamera;
+   //}
 
-    private void SwitchPriority()
+   //private void SwitchPriority()
+   //{
+   //    if (playerCamera)
+   //    {
+   //        vcam1.Priority = 0;
+   //        vcam2.Priority = 1;
+   //    }
+   //    else
+   //    {
+   //        vcam1.Priority = 1;
+   //        vcam2.Priority = 0;
+   //    }
+   //    playerCamera = !playerCamera;
+   //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playerCamera)
+        if (collision.tag == "Player")
         {
+            //when dealing with collisions, if we're checking for a specific thing,
+            //make a temporary variable (left of the equal sign)
+            //and make it equal whatever element we want from what we collided with
+            PlayerFSMController pc = collision.GetComponent<PlayerFSMController>();
             vcam1.Priority = 0;
             vcam2.Priority = 1;
         }
-        else
-        {
-            vcam1.Priority = 1;
-            vcam2.Priority = 0;
-        }
-        playerCamera = !playerCamera;
     }
 }
