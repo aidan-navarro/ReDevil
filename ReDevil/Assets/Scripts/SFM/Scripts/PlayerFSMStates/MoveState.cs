@@ -95,12 +95,6 @@ public class MoveState : FSMState
             isMoving = false;
         }
 
-        // should the player attack, stop it
-        if (attackButtonDown)
-        {
-            rig.velocity = Vector2.zero;
-        }
-
         
     }
 

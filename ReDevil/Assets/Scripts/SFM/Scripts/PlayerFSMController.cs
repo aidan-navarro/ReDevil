@@ -135,6 +135,8 @@ public class PlayerFSMController : AdvancedFSM
     // TEST ---------- dash knockback specific --------------
     [SerializeField]
     private float dashKnockbackPower;
+
+    [SerializeReference]
     private bool dkbTransition;
     public bool GetDKBTransition() { return dkbTransition;  }
     public void SetDKBTransition(bool inDKBTransition)
@@ -631,6 +633,12 @@ public class PlayerFSMController : AdvancedFSM
         //ga3.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga3.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga3.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
+
+        AirAttackState airAttack = new AirAttackState();
+
+        airAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        airAttack.AddTransition(Transition.Airborne, FSMStateID.Midair);
+        airAttack.AddTransition(Transition.AirDashAttack, FSMStateID.AirDashAttacking);
 
         AirDownStrikeState airDownStrike = new AirDownStrikeState();
 

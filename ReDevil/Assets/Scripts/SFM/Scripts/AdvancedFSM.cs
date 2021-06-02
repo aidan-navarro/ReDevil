@@ -34,6 +34,7 @@ public enum Transition
     GroundAttack1,
     GroundAttack2,
     GroundAttack3,
+    AirAttack,
     AirDownStrike,
     SoulShot,
 
@@ -98,6 +99,7 @@ public enum FSMStateID
     GroundFirstStrike,
     GroundSecondStrike,
     GroundThirdStrike,
+    AirStrike,
     AirDownStrike,
     SoulShot,
 

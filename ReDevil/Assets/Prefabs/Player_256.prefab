@@ -524,6 +524,9 @@ MonoBehaviour:
     m_Bits: 4096
   noFriction: {fileID: 6200000, guid: 7431913495d402c4597035c370b510b9, type: 2}
   friction: {fileID: 6200000, guid: 76a446246d764564897671c8e1d701bf, type: 2}
+  slopeCheckDistance: 0
+  slopeNormalPerp: {x: 0, y: 0}
+  isOnSlope: 0
   stateText: {fileID: 0}
   healthText: {fileID: 0}
   SoulText: {fileID: 0}
@@ -541,6 +544,7 @@ MonoBehaviour:
   - {fileID: 243560149}
   selectedArament: {fileID: 243560149}
   dashKnockbackPower: 0
+  dkbTransition: 0
   moveSpeed: 10
   airControl: 5
   slideSpeed: 3
@@ -576,6 +580,7 @@ MonoBehaviour:
   dashAttackValue: 15
   groundHitCounter: 0
   airDownStrike: 50
+  airAttackLag: 0.5
   endlag: 1
   enemyHitboxes: []
   attacking: 0

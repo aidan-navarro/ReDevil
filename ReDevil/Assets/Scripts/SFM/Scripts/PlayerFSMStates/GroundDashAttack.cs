@@ -185,7 +185,6 @@ public class GroundDashAttack : FSMState
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
         touchingInvisWall = pc.GetisTouchingInvisibleWall();
-        //Debug.Log("IsGroundedCheck" + isGrounded);
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
         bool dkbTransition = pc.GetDKBTransition();

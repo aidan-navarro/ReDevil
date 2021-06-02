@@ -27,6 +27,10 @@ public class PlayerAttack : MonoBehaviour
 
     //damage amount for airDownStrike
     public float airDownStrike;
+
+    // Air attack lag
+    public float airAttackLag;
+
     //endlag once the player has landed
     public float endlag;
 
@@ -36,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
     //the variable called to deal damage to enemies.  set value using variables used to set damage amounts
     private float damage;
     public bool attacking;
+    public bool didAirAttack;
 
     // dash attack specific, only want to have the dash attack trigger once on hit
     public bool dashAttackContact; // going to get flicked back to false once it hits
@@ -111,7 +116,6 @@ public class PlayerAttack : MonoBehaviour
         StopCoroutine("EnableGroundHit");
     }
 
-
     public IEnumerator EnableGroundHit()
     {
         attacking = true;
@@ -150,8 +154,8 @@ public class PlayerAttack : MonoBehaviour
         }
         */
 
-        // lock the player's position 
-        pc.GetRigidbody2D().velocity = new Vector2(0, 0);
+        //// lock the player's position 
+        //pc.GetRigidbody2D().velocity = new Vector2(0, 0);
 
         //let a hit process
         CheckGroundHit(attackCollider, transform.forward, 10);
@@ -210,7 +214,6 @@ public class PlayerAttack : MonoBehaviour
 
                 //store the amount of hp the enemy has after the hit
                 float presentHealth = ec.health;
-                attackVector = ec.transform.position - pc.transform.position;
 
                 ec.SetIsHit(true);
                 if (groundHitCounter >= 3)
@@ -232,11 +235,83 @@ public class PlayerAttack : MonoBehaviour
         return false;
     }
     #endregion
+    //------------------------------------------------------------
+    // Air Attack Functions
+    //------------------------------------------------------------
 
+    public void AirAttack()
+    {
+        StartCoroutine("EnableAirAttack");
+    }
+
+    public void StopairAttack()
+    {
+        TurnOffHitbox();
+        attacking = false;
+        StopCoroutine("EnableAirAttack");
+    }
+
+    public IEnumerator EnableAirAttack()
+    {
+        attacking = true;
+        TurnOnHitbox();
+        CheckAirHit(attackCollider, transform.forward, 10);
+        yield return new WaitForSeconds(0.1f);
+        checkCancel = true;
+        yield return new WaitForSeconds(airAttackLag);
+        TurnOffHitbox();
+        checkCancel = false;
+        attacking = false;
+    }
+
+    private bool CheckAirHit(Collider2D playerAttackCol, Vector2 direction, float distance)
+    {
+
+        RaycastHit2D[] hits = new RaycastHit2D[10];
+        ContactFilter2D filter = new ContactFilter2D();
+
+        int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
+
+        for (int i = 0; i < numHits; i++)
+        {
+            //if the hit of the collider is NOT trigger AND is an enemy
+            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy"))
+            {
+                EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
+                Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
+
+                // register a hit
+                DetectWeakspot(eCollider);
+
+                //store the amount of hp the enemy has before the initial hit
+                float pastHealth = ec.health;
+
+                //send all relative information to the player to take damage, and apply knockback
+                ec.TakeDamage(damage);
+
+                //store the amount of hp the enemy has after the hit
+                float presentHealth = ec.health;
+
+                ec.SetIsHit(true);
+                ec.SetEnemyFlinch(true);
+                //if the present health goes below 0, set it to zero since you can't steal a negative soul value
+                if (presentHealth < 0)
+                {
+                    presentHealth = 0;
+                }
+
+                //gain soul equal to the damage dealt to the enemy.
+                pc.SoulCalculator(pastHealth - presentHealth);
+
+                return true;
+            }
+        }
+        return false;
+    }
     //------------------------------------------------------------
     // Dash Attack Functions
     //------------------------------------------------------------
-    #region click plus sign to hide/unhide code
+    #region Dash Attack functionality: click plus sign to hide/unhide code
     public void StartDashAttack()
     {
         //StartCoroutine("EnableDashAttack");
@@ -253,7 +328,6 @@ public class PlayerAttack : MonoBehaviour
     public void StartAirDashAttack(Vector2 position)
     {
         attacking = true;
-        // test, replace the 
         attackCollider.transform.localPosition = position;
         TurnOnHitbox();
         ShrinkHitbox();
@@ -268,14 +342,6 @@ public class PlayerAttack : MonoBehaviour
         RevertHitbox();
         //StopCoroutine("EnableDashAttack");
     }
-
-    //// Need an IEnumerator? don't need to delay it... 
-    //// unless I need to keep the duration of the box check
-    //public IEnumerator EnableDashAttack()
-    //{
-    //    attacking = true;
-    //    yield return new WaitForSeconds(0.5f);
-    //}
 
     private void CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
