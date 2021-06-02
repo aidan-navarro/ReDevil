@@ -502,6 +502,7 @@ public class PlayerFSMController : AdvancedFSM
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
         //moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        moving.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
