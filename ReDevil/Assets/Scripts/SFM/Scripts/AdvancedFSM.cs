@@ -54,6 +54,7 @@ public enum Transition
 
     ChochinObakeIdle,
     ChochinObakeAttack,
+    ChochinOkabeFlinch, // to add later
 
     WaniguchiIdle,
     WaniguchiAttack,
@@ -70,6 +71,7 @@ public enum Transition
     NurikabeIdle,
     NurikabeRise,
     NurikabeActive,
+    NurikabeFlinch, // to add later
 }
 
 public enum FSMStateID
@@ -113,6 +115,7 @@ public enum FSMStateID
     ShutenDojiIdling,
     ShutenDojiAttacking,
 
+    //Basan
     BasanIdling,
     BasanFlinching,
     BasanAttacking,
@@ -120,6 +123,7 @@ public enum FSMStateID
     //ChochinObake
     ChochinObakeIdling,
     ChochinObakeAttacking,
+    ChochinOkabeFlinching,
 
     //Waniguchi
     WaniguchiIdling,
@@ -139,6 +143,7 @@ public enum FSMStateID
     NurikabeIdling,
     NurikabeRising,
     NurikabeActivating,
+    NurikabeFlinching
 }
 
 public class AdvancedFSM : FSM 
