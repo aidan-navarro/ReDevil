@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// DEV NOTES
+// to be implemented later once we get animations for this enemy
+
 public class ChochinOkabeFlinchState : FSMState
 {
     public ChochinOkabeFlinchState()

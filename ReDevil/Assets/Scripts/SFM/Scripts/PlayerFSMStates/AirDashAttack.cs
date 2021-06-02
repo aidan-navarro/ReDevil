@@ -7,6 +7,7 @@ public class AirDashAttack : FSMState
 
     private bool isGrounded; // just in case we account for any slanted platforms in the future
     private bool onWall;
+    private bool isCeiling;
     private float prevGravityScale;
     private float dashDistance;
     private bool endDash;
@@ -33,7 +34,7 @@ public class AirDashAttack : FSMState
         bool enterDashKnock = pc.GetDKBTransition();
 
         pc.UpdateState("Air Dash Attack");
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
 
         if (!dashAttackStarted)
@@ -85,10 +86,9 @@ public class AirDashAttack : FSMState
         // velocity must also change to account for the dash position that we set
         // create a boolean to lock any change to the dash vector while we dash
         pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
-       
-        pc.TouchingFloorOrWall();
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
+        isCeiling = pc.GetisTouchingCeiling();
         //Debug.Log("Dash Distance: " + dashDistance);
         //Debug.Log("Grounded??? -> " + isGrounded);
         //Debug.Log("On Wall??? -> " + onWall);
@@ -160,6 +160,15 @@ public class AirDashAttack : FSMState
                 endDash = true;
             }
 
+            if (isCeiling)
+            {
+                pc.SetCanDash(true);
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                patk.EndDashAttack();
+                dashAttackStarted = false;
+                endDash = true;
+            }
+
             // we must create a condition where if the player is stuck on something, break out of the condition
 
         }
@@ -219,7 +228,7 @@ public class AirDashAttack : FSMState
                 }
                 patk.firstDashContact = true;
                 pc.SetDKBTransition(true);
-                pc.PerformTransition(Transition.DashKnockback); // still need to test this
+                pc.PerformTransition(Transition.DashKnockback); 
 
             }
 
@@ -230,6 +239,11 @@ public class AirDashAttack : FSMState
                 pc.PerformTransition(Transition.WallSlide);
             }
 
+            if (isCeiling)
+            { 
+                patk.ReInitializeTransitions();
+                pc.PerformTransition(Transition.Airborne);
+            }
             //if we touch an invisible wall, we should not wall slide, put on airborne
             if (touchingInvisWall)
             {

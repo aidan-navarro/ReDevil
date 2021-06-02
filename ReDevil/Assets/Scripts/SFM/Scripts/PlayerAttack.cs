@@ -422,7 +422,7 @@ public class PlayerAttack : MonoBehaviour
         while (!pc.GetisGrounded())
         {
             //check if we touched the floor if we did.  break.
-            pc.TouchingFloorOrWall();
+            pc.TouchingFloorCeilingWall();
             if (pc.GetisGrounded())
             {
                 break;

@@ -32,7 +32,7 @@ public class DashState : FSMState
         pc.UpdateState("Dashing");
 
         //to check if we touch a wall to transition to idle and end the dash
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         onWall = pc.GetisTouchingWall();
         isGrounded = pc.GetisGrounded();
 

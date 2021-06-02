@@ -30,7 +30,7 @@ public class KnockbackState : FSMState
         }
 
         pc.UpdateState("Knockback");
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
 
     }
 

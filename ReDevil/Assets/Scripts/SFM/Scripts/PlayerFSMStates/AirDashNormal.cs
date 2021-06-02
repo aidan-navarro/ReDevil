@@ -28,7 +28,7 @@ public class AirDashNormal : FSMState
         pc.UpdateState("Air Dash Cancel");
 
         // check to touch a wall or ground to properly transition out of state
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         onWall = pc.GetisTouchingWall();
         isGrounded = pc.GetisGrounded();
 

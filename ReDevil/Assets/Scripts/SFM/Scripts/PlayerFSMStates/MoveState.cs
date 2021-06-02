@@ -25,7 +25,7 @@ public class MoveState : FSMState
 
         pc.SetNoFrictionMaterial();
         pc.SlopeCheck();
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
 

@@ -45,7 +45,7 @@ public class GroundDashKnockback : FSMState
         }
 
 
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
 
     }
 

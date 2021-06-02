@@ -19,7 +19,7 @@ public class WallSlideState : FSMState
 
         pc.SetNoFrictionMaterial();
 
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         
         Vector3 wallInitPos = pc.transform.position;
 

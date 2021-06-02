@@ -46,7 +46,7 @@ public class GroundDashAttack : FSMState
         // should find a new state for knockback off of grounded dash attack
 
         pc.UpdateState("Ground Dash Attack");
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
 
         if (!dashAttackStarted)
