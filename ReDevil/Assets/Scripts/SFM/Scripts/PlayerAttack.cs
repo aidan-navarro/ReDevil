@@ -49,6 +49,7 @@ public class PlayerAttack : MonoBehaviour
     public bool dashAttackContact; // going to get flicked back to false once it hits
     public bool airDashAttackContact; // dash attack in the air
     public bool firstDashContact; // condition if the first dash attack has connected then change knockback properties
+    public bool airAttackContact; // to make sure that the air attack only registers once
 
     //transition bools
     public bool idleTransition;
@@ -77,6 +78,7 @@ public class PlayerAttack : MonoBehaviour
         pc = gameObject.GetComponent<PlayerFSMController>();
         attacking = false;
         firstDashContact = false;
+        airAttackContact = false;
         TurnOffHitbox();
         checkCancel = false;
     }
@@ -322,7 +324,7 @@ public class PlayerAttack : MonoBehaviour
 
                 //gain soul equal to the damage dealt to the enemy.
                 pc.SoulCalculator(pastHealth - presentHealth);
-
+                airAttackContact = true;
                 return true;
             }
         }
@@ -694,7 +696,7 @@ public class PlayerAttack : MonoBehaviour
             }
 
             // this should transition from the air
-            else if (pc.GetAttackButtonDown() && !pc.GetisGrounded())
+            else if ((pc.leftTriggerDown || pc.rightTriggerDown) && !pc.GetisGrounded())
             {
                 Debug.Log("Dash Cancel Input: " + dashTransition);
                 checkCancel = false;
@@ -734,5 +736,6 @@ public class PlayerAttack : MonoBehaviour
         airDashAttackContact = false;
         groundAttack2Transition = false;
         groundAttack3Transition = false;
+        airAttackContact = false;
     }
 }

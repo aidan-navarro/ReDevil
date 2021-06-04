@@ -136,6 +136,7 @@ public class AirDashAttack : FSMState
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
+                patk.didAirAttack = false;
                 endDash = true;
                 patk.EndDashAttack();
             }
@@ -147,6 +148,7 @@ public class AirDashAttack : FSMState
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
+                patk.didAirAttack = false;
                 endDash = true;
                 patk.EndDashAttack();
             }
@@ -248,6 +250,7 @@ public class AirDashAttack : FSMState
             if (touchingInvisWall)
             {
                 Debug.Log("Touching Invisible Wall");
+                patk.didAirAttack = false;
                 pc.PerformTransition(Transition.Airborne);
 
             }

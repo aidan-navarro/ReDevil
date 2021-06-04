@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class NodeppouIdleState : EnemyIdleState
 {
-    //Constructor
-    bool isHit;
 
     public NodeppouIdleState()
     {
         stateID = FSMStateID.NodeppouIdling;
         timer = 0;
-        isHit = false;
         atkTransition = false;
     }
 

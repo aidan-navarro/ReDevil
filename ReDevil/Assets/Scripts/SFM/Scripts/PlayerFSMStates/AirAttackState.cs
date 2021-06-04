@@ -28,18 +28,46 @@ public class AirAttackState : FSMState
         //float attackGravity = prevGravScale/2;
         //rig.gravityScale = attackGravity;
 
-      
         pc.UpdateState("Air Attack");
+        airTime += Time.deltaTime;
 
-        if (airTime < patk.GetAirAttackTime())
+        if (airTime < patk.GetAirAttackTime() && !patk.airAttackContact) // this is keeping it locked
         {
             Debug.Log("Airstrike");
             patk.AirAttack();
-            airTime += Time.deltaTime;
+            
+        } 
+        else if (patk.airAttackContact)
+        {
+            pc.UpdateState("Air Attack Hit");
+            patk.StopAirAttack();
         }
+
         pc.TouchingFloorCeilingWall();
         patk.CheckDashCancel();
         patk.CheckKnockbackCancel();
+        pc.CheckAirDash();
+
+        if (pc.GetCanDash())
+        {
+            Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                pc.SetDashPath(pc.moveVector);
+
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
+        }
 
     }
 
@@ -53,34 +81,49 @@ public class AirAttackState : FSMState
         bool isGrounded = pc.GetisGrounded();
         bool onWall = pc.GetisTouchingWall();
         bool isCeiling = pc.GetisTouchingCeiling();
+        bool touchingInvisWall = pc.GetisTouchingInvisibleWall();
 
+        patk.CheckDashCancel();
+        pc.CheckAirDash();
+        if (!invincible && pc.GetKbTransition())
+        {
+            patk.StopAirAttack();
+            attackStarted = false;
+            //rig.gravityScale = prevGravScale;
+            patk.ReInitializeTransitions();
+            pc.PerformTransition(Transition.Knockback);
+        }
         if (patk.dashTransition) //if dash cancel = true, change to dash state
         {
             patk.StopAirAttack();
             attackStarted = false;
             //rig.gravityScale = prevGravScale;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.DashAttack);
+            pc.PerformTransition(Transition.AirDashAttack);
         }
         if (onWall)
         {
             patk.StopAirAttack();
-
             attackStarted = false;
             patk.StopAirAttack();
-            //rig.gravityScale = prevGravScale;
+            patk.didAirAttack = false;
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.WallSlide);
+        }
+
+        if (touchingInvisWall)
+        {
+            attackStarted = false;
+            patk.ReInitializeTransitions();
+            pc.PerformTransition(Transition.Airborne);
         }
 
         if (isGrounded)
         {
             patk.StopAirAttack();
-
             attackStarted = false;
             patk.idleTransition = true;
             patk.didAirAttack = false;
-            //rig.gravityScale = prevGravScale;
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.Idle);
         }
@@ -97,7 +140,17 @@ public class AirAttackState : FSMState
                 pc.PerformTransition(Transition.Airborne);
             }
 
-            
+            else if (isGrounded)
+            {
+                patk.StopAirAttack();
+
+                attackStarted = false;
+                patk.idleTransition = true;
+                patk.didAirAttack = false;
+                //rig.gravityScale = prevGravScale;
+                patk.ReInitializeTransitions();
+                pc.PerformTransition(Transition.Idle);
+            }
         }
 
         //dead transition
