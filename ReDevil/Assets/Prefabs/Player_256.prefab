@@ -578,15 +578,18 @@ MonoBehaviour:
   groundHit2: 20
   groundHit3: 40
   dashAttackValue: 15
+  airAttackValue: 30
   groundHitCounter: 0
   airDownStrike: 50
-  airAttackLag: 0.5
+  airAttackTime: 0.3
   endlag: 1
   enemyHitboxes: []
   attacking: 0
+  didAirAttack: 0
   dashAttackContact: 0
   airDashAttackContact: 0
   firstDashContact: 0
+  airAttackContact: 0
   idleTransition: 0
   dashTransition: 0
   groundAttack2Transition: 0

@@ -29,8 +29,6 @@ public class PlayerAttack : MonoBehaviour
     //damage amount for airDownStrike
     public float airDownStrike;
 
-    // Air attack lag
-    public float airAttackLag;
     [SerializeField] private float airAttackTime;
     public float GetAirAttackTime() { return airAttackTime; }
 
@@ -265,26 +263,7 @@ public class PlayerAttack : MonoBehaviour
         TurnOffHitbox();
         attacking = false;
         checkCancel = false;
-        //StopCoroutine("EnableAirAttack");
     }
-
-    //public IEnumerator EnableAirAttack()
-    //{
-    //    attacking = true;
-    //    didAirAttack = true;
-    //    Debug.Log("Air Attack Trigger");
-    //    damage = airAttackValue;
-    //    TurnOnHitbox();
-    //    CheckAirHit(attackCollider, transform.forward, 10);
-    //    //yield return new WaitForSeconds(0.1f); // this how long the hitbox lasts?
-
-    //    checkCancel = true;
-    //    //yield return new WaitForSeconds(airAttackLag); // this how long the hitbox lasts?
-
-    //    //TurnOffHitbox();
-    //    //checkCancel = false;
-    //    //attacking = false;
-    //}
 
     private bool CheckAirHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
