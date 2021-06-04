@@ -8,7 +8,9 @@ public class BasanFSMController : EnemyFSMController
     public Transform firepoint;
     public float flamethrowerTimer;
     public bool attacking; // bool value to determine if we are attacking
-
+    [SerializeField]
+    private Vector2 knockbackVel;
+    public Vector2 GetKnockbackVel() { return knockbackVel; }
     //initialize FSM
     protected override void Initialize()
     {
@@ -47,12 +49,16 @@ public class BasanFSMController : EnemyFSMController
 
         //add transitions
         enemyIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        enemyIdle.AddTransition(Transition.BasanFlinch, FSMStateID.BasanFlinching); // transition to flinching state
         enemyIdle.AddTransition(Transition.BasanAttack, FSMStateID.BasanAttacking); //transition to attacking state
 
         BasanAttackState ndpAttack = new BasanAttackState();
         ndpAttack.AddTransition(Transition.BasanIdle, FSMStateID.BasanIdling);
         ndpAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
+        BasanFlinchState bsFlinch = new BasanFlinchState();
+        bsFlinch.AddTransition(Transition.BasanIdle, FSMStateID.BasanIdling);
+        bsFlinch.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
@@ -62,6 +68,7 @@ public class BasanFSMController : EnemyFSMController
         //Add state to the state list
         AddFSMState(enemyIdle);
         AddFSMState(ndpAttack);
+        AddFSMState(bsFlinch);
         AddFSMState(enemyDead);
 
     }
@@ -80,6 +87,18 @@ public class BasanFSMController : EnemyFSMController
 
         Destroy(bulletClone);
         attacking = false;
+    }
+    public override void FlinchEnemy(Vector2 flinchKB)
+    {
+        //base.FlinchEnemy(flinchKB);
+        if (facingRight)
+        {
+            rig.velocity = flinchKB * new Vector2(-1, 1);
+        }
+        else if (!facingRight)
+        {
+            rig.velocity = flinchKB;
+        }
     }
 
     public void BasanAttack()

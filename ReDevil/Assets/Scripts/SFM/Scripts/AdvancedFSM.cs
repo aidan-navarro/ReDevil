@@ -42,20 +42,24 @@ public enum Transition
 
     //attack states for individual minion ememies
     NodeppouIdle,
+    NodeppouFlinch,
     NodeppouAttack,
 
     ShutenDojiIdle,
     ShutenDojiAttack,
 
     BasanIdle,
+    BasanFlinch,
     BasanAttack,
 
     ChochinObakeIdle,
     ChochinObakeAttack,
+    ChochinOkabeFlinch, // to add later
 
     WaniguchiIdle,
     WaniguchiAttack,
     WaniguchiAirborne,  // new transition for when Waniguchi is in the air after the attack jump
+    WaniguchiFlinch,
 
     OniIdle,
     OniChase,
@@ -67,6 +71,7 @@ public enum Transition
     NurikabeIdle,
     NurikabeRise,
     NurikabeActive,
+    NurikabeFlinch, // to add later
 }
 
 public enum FSMStateID
@@ -103,23 +108,28 @@ public enum FSMStateID
 
     //Nodeppou
     NodeppouIdling,
+    NodeppouFlinching, // flinching
     NodeppouAttacking,
 
     //ShutenDoji
     ShutenDojiIdling,
     ShutenDojiAttacking,
 
+    //Basan
     BasanIdling,
+    BasanFlinching,
     BasanAttacking,
 
     //ChochinObake
     ChochinObakeIdling,
     ChochinObakeAttacking,
+    ChochinOkabeFlinching,
 
     //Waniguchi
     WaniguchiIdling,
     WaniguchiAttacking,
     WaniguchiMidair, // state for when the waniguchi is in the air
+    WaniguchiFlinching,
 
     // Oni
     OniIdling,
@@ -133,6 +143,7 @@ public enum FSMStateID
     NurikabeIdling,
     NurikabeRising,
     NurikabeActivating,
+    NurikabeFlinching
 }
 
 public class AdvancedFSM : FSM 

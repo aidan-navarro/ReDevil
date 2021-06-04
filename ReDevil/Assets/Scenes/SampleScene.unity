@@ -2964,6 +2964,16 @@ PrefabInstance:
       propertyPath: attackInterval
       value: 1.99
       objectReference: {fileID: 0}
+    - target: {fileID: 2055195221196047188, guid: 753d3bcb76d3a4d4783a37665718358d,
+        type: 3}
+      propertyPath: knockbackVel.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055195221196047188, guid: 753d3bcb76d3a4d4783a37665718358d,
+        type: 3}
+      propertyPath: knockbackVel.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2672422898649518013, guid: 753d3bcb76d3a4d4783a37665718358d,
         type: 3}
       propertyPath: m_RootOrder
@@ -3092,6 +3102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.5600014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575489276398568401, guid: 69c30ee0916387442bdeef7357d4a1e1,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276398568402, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -3330,7 +3345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 145.4, y: 90.5}
+  m_AnchoredPosition: {x: 145.67, y: 90.5}
   m_SizeDelta: {x: 322, y: 181}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1750530338
@@ -3626,6 +3641,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a9f389b58e92734686ad768784e00b8, type: 3}
+--- !u!1 &1916174193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3493659206066843530, guid: fd3494471fc3da947b543fad238cd91e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2144877585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1916174194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916174193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306a1a46319508143ab3da41cb8beedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackTimer: 0.5
 --- !u!1 &1936102691
 GameObject:
   m_ObjectHideFlags: 0
@@ -4056,10 +4090,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3440894121285688360, guid: fd3494471fc3da947b543fad238cd91e,
+        type: 3}
+      propertyPath: health
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440894121285688360, guid: fd3494471fc3da947b543fad238cd91e,
+        type: 3}
+      propertyPath: knockbackVel.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440894121285688360, guid: fd3494471fc3da947b543fad238cd91e,
+        type: 3}
+      propertyPath: knockbackVel.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3493659206066843530, guid: fd3494471fc3da947b543fad238cd91e,
         type: 3}
       propertyPath: m_Name
       value: Nodeppou
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089431199775758278, guid: fd3494471fc3da947b543fad238cd91e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8013459614315114090, guid: fd3494471fc3da947b543fad238cd91e,
         type: 3}

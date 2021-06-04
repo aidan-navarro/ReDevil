@@ -188,7 +188,6 @@ public class PlayerAttack : MonoBehaviour
         ContactFilter2D filter = new ContactFilter2D();
 
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
-        Debug.Log("Number Ground Hits: " + numHits);
 
         for (int i = 0; i < numHits; i++)
         {
@@ -198,6 +197,7 @@ public class PlayerAttack : MonoBehaviour
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
+                // register a hit
                 DetectWeakspot(eCollider);
 
                 Vector3 position = this.gameObject.transform.position;  // this isn't getting used
@@ -210,8 +210,14 @@ public class PlayerAttack : MonoBehaviour
 
                 //store the amount of hp the enemy has after the hit
                 float presentHealth = ec.health;
+                attackVector = ec.transform.position - pc.transform.position;
 
-                //if the present health goes below 0, set it to zero since you can't steal a negative soul value
+                ec.SetIsHit(true);
+                if (groundHitCounter >= 3)
+                {
+                    ec.SetEnemyFlinch(true);
+                }
+                    //if the present health goes below 0, set it to zero since you can't steal a negative soul value
                 if (presentHealth < 0)
                 {
                     presentHealth = 0;
@@ -286,7 +292,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
-                
+
+                ec.SetIsHit(true);
                 DetectWeakspot(eCollider);
 
                 //store the amount of hp the enemy has before the initial hit
@@ -308,6 +315,8 @@ public class PlayerAttack : MonoBehaviour
                 pc.SoulCalculator(pastHealth - presentHealth);
                 attackVector = ec.transform.position - pc.transform.position;
 
+                ec.SetEnemyFlinch(true);
+
                 attacking = false;
                 if (pc.GetisGrounded())
                 {
@@ -319,7 +328,6 @@ public class PlayerAttack : MonoBehaviour
                     Debug.Log("Air Hit");
                     airDashAttackContact = true;
                     // get and normalize the attack vector 
-                    Debug.Log("Attack Vector: " + attackVector.normalized);
          
                     if (presentHealth == 0)
                     {
@@ -414,7 +422,7 @@ public class PlayerAttack : MonoBehaviour
         while (!pc.GetisGrounded())
         {
             //check if we touched the floor if we did.  break.
-            pc.TouchingFloorOrWall();
+            pc.TouchingFloorCeilingWall();
             if (pc.GetisGrounded())
             {
                 break;
@@ -460,6 +468,7 @@ public class PlayerAttack : MonoBehaviour
             //if the hit of the collider is NOT trigger AND is an enemy
             if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy"))
             {
+                
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
@@ -485,6 +494,7 @@ public class PlayerAttack : MonoBehaviour
 
                 //send all relative information to the player to take damage, and apply knockback
                 ec.TakeDamage(damage);
+                ec.SetEnemyFlinch(true);
 
                 //store the amount of hp the enemy has after the hit
                 float presentHealth = ec.health;

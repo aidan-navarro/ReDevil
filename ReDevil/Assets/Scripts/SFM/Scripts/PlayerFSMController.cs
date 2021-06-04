@@ -20,7 +20,7 @@ public class PlayerFSMController : AdvancedFSM
     private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
     public LayerMask invisWallLayer;
-    public LayerMask nurikabeLayer; // specific Nurikabe functionality
+    public LayerMask nurikabeLayer; // specific Nurikabe functionality *** not currently being used rn
 
     //used for slope functionality
     [SerializeField]
@@ -252,6 +252,10 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetisTouchingWall() { return isTouchingWall; }
     public void SetisTouchingWall(bool inIsTouchingWall) { isTouchingWall = inIsTouchingWall; }
 
+    private bool isTouchingCeiling;
+    public bool GetisTouchingCeiling() { return isTouchingCeiling; }
+    public void SetisTouchingCeiling(bool inIsTouchingCeiling) { isTouchingCeiling = inIsTouchingCeiling; }
+
     [SerializeField]
     private bool isTouchingInvisibleWall;
     public bool GetisTouchingInvisibleWall() { return isTouchingInvisibleWall; }
@@ -261,6 +265,7 @@ public class PlayerFSMController : AdvancedFSM
     private bool isTouchingNurikabe;
     public bool GetisTouchingNurikabe() { return isTouchingNurikabe; }
     public void SetisTouchingNurikabe(bool inIsTouchingNurikabe) { isTouchingNurikabe = inIsTouchingNurikabe; } 
+
     [SerializeField]
     private float jumpPower = 10;
     public float GetJumpPower() { return jumpPower; }
@@ -497,6 +502,7 @@ public class PlayerFSMController : AdvancedFSM
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
         //moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        moving.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -751,17 +757,23 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
-    public void TouchingFloorOrWall()
+    public void TouchingFloorCeilingWall()
     {
         //equation values to determine if the player is on the ground
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
         isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
+        Vector2 headPos = col.bounds.center;
+        headPos.y += col.bounds.extents.y;
+        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
+
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, groundLayer.value);
+
+        
     }
 
     public void TouchingInvisibleWall()

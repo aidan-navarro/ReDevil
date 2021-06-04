@@ -45,6 +45,11 @@ public class NodeppouAttackState : FSMState
             ec.PerformTransition(Transition.NodeppouIdle); 
         }
 
+        if(ec.GetEnemyFlinch())
+        {
+            ec.PerformTransition(Transition.NodeppouFlinch);
+        }
+
         //dead transition
         if (ec.health <= 0)
         {

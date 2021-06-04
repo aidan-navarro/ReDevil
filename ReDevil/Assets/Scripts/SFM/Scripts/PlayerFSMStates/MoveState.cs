@@ -23,9 +23,12 @@ public class MoveState : FSMState
         isMoving = true;
         bool grounded = pc.GetisGrounded();
 
+        // moving and attacking
+        bool attackButtonDown = pc.GetAttackButtonDown();
+
         pc.SetNoFrictionMaterial();
         pc.SlopeCheck();
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
 
@@ -92,6 +95,12 @@ public class MoveState : FSMState
             isMoving = false;
         }
 
+        // should the player attack, stop it
+        if (attackButtonDown)
+        {
+            rig.velocity = Vector2.zero;
+        }
+
         
     }
 
@@ -108,6 +117,7 @@ public class MoveState : FSMState
         bool dashAllowed = pc.GetDashInputAllowed();
         bool onWall = pc.GetisTouchingWall();
         bool invincible = pc.GetInvincible();
+        bool attackButtonDown = pc.GetAttackButtonDown();
         bool kbTransition = pc.GetKbTransition();
 
         //knockback transition
@@ -130,6 +140,12 @@ public class MoveState : FSMState
             //{
             //    pc.PerformTransition(Transition.Dash);
             //}
+        }
+
+        // attacking
+        if (attackButtonDown)
+        {
+            pc.PerformTransition(Transition.GroundAttack1);
         }
 
         //idle transition

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8849919984609090101}
   - component: {fileID: 691336618487003822}
   - component: {fileID: 369235940942645045}
+  - component: {fileID: 2831512982564982091}
   m_Layer: 0
   m_Name: Basan
   m_TagString: Enemy
@@ -101,8 +102,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   rig: {fileID: 0}
-  health: 51
+  health: 200
+  maxHealth: 0
   range: 10
   damage: 10
   attackInterval: 5
@@ -110,12 +115,16 @@ MonoBehaviour:
   atkDirectionRight: {x: 0, y: 0}
   projectileSpeed: 0
   currentPos: {x: 0, y: 0}
+  isGrounded: 0
   airborneEnemy: 0
+  isHit: 0
+  enemyFlinch: 0
   flamethrower: {fileID: 2356310727318964796, guid: 4c8e5de6a4e08814db88610f89f0128b,
     type: 3}
   firepoint: {fileID: 7762641877270609394}
   flamethrowerTimer: 3
   attacking: 0
+  knockbackVel: {x: 3, y: 1}
 --- !u!50 &691336618487003822
 Rigidbody2D:
   serializedVersion: 4
@@ -163,6 +172,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.79, y: 10.24}
   m_EdgeRadius: 0
+--- !u!114 &2831512982564982091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585664551470651180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306a1a46319508143ab3da41cb8beedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackTimer: 0.5
 --- !u!1 &7762641877270609395
 GameObject:
   m_ObjectHideFlags: 0

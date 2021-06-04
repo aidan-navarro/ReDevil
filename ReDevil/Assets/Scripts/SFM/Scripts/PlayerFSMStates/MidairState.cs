@@ -54,7 +54,7 @@ public class MidairState : FSMState
         }
         //Debug.Log(pc.GetDashPath());
         //first check if we are touching a wall or floor
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
 
         //check if a dash is input
         //pc.CheckDashInput();

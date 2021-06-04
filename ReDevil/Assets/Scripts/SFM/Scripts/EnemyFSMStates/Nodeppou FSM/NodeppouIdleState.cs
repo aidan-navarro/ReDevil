@@ -5,22 +5,43 @@ using UnityEngine;
 public class NodeppouIdleState : EnemyIdleState
 {
     //Constructor
+    bool isHit;
+
     public NodeppouIdleState()
     {
         stateID = FSMStateID.NodeppouIdling;
         timer = 0;
+        isHit = false;
         atkTransition = false;
     }
 
+    public override void Act(Transform player, Transform npc)
+    {
+        base.Act(player, npc);
 
+        NodeppouFSMController nc = npc.GetComponent<NodeppouFSMController>();
+
+        if (nc.GetIsHit())
+        {
+            Debug.Log("Nodeppou is hit");
+            timer = 0;
+            nc.SetIsHit(false);
+        }
+        
+    }
     public override void Reason(Transform player, Transform npc)
     {
-        EnemyFSMController ec = npc.GetComponent<EnemyFSMController>();
+        NodeppouFSMController ec = npc.GetComponent<NodeppouFSMController>();
 
         //attack transition
         if (atkTransition)
         {
             ec.PerformTransition(Transition.NodeppouAttack);
+        }
+
+        if (ec.GetEnemyFlinch())
+        {
+            ec.PerformTransition(Transition.NodeppouFlinch);
         }
 
         //dead transition
