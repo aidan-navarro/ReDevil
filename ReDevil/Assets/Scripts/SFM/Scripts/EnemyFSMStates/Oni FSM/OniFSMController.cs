@@ -201,7 +201,9 @@ public class OniFSMController : EnemyFSMController
 
     public void BoulderPut()
     {
-        Vector2 bulletDirection = (playerTransform.position - firepoint.transform.position).normalized;
+        Vector2 bulletDirection = (playerTransform.position - firepoint.transform.position);
+        bulletDirection.y = 0;
+        bulletDirection = bulletDirection.normalized;
         Debug.Log(bulletDirection);
         GameObject bulletClone;
         bulletClone = Instantiate(boulderPrehab, firepoint.position, boulderPrehab.transform.rotation);
