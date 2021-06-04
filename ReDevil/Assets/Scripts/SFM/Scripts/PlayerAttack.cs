@@ -433,7 +433,10 @@ public class PlayerAttack : MonoBehaviour
     //------------------------------------------------------------
     public void SoulShotAttack()
     {
-        StartCoroutine("EnableSoulShotAttack");
+        if (!attacking)
+        {
+            StartCoroutine("EnableSoulShotAttack");
+        }
     }
     public IEnumerator EnableSoulShotAttack()
     {

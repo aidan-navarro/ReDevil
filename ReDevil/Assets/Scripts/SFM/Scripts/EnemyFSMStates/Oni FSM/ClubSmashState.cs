@@ -13,7 +13,9 @@ public class ClubSmashState : FSMState
     }
     public override void EnterStateInit()
     {
-        base.EnterStateInit();
+        Debug.Log("Oni Club Smash");
+        attackStarted = false;
+        attackEnded = false;
     }
 
 
@@ -46,10 +48,10 @@ public class ClubSmashState : FSMState
     {
         // Make the oni flash yellow or some color to tell the player the boss is about to attack
         npc.GetComponent<SpriteRenderer>().color = Color.yellow;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.0f);
         npc.GetComponent<SpriteRenderer>().color = Color.white;
         npc.GetComponent<OniFSMController>().ClubSmashAttack();
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.0f);
         attackEnded = true;
     }
 }

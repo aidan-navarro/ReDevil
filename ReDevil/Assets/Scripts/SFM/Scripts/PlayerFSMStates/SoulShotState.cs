@@ -8,6 +8,7 @@ public class SoulShotState : FSMState
 
     public SoulShotState()
     {
+        soulShotStarted = false;
         stateID = FSMStateID.SoulShot;
     }
     public override void Act(Transform player, Transform npc)
@@ -21,17 +22,17 @@ public class SoulShotState : FSMState
 
         if (!soulShotStarted)
         {
-            Debug.Log("something being called");
             patk.SoulShotAttack();
             soulShotStarted = true;
         }
 
+        pc.TouchingFloorCeilingWall();
         patk.CheckKnockbackCancel();
     }
 
     public override void Reason(Transform player, Transform npc)
     {
-        Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
+        //Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 

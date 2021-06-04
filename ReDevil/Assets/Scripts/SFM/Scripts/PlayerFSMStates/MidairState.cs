@@ -34,7 +34,7 @@ public class MidairState : FSMState
         // We're using the move vector from the Player FSM Controller to dictate the dash path
         if (pc.GetCanDash())
         {
-            Debug.Log("Changing dash path");
+            //Debug.Log("Changing dash path");
             if (pc.moveVector != Vector2.zero)
             {
                 pc.SetDashPath(pc.moveVector);

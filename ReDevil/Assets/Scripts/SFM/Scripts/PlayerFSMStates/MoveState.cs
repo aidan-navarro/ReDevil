@@ -47,7 +47,7 @@ public class MoveState : FSMState
             //determine velocity based on if we are on a slope or flat ground
             if (grounded && !pc.isOnSlope)
             {
-                Debug.Log("OnFlat Ground");
+                //Debug.Log("OnFlat Ground");
                 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
                 newMoveSpeed.y = rig.velocity.y;
             }
@@ -72,7 +72,7 @@ public class MoveState : FSMState
             //determine velocity based on if we are on a slope or flat ground
             if (grounded && !pc.isOnSlope)
             {
-                Debug.Log("OnFlat Ground");
+                //Debug.Log("OnFlat Ground");
                 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
                 newMoveSpeed.y = rig.velocity.y;
             }
