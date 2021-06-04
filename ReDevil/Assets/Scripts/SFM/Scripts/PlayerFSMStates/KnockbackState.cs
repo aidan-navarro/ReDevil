@@ -38,17 +38,20 @@ public class KnockbackState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
         bool checkImmobile = pc.GetImmobile();
         bool grounded = pc.GetisGrounded();
         bool onWall = pc.GetisTouchingWall();
 
         if (!checkImmobile && grounded)
         {
+            patk.didAirAttack = false;
             pc.PerformTransition(Transition.Idle);
         }
 
         if (!checkImmobile && !grounded && onWall)
         {
+            patk.didAirAttack = false;
             pc.PerformTransition(Transition.WallSlide);
         }
 

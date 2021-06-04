@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     public float groundHit2;
     public float groundHit3;
     public float dashAttackValue; // Point values for dash attacking
+    public float airAttackValue;
 
     //to count what number attack chain we're on
     public int groundHitCounter;
@@ -30,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
 
     // Air attack lag
     public float airAttackLag;
+    [SerializeField] private float airAttackTime;
+    public float GetAirAttackTime() { return airAttackTime; }
 
     //endlag once the player has landed
     public float endlag;
@@ -40,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
     //the variable called to deal damage to enemies.  set value using variables used to set damage amounts
     private float damage;
     public bool attacking;
-    public bool didAirAttack;
+    public bool didAirAttack; // flip this when air attack is committed
 
     // dash attack specific, only want to have the dash attack trigger once on hit
     public bool dashAttackContact; // going to get flicked back to false once it hits
@@ -119,6 +122,7 @@ public class PlayerAttack : MonoBehaviour
     public IEnumerator EnableGroundHit()
     {
         attacking = true;
+        
         //update the combo count
         groundHitCounter++;
         Debug.Log("GroundHitCount: " + groundHitCounter);
@@ -137,6 +141,7 @@ public class PlayerAttack : MonoBehaviour
                 damage = groundHit3;
                 break;
         }
+        #region old implementation 
 
         //old if statement.  replaced by above switch statement for practice reasons
         /*
@@ -156,6 +161,7 @@ public class PlayerAttack : MonoBehaviour
 
         //// lock the player's position 
         //pc.GetRigidbody2D().velocity = new Vector2(0, 0);
+        #endregion
 
         //let a hit process
         CheckGroundHit(attackCollider, transform.forward, 10);
@@ -241,28 +247,42 @@ public class PlayerAttack : MonoBehaviour
 
     public void AirAttack()
     {
-        StartCoroutine("EnableAirAttack");
-    }
-
-    public void StopairAttack()
-    {
-        TurnOffHitbox();
-        attacking = false;
-        StopCoroutine("EnableAirAttack");
-    }
-
-    public IEnumerator EnableAirAttack()
-    {
         attacking = true;
+        didAirAttack = true;
+        Debug.Log("Air Attack Trigger");
+        damage = airAttackValue;
         TurnOnHitbox();
         CheckAirHit(attackCollider, transform.forward, 10);
-        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(0.1f); // this how long the hitbox lasts?
+
         checkCancel = true;
-        yield return new WaitForSeconds(airAttackLag);
-        TurnOffHitbox();
-        checkCancel = false;
-        attacking = false;
     }
+
+    public void StopAirAttack()
+    {
+        TurnOffHitbox();
+        attacking = false;
+        checkCancel = false;
+        //StopCoroutine("EnableAirAttack");
+    }
+
+    //public IEnumerator EnableAirAttack()
+    //{
+    //    attacking = true;
+    //    didAirAttack = true;
+    //    Debug.Log("Air Attack Trigger");
+    //    damage = airAttackValue;
+    //    TurnOnHitbox();
+    //    CheckAirHit(attackCollider, transform.forward, 10);
+    //    //yield return new WaitForSeconds(0.1f); // this how long the hitbox lasts?
+
+    //    checkCancel = true;
+    //    //yield return new WaitForSeconds(airAttackLag); // this how long the hitbox lasts?
+
+    //    //TurnOffHitbox();
+    //    //checkCancel = false;
+    //    //attacking = false;
+    //}
 
     private bool CheckAirHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
@@ -644,7 +664,11 @@ public class PlayerAttack : MonoBehaviour
                         break;
                 }
 
-            }
+            } 
+            //else if (pc.GetAttackButtonDown() && !pc.GetisGrounded()) // when we're in the air
+            //{
+            //    checkCancel = false;
+            //}
 
         }
 
@@ -660,14 +684,25 @@ public class PlayerAttack : MonoBehaviour
             // this should transition into the ground attack
             if ((pc.leftTriggerDown || pc.rightTriggerDown) && pc.GetisGrounded())
             {
-                Debug.Log("Dash Cancel Input");
+                Debug.Log("Dash Cancel Input: " + dashTransition);
                 checkCancel = false;
                 groundHitCounter = 0;
                 //turn on variable for dash cancel
                 StopGroundAttack();
                 StopAirDownStrikeAttack();
                 dashTransition = true;
-                Debug.Log(dashTransition);
+            }
+
+            // this should transition from the air
+            else if (pc.GetAttackButtonDown() && !pc.GetisGrounded())
+            {
+                Debug.Log("Dash Cancel Input: " + dashTransition);
+                checkCancel = false;
+                groundHitCounter = 0;
+                //turn on variable for dash cancel
+                StopAirAttack();
+                StopAirDownStrikeAttack();
+                dashTransition = true;
             }
         }
     }
@@ -682,6 +717,7 @@ public class PlayerAttack : MonoBehaviour
                 checkCancel = false;
                 groundHitCounter = 0;
                 StopGroundAttack();
+                StopAirAttack();
                 StopAirDownStrikeAttack();
             }
         }

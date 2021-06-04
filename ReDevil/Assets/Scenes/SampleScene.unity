@@ -3173,6 +3173,21 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5941117341249860993, guid: 69c30ee0916387442bdeef7357d4a1e1,
+        type: 3}
+      propertyPath: airAttackLag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941117341249860993, guid: 69c30ee0916387442bdeef7357d4a1e1,
+        type: 3}
+      propertyPath: airAttackTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941117341249860993, guid: 69c30ee0916387442bdeef7357d4a1e1,
+        type: 3}
+      propertyPath: airAttackValue
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
 --- !u!1001 &1722303947
@@ -3990,6 +4005,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 942986219773589610, guid: ba2190c119991de49a12a8510f9c183c,
+        type: 3}
+      propertyPath: health
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 942986219773589610, guid: ba2190c119991de49a12a8510f9c183c,
         type: 3}
       propertyPath: projectileSpeed

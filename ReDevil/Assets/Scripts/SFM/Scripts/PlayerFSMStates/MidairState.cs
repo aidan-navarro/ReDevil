@@ -100,6 +100,7 @@ public class MidairState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
         bool grounded = pc.GetisGrounded();
         bool onWall = pc.GetisTouchingWall();
@@ -129,6 +130,11 @@ public class MidairState : FSMState
             pc.PerformTransition(Transition.SoulShot);
         }
 
+        if (pc.GetAttackButtonDown() && !pc.GetisGrounded() && !patk.didAirAttack)
+        {
+            pc.PerformTransition(Transition.AirAttack);
+        }
+
         //dash transition
         if ((pc.leftTriggerDown || pc.rightTriggerDown) && cD && dashAllowed )
         {
@@ -136,7 +142,6 @@ public class MidairState : FSMState
             //Debug.Log("Commence Air Dash Attack");
 
             pc.IncrementAirDashCount();
-            // check using a boolean if we've hit an enemy already            
             pc.PerformTransition(Transition.AirDashAttack);
             // switch to dash attack state
         }
@@ -145,6 +150,8 @@ public class MidairState : FSMState
         if (onWall)
         {
             pc.soundManager.PlayLanding();
+            patk.didAirAttack = false;
+           
             pc.PerformTransition(Transition.WallSlide);
         }
 
@@ -153,6 +160,8 @@ public class MidairState : FSMState
         if (grounded)
         {
             pc.soundManager.PlayLanding();
+            patk.didAirAttack = false;
+           
             //pc.SetDashPath(Vector2.zero); // reset the dash path
             pc.PerformTransition(Transition.Idle);
         }

@@ -544,6 +544,7 @@ public class PlayerFSMController : AdvancedFSM
         midair.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while midair, transition to dead
         midair.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i land on the ground, transition to idling
         midair.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);  //if i touch a wall while falling, transition to sall sliding
+        midair.AddTransition(Transition.AirAttack, FSMStateID.AirStrike);
         //midair.AddTransition(Transition.Dash, FSMStateID.Dashing);
         midair.AddTransition(Transition.AirDashAttack, FSMStateID.AirDashAttacking);
         midair.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -636,9 +637,12 @@ public class PlayerFSMController : AdvancedFSM
 
         AirAttackState airAttack = new AirAttackState();
 
-        airAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
-        airAttack.AddTransition(Transition.Airborne, FSMStateID.Midair);
-        airAttack.AddTransition(Transition.AirDashAttack, FSMStateID.AirDashAttacking);
+        airAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if we die
+        airAttack.AddTransition(Transition.Idle, FSMStateID.Idling); // once Air attack ends do we hit the ground
+        airAttack.AddTransition(Transition.Airborne, FSMStateID.Midair); // or do we stay in the air
+        airAttack.AddTransition(Transition.WallSlide, FSMStateID.WallSliding); // or if we hit the wall
+        airAttack.AddTransition(Transition.AirDashAttack, FSMStateID.AirDashAttacking); // should we wait until it goes out of air attack or can we cancel out of it?
+        airAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
 
         AirDownStrikeState airDownStrike = new AirDownStrikeState();
 
@@ -673,6 +677,7 @@ public class PlayerFSMController : AdvancedFSM
         AddFSMState(groundDashAttack); // adding to the attack states
         AddFSMState(airDashAttack); // adding to state
         AddFSMState(groundDashKnockback); // adding right after dash attack
+        AddFSMState(airAttack);
         AddFSMState(ga1);
         AddFSMState(ga2);
         AddFSMState(ga3);
