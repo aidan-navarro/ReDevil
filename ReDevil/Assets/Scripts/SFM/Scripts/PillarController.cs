@@ -36,7 +36,6 @@ public class PillarController : MonoBehaviour
                 newScale.y = maxScale;
             }
             transform.localScale = newScale;
-            Debug.Log(transform.localScale);
             yield return null;
         }
         while (timer < raiseTime);

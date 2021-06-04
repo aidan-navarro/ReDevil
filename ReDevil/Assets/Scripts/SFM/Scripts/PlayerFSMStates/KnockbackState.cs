@@ -15,7 +15,7 @@ public class KnockbackState : FSMState
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
     {
-        Debug.Log("Knockback State");
+        //Debug.Log("Knockback State");
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         timer = pc.GetComponent<InvincibleTimer>();

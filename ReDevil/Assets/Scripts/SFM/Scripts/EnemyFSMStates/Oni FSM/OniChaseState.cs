@@ -13,7 +13,9 @@ public class OniChaseState : FSMState
 
     public override void EnterStateInit()
     {
-        base.EnterStateInit();
+        Debug.Log("Oni Chase");
+        switchToAttack = false;
+        enteredState = true;
     }
 
     public override void Act(Transform player, Transform npc)
@@ -34,7 +36,7 @@ public class OniChaseState : FSMState
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
-        if (oc.GetInRange())
+        if (oc.IsWithinClubRange(player))
         {
             oc.StopCoroutine(ChaseTimer());
             oc.PerformTransition(Transition.OniClubSmash);
@@ -64,7 +66,7 @@ public class OniChaseState : FSMState
 
     public IEnumerator ChaseTimer()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         switchToAttack = true;
     }
 

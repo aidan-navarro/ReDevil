@@ -6,8 +6,12 @@ using System;
 
 public class OniFSMController : EnemyFSMController
 {
-    public GameObject pillarPrehab;
-    public GameObject boulderPrehab;
+    [SerializeField]
+    private GameObject pillarPrehab;
+    [SerializeField]
+    private GameObject boulderPillarPrehab;
+    [SerializeField]
+    private GameObject boulderPrehab;
     [SerializeField]
     private Transform firepoint;
 
@@ -20,9 +24,13 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float clubKnockback;
     [SerializeField]
+    private float clubRange;
+    [SerializeField]
     private float jumpSmashDamage;
     [SerializeField]
     private float jumpSmashKnockback;
+    [SerializeField]
+    private float jumpSmashRange;
     [SerializeField]
     private float cycloneSmashDamage;
     [SerializeField]
@@ -36,12 +44,18 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float chaseSpeed;
     public float ChaseSpeed => chaseSpeed;
+    [SerializeField]
+    private float cycloneSpeed;
+    public float CycloneSpeed => cycloneSpeed;
 
     [SerializeField]
     private List<Transform> arenaPoints;
     public List<Transform> ArenaTransforms => arenaPoints;
     [SerializeField]
     private float playerPointLineRange = 0.5f;
+
+    public event EventHandler OnPlayerHit;
+    public event EventHandler OnWallHit;
 
     //initialize FSM
     protected override void Initialize()
@@ -124,16 +138,22 @@ public class OniFSMController : EnemyFSMController
 
     public void ClubSmashAttack()
     {
-        Collider2D collider = Physics2D.OverlapCircle(clubAttackPoint.position, range / 2, playerLayer);
+        Collider2D collider = Physics2D.OverlapCircle(clubAttackPoint.position, clubRange, playerLayer);
         if (collider != null)
         {
-            collider.GetComponent<PlayerFSMController>().KnockbackTransition(clubDamage, clubKnockback, clubAttackPoint.position);
+            collider.GetComponent<PlayerFSMController>().KnockbackTransition(clubDamage, clubKnockback, transform.position);
         }
+
+    }
+
+    public bool IsWithinClubRange(Transform gameObject)
+    {
+        return Vector2.Distance(transform.position, gameObject.position) <= clubRange;
     }
 
     public void JumpSmashAttack()
     {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, range, playerLayer);
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, jumpSmashRange, playerLayer);
         if (collider != null)
         {
             collider.GetComponent<PlayerFSMController>().KnockbackTransition(jumpSmashDamage, jumpSmashKnockback, transform.position);
@@ -150,16 +170,19 @@ public class OniFSMController : EnemyFSMController
     public GameObject SpawnPillar(bool inFront)
     {
         Vector3 PillarSpawn = new Vector3();
+        GameObject pillarToSpawn;
 
         // Find the position to spawn in the pillar
 
         if (inFront)
         {
             PillarSpawn = pillarSpawnPoint.position;
+            pillarToSpawn = boulderPillarPrehab;
         }
         else
         {
             bool playerInBetween = false;
+            pillarToSpawn = pillarPrehab;
 
             foreach (Transform arenaTransform in ArenaTransforms) // Find the furtherest point away from the oni that has the player in between them
             {
@@ -173,21 +196,50 @@ public class OniFSMController : EnemyFSMController
             }
         }
 
-        return Instantiate(pillarPrehab, PillarSpawn, pillarPrehab.transform.rotation);
+        return Instantiate(pillarToSpawn, PillarSpawn, pillarPrehab.transform.rotation);
     }
 
     public void BoulderPut()
     {
-        InstantiateProjectile(boulderPrehab, firepoint.position, boulderPrehab.transform.rotation, (playerTransform.position - firepoint.transform.position).normalized, boulderPrehab.GetComponent<Bullet>().speed);
-    }
+        Vector2 bulletDirection = (playerTransform.position - firepoint.transform.position).normalized;
+        Debug.Log(bulletDirection);
+        GameObject bulletClone;
+        bulletClone = Instantiate(boulderPrehab, firepoint.position, boulderPrehab.transform.rotation);
+        bulletClone.GetComponent<Bullet>().direction = bulletDirection;
+        }
 
     public void MoveTowardsPlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, chaseSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), chaseSpeed * Time.deltaTime);
+    }
+
+    public void ChargeTowardsPlayer()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), cycloneSpeed * Time.deltaTime);
     }
 
     public bool IsUnderHalfHealth()
     {
         return (health < maxHealth / 2);
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(clubAttackPoint.position, clubRange);
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            OnPlayerHit?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            OnWallHit?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

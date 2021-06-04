@@ -16,6 +16,9 @@ public class OniIdleState : FSMState
     public override void EnterStateInit()
     {
         base.EnterStateInit();
+        Debug.Log("Oni Idle");
+        switchState = false;
+        enteredState = true;
     }
     public override void Act(Transform player, Transform npc)
     {
@@ -23,16 +26,19 @@ public class OniIdleState : FSMState
 
         if (enteredState)
         {
+            Debug.Log("Oni Idle");
             enteredState = false;
             oc.StartCoroutine(IdleTimer());
         }
+        oc.CheckRange(player);
+
     }
 
     public override void Reason(Transform player, Transform npc)
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
-        if (oc.GetInRange())
+        if (oc.IsWithinClubRange(player))
         {
             oc.StopCoroutine(IdleTimer());
             oc.PerformTransition(Transition.OniClubSmash);
@@ -61,7 +67,7 @@ public class OniIdleState : FSMState
 
     public IEnumerator IdleTimer()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
         switchState = true;
     }
 }

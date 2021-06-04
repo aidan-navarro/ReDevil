@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 1110388350}
   m_Layer: 0
   m_Name: Demon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -614,14 +614,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   rig: {fileID: 1110388352}
   health: 400
   maxHealth: 400
-  range: 5
+  range: 15
   damage: 15
   attackInterval: 2
   knockbackPower: 4
@@ -632,6 +632,8 @@ MonoBehaviour:
   airborneEnemy: 0
   pillarPrehab: {fileID: 8029492881868461989, guid: fea67d519576ba646b5e30b557c6eb5a,
     type: 3}
+  boulderPillarPrehab: {fileID: 5654116121971536337, guid: 7c8991bb819d6bf43a77d6da4ba88b69,
+    type: 3}
   boulderPrehab: {fileID: 324560366296876754, guid: af6ef48fda0cae9429498c5c07e75bcb,
     type: 3}
   firepoint: {fileID: 2002877656}
@@ -639,13 +641,16 @@ MonoBehaviour:
   clubAttackPoint: {fileID: 880709432}
   clubDamage: 15
   clubKnockback: 5
+  clubRange: 3
   jumpSmashDamage: 10
   jumpSmashKnockback: 5
+  jumpSmashRange: 2
   cycloneSmashDamage: 30
   CycloneSmashKnockback: 10
-  jumpSpeed: 5
+  jumpSpeed: 14
   airSpeed: 3
-  chaseSpeed: 5
+  chaseSpeed: 4
+  cycloneSpeed: 6
   arenaPoints:
   - {fileID: 1439518170}
   - {fileID: 485289405}
@@ -675,7 +680,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1145915011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1006,17 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  invisWallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  nurikabeLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  noFriction: {fileID: 0}
+  friction: {fileID: 0}
+  slopeCheckDistance: 0
+  slopeNormalPerp: {x: 0, y: 0}
+  isOnSlope: 0
   stateText: {fileID: 818162212}
   healthText: {fileID: 1837322084}
   SoulText: {fileID: 960792490}
@@ -1027,6 +1043,8 @@ MonoBehaviour:
   airDashLimit: 0
   respawnPoint: {fileID: 2004718701}
   isGrounded: 0
+  isTouchingInvisibleWall: 0
+  isTouchingNurikabe: 0
   jumpPower: 14
   soundManager: {fileID: 1884830733}
 --- !u!1 &1462986134
@@ -1848,6 +1866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {x: -2.72, y: 0.2104868}
+  initialized: 0
   rand: 0
 --- !u!4 &2004718702
 Transform:
@@ -2493,7 +2512,7 @@ GameObject:
   - component: {fileID: 1575489275582255765}
   - component: {fileID: 1854081451}
   - component: {fileID: 1884830733}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Player_256
   m_TagString: Player
   m_Icon: {fileID: 0}
