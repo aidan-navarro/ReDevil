@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 00000282B6DE0BC8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000002AAB8606108 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -15,68 +15,6 @@
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
-[LOG] SoundI::release                          :  (000002824CBC1B68)
-[LOG] SoundI::release                          :     PC_Step01-003 (000002824A1930A8)
-[LOG] SoundI::release                          :  (00000282B2496068)
-[LOG] SoundI::release                          :     PC_Step01-004 (00000282B25ACE28)
-[LOG] SoundI::release                          :  (00000282B24971A8)
-[LOG] SoundI::release                          :     PC_Step01-005 (00000282B25AAC08)
-[LOG] SoundI::release                          :  (000002824CBC2298)
-[LOG] SoundI::release                          :     PC_Step01-006 (000002824A194288)
-[LOG] SoundI::release                          :  (00000282B24961D8)
-[LOG] SoundI::release                          :     PC_Step01-001 (00000282B25ADE68)
-[LOG] SoundI::release                          :  (000002824CBC2B38)
-[LOG] SoundI::release                          :     PC_Step01-002 (000002824A1952C8)
-[LOG] SoundI::release                          :  (00000282B2497A48)
-[LOG] SoundI::release                          :     PC_Jump_Feet01 (00000282B25AB428)
-[LOG] SoundI::release                          :  (000002824CBC1FB8)
-[LOG] SoundI::release                          :     PC_Jump_Feet02 (000002824A195468)
-[LOG] SoundI::release                          :  (00000282B2497E98)
-[LOG] SoundI::release                          :     PC_Jump_Feet03 (000002824A1923A8)
-[LOG] SoundI::release                          :  (00000282B2498FD8)
-[LOG] SoundI::release                          :     PC_Jump_Feet04 (000002824A192208)
-[LOG] SoundI::release                          :  (000002824CBC12C8)
-[LOG] SoundI::release                          :     PC_Jump_Cloth01 (000002824A1940E8)
-[LOG] SoundI::release                          :  (00000282B2495D88)
-[LOG] SoundI::release                          :     PC_Jump_Cloth02 (00000282B25ACFC8)
-[LOG] SoundI::release                          :  (00000282B24988A8)
-[LOG] SoundI::release                          :     PC_Jump_Cloth03 (00000282B25AB768)
-[LOG] SoundI::release                          :  (000002824CBC3B08)
-[LOG] SoundI::release                          :     PC_Jump_Cloth04 (000002824A194F88)
-[LOG] SoundI::release                          :  (000002824CBC1718)
-[LOG] SoundI::release                          :     Pc_Land_Cloth03 (000002824A194768)
-[LOG] SoundI::release                          :  (000002824CBC4AD8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth04 (000002824A192F08)
-[LOG] SoundI::release                          :  (000002824CBC40C8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth05 (000002824A192068)
-[LOG] SoundI::release                          :  (000002824CBC1888)
-[LOG] SoundI::release                          :     Pc_Land_Cloth06 (000002824A192A28)
-[LOG] SoundI::release                          :  (000002824CBC1CD8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth01 (000002824A195C88)
-[LOG] SoundI::release                          :  (000002824CBC3DE8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth02 (000002824A1933E8)
-[LOG] SoundI::release                          :  (00000282B2496D58)
-[LOG] SoundI::release                          :     PC_Land_Feet03 (00000282B25AC2C8)
-[LOG] SoundI::release                          :  (00000282B2498458)
-[LOG] SoundI::release                          :     PC_Land_Feet04 (000002824A195948)
-[LOG] SoundI::release                          :  (000002824CBC2CA8)
-[LOG] SoundI::release                          :     PC_Land_Feet05 (000002824A195608)
-[LOG] SoundI::release                          :  (000002824CBC36B8)
-[LOG] SoundI::release                          :     PC_Land_Feet06 (000002824A194908)
-[LOG] SoundI::release                          :  (000002824CBC2858)
-[LOG] SoundI::release                          :     PC_Land_Feet01 (000002824A194AA8)
-[LOG] SoundI::release                          :  (000002824CBC3F58)
-[LOG] SoundI::release                          :     PC_Land_Feet02 (000002824A195128)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 135)
