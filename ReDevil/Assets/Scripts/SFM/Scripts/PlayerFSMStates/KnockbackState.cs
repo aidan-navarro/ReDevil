@@ -27,6 +27,7 @@ public class KnockbackState : FSMState
             timer.StartCoroutine("Timer");
             pc.TakeDamage();
             pc.KnockBack();
+            pc.SetDKBTransition(false);
         }
 
         pc.UpdateState("Knockback");
