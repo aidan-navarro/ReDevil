@@ -6,6 +6,7 @@ public class InvincibleTimer : MonoBehaviour
 {
     public float immobileTime; //the amount of time in seconds the player is immobile
     public float iFrameTime; //the number of iFrames AFTER being immobile in seconds
+    public float dashKnockbackTimer;
     private PlayerFSMController pc;
 
     // Start is called before the first frame update
@@ -48,7 +49,7 @@ public class InvincibleTimer : MonoBehaviour
     {
         // get a delay timer set in the player controller?
         // serialize this???
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(dashKnockbackTimer);
         pc.SetDKBTransition(false);
     }
 }

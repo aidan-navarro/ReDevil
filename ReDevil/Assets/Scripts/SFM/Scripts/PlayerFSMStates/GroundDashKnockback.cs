@@ -15,6 +15,7 @@ public class GroundDashKnockback : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
         // utilizing the timer class to activate a timer
         InvincibleTimer timer = pc.GetComponent<InvincibleTimer>();
@@ -24,6 +25,7 @@ public class GroundDashKnockback : FSMState
         timer.StartCoroutine("DashKnockbackTimer");
 
         pc.UpdateState("Hit Enemy");
+        pc.CheckAirDash();
 
         if (pc.GetCanDash())
         {
@@ -44,8 +46,21 @@ public class GroundDashKnockback : FSMState
             }
         }
 
+        patk.CheckKnockbackCancel();
+
+        bool invincible = pc.GetInvincible();
+
+        //knockback transition
+        if (!invincible && pc.GetKbTransition()) //if the player isnt in iframes, do a knockback
+        {
+            Debug.Log("hit out of dash knockback");
+            pc.SetDKBTransition(false);
+            timer.StopAllCoroutines();
+        }
+
 
         pc.TouchingFloorCeilingWall();
+        
 
     }
 
@@ -63,6 +78,18 @@ public class GroundDashKnockback : FSMState
         //       pc.PerformTransition(Transition.Airborne);
 
         //// this grounded check is being called first... boolean wrapper value needed 
+        ///
+
+        bool invincible = pc.GetInvincible();
+
+        //knockback transition
+        if (!invincible && pc.GetKbTransition()) //if the player isnt in iframes, do a knockback
+        {
+            Debug.Log("hit out of dash knockback");
+            patk.ReInitializeTransitions();
+            pc.PerformTransition(Transition.Knockback);
+        }
+
         if (grounded && !pc.GetDKBTransition())
         {
             patk.ReInitializeTransitions();
