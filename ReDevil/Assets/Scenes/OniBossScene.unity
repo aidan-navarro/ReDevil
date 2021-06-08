@@ -444,6 +444,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &861395230 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 861395230, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2235937426592012744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &861395231 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 861395231, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2235937426592012744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &960792490 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1647963691160562392, guid: 362ebfc693b1ff64185bf4b00c123f5f,
@@ -779,6 +791,7 @@ MonoBehaviour:
   - {fileID: 1596751761}
   selectedArament: {fileID: 1596751761}
   dashKnockbackPower: 0
+  dkbTransition: 0
   moveSpeed: 10
   airControl: 5
   slideSpeed: 3
@@ -2118,7 +2131,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 7431913495d402c4597035c370b510b9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &1575489275582255766
 Transform:
@@ -2412,6 +2425,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
+      propertyPath: jumpSmashPoint
+      value: 
+      objectReference: {fileID: 861395230}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: jumpSmashCollider
+      value: 
+      objectReference: {fileID: 861395231}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
       propertyPath: arenaPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1439518170}
@@ -2483,14 +2506,18 @@ MonoBehaviour:
   groundHit2: 20
   groundHit3: 40
   dashAttackValue: 10
+  airAttackValue: 0
   groundHitCounter: 0
   airDownStrike: 20
+  airAttackTime: 0
   endlag: 1
   enemyHitboxes: []
   attacking: 0
+  didAirAttack: 0
   dashAttackContact: 0
   airDashAttackContact: 0
   firstDashContact: 0
+  airAttackContact: 0
   idleTransition: 0
   dashTransition: 0
   groundAttack2Transition: 0
@@ -2512,3 +2539,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immobileTime: 1
   iFrameTime: 2
+  dashKnockbackTimer: 0

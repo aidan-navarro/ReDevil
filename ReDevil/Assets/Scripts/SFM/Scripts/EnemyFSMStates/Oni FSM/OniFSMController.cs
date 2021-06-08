@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System;
 
 public class OniFSMController : EnemyFSMController
@@ -19,6 +18,8 @@ public class OniFSMController : EnemyFSMController
     private Transform pillarSpawnPoint;
     [SerializeField]
     private Transform clubAttackPoint;
+    [SerializeField]
+    private Transform jumpSmashPoint;
     [SerializeField]
     private float clubDamage;
     [SerializeField]
@@ -51,8 +52,13 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private List<Transform> arenaPoints;
     public List<Transform> ArenaTransforms => arenaPoints;
+
     [SerializeField]
-    private float playerPointLineRange = 0.5f;
+    private Collider2D clubSmashCollider;
+    [SerializeField]
+    private SpriteRenderer clubSmashRenderer;
+    [SerializeField]
+    private Collider2D jumpSmashCollider;
 
     public event EventHandler OnPlayerHit;
     public event EventHandler OnWallHit;
@@ -138,13 +144,38 @@ public class OniFSMController : EnemyFSMController
 
     public void ClubSmashAttack()
     {
-        Collider2D collider = Physics2D.OverlapCircle(clubAttackPoint.position, clubRange, playerLayer);
-        if (collider != null)
+        Collider2D[] colliders = new Collider2D[10];
+        ContactFilter2D filter = new ContactFilter2D();
+
+        int numHits = clubSmashCollider.OverlapCollider(filter, colliders);
+
+        for (int i = 0; i < numHits; i++)
         {
-            collider.GetComponent<PlayerFSMController>().KnockbackTransition(clubDamage, clubKnockback, transform.position);
+            if (colliders[i].CompareTag("Player"))
+            {
+                colliders[i].transform.GetComponent<PlayerFSMController>().KnockbackTransition(clubDamage, clubKnockback, transform.position);
+                return;
+            }
         }
 
+    
+        Debug.Log("No player within club smash collider");
+       
+
     }
+
+    public void EnableClubSmashHitbox()
+    {
+        clubSmashCollider.enabled = true;
+        clubSmashRenderer.enabled = true;
+    }
+
+    public void DisableClubSmashHitbox()
+    {
+        clubSmashCollider.enabled = false;
+        clubSmashRenderer.enabled = false;
+    }
+
 
     public bool IsWithinClubRange(Transform gameObject)
     {
@@ -153,11 +184,22 @@ public class OniFSMController : EnemyFSMController
 
     public void JumpSmashAttack()
     {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, jumpSmashRange, playerLayer);
-        if (collider != null)
+        Collider2D[] colliders = new Collider2D[10];
+        ContactFilter2D filter = new ContactFilter2D();
+
+        int numHits = jumpSmashCollider.OverlapCollider(filter, colliders);
+
+        for (int i = 0; i < numHits; i++)
         {
-            collider.GetComponent<PlayerFSMController>().KnockbackTransition(jumpSmashDamage, jumpSmashKnockback, transform.position);
+            if (colliders[i].CompareTag("Player"))
+            {
+                colliders[i].transform.GetComponent<PlayerFSMController>().KnockbackTransition(jumpSmashDamage, jumpSmashKnockback, transform.position);
+                return;
+            }
         }
+
+
+        Debug.Log("No player within jump smash collider");
     }
 
     public void Jump()
@@ -187,8 +229,9 @@ public class OniFSMController : EnemyFSMController
             foreach (Transform arenaTransform in ArenaTransforms) // Find the furtherest point away from the oni that has the player in between them
             {
                 // To determine if the arenaPoint is in between the oni and player I'll use DistancePointLine
-                playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
-                
+                playerInBetween = Mathf.Sign((transform.position - playerTransform.position).x) != Mathf.Sign((arenaTransform.position - playerTransform.position).x) ? true : false;
+
+
                 if (playerInBetween && Vector3.Distance(transform.position, PillarSpawn) < Vector3.Distance(transform.position, arenaTransform.position))
                 {
                     PillarSpawn = arenaTransform.position;

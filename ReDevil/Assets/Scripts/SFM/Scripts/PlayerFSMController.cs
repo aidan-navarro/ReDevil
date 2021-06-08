@@ -879,7 +879,6 @@ public class PlayerFSMController : AdvancedFSM
 
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
-        Debug.Log("Player Hit");
         if (selectedArament.IsActive)
         {
             SoulCalculator(-dmg);
