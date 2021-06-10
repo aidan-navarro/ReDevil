@@ -29,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
     //damage amount for airDownStrike
     public float airDownStrike;
 
+    // Duration of air attack state
     [SerializeField] private float airAttackTime;
     public float GetAirAttackTime() { return airAttackTime; }
 

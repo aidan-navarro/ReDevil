@@ -128,7 +128,7 @@ public class PlayerFSMController : AdvancedFSM
     public float GetKnockbackPower() { return knockbackPower; }
     public void SetKnockbackPower(float inKnockbackPower) { knockbackPower = inKnockbackPower; }
 
-    private bool kbTransition; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
+    [SerializeField]private bool kbTransition; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
     public bool GetKbTransition() { return kbTransition; }
     public void SetKbTransition(bool inKbTransition) { kbTransition = inKbTransition; }
 

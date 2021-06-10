@@ -28,6 +28,8 @@ public class BasanFSMController : EnemyFSMController
         //box collider
         col = GetComponent<BoxCollider2D>();
 
+
+        //flameThrowerObject.enabled = false;
         //set currentPos
         currentPos = rig.position;
 
@@ -73,21 +75,32 @@ public class BasanFSMController : EnemyFSMController
 
     }
 
+
+    // NEED TO KILL THE FLAMETHROWER SOMEHOW AND 
     public IEnumerator ActivateFlamethrower()
     {
         attacking = true;
-
         GameObject bulletClone;
         bulletClone = Instantiate(flamethrower, firepoint.position, firepoint.rotation) as GameObject;
         //SET THE KNOCKBACK POSITION FOR THE FLAMETHROWER AS THE POSITION OF THE FIRE BREATHING CHICKEN
         bulletClone.GetComponent<Flamethrower>().kbPosition = currentPos;
+        if (!isHit)
+        {
+            //for extra time to move after flinching so that you can't immediately get hit after flinching
+            yield return new WaitForSeconds(flamethrowerTimer);
+            Destroy(bulletClone);
+        }
+        else
+        {
+            Destroy(bulletClone);
+        }
 
-        //for extra time to move after flinching so that you can't immediately get hit after flinching
-        yield return new WaitForSeconds(flamethrowerTimer);
-
-        Destroy(bulletClone);
         attacking = false;
     }
+
+    // ------------------- NEW FLAMETHROWER LOGIC ----------------------
+
+
     public override void FlinchEnemy(Vector2 flinchKB)
     {
         //base.FlinchEnemy(flinchKB);
@@ -104,5 +117,10 @@ public class BasanFSMController : EnemyFSMController
     public void BasanAttack()
     {
         StartCoroutine("ActivateFlamethrower");
+    }
+
+    public void StopBasanAttack()
+    {
+        StopCoroutine("ActivateFlamethrower");
     }
 }

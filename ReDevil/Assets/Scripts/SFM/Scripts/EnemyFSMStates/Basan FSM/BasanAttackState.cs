@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasanAttackState : FSMState
 {
     private bool attackStart; //used to track if the attack has already begun
+    private float attackDuration;
     //Constructor
     public BasanAttackState()
     {
@@ -14,27 +15,41 @@ public class BasanAttackState : FSMState
     public override void EnterStateInit()
     {
         base.EnterStateInit();
+        attackStart = false;
+        attackDuration = 0.0f;
     }
 
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
     {
         BasanFSMController ec = npc.GetComponent<BasanFSMController>();
+        BasanFlamethrower bf = npc.GetComponent<BasanFlamethrower>();
 
         //for initial setup to ensure we only call basan attack once, reset attack start ONLY IF
         //the enemy is NOT attacking
-        if(attackStart && !ec.attacking)
-        {
-            attackStart = false;
-        }
-
+        //if(attackStart && !ec.attacking)
+        //{
+        //    attackStart = false;
+        //}
+        attackDuration += Time.deltaTime;
         //if the flamethrower has not been turned on
-        if (!attackStart)
+        if (attackDuration < bf.getAttackTime()) 
         {
             //turn on flamethrower coroutine
-            ec.BasanAttack();
+            //ec.BasanAttack();
+            bf.ActivateFlamethrower();
             attackStart = true;
+        } else
+        {
+            bf.DeactivateFlamethrower();
         }
+
+        //if (ec.GetIsHit())
+        //{
+        //    Debug.Log("Hit Basan");
+        //    ec.StopBasanAttack();
+        //    ec.SetIsHit(false);
+        //}
         Debug.Log("Basan Attack State");
     }
 
@@ -43,16 +58,23 @@ public class BasanAttackState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         BasanFSMController ec = npc.GetComponent<BasanFSMController>();
+        BasanFlamethrower bf = npc.GetComponent<BasanFlamethrower>();
 
         //if the flamethrower coroutine has ended
-        if (!ec.attacking)
+        if (attackDuration >= bf.getAttackTime())
         {
             ec.PerformTransition(Transition.BasanIdle);
+        }
+
+        if (ec.GetEnemyFlinch())
+        {
+            ec.PerformTransition(Transition.BasanFlinch);
         }
 
         //dead transition
         if (ec.health <= 0)
         {
+            ec.StopBasanAttack();
             ec.PerformTransition(Transition.EnemyNoHealth);
         }
     }

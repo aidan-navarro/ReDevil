@@ -15,7 +15,9 @@ public class BasanIdleState : EnemyIdleState
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
     {
-        EnemyFSMController ec = npc.GetComponent<EnemyFSMController>();
+        BasanFSMController ec = npc.GetComponent<BasanFSMController>();
+
+        //ec.flameThrowerObject.GetComponent<Flamethrower>().enabled = false;
         bool positionSet = false;
         //just a failsafe in case my code is weird and idk where to fix it cause if not constructor where else
         if (atkTransition)
