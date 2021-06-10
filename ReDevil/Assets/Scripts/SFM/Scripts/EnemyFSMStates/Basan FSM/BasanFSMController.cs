@@ -100,7 +100,6 @@ public class BasanFSMController : EnemyFSMController
 
     // ------------------- NEW FLAMETHROWER LOGIC ----------------------
 
-
     public override void FlinchEnemy(Vector2 flinchKB)
     {
         //base.FlinchEnemy(flinchKB);

@@ -39,8 +39,16 @@ public class BasanAttackState : FSMState
             //ec.BasanAttack();
             bf.ActivateFlamethrower();
             attackStart = true;
-        } else
+        } 
+        else
         {
+            bf.DeactivateFlamethrower();
+        }
+
+        if (ec.GetEnemyFlinch())
+        {
+            // force the attack duration's time to the threshold
+            attackDuration = bf.getAttackTime();
             bf.DeactivateFlamethrower();
         }
 
@@ -66,7 +74,7 @@ public class BasanAttackState : FSMState
             ec.PerformTransition(Transition.BasanIdle);
         }
 
-        if (ec.GetEnemyFlinch())
+        else if (ec.GetEnemyFlinch())
         {
             ec.PerformTransition(Transition.BasanFlinch);
         }
