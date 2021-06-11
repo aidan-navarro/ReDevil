@@ -112,10 +112,12 @@ MonoBehaviour:
   attackInterval: 5
   knockbackPower: 5
   atkDirectionRight: {x: 0, y: 0}
-  projectileSpeed: 0.5
+  projectileSpeed: 1
   currentPos: {x: 0, y: 0}
   isGrounded: 0
   airborneEnemy: 1
+  isHit: 0
+  enemyFlinch: 0
   bullet: {fileID: 6037910996505951, guid: 00248696111dd5648ba94cc91d1b8bb9, type: 3}
   firepoint: {fileID: 7216240505341182194}
 --- !u!50 &2686868786626676813
