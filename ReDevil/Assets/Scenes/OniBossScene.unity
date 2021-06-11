@@ -769,6 +769,8 @@ MonoBehaviour:
   SoulLv1Bar: {fileID: 457782484}
   SoulLv2Bar: {fileID: 436808538}
   SoulLv3Bar: {fileID: 2147201615}
+  DashIcon1: {fileID: 0}
+  DashIcon2: {fileID: 0}
   health: 0
   MaxHealth: 100
   soul: 0
@@ -778,7 +780,10 @@ MonoBehaviour:
   soulArmaments:
   - {fileID: 1596751761}
   selectedArament: {fileID: 1596751761}
+  kbTransition: 0
+  flameKnockback: 0
   dashKnockbackPower: 0
+  dkbTransition: 0
   moveSpeed: 10
   airControl: 5
   slideSpeed: 3
@@ -2483,14 +2488,18 @@ MonoBehaviour:
   groundHit2: 20
   groundHit3: 40
   dashAttackValue: 10
+  airAttackValue: 0
   groundHitCounter: 0
   airDownStrike: 20
+  airAttackTime: 0
   endlag: 1
   enemyHitboxes: []
   attacking: 0
+  didAirAttack: 0
   dashAttackContact: 0
   airDashAttackContact: 0
   firstDashContact: 0
+  airAttackContact: 0
   idleTransition: 0
   dashTransition: 0
   groundAttack2Transition: 0
@@ -2512,3 +2521,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immobileTime: 1
   iFrameTime: 2
+  dashKnockbackTimer: 0

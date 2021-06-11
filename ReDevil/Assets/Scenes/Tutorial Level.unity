@@ -3933,6 +3933,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2190c119991de49a12a8510f9c183c, type: 3}
+--- !u!1 &519357241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609412732492918221, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 719969066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &588292531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1647963691160562392, guid: 362ebfc693b1ff64185bf4b00c123f5f,
@@ -4061,6 +4067,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424518506194962253, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -650
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424518506194962253, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 416
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362ebfc693b1ff64185bf4b00c123f5f, type: 3}
@@ -4390,6 +4406,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 588292531}
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: DashIcon1
+      value: 
+      objectReference: {fileID: 1303397426}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: DashIcon2
+      value: 
+      objectReference: {fileID: 519357241}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1374478957}
@@ -4440,7 +4464,7 @@ PrefabInstance:
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.7393317
+      value: 7.3841577
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -4583,6 +4607,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 753d3bcb76d3a4d4783a37665718358d, type: 3}
+--- !u!1 &1303397426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4374260188259431746, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 719969066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1374478957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1647963689964039910, guid: 362ebfc693b1ff64185bf4b00c123f5f,
