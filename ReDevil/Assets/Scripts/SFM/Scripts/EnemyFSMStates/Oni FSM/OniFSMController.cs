@@ -187,7 +187,8 @@ public class OniFSMController : EnemyFSMController
             foreach (Transform arenaTransform in ArenaTransforms) // Find the furtherest point away from the oni that has the player in between them
             {
                 // To determine if the arenaPoint is in between the oni and player I'll use DistancePointLine
-                playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
+                //playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
+                
                 
                 if (playerInBetween && Vector3.Distance(transform.position, PillarSpawn) < Vector3.Distance(transform.position, arenaTransform.position))
                 {

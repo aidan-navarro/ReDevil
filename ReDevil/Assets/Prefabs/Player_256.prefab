@@ -611,7 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immobileTime: 1
   iFrameTime: 2
-  dashKnockbackTimer: 0
+  dashKnockbackTimer: 0.25
 --- !u!70 &4225471945767981086
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

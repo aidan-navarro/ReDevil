@@ -118,18 +118,26 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   rig: {fileID: 0}
   health: 50
-  range: 10
+  maxHealth: 0
+  range: 15
   damage: 10
-  attackInterval: 5
+  attackInterval: 3
   knockbackPower: 5
   atkDirectionRight: {x: 1, y: 0}
   projectileSpeed: 10
   currentPos: {x: 0, y: 0}
+  isGrounded: 0
   airborneEnemy: 0
+  isHit: 0
+  enemyFlinch: 0
   bullet: {fileID: 6037910996505951, guid: 00248696111dd5648ba94cc91d1b8bb9, type: 3}
   firepoint: {fileID: 8615377514768763665}
+  knockbackVel: {x: 0, y: 0}
 --- !u!50 &4409263057363062325
 Rigidbody2D:
   serializedVersion: 4

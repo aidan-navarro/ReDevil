@@ -723,6 +723,7 @@ public class PlayerFSMController : AdvancedFSM
     //Functions to handle movement on a slope
     public void SlopeCheck()
     {
+        Debug.Log("Checking For Slope");
         Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
 
         SlopeCheckHorizontal(checkPos);

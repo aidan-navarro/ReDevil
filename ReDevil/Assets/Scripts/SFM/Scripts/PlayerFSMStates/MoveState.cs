@@ -88,6 +88,8 @@ public class MoveState : FSMState
         }
         else //no input detected.  stop speed and set bool to not moving to transition to idle
         {
+            pc.SetFrictionMaterial();
+
             //stop momentum movement
             Vector2 newMoveSpeed = Vector2.zero;
             newMoveSpeed.y = rig.velocity.y;
