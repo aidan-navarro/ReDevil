@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3440894121285688360}
   - component: {fileID: 4409263057363062325}
   - component: {fileID: 4403702330519326736}
+  - component: {fileID: 8705873332335567744}
   m_Layer: 0
   m_Name: Nodeppou
   m_TagString: Enemy
@@ -137,7 +138,7 @@ MonoBehaviour:
   enemyFlinch: 0
   bullet: {fileID: 6037910996505951, guid: 00248696111dd5648ba94cc91d1b8bb9, type: 3}
   firepoint: {fileID: 8615377514768763665}
-  knockbackVel: {x: 0, y: 0}
+  knockbackVel: {x: 0, y: 1}
 --- !u!50 &4409263057363062325
 Rigidbody2D:
   serializedVersion: 4
@@ -185,6 +186,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6751561, y: 1.6799105}
   m_EdgeRadius: 0
+--- !u!114 &8705873332335567744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493659206066843530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306a1a46319508143ab3da41cb8beedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackTimer: 0.5
 --- !u!1 &6879808864567279617
 GameObject:
   m_ObjectHideFlags: 0
