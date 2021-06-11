@@ -55,6 +55,10 @@ public class PlayerFSMController : AdvancedFSM
     private GameObject SoulLv2Bar;
     [SerializeField]
     private GameObject SoulLv3Bar;
+    [SerializeField]
+    private GameObject DashIcon1;
+    [SerializeField]
+    private GameObject DashIcon2;
 
     //-------------------------------------------------------------------
     //Meter variables
@@ -840,6 +844,29 @@ public class PlayerFSMController : AdvancedFSM
         } else
         {
             canDash = false;
+        }
+    }
+
+    public void UpdateDashIcons()
+    {
+       switch(airDashCount)
+       {
+            case 0:
+                DashIcon1.SetActive(true);
+                DashIcon2.SetActive(true);
+                break;
+            case 1:
+                DashIcon1.SetActive(true);
+                DashIcon2.SetActive(false);
+                break;
+            case 2:
+                DashIcon1.SetActive(false);
+                DashIcon2.SetActive(false);
+                break;
+            default:
+                DashIcon1.SetActive(true);
+                DashIcon2.SetActive(true);
+                break;
         }
     }
 

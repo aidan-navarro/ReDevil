@@ -986,6 +986,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &323876005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609412732492918221, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 325350195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &325350195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1726,6 +1732,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &512984282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4374260188259431746, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 325350195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &515207313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,7 +2494,6 @@ MonoBehaviour:
   flameSprite: {fileID: 1330533433}
   attackActiveTime: 3
   attacking: 0
-  didFlameHit: 0
 --- !u!4 &619916144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3299616218296317354, guid: 458ea89371ab7ad49bca338c5175b5e7,
@@ -3386,6 +3397,14 @@ PrefabInstance:
       propertyPath: SoulText
       value: 
       objectReference: {fileID: 325350197}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: DashIcon1
+      value: 
+      objectReference: {fileID: 512984282}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: DashIcon2
+      value: 
+      objectReference: {fileID: 323876005}
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: healthBar
       value: 
