@@ -162,9 +162,12 @@ MonoBehaviour:
   currentPos: {x: 0, y: 0}
   isGrounded: 0
   airborneEnemy: 1
+  isHit: 0
+  enemyFlinch: 0
   riseValue: 5
   riseSpeed: 4
   idlePoint: {x: 0, y: 0}
   activePoint: {x: 0, y: 0}
   timer: 0
   isActive: 0
+  flinchVector: {x: 0, y: 0}

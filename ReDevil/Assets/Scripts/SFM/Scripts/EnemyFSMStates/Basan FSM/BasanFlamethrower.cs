@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// --------- DEV NOTES ------------
+// script follows process of how the player attack script works
+
 public class BasanFlamethrower : MonoBehaviour
 {
     // Flamethrower information
@@ -12,7 +15,6 @@ public class BasanFlamethrower : MonoBehaviour
     [SerializeField] private float attackActiveTime;
     public float getAttackTime() { return attackActiveTime; }
     public bool attacking;
-    public bool didFlameHit;
     
 
     // reference to the basan this script will be attached to
@@ -23,7 +25,6 @@ public class BasanFlamethrower : MonoBehaviour
     {
         basan = gameObject.GetComponent<BasanFSMController>();
         attacking = false;
-        didFlameHit = false;
         flame.enabled = false;
         flameSprite.enabled = false;
         flameData = flame.GetComponent<Flamethrower>();

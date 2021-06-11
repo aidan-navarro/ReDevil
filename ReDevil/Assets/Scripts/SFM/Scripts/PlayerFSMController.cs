@@ -132,7 +132,12 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetKbTransition() { return kbTransition; }
     public void SetKbTransition(bool inKbTransition) { kbTransition = inKbTransition; }
 
-    // TEST ---------- dash knockback specific --------------
+    // TEST Flame Knockback specific
+
+    [SerializeField] private bool flameKnockback;
+    public bool GetFlameKB() { return flameKnockback; }
+    public void SetFlameKB(bool inFlameKnockback) { flameKnockback = inFlameKnockback; }
+    // ---------- dash knockback specific --------------
     [SerializeField]
     private float dashKnockbackPower;
 
@@ -143,7 +148,6 @@ public class PlayerFSMController : AdvancedFSM
     {
         dkbTransition = inDKBTransition;
     }
-    // END TEST -----------------------
 
     private bool immobile; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
     public bool GetImmobile() { return immobile; }
@@ -877,6 +881,8 @@ public class PlayerFSMController : AdvancedFSM
     //    }
     //}
 
+    // fine for single hit functions, but for lasting projectiles like a flamethrower
+    // this will bust some logic
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
         Debug.Log("Player Hit");

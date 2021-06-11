@@ -30,6 +30,10 @@ public class AirDashAttack : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
+        // flamethrower specific 
+        pc.SetKbTransition(false);
+        pc.SetFlameKB(false);
+
         bool enterKnockback = pc.GetKbTransition(); // in the event we get hit by a projectile
         bool enterDashKnock = pc.GetDKBTransition();
 
@@ -80,19 +84,17 @@ public class AirDashAttack : FSMState
         Vector2 playerPos = new Vector2(pc.transform.position.x, pc.transform.position.y);
         Vector2 dashDiff = dashSP - playerPos;
 
-        //dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
+        // dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
         // instead of checking the x distance, we're instead checking the whole magnitude of the vector
         dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
+
         // velocity must also change to account for the dash position that we set
         // create a boolean to lock any change to the dash vector while we dash
         pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
         isCeiling = pc.GetisTouchingCeiling();
-        //Debug.Log("Dash Distance: " + dashDistance);
-        //Debug.Log("Grounded??? -> " + isGrounded);
-        //Debug.Log("On Wall??? -> " + onWall);
-
+     
         // during dash
         if (!endDash)
         {
@@ -219,6 +221,7 @@ public class AirDashAttack : FSMState
                 // hitting the enemy from the side
                 else
                 {
+                    // if the first hit of the air dash attack hasn't hit yet
                     if (!patk.firstDashContact)
                     {
                         pc.AirDashKnockback();

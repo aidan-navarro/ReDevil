@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Flamethrower : MonoBehaviour
 {
+    public bool didFlameHit;
     public float damage;
     public float knockbackPower;
     public Vector2 kbPosition;
@@ -36,8 +37,11 @@ public class Flamethrower : MonoBehaviour
 
                 // cast to the player controller
                 PlayerFSMController pc = hits[i].collider.transform.GetComponent<PlayerFSMController>();
-                pc.KnockbackTransition(damage, knockbackPower, position); 
-
+                if (!pc.GetFlameKB())
+                {
+                    pc.KnockbackTransition(damage, knockbackPower, position);
+                    pc.SetFlameKB(true);
+                } 
                 return true;
             }
             //if the hit of the collider is NOT trigger AND is an enemy, still deal damage (friendly fire)
