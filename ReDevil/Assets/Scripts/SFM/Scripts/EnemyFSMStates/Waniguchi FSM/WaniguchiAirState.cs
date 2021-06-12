@@ -8,7 +8,6 @@ public class WaniguchiAirState : FSMState
     private bool isGrounded;
     public WaniguchiAirState()
     {
-        Debug.Log("Creating Waniguchi Aerial State");
         stateID = FSMStateID.WaniguchiMidair;
     }
 
@@ -23,18 +22,18 @@ public class WaniguchiAirState : FSMState
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
 
-        Debug.Log("Landed??? => " + isGrounded);
         // if we've commenced attacking from the Waniguchi Attack State and the Waniguchi has left the ground
         // it's still checking if we touched the ground
         ec.TouchingFloor();
         isGrounded = ec.GetisGrounded();
 
-        if (!isGrounded)
-        {
-            Debug.Log("We Are Attacking");
+        //if (!isGrounded)
+        //{
+        //    Debug.Log("We Are Attacking");
 
-        }
-        else if (isGrounded)
+        //}
+        //else 
+        if (isGrounded)
         {
             Debug.Log("Grounding");
             ec.SetCurrentPos(ec.rig.position);
@@ -55,6 +54,12 @@ public class WaniguchiAirState : FSMState
             Debug.Log("Landed");
             ec.PerformTransition(Transition.WaniguchiIdle);
         }
+
+        if (ec.GetEnemyFlinch())
+        {
+            ec.PerformTransition(Transition.WaniguchiFlinch);
+        }
+
 
         if (ec.health <= 0)
         {

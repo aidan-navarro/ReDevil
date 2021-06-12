@@ -42,11 +42,12 @@ public class GroundDashAttack : FSMState
         bool enterKnockback = pc.GetKbTransition();
         bool enterDashKnockback = pc.GetDKBTransition();
         pc.SetNoFrictionMaterial();
-
+        pc.SetKbTransition(false);
+        pc.SetFlameKB(false);
         // should find a new state for knockback off of grounded dash attack
 
         pc.UpdateState("Ground Dash Attack");
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
 
         if (!dashAttackStarted)
@@ -185,7 +186,6 @@ public class GroundDashAttack : FSMState
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
         touchingInvisWall = pc.GetisTouchingInvisibleWall();
-        //Debug.Log("IsGroundedCheck" + isGrounded);
         bool invincible = pc.GetInvincible();
         bool kbTransition = pc.GetKbTransition();
         bool dkbTransition = pc.GetDKBTransition();

@@ -21,7 +21,7 @@ public class JumpingState : FSMState
 
         pc.SetNoFrictionMaterial();
 
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         bool grounded = pc.GetisGrounded();
 
         

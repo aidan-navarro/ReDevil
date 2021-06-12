@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Flamethrower : MonoBehaviour
 {
+    public bool didFlameHit;
     public float damage;
     public float knockbackPower;
     public Vector2 kbPosition;
@@ -29,13 +30,18 @@ public class Flamethrower : MonoBehaviour
         for (int i = 0; i < numHits; i++)
         {
             //if the hit of the collider is NOT trigger AND is the player
+            // in here, check if the player has been hit once
             if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Player"))
             {
                 Vector2 position = this.gameObject.transform.position;
 
+                // cast to the player controller
                 PlayerFSMController pc = hits[i].collider.transform.GetComponent<PlayerFSMController>();
-                pc.KnockbackTransition(damage, knockbackPower, position); 
-
+                if (!pc.GetFlameKB())
+                {
+                    pc.KnockbackTransition(damage, knockbackPower, position);
+                    pc.SetFlameKB(true);
+                } 
                 return true;
             }
             //if the hit of the collider is NOT trigger AND is an enemy, still deal damage (friendly fire)

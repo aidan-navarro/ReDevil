@@ -5,6 +5,9 @@ using UnityEngine;
 public class WaniguchiFSMController : EnemyFSMController
 {
     public bool attacking;
+    [SerializeField]
+    private Vector2 knockbackVel;
+    public Vector2 GetKnockbackVel() { return knockbackVel; }
 
     //initialize FSM
     protected override void Initialize()
@@ -45,25 +48,32 @@ public class WaniguchiFSMController : EnemyFSMController
         //add transitions
         enemyIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         enemyIdle.AddTransition(Transition.WaniguchiAttack, FSMStateID.WaniguchiAttacking); //transition to attacking state
+        enemyIdle.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
 
-        WaniguchiAttackState ndpAttack = new WaniguchiAttackState();
-        ndpAttack.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
-        ndpAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
-        ndpAttack.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair); // the attack state will transition right into the midair state
+        WaniguchiAttackState waniguchiAttack = new WaniguchiAttackState();
+        waniguchiAttack.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
+        waniguchiAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        waniguchiAttack.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair); // the attack state will transition right into the midair state
 
-        WaniguchiAirState ndpAirState = new WaniguchiAirState();
-        ndpAirState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
-        ndpAirState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling); // The ideal result is that from midair, we transition to the idle state and stop moving when we land
+        WaniguchiAirState waniguchiAirState = new WaniguchiAirState();
+        waniguchiAirState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        waniguchiAirState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling); // The ideal result is that from midair, we transition to the idle state and stop moving when we land
+        waniguchiAirState.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
+
+        WaniguchiFlinchState waniguchiFlinchState = new WaniguchiFlinchState();
+        waniguchiFlinchState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiFlinching);
+        waniguchiFlinchState.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair);
+        waniguchiFlinchState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
         //there are no transitions out of the dead state
 
-
         //Add state to the state list
         AddFSMState(enemyIdle);
-        AddFSMState(ndpAttack);
-        AddFSMState(ndpAirState);
+        AddFSMState(waniguchiAttack);
+        AddFSMState(waniguchiAirState);
+        AddFSMState(waniguchiFlinchState);
         AddFSMState(enemyDead);
 
     }
@@ -90,6 +100,21 @@ public class WaniguchiFSMController : EnemyFSMController
         }
     }
 
+    // -------------------- TEST: Waniguchi Flinch Behaviour --------------------
+    public override void FlinchEnemy(Vector2 flinchKB)
+    {
+        //base.FlinchEnemy(flinchKB);
+        //rig.AddForce(flinchKB, ForceMode2D.Impulse);
+        if (facingRight)
+        {
+            rig.velocity = flinchKB * new Vector2(-1, 1);
+        }
+        else if (!facingRight)
+        {
+            rig.velocity = flinchKB;
+        }
+    }
+
     public void WaniguchiAttack()
     {
 
@@ -101,7 +126,6 @@ public class WaniguchiFSMController : EnemyFSMController
         {
             rig.velocity = atkDirectionRight;
         }
-        
     }
 
     public void WaniguchiStop()

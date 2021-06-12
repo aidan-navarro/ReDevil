@@ -524,6 +524,9 @@ MonoBehaviour:
     m_Bits: 4096
   noFriction: {fileID: 6200000, guid: 7431913495d402c4597035c370b510b9, type: 2}
   friction: {fileID: 6200000, guid: 76a446246d764564897671c8e1d701bf, type: 2}
+  slopeCheckDistance: 0
+  slopeNormalPerp: {x: 0, y: 0}
+  isOnSlope: 0
   stateText: {fileID: 0}
   healthText: {fileID: 0}
   SoulText: {fileID: 0}
@@ -541,6 +544,7 @@ MonoBehaviour:
   - {fileID: 243560149}
   selectedArament: {fileID: 243560149}
   dashKnockbackPower: 0
+  dkbTransition: 0
   moveSpeed: 10
   airControl: 5
   slideSpeed: 3
@@ -574,14 +578,18 @@ MonoBehaviour:
   groundHit2: 20
   groundHit3: 40
   dashAttackValue: 15
+  airAttackValue: 30
   groundHitCounter: 0
   airDownStrike: 50
+  airAttackTime: 0.3
   endlag: 1
   enemyHitboxes: []
   attacking: 0
+  didAirAttack: 0
   dashAttackContact: 0
   airDashAttackContact: 0
   firstDashContact: 0
+  airAttackContact: 0
   idleTransition: 0
   dashTransition: 0
   groundAttack2Transition: 0
@@ -603,6 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immobileTime: 1
   iFrameTime: 2
+  dashKnockbackTimer: 0.25
 --- !u!70 &4225471945767981086
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -664,7 +673,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 7431913495d402c4597035c370b510b9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1059789039
 MonoBehaviour:

@@ -6,14 +6,16 @@ public class BoulderPuttState : FSMState
 {
     bool attackStarted;
     bool attackFinished;
-
+    GameObject pillar;
     public BoulderPuttState()
     {
         stateID = FSMStateID.OniBoulderPutting;
     }
     public override void EnterStateInit()
     {
-        base.EnterStateInit();
+        Debug.Log("Oni Putt");
+        attackStarted = false;
+        attackFinished = false;
     }
 
     public override void Act(Transform player, Transform npc)
@@ -44,7 +46,18 @@ public class BoulderPuttState : FSMState
 
     IEnumerator PerformBoulderPutt(Transform npc)
     {
-        yield return new WaitForSeconds(2.0f);
+        // Spawm in the pillar
+        OniFSMController oc = npc.GetComponent<OniFSMController>();
+        pillar = oc.SpawnPillar(true);
+        // Wait a moment before destorying it
+        yield return new WaitForSeconds(1.0f);
+        Object.Destroy(pillar);
+
+        oc.BoulderPut();
+
+        yield return new WaitForSeconds(1.0f);
+
+        attackFinished = true;
     }
 
 }

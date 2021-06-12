@@ -21,12 +21,18 @@ public class PlayerAttack : MonoBehaviour
     public float groundHit2;
     public float groundHit3;
     public float dashAttackValue; // Point values for dash attacking
+    public float airAttackValue;
 
     //to count what number attack chain we're on
     public int groundHitCounter;
 
     //damage amount for airDownStrike
     public float airDownStrike;
+
+    // Duration of air attack state
+    [SerializeField] private float airAttackTime;
+    public float GetAirAttackTime() { return airAttackTime; }
+
     //endlag once the player has landed
     public float endlag;
 
@@ -36,11 +42,13 @@ public class PlayerAttack : MonoBehaviour
     //the variable called to deal damage to enemies.  set value using variables used to set damage amounts
     private float damage;
     public bool attacking;
+    public bool didAirAttack; // flip this when air attack is committed
 
     // dash attack specific, only want to have the dash attack trigger once on hit
     public bool dashAttackContact; // going to get flicked back to false once it hits
     public bool airDashAttackContact; // dash attack in the air
     public bool firstDashContact; // condition if the first dash attack has connected then change knockback properties
+    public bool airAttackContact; // to make sure that the air attack only registers once
 
     //transition bools
     public bool idleTransition;
@@ -69,6 +77,7 @@ public class PlayerAttack : MonoBehaviour
         pc = gameObject.GetComponent<PlayerFSMController>();
         attacking = false;
         firstDashContact = false;
+        airAttackContact = false;
         TurnOffHitbox();
         checkCancel = false;
     }
@@ -111,10 +120,10 @@ public class PlayerAttack : MonoBehaviour
         StopCoroutine("EnableGroundHit");
     }
 
-
     public IEnumerator EnableGroundHit()
     {
         attacking = true;
+        
         //update the combo count
         groundHitCounter++;
         Debug.Log("GroundHitCount: " + groundHitCounter);
@@ -133,6 +142,7 @@ public class PlayerAttack : MonoBehaviour
                 damage = groundHit3;
                 break;
         }
+        #region old implementation 
 
         //old if statement.  replaced by above switch statement for practice reasons
         /*
@@ -150,8 +160,9 @@ public class PlayerAttack : MonoBehaviour
         }
         */
 
-        // lock the player's position 
-        pc.GetRigidbody2D().velocity = new Vector2(0, 0);
+        //// lock the player's position 
+        //pc.GetRigidbody2D().velocity = new Vector2(0, 0);
+        #endregion
 
         //let a hit process
         CheckGroundHit(attackCollider, transform.forward, 10);
@@ -188,7 +199,6 @@ public class PlayerAttack : MonoBehaviour
         ContactFilter2D filter = new ContactFilter2D();
 
         int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
-        Debug.Log("Number Ground Hits: " + numHits);
 
         for (int i = 0; i < numHits; i++)
         {
@@ -198,6 +208,7 @@ public class PlayerAttack : MonoBehaviour
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
+                // register a hit
                 DetectWeakspot(eCollider);
 
                 Vector3 position = this.gameObject.transform.position;  // this isn't getting used
@@ -211,7 +222,12 @@ public class PlayerAttack : MonoBehaviour
                 //store the amount of hp the enemy has after the hit
                 float presentHealth = ec.health;
 
-                //if the present health goes below 0, set it to zero since you can't steal a negative soul value
+                ec.SetIsHit(true);
+                if (groundHitCounter >= 3)
+                {
+                    ec.SetEnemyFlinch(true);
+                }
+                    //if the present health goes below 0, set it to zero since you can't steal a negative soul value
                 if (presentHealth < 0)
                 {
                     presentHealth = 0;
@@ -226,11 +242,78 @@ public class PlayerAttack : MonoBehaviour
         return false;
     }
     #endregion
+    //------------------------------------------------------------
+    // Air Attack Functions
+    //------------------------------------------------------------
 
+    public void AirAttack()
+    {
+        attacking = true;
+        didAirAttack = true;
+        Debug.Log("Air Attack Trigger");
+        damage = airAttackValue;
+        TurnOnHitbox();
+        CheckAirHit(attackCollider, transform.forward, 10);
+        //yield return new WaitForSeconds(0.1f); // this how long the hitbox lasts?
+
+        checkCancel = true;
+    }
+
+    public void StopAirAttack()
+    {
+        TurnOffHitbox();
+        attacking = false;
+        checkCancel = false;
+    }
+
+    private bool CheckAirHit(Collider2D playerAttackCol, Vector2 direction, float distance)
+    {
+
+        RaycastHit2D[] hits = new RaycastHit2D[10];
+        ContactFilter2D filter = new ContactFilter2D();
+
+        int numHits = playerAttackCol.Cast(direction, filter, hits, distance);
+
+        for (int i = 0; i < numHits; i++)
+        {
+            //if the hit of the collider is NOT trigger AND is an enemy
+            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy"))
+            {
+                EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
+                Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
+
+                // register a hit
+                DetectWeakspot(eCollider);
+
+                //store the amount of hp the enemy has before the initial hit
+                float pastHealth = ec.health;
+
+                //send all relative information to the player to take damage, and apply knockback
+                ec.TakeDamage(damage);
+
+                //store the amount of hp the enemy has after the hit
+                float presentHealth = ec.health;
+
+                ec.SetIsHit(true);
+                ec.SetEnemyFlinch(true);
+                //if the present health goes below 0, set it to zero since you can't steal a negative soul value
+                if (presentHealth < 0)
+                {
+                    presentHealth = 0;
+                }
+
+                //gain soul equal to the damage dealt to the enemy.
+                pc.SoulCalculator(pastHealth - presentHealth);
+                airAttackContact = true;
+                return true;
+            }
+        }
+        return false;
+    }
     //------------------------------------------------------------
     // Dash Attack Functions
     //------------------------------------------------------------
-    #region click plus sign to hide/unhide code
+    #region Dash Attack functionality: click plus sign to hide/unhide code
     public void StartDashAttack()
     {
         //StartCoroutine("EnableDashAttack");
@@ -247,7 +330,6 @@ public class PlayerAttack : MonoBehaviour
     public void StartAirDashAttack(Vector2 position)
     {
         attacking = true;
-        // test, replace the 
         attackCollider.transform.localPosition = position;
         TurnOnHitbox();
         ShrinkHitbox();
@@ -262,14 +344,6 @@ public class PlayerAttack : MonoBehaviour
         RevertHitbox();
         //StopCoroutine("EnableDashAttack");
     }
-
-    //// Need an IEnumerator? don't need to delay it... 
-    //// unless I need to keep the duration of the box check
-    //public IEnumerator EnableDashAttack()
-    //{
-    //    attacking = true;
-    //    yield return new WaitForSeconds(0.5f);
-    //}
 
     private void CheckDashAttackHit(Collider2D playerAttackCol, Vector2 direction, float distance)
     {
@@ -286,7 +360,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
-                
+
+                ec.SetIsHit(true);
                 DetectWeakspot(eCollider);
 
                 //store the amount of hp the enemy has before the initial hit
@@ -308,6 +383,8 @@ public class PlayerAttack : MonoBehaviour
                 pc.SoulCalculator(pastHealth - presentHealth);
                 attackVector = ec.transform.position - pc.transform.position;
 
+                ec.SetEnemyFlinch(true);
+
                 attacking = false;
                 if (pc.GetisGrounded())
                 {
@@ -319,7 +396,6 @@ public class PlayerAttack : MonoBehaviour
                     Debug.Log("Air Hit");
                     airDashAttackContact = true;
                     // get and normalize the attack vector 
-                    Debug.Log("Attack Vector: " + attackVector.normalized);
          
                     if (presentHealth == 0)
                     {
@@ -337,7 +413,10 @@ public class PlayerAttack : MonoBehaviour
     //------------------------------------------------------------
     public void SoulShotAttack()
     {
-        StartCoroutine("EnableSoulShotAttack");
+        if (!attacking)
+        {
+            StartCoroutine("EnableSoulShotAttack");
+        }
     }
     public IEnumerator EnableSoulShotAttack()
     {
@@ -414,7 +493,7 @@ public class PlayerAttack : MonoBehaviour
         while (!pc.GetisGrounded())
         {
             //check if we touched the floor if we did.  break.
-            pc.TouchingFloorOrWall();
+            pc.TouchingFloorCeilingWall();
             if (pc.GetisGrounded())
             {
                 break;
@@ -460,6 +539,7 @@ public class PlayerAttack : MonoBehaviour
             //if the hit of the collider is NOT trigger AND is an enemy
             if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy"))
             {
+                
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
@@ -485,6 +565,7 @@ public class PlayerAttack : MonoBehaviour
 
                 //send all relative information to the player to take damage, and apply knockback
                 ec.TakeDamage(damage);
+                ec.SetEnemyFlinch(true);
 
                 //store the amount of hp the enemy has after the hit
                 float presentHealth = ec.health;
@@ -568,7 +649,11 @@ public class PlayerAttack : MonoBehaviour
                         break;
                 }
 
-            }
+            } 
+            //else if (pc.GetAttackButtonDown() && !pc.GetisGrounded()) // when we're in the air
+            //{
+            //    checkCancel = false;
+            //}
 
         }
 
@@ -584,14 +669,25 @@ public class PlayerAttack : MonoBehaviour
             // this should transition into the ground attack
             if ((pc.leftTriggerDown || pc.rightTriggerDown) && pc.GetisGrounded())
             {
-                Debug.Log("Dash Cancel Input");
+                Debug.Log("Dash Cancel Input: " + dashTransition);
                 checkCancel = false;
                 groundHitCounter = 0;
                 //turn on variable for dash cancel
                 StopGroundAttack();
                 StopAirDownStrikeAttack();
                 dashTransition = true;
-                Debug.Log(dashTransition);
+            }
+
+            // this should transition from the air
+            else if ((pc.leftTriggerDown || pc.rightTriggerDown) && !pc.GetisGrounded())
+            {
+                Debug.Log("Dash Cancel Input: " + dashTransition);
+                checkCancel = false;
+                groundHitCounter = 0;
+                //turn on variable for dash cancel
+                StopAirAttack();
+                StopAirDownStrikeAttack();
+                dashTransition = true;
             }
         }
     }
@@ -606,6 +702,7 @@ public class PlayerAttack : MonoBehaviour
                 checkCancel = false;
                 groundHitCounter = 0;
                 StopGroundAttack();
+                StopAirAttack();
                 StopAirDownStrikeAttack();
             }
         }
@@ -622,5 +719,6 @@ public class PlayerAttack : MonoBehaviour
         airDashAttackContact = false;
         groundAttack2Transition = false;
         groundAttack3Transition = false;
+        airAttackContact = false;
     }
 }

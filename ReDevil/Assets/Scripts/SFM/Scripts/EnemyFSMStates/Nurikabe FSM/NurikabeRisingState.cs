@@ -24,7 +24,6 @@ public class NurikabeRisingState : FSMState
         nc.timer += Time.deltaTime * nc.GetRiseSpeed();
 
         Vector2 test = Vector2.Lerp(startPos, endPos, nc.timer);
-        Debug.Log("Test -> " + test);
 
         nc.ActivateNurikabe(startPos, endPos, nc.timer);
 

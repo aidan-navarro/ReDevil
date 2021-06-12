@@ -17,9 +17,7 @@ public class GroundAttack1State : FSMState
 
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
-    {
-        Debug.Log("First Chain Attack");
-        
+    {        
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
@@ -72,7 +70,7 @@ public class GroundAttack1State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.DashAttack); // not particularly 
+            pc.PerformTransition(Transition.DashAttack); 
         }
 
         if (patk.idleTransition && !patk.attacking)

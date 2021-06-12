@@ -20,7 +20,7 @@ public class PlayerFSMController : AdvancedFSM
     private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
     public LayerMask invisWallLayer;
-    public LayerMask nurikabeLayer; // specific Nurikabe functionality
+    public LayerMask nurikabeLayer; // specific Nurikabe functionality *** not currently being used rn
 
     //used for slope functionality
     [SerializeField]
@@ -55,6 +55,10 @@ public class PlayerFSMController : AdvancedFSM
     private GameObject SoulLv2Bar;
     [SerializeField]
     private GameObject SoulLv3Bar;
+    [SerializeField]
+    private GameObject DashIcon1;
+    [SerializeField]
+    private GameObject DashIcon2;
 
     //-------------------------------------------------------------------
     //Meter variables
@@ -67,7 +71,7 @@ public class PlayerFSMController : AdvancedFSM
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealthHud(); }
 
-    private void UpdateHealthHud()
+    public void UpdateHealthHud()
     {
         healthText.text = health.ToString();
         healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
@@ -128,20 +132,26 @@ public class PlayerFSMController : AdvancedFSM
     public float GetKnockbackPower() { return knockbackPower; }
     public void SetKnockbackPower(float inKnockbackPower) { knockbackPower = inKnockbackPower; }
 
-    private bool kbTransition; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
+    [SerializeField]private bool kbTransition; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
     public bool GetKbTransition() { return kbTransition; }
     public void SetKbTransition(bool inKbTransition) { kbTransition = inKbTransition; }
 
-    // TEST ---------- dash knockback specific --------------
+    // TEST Flame Knockback specific
+
+    [SerializeField] private bool flameKnockback;
+    public bool GetFlameKB() { return flameKnockback; }
+    public void SetFlameKB(bool inFlameKnockback) { flameKnockback = inFlameKnockback; }
+    // ---------- dash knockback specific --------------
     [SerializeField]
     private float dashKnockbackPower;
+
+    [SerializeReference]
     private bool dkbTransition;
     public bool GetDKBTransition() { return dkbTransition;  }
     public void SetDKBTransition(bool inDKBTransition)
     {
         dkbTransition = inDKBTransition;
     }
-    // END TEST -----------------------
 
     private bool immobile; //when this bool value is true, transition to KB State.  Reset to false in iFrames so that we can be knocked back again.
     public bool GetImmobile() { return immobile; }
@@ -252,6 +262,10 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetisTouchingWall() { return isTouchingWall; }
     public void SetisTouchingWall(bool inIsTouchingWall) { isTouchingWall = inIsTouchingWall; }
 
+    private bool isTouchingCeiling;
+    public bool GetisTouchingCeiling() { return isTouchingCeiling; }
+    public void SetisTouchingCeiling(bool inIsTouchingCeiling) { isTouchingCeiling = inIsTouchingCeiling; }
+
     [SerializeField]
     private bool isTouchingInvisibleWall;
     public bool GetisTouchingInvisibleWall() { return isTouchingInvisibleWall; }
@@ -261,6 +275,7 @@ public class PlayerFSMController : AdvancedFSM
     private bool isTouchingNurikabe;
     public bool GetisTouchingNurikabe() { return isTouchingNurikabe; }
     public void SetisTouchingNurikabe(bool inIsTouchingNurikabe) { isTouchingNurikabe = inIsTouchingNurikabe; } 
+
     [SerializeField]
     private float jumpPower = 10;
     public float GetJumpPower() { return jumpPower; }
@@ -497,6 +512,7 @@ public class PlayerFSMController : AdvancedFSM
         moving.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to jumping
         moving.AddTransition(Transition.Airborne, FSMStateID.Midair); //if i walk off an edge without jumping, transition to midair movement
         //moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
+        moving.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -536,6 +552,7 @@ public class PlayerFSMController : AdvancedFSM
         midair.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if i die while midair, transition to dead
         midair.AddTransition(Transition.Idle, FSMStateID.Idling);  //If i land on the ground, transition to idling
         midair.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);  //if i touch a wall while falling, transition to sall sliding
+        midair.AddTransition(Transition.AirAttack, FSMStateID.AirStrike);
         //midair.AddTransition(Transition.Dash, FSMStateID.Dashing);
         midair.AddTransition(Transition.AirDashAttack, FSMStateID.AirDashAttacking);
         midair.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
@@ -626,6 +643,15 @@ public class PlayerFSMController : AdvancedFSM
         ga3.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
         ga3.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
+        AirAttackState airAttack = new AirAttackState();
+
+        airAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead); // if we die
+        airAttack.AddTransition(Transition.Idle, FSMStateID.Idling); // once Air attack ends do we hit the ground
+        airAttack.AddTransition(Transition.Airborne, FSMStateID.Midair); // or do we stay in the air
+        airAttack.AddTransition(Transition.WallSlide, FSMStateID.WallSliding); // or if we hit the wall
+        airAttack.AddTransition(Transition.AirDashAttack, FSMStateID.AirDashAttacking); // should we wait until it goes out of air attack or can we cancel out of it?
+        airAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
+
         AirDownStrikeState airDownStrike = new AirDownStrikeState();
 
         airDownStrike.AddTransition(Transition.NoHealth, FSMStateID.Dead);
@@ -659,6 +685,7 @@ public class PlayerFSMController : AdvancedFSM
         AddFSMState(groundDashAttack); // adding to the attack states
         AddFSMState(airDashAttack); // adding to state
         AddFSMState(groundDashKnockback); // adding right after dash attack
+        AddFSMState(airAttack);
         AddFSMState(ga1);
         AddFSMState(ga2);
         AddFSMState(ga3);
@@ -700,6 +727,7 @@ public class PlayerFSMController : AdvancedFSM
     //Functions to handle movement on a slope
     public void SlopeCheck()
     {
+        Debug.Log("Checking For Slope");
         Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
 
         SlopeCheckHorizontal(checkPos);
@@ -751,17 +779,23 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
-    public void TouchingFloorOrWall()
+    public void TouchingFloorCeilingWall()
     {
         //equation values to determine if the player is on the ground
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
         isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
+        Vector2 headPos = col.bounds.center;
+        headPos.y += col.bounds.extents.y;
+        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
+
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, groundLayer.value);
+
+        
     }
 
     public void TouchingInvisibleWall()
@@ -813,6 +847,29 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
+    public void UpdateDashIcons()
+    {
+       switch(airDashCount)
+       {
+            case 0:
+                DashIcon1.SetActive(true);
+                DashIcon2.SetActive(true);
+                break;
+            case 1:
+                DashIcon1.SetActive(true);
+                DashIcon2.SetActive(false);
+                break;
+            case 2:
+                DashIcon1.SetActive(false);
+                DashIcon2.SetActive(false);
+                break;
+            default:
+                DashIcon1.SetActive(true);
+                DashIcon2.SetActive(true);
+                break;
+        }
+    }
+
     //public void CheckDashInput()
     //{
     //    //only check for these inputs if the dash has not ended
@@ -852,8 +909,11 @@ public class PlayerFSMController : AdvancedFSM
     //    }
     //}
 
+    // fine for single hit functions, but for lasting projectiles like a flamethrower
+    // this will bust some logic
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
+        Debug.Log("Player Hit");
         if (selectedArament.IsActive)
         {
             SoulCalculator(-dmg);

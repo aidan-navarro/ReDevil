@@ -308,6 +308,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2142034557}
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: DashIcon1
+      value: 
+      objectReference: {fileID: 1563507170}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: DashIcon2
+      value: 
+      objectReference: {fileID: 1563507169}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 488521022}
@@ -1062,6 +1070,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362ebfc693b1ff64185bf4b00c123f5f, type: 3}
+--- !u!1 &1563507169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609412732492918221, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1563507168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1563507170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4374260188259431746, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1563507168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1800377831
 GameObject:
   m_ObjectHideFlags: 0

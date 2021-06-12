@@ -19,7 +19,7 @@ public class IdlingState : FSMState
     //Act: What are we doing in this state?
     public override void Act(Transform player, Transform npc)
     {
-        Debug.Log("Idling");
+        //Debug.Log("Idling");
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
@@ -30,9 +30,12 @@ public class IdlingState : FSMState
 
         patk.firstDashContact = false;
         pc.ResetAirDashCount(); // any time we return to idle state, this count gets reset
-        pc.TouchingFloorOrWall();
+        pc.UpdateDashIcons();
+        pc.TouchingFloorCeilingWall();
         pc.CheckAirDash(); // to reset the air dash
         pc.TouchingInvisibleWall();
+
+        pc.SetKbTransition(false);
         //pc.CheckDashInput();
         pc.UpdateState("Idle");
     }

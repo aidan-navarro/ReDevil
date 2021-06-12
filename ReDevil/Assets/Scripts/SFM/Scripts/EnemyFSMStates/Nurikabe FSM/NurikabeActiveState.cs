@@ -19,7 +19,7 @@ public class NurikabeActiveState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         
-        Debug.Log("Checking Active");
+        //Debug.Log("Checking Active");
         NurikabeFSMController nc = npc.GetComponent<NurikabeFSMController>();
         nc.SetActiveLayer();
         nc.isActive = true;

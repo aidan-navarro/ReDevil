@@ -6,6 +6,7 @@ public class InvincibleTimer : MonoBehaviour
 {
     public float immobileTime; //the amount of time in seconds the player is immobile
     public float iFrameTime; //the number of iFrames AFTER being immobile in seconds
+    public float dashKnockbackTimer;
     private PlayerFSMController pc;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class InvincibleTimer : MonoBehaviour
     {
     }
 
+    // Turn flamethrower specific items on in 
     public IEnumerator Timer()
     {
         pc.SetInvincible(true);
@@ -38,6 +40,7 @@ public class InvincibleTimer : MonoBehaviour
 
         //invincibility has ended.  Player can now be hit again
         pc.SetInvincible(false);
+        pc.SetFlameKB(false);
         //invincibility has ended.  allow knockback to be dealt again
         gameObject.layer = LayerMask.NameToLayer("Default");
 
@@ -47,7 +50,8 @@ public class InvincibleTimer : MonoBehaviour
     public IEnumerator DashKnockbackTimer()
     {
         // get a delay timer set in the player controller?
-        yield return new WaitForSeconds(0.25f);
+        // serialize this???
+        yield return new WaitForSeconds(dashKnockbackTimer);
         pc.SetDKBTransition(false);
     }
 }

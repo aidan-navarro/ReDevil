@@ -23,9 +23,12 @@ public class MoveState : FSMState
         isMoving = true;
         bool grounded = pc.GetisGrounded();
 
+        // moving and attacking
+        bool attackButtonDown = pc.GetAttackButtonDown();
+
         pc.SetNoFrictionMaterial();
         pc.SlopeCheck();
-        pc.TouchingFloorOrWall();
+        pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
 
@@ -44,7 +47,7 @@ public class MoveState : FSMState
             //determine velocity based on if we are on a slope or flat ground
             if (grounded && !pc.isOnSlope)
             {
-                Debug.Log("OnFlat Ground");
+                //Debug.Log("OnFlat Ground");
                 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
                 newMoveSpeed.y = rig.velocity.y;
             }
@@ -69,7 +72,7 @@ public class MoveState : FSMState
             //determine velocity based on if we are on a slope or flat ground
             if (grounded && !pc.isOnSlope)
             {
-                Debug.Log("OnFlat Ground");
+                //Debug.Log("OnFlat Ground");
                 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
                 newMoveSpeed.y = rig.velocity.y;
             }
@@ -85,6 +88,8 @@ public class MoveState : FSMState
         }
         else //no input detected.  stop speed and set bool to not moving to transition to idle
         {
+            pc.SetFrictionMaterial();
+
             //stop momentum movement
             Vector2 newMoveSpeed = Vector2.zero;
             newMoveSpeed.y = rig.velocity.y;
@@ -108,6 +113,7 @@ public class MoveState : FSMState
         bool dashAllowed = pc.GetDashInputAllowed();
         bool onWall = pc.GetisTouchingWall();
         bool invincible = pc.GetInvincible();
+        bool attackButtonDown = pc.GetAttackButtonDown();
         bool kbTransition = pc.GetKbTransition();
 
         //knockback transition
@@ -130,6 +136,12 @@ public class MoveState : FSMState
             //{
             //    pc.PerformTransition(Transition.Dash);
             //}
+        }
+
+        // attacking
+        if (attackButtonDown)
+        {
+            pc.PerformTransition(Transition.GroundAttack1);
         }
 
         //idle transition
