@@ -1317,6 +1317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2058069330}
   - component: {fileID: 2058069331}
+  m_Layer: 11
   m_Name: TestInvisibleWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
