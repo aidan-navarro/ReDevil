@@ -847,6 +847,7 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
+    // this alters the visibility of the dash icons in the UI
     public void UpdateDashIcons()
     {
        switch(airDashCount)
