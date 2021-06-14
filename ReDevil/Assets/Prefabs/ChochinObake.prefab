@@ -112,7 +112,7 @@ MonoBehaviour:
   attackInterval: 5
   knockbackPower: 5
   atkDirectionRight: {x: 0, y: 0}
-  projectileSpeed: 1
+  projectileSpeed: 3
   currentPos: {x: 0, y: 0}
   isGrounded: 0
   airborneEnemy: 1
