@@ -8,6 +8,7 @@ public class RespawnManager : MonoBehaviour
     public static RespawnManager instance;
 
     public Vector2 respawnPoint;
+    public Vector2 startingPoint;
 
     public bool initialized = false;
 
@@ -22,6 +23,7 @@ public class RespawnManager : MonoBehaviour
         {
             PlayerFSMController player = FindObjectOfType<PlayerFSMController>();
             respawnPoint = player.transform.position;
+            startingPoint = player.transform.position;
             Debug.Log("Set Respawnpoint: " + respawnPoint);
             rand = Random.Range(1, 100);
             instance = this;

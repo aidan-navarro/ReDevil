@@ -75,9 +75,9 @@ public class SceneTimeWait : MonoBehaviour
     
    public void RestartOption()
     {
-        
-        Destroy(respawn.gameObject);
-        SceneManager.LoadScene(0);
+        sceneID = respawn.sceneID;
+        respawn.respawnPoint = respawn.startingPoint;
+        SceneManager.LoadScene(sceneID);
     }
 
     public void WithdrawOption()
