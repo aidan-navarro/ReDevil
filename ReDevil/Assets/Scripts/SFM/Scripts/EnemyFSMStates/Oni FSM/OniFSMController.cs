@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 using System;
 
 public class OniFSMController : EnemyFSMController
@@ -56,6 +57,22 @@ public class OniFSMController : EnemyFSMController
 
     public event EventHandler OnPlayerHit;
     public event EventHandler OnWallHit;
+
+    [SerializeField]
+    private Text healthText;
+    [SerializeField]
+    private GameObject healthBar;
+    [SerializeField]
+    private float MaxHealth;
+
+    public float GetHealth() { return health; }
+    public void SetHealth(float inHealth) { health = inHealth; UpdateHealth(); }
+
+    public void UpdateHealth()
+    {
+        healthText.text = health.ToString();
+        healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+    }
 
     //initialize FSM
     protected override void Initialize()
@@ -244,5 +261,11 @@ public class OniFSMController : EnemyFSMController
         {
             OnWallHit?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        health -= damage;
+        UpdateHealth();
     }
 }

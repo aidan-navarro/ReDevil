@@ -22,6 +22,9 @@ public class CineMachineSwitcher : MonoBehaviour
 
     public GameObject invisiWall;
 
+    public bool canContinue = false;
+    public float waitTime;
+
     private void Awake()
     {
        
@@ -39,7 +42,7 @@ public class CineMachineSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        canContinue = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +53,16 @@ public class CineMachineSwitcher : MonoBehaviour
             vcam1.Priority = 0;
             vcam2.Priority = 1;
             invisiWall.gameObject.SetActive(true);
+            StartCoroutine("Wait");
+
         }
     }
+
+    public IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(waitTime);
+        canContinue = true;
+
+    }
+
 }
