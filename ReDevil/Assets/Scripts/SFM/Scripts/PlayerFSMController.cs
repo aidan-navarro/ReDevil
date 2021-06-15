@@ -236,6 +236,8 @@ public class PlayerFSMController : AdvancedFSM
     [System.NonSerialized]
     private bool attackButtonDown;
     public bool GetAttackButtonDown() { return attackButtonDown; }
+    public void SetAttackButtonDown(bool inAttackButtonDown) { attackButtonDown = inAttackButtonDown; }
+
     [System.NonSerialized]
     private bool jumpButtonDown;
     public bool GetJumpButtonDown() { return jumpButtonDown; }

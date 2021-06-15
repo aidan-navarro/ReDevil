@@ -172,7 +172,7 @@ public class PlayerAttack : MonoBehaviour
 
         //allow the player state to check for a cancel (dash or attack chain)
         checkCancel = true;
-
+        pc.SetAttackButtonDown(false);
         //play the animation here
 
         //wait for the attack to end.  During this timeframe the attack can be cancelled
