@@ -322,7 +322,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""352e2e51-969c-49f4-980d-54a085149278"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Attack"",
