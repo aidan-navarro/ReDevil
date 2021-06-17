@@ -109,6 +109,8 @@ public class AirDashAttack : FSMState
                 vAbsDash.x = Mathf.Abs(vAbsDash.x);
                 patk.StartAirDashAttack(vAbsDash);
             }
+
+            // Conditions to conclude the dash
             else if (dashDistance >= pc.dashLength * pc.dashLength)
             {
                 //Debug.Log("Reached Air Dash Attack distance");
@@ -127,7 +129,6 @@ public class AirDashAttack : FSMState
                 endDash = true;
                 patk.EndDashAttack();
             }
-            // TO ADD: break out function if we get stuck on one of the corners
 
             if (enterKnockback)
             {

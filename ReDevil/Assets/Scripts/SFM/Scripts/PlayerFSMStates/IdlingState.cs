@@ -27,6 +27,11 @@ public class IdlingState : FSMState
         rig.velocity = new Vector2(rig.velocity.x, 0);
         //set friction material
         pc.SlopeCheck();
+
+        //Vector2 slopeVector = pc.GetDashPath();
+        //slopeVector.x *= Mathf.Cos(pc.GetSlopeDownAngle());
+        //slopeVector.y *= Mathf.Sin(pc.GetSlopeDownAngle());
+        //Debug.Log("SlopeVector: " + slopeVector);
         pc.SetFrictionMaterial();     
 
         patk.firstDashContact = false;
