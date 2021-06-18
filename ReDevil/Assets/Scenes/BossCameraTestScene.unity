@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 140899059}
   - component: {fileID: 140899061}
   m_Layer: 0
-  m_Name: CIneMachineManager
+  m_Name: CineMachineManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,8 +171,10 @@ MonoBehaviour:
   vcam2: {fileID: 1800377832}
   playerCamera: 1
   invisiWall: {fileID: 2058069329}
+  oniHealthBar: {fileID: 1128619796}
+  touchBox: {fileID: 140899061}
   canContinue: 0
-  waitTime: 3
+  waitTime: 10
 --- !u!4 &140899060
 Transform:
   m_ObjectHideFlags: 0
@@ -871,6 +873,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon
       objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872563, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872565, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
       propertyPath: m_RootOrder
@@ -936,6 +943,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 538834143}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
       propertyPath: healthText
@@ -1140,7 +1152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1128619797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,6 +1390,8 @@ MonoBehaviour:
   vcam2: {fileID: 0}
   playerCamera: 1
   invisiWall: {fileID: 0}
+  oniHealthBar: {fileID: 0}
+  touchBox: {fileID: 0}
   canContinue: 0
   waitTime: 0
 --- !u!95 &1314630654

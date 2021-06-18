@@ -22,6 +22,10 @@ public class CineMachineSwitcher : MonoBehaviour
 
     public GameObject invisiWall;
 
+    public GameObject oniHealthBar;
+
+    public Collider2D touchBox;
+
     public bool canContinue = false;
     public float waitTime;
 
@@ -52,17 +56,22 @@ public class CineMachineSwitcher : MonoBehaviour
             PlayerFSMController pc = collision.GetComponent<PlayerFSMController>();
             vcam1.Priority = 0;
             vcam2.Priority = 1;
-            invisiWall.gameObject.SetActive(true);
-            StartCoroutine("Wait");
+            StartCoroutine("Cutscene");
+        
 
         }
     }
 
-    public IEnumerator Wait()
+    public IEnumerator Cutscene()
     {
+        touchBox.enabled = false;
+        invisiWall.gameObject.SetActive(true);
+        oniHealthBar.gameObject.SetActive(true);
+        FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = false;
         yield return new WaitForSeconds(waitTime);
         canContinue = true;
-
+        //FindObjectOfType<OniFSMController>().OnOniBossStart?.Invoke(this, EventArgs.empty)
+        FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = true;
     }
 
 }
