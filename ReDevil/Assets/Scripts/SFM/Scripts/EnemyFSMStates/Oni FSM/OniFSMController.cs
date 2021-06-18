@@ -48,6 +48,8 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float cycloneSpeed;
     public float CycloneSpeed => cycloneSpeed;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI stateText;
 
     [SerializeField]
     private List<Transform> arenaPoints;
@@ -66,8 +68,12 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float MaxHealth;
 
+    public bool IsEnraged { get; private set; }
+
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealth(); }
+
+    public float GetMaxHealth() { return maxHealth; }
 
     public void UpdateHealth()
     {
@@ -98,6 +104,7 @@ public class OniFSMController : EnemyFSMController
     }
     protected override void FSMUpdate()
     {
+        stateText.text = CurrentStateID.ToString();
         CurrentState.Reason(playerTransform, transform);
         CurrentState.Act(playerTransform, transform);
     }
