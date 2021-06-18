@@ -197,7 +197,7 @@ public class EnemyFSMController : AdvancedFSM
 
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         health -= damage;
     }
