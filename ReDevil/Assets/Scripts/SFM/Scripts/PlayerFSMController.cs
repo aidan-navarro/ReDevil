@@ -221,6 +221,7 @@ public class PlayerFSMController : AdvancedFSM
     //respawn
     public RespawnManager respawnPoint;
 
+    
 
     //-------------------------------------------------------------------
     //variables to detect controller input
@@ -282,7 +283,7 @@ public class PlayerFSMController : AdvancedFSM
     public void SetJumpPower(float newJumpPower) { jumpPower = newJumpPower; }
 
     // Player Input
-    private PlayerInput playerInput;
+    public PlayerInput playerInput { get; private set; }
     private GameplayControls gameplayControls;
 
     //Player Sound
