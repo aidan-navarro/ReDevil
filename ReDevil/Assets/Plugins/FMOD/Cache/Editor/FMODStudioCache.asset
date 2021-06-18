@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PLAYER/Player_Run
   guid: 88af88bddf6437449d5eda7aaa72c2dd
-  Banks:
-  - {fileID: 1149553343516350785}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -106,8 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PLAYER/Player_Land
   guid: f14da48858e5e34eb060c9b9b654f2d8
-  Banks:
-  - {fileID: 1149553343516350785}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -129,8 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PLAYER/Player_Jump
   guid: 5d341b3e35328b4ab23949695ab34685
-  Banks:
-  - {fileID: 1149553343516350785}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -180,16 +177,12 @@ MonoBehaviour:
   - {fileID: 3585599333606253556}
   - {fileID: 5645659211587581071}
   - {fileID: 1463152534022509714}
-  - {fileID: -1594980174211382560}
-  - {fileID: -8561436962426281488}
-  - {fileID: 91175235257437251}
-  - {fileID: -4465705393667181238}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1149553343516350785}
   StringsBanks:
   - {fileID: 2963554395431899856}
-  stringsBankWriteTime: 637593715172243846
+  stringsBankWriteTime: 637560044935510558
   cacheVersion: 6
 --- !u!114 &91175235257437251
 MonoBehaviour:
@@ -205,8 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SwordSwing
   guid: bbd6fca684bc684682c9da4107abefed
-  Banks:
-  - {fileID: 1149553343516350785}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -252,7 +244,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637593715172213825
+  lastModified: 637560044935438130
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -340,11 +332,11 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637593715172243846
+  lastModified: 637560044935510558
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1012
+    Value: 830
   Exists: 1
 --- !u!114 &3585599333606253556
 MonoBehaviour:
