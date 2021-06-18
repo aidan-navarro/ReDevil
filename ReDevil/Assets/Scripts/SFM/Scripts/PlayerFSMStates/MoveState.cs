@@ -28,6 +28,38 @@ public class MoveState : FSMState
 
         pc.SetNoFrictionMaterial();
         pc.SlopeCheck();
+        if (pc.isOnSlope)
+        {
+            Vector2 dashSlopeVector = pc.slopeNormalPerp;
+
+            if (!pc.facingLeft)
+            {
+
+                pc.SetDashPath(-dashSlopeVector);
+                Debug.Log("Facing Right On Slope -> " + pc.GetDashPath());
+                Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
+            }
+            else if (pc.facingLeft)
+            {
+
+                pc.SetDashPath(dashSlopeVector);
+                Debug.Log("Facing Left On Slope -> " + pc.GetDashPath());
+                Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
+            }
+        }
+        else
+        {
+            Debug.Log("NotOnSlope");
+            if (!pc.facingLeft)
+            {
+                pc.SetDashPath(Vector2.right);
+            }
+            else if (pc.facingLeft)
+            {
+                pc.SetDashPath(Vector2.left);
+            }
+        }
+
         pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
         //pc.CheckDashInput();
