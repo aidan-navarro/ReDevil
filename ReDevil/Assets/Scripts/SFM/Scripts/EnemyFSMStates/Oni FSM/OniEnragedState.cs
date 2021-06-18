@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OniWaitingState : FSMState
+public class OniEnragedState : FSMState
 {
     bool switchToNextState;
     bool enteredState = true;
-    public OniWaitingState()
-    {
-        stateID = FSMStateID.OniEnraged;
-    }
-    public override void EnterStateInit()
+
+    public OniEnragedState()
     {
         base.EnterStateInit();
-        Debug.Log("Oni Waiting");
+        Debug.Log("Oni Mad");
         switchToNextState = false;
         enteredState = true;
     }
@@ -27,11 +23,6 @@ public class OniWaitingState : FSMState
             oc.OnOniBossStart += OnOniBossStart;
             enteredState = false;
         }
-    }
-
-    private void OnOniBossStart(object sender, EventArgs e)
-    {
-        switchToNextState = true;
     }
 
     public override void Reason(Transform player, Transform npc)
