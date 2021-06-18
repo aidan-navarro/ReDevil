@@ -56,6 +56,7 @@ public class OniFSMController : EnemyFSMController
 
     public event EventHandler OnPlayerHit;
     public event EventHandler OnWallHit;
+    public event EventHandler OnOniBossStart;
 
     //initialize FSM
     protected override void Initialize()
@@ -90,6 +91,10 @@ public class OniFSMController : EnemyFSMController
         //
         //Create States in each enemies inheriting FSM Controller
         //
+
+        OniWaitingState oniWaitingState = new OniWaitingState();
+
+        oniWaitingState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
 
         OniIdleState oniIdleState = new OniIdleState();
 
@@ -126,6 +131,7 @@ public class OniFSMController : EnemyFSMController
         EnemyDeadState enemyDead = new EnemyDeadState();
         //there are no transitions out of the dead state
 
+        AddFSMState(oniWaitingState);
         AddFSMState(oniIdleState);
         AddFSMState(oniChaseState);
         AddFSMState(boulderPuttState);
