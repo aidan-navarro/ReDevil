@@ -348,21 +348,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1647963689858938236, guid: 362ebfc693b1ff64185bf4b00c123f5f,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647963689858938236, guid: 362ebfc693b1ff64185bf4b00c123f5f,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647963689858938236, guid: 362ebfc693b1ff64185bf4b00c123f5f,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362ebfc693b1ff64185bf4b00c123f5f, type: 3}
 --- !u!1 &695855447
@@ -616,6 +601,12 @@ Transform:
   m_Father: {fileID: 1339051949}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1287003451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4374260188259431746, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 660753506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339051939
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,12 +756,12 @@ MonoBehaviour:
     m_Bits: 256
   invisWallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   nurikabeLayer:
     serializedVersion: 2
-    m_Bits: 0
-  noFriction: {fileID: 0}
-  friction: {fileID: 0}
+    m_Bits: 12288
+  noFriction: {fileID: 6200000, guid: 7431913495d402c4597035c370b510b9, type: 2}
+  friction: {fileID: 6200000, guid: 76a446246d764564897671c8e1d701bf, type: 2}
   slopeCheckDistance: 0
   slopeNormalPerp: {x: 0, y: 0}
   isOnSlope: 0
@@ -781,6 +772,8 @@ MonoBehaviour:
   SoulLv1Bar: {fileID: 457782484}
   SoulLv2Bar: {fileID: 436808538}
   SoulLv3Bar: {fileID: 2147201615}
+  DashIcon1: {fileID: 1287003451}
+  DashIcon2: {fileID: 1604421758}
   health: 0
   MaxHealth: 100
   soul: 0
@@ -790,6 +783,8 @@ MonoBehaviour:
   soulArmaments:
   - {fileID: 1596751761}
   selectedArament: {fileID: 1596751761}
+  kbTransition: 0
+  flameKnockback: 0
   dashKnockbackPower: 0
   dkbTransition: 0
   moveSpeed: 10
@@ -1491,6 +1486,12 @@ Transform:
   m_Father: {fileID: 1575489275582255766}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1604421758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609412732492918221, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 660753506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1695315785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,8 +1595,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {x: -2.72, y: 0.2104868}
+  startingPoint: {x: 0, y: 0}
   initialized: 0
   rand: 0
+  sceneID: 
 --- !u!4 &2004718702
 Transform:
   m_ObjectHideFlags: 0
@@ -1622,6 +1625,8 @@ GameObject:
   - component: {fileID: 2120017430}
   - component: {fileID: 2120017429}
   - component: {fileID: 2120017431}
+  - component: {fileID: 2120017433}
+  - component: {fileID: 2120017432}
   m_Layer: 8
   m_Name: GroundTiles
   m_TagString: Wall
@@ -1986,10 +1991,67 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!66 &2120017432
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120017427}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 2120017431}
+    m_ColliderPaths:
+    - - X: -90000000
+        Y: -20000000
+      - X: 130000000
+        Y: -20000000
+      - X: 130000000
+        Y: -10000000
+      - X: -90000000
+        Y: -10000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 12.99997, y: -2}
+      - {x: 12.99997, y: -1}
+      - {x: -9, y: -1.0000293}
+      - {x: -8.99997, y: -2}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &2120017433
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120017427}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!224 &2126821671 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1647963689631872992, guid: 362ebfc693b1ff64185bf4b00c123f5f,

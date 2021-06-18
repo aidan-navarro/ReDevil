@@ -24,15 +24,54 @@ public class IdlingState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
+        rig.velocity = new Vector2(rig.velocity.x, 0);
         //set friction material
         pc.SlopeCheck();
+        if (pc.isOnSlope)
+        {
+            Vector2 dashSlopeVector = pc.slopeNormalPerp;
+
+            if (!pc.facingLeft)
+            {
+
+                pc.SetDashPath(-dashSlopeVector);
+                Debug.Log("Facing Right On Slope -> " + pc.GetDashPath());
+                Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
+            }
+            else if (pc.facingLeft)
+            {
+
+                pc.SetDashPath(dashSlopeVector);
+                Debug.Log("Facing Left On Slope -> " + pc.GetDashPath());
+                Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
+            }
+        }
+        else
+        {
+            Debug.Log("NotOnSlope");
+            if (!pc.facingLeft)
+            {
+                pc.SetDashPath(Vector2.right);
+            }
+            else if (pc.facingLeft)
+            {
+                pc.SetDashPath(Vector2.left);
+            }
+        }
+        //Vector2 slopeVector = pc.GetDashPath();
+        //slopeVector.x *= Mathf.Cos(pc.GetSlopeDownAngle());
+        //slopeVector.y *= Mathf.Sin(pc.GetSlopeDownAngle());
+        //Debug.Log("SlopeVector: " + slopeVector);
         pc.SetFrictionMaterial();     
 
         patk.firstDashContact = false;
         pc.ResetAirDashCount(); // any time we return to idle state, this count gets reset
+        pc.UpdateDashIcons();
         pc.TouchingFloorCeilingWall();
         pc.CheckAirDash(); // to reset the air dash
         pc.TouchingInvisibleWall();
+
+        pc.SetKbTransition(false);
         //pc.CheckDashInput();
         pc.UpdateState("Idle");
     }

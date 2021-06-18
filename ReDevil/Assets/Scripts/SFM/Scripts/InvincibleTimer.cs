@@ -20,6 +20,7 @@ public class InvincibleTimer : MonoBehaviour
     {
     }
 
+    // Turn flamethrower specific items on in 
     public IEnumerator Timer()
     {
         pc.SetInvincible(true);
@@ -39,6 +40,7 @@ public class InvincibleTimer : MonoBehaviour
 
         //invincibility has ended.  Player can now be hit again
         pc.SetInvincible(false);
+        pc.SetFlameKB(false);
         //invincibility has ended.  allow knockback to be dealt again
         gameObject.layer = LayerMask.NameToLayer("Default");
 

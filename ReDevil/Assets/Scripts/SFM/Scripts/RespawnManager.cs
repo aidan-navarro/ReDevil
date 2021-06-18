@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour
 {
     public static RespawnManager instance;
 
     public Vector2 respawnPoint;
+    public Vector2 startingPoint;
 
     public bool initialized = false;
 
     public int rand;
+
+    public string sceneID;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,10 +23,12 @@ public class RespawnManager : MonoBehaviour
         {
             PlayerFSMController player = FindObjectOfType<PlayerFSMController>();
             respawnPoint = player.transform.position;
+            startingPoint = player.transform.position;
             Debug.Log("Set Respawnpoint: " + respawnPoint);
             rand = Random.Range(1, 100);
             instance = this;
             initialized = true;
+            sceneID = SceneManager.GetActiveScene().name;
             DontDestroyOnLoad(gameObject);
         }
 

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 
 public class CineMachineSwitcher : MonoBehaviour
@@ -18,9 +20,11 @@ public class CineMachineSwitcher : MonoBehaviour
     [SerializeField]
     private bool playerCamera = true;
 
+    public GameObject invisiWall;
+
     private void Awake()
     {
-       // animator = GetComponent<Animator>();
+       
     }
 
     private void OnEnable()
@@ -35,34 +39,17 @@ public class CineMachineSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        action.performed += _ => SwitchPriority();
+       
     }
 
-    private void SwitchState()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playerCamera)
+        if (collision.tag == "Player")
         {
-            animator.Play("BossRoomCam");
-        }
-        else
-        {
-            animator.Play("PlayersCam");
-        }
-        playerCamera = !playerCamera;
-    }
-
-    private void SwitchPriority()
-    {
-        if (playerCamera)
-        {
+            PlayerFSMController pc = collision.GetComponent<PlayerFSMController>();
             vcam1.Priority = 0;
             vcam2.Priority = 1;
+            invisiWall.gameObject.SetActive(true);
         }
-        else
-        {
-            vcam1.Priority = 1;
-            vcam2.Priority = 0;
-        }
-        playerCamera = !playerCamera;
     }
 }
