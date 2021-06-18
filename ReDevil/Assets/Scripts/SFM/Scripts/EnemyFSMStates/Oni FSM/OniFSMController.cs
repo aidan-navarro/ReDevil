@@ -58,6 +58,7 @@ public class OniFSMController : EnemyFSMController
     public event EventHandler OnPlayerHit;
     public event EventHandler OnWallHit;
     public event EventHandler OnOniBossStart;
+    public event EventHandler OnOniEnraged;
 
     [SerializeField]
     private Text healthText;
@@ -273,5 +274,10 @@ public class OniFSMController : EnemyFSMController
     {
         health -= damage;
         UpdateHealth();
+    }
+
+    public void OniBossStart()
+    {
+        OnOniBossStart?.Invoke(this, EventArgs.Empty);
     }
 }
