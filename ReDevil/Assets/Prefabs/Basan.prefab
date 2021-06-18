@@ -126,7 +126,7 @@ MonoBehaviour:
   firepoint: {fileID: 7762641877270609394}
   flamethrowerTimer: 3
   attacking: 0
-  knockbackVel: {x: 3, y: 1}
+  knockbackVel: {x: 0, y: 0}
 --- !u!50 &691336618487003822
 Rigidbody2D:
   serializedVersion: 4

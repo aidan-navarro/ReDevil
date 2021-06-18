@@ -9,7 +9,7 @@ public class PillarController : MonoBehaviour
     [SerializeField]
     private float maxScale = 1f;
     [SerializeField]
-    private LayerMask WallLayer;
+    private string WallLayer;
     [SerializeField]
     private string wallTag;
 
@@ -40,7 +40,7 @@ public class PillarController : MonoBehaviour
         }
         while (timer < raiseTime);
 
-        gameObject.layer = WallLayer;
+        gameObject.layer = LayerMask.NameToLayer("Ground");
         gameObject.tag = wallTag;
 
         // Once done stop the coroutine

@@ -32,6 +32,8 @@ public class PlayerFSMController : AdvancedFSM
     float slopeCheckDistance;
 
     private float slopeDownAngle;
+    public float GetSlopeDownAngle() { return slopeDownAngle; }
+    
     private float slopeDownAngleOld;
     public Vector2 slopeNormalPerp;
     public bool isOnSlope;
@@ -214,6 +216,7 @@ public class PlayerFSMController : AdvancedFSM
     // ----------------- END TEST REGION -----------------------
 
     // Dash Attack Path functions
+    [SerializeField]
     protected Vector2 dashPath;
     public Vector2 GetDashPath() { return dashPath; }
     public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; } 
@@ -237,6 +240,8 @@ public class PlayerFSMController : AdvancedFSM
     [System.NonSerialized]
     private bool attackButtonDown;
     public bool GetAttackButtonDown() { return attackButtonDown; }
+    public void SetAttackButtonDown(bool inAttackButtonDown) { attackButtonDown = inAttackButtonDown; }
+
     [System.NonSerialized]
     private bool jumpButtonDown;
     public bool GetJumpButtonDown() { return jumpButtonDown; }
@@ -725,17 +730,17 @@ public class PlayerFSMController : AdvancedFSM
         rig.sharedMaterial = noFriction;
     }
 
-    //Functions to handle movement on a slope
+    #region Functions to handle movement on a slope
     public void SlopeCheck()
     {
-        Debug.Log("Checking For Slope");
+        //Debug.Log("Checking For Slope");
         Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
 
         SlopeCheckHorizontal(checkPos);
         SlopeCheckVertical(checkPos);
     }
 
-    public void SlopeCheckHorizontal(Vector2 checkPos)
+    private void SlopeCheckHorizontal(Vector2 checkPos)
     {
         RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, groundLayer);
         RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, groundLayer);
@@ -757,13 +762,14 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
-    public void SlopeCheckVertical(Vector2 checkPos)
+    private void SlopeCheckVertical(Vector2 checkPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundLayer);
 
         if(hit)
         {
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+            Debug.Log("vector along slope:" + slopeNormalPerp);
 
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
@@ -780,6 +786,17 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
+    public void UpdateSlopeDashVelocity(Vector2 dashVector)
+    {
+        if (isOnSlope)
+        {
+
+        } else
+        {
+            return;
+        }
+    }
+    #endregion
     public void TouchingFloorCeilingWall()
     {
         //equation values to determine if the player is on the ground
@@ -794,7 +811,7 @@ public class PlayerFSMController : AdvancedFSM
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, groundLayer.value);
+        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.5f), 0f, groundLayer.value);
 
         
     }
@@ -848,6 +865,7 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
+    // this alters the visibility of the dash icons in the UI
     public void UpdateDashIcons()
     {
        switch(airDashCount)
@@ -914,7 +932,6 @@ public class PlayerFSMController : AdvancedFSM
     // this will bust some logic
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
-        Debug.Log("Player Hit");
         if (selectedArament.IsActive)
         {
             SoulCalculator(-dmg);

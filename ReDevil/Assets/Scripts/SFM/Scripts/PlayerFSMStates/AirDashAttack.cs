@@ -91,7 +91,7 @@ public class AirDashAttack : FSMState
         // dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
         // instead of checking the x distance, we're instead checking the whole magnitude of the vector
         dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
-
+        Debug.Log("Dash Path -> " + pc.GetDashPath());
         // velocity must also change to account for the dash position that we set
         // create a boolean to lock any change to the dash vector while we dash
         pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
@@ -109,6 +109,8 @@ public class AirDashAttack : FSMState
                 vAbsDash.x = Mathf.Abs(vAbsDash.x);
                 patk.StartAirDashAttack(vAbsDash);
             }
+
+            // Conditions to conclude the dash
             else if (dashDistance >= pc.dashLength * pc.dashLength)
             {
                 //Debug.Log("Reached Air Dash Attack distance");
@@ -127,7 +129,6 @@ public class AirDashAttack : FSMState
                 endDash = true;
                 patk.EndDashAttack();
             }
-            // TO ADD: break out function if we get stuck on one of the corners
 
             if (enterKnockback)
             {

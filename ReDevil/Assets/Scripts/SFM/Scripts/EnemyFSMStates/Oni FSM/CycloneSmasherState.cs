@@ -14,6 +14,13 @@ public class CycloneSmasherState : FSMState
         stateID = FSMStateID.OniCycloneSmashing;
     }
 
+    public override void EnterStateInit()
+    {
+        Debug.Log("Oni Club Smash");
+        enteredState = true; 
+        cycloneCharged = false;
+    }
+
     public override void Act(Transform player, Transform npc)
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
