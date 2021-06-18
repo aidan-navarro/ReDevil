@@ -18,7 +18,6 @@ public class GroundDashAttack : FSMState
     private bool touchingInvisWall;
 
 
-
     // calling the constructor in the Player FSMController class
     public GroundDashAttack()
     {
@@ -95,20 +94,22 @@ public class GroundDashAttack : FSMState
         pc.SlopeCheck();
         if (pc.isOnSlope)
         {
+
+
             Vector2 dashSlopeVector = pc.slopeNormalPerp;
 
             if (!pc.facingLeft)
             {
 
                 pc.SetDashPath(-dashSlopeVector);
-                Debug.Log("Facing Right On Slope -> " + pc.GetDashPath());
+                //Debug.Log("Facing Right On Slope -> " + pc.GetDashPath());
                 Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
             }
             else if (pc.facingLeft)
             {
 
                 pc.SetDashPath(dashSlopeVector);
-                Debug.Log("Facing Left On Slope -> " + pc.GetDashPath());
+                //Debug.Log("Facing Left On Slope -> " + pc.GetDashPath());
                 Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
             }
         } 
@@ -126,7 +127,12 @@ public class GroundDashAttack : FSMState
         }
 
         // end slope change
-        pc.GetRigidbody2D().velocity = Vector2.right * pc.GetDashPath() * pc.dashSpeed; // commit to the dash
+        rig.velocity = pc.GetDashPath() * pc.dashSpeed; // commit to the dash
+
+        Debug.Log("Current Velocity: " + rig.velocity);
+        Debug.DrawRay(pc.transform.position, rig.velocity, Color.blue);
+
+
         onWall = pc.GetisTouchingWall();
         //Debug.Log("Ground Dash Distance: " + dashDistance);
        
@@ -147,7 +153,12 @@ public class GroundDashAttack : FSMState
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
-                endDash = true; 
+                endDash = true;
+
+
+                //stop velocity to prevent weird bounding
+                rig.velocity = Vector2.zero;
+
                 patk.EndDashAttack();
 
             }
@@ -160,6 +171,8 @@ public class GroundDashAttack : FSMState
 
                 dashAttackStarted = false;
                 endDash = true;
+
+
                 patk.EndDashAttack();
             }
             // make a break out condition if we get stuck on a corner
