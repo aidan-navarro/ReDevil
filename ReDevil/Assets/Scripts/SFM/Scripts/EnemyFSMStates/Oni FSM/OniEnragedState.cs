@@ -20,8 +20,8 @@ public class OniEnragedState : FSMState
         OniFSMController oc = npc.GetComponent<OniFSMController>();
         if (enteredState)
         {
-            oc.OnOniBossStart += OnOniBossStart;
             enteredState = false;
+            oc.StartCoroutine(Enraged(oc));
         }
     }
 
@@ -33,4 +33,12 @@ public class OniEnragedState : FSMState
             oc.PerformTransition(Transition.OniIdle);
         }
     }
+
+    private IEnumerator Enraged(OniFSMController oniFSMController)
+    {
+        yield return new WaitForSeconds(0.2f);
+        oniFSMController.GetComponent<SpriteRenderer>().color = Color.red;
+        switchToNextState = true;
+    }
+
 }
