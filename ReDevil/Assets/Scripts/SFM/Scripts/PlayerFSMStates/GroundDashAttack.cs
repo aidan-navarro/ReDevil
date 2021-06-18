@@ -95,17 +95,18 @@ public class GroundDashAttack : FSMState
         pc.SlopeCheck();
         if (pc.isOnSlope)
         {
-            Debug.Log("Player Is On Slope");
             Vector2 dashSlopeVector = pc.slopeNormalPerp;
+
             if (!pc.facingLeft)
             {
-              
+
                 pc.SetDashPath(-dashSlopeVector);
                 Debug.Log("Facing Right On Slope -> " + pc.GetDashPath());
                 Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
             }
             else if (pc.facingLeft)
             {
+
                 pc.SetDashPath(dashSlopeVector);
                 Debug.Log("Facing Left On Slope -> " + pc.GetDashPath());
                 Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
@@ -252,13 +253,6 @@ public class GroundDashAttack : FSMState
                 pc.PerformTransition(Transition.WallSlide);
             }
 
-            //// moving transition
-            //if ((pc.moveVector.x > 0 || pc.moveVector.x < 0) && !patk.dashAttackContact)
-            //{
-            //    patk.ReInitializeTransitions();
-            //    pc.PerformTransition(Transition.Move);
-            //}
-
             //idle transitions
             if(touchingInvisWall)
             {
@@ -276,7 +270,7 @@ public class GroundDashAttack : FSMState
                 pc.PerformTransition(Transition.Idle);
             }
             // if we ground dash off of the ledge
-            else if (!isGrounded)
+            else if (!isGrounded && !pc.isOnSlope)
             {
                 patk.ReInitializeTransitions();
                 pc.PerformTransition(Transition.Airborne);

@@ -216,6 +216,7 @@ public class PlayerFSMController : AdvancedFSM
     // ----------------- END TEST REGION -----------------------
 
     // Dash Attack Path functions
+    [SerializeField]
     protected Vector2 dashPath;
     public Vector2 GetDashPath() { return dashPath; }
     public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; } 
