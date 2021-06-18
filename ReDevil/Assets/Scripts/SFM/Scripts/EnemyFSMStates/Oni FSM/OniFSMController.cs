@@ -60,8 +60,7 @@ public class OniFSMController : EnemyFSMController
     public event EventHandler OnOniBossStart;
     public event EventHandler OnOniEnraged;
 
-    [SerializeField]
-    private Text healthText;
+ 
     [SerializeField]
     private GameObject healthBar;
     [SerializeField]
@@ -72,7 +71,6 @@ public class OniFSMController : EnemyFSMController
 
     public void UpdateHealth()
     {
-        healthText.text = health.ToString();
         healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
