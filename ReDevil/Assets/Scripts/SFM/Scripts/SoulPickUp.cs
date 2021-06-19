@@ -27,6 +27,7 @@ public class SoulPickUp : MonoBehaviour
            //and make it equal whatever element we want from what we collided with
             PlayerFSMController pc = collision.GetComponent<PlayerFSMController>();
             pc.AddSoul(value);
+            pc.UpdateSoulHud();
             Destroy(gameObject);
         }
     }
