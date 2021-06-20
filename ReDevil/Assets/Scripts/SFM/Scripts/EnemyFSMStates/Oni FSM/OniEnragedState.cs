@@ -9,8 +9,12 @@ public class OniEnragedState : FSMState
 
     public OniEnragedState()
     {
+        stateID = FSMStateID.OniEnraged;
+    }
+
+    public override void EnterStateInit()
+    {
         base.EnterStateInit();
-        Debug.Log("Oni Mad");
         switchToNextState = false;
         enteredState = true;
     }

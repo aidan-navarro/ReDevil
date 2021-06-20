@@ -769,7 +769,7 @@ public class PlayerFSMController : AdvancedFSM
         if(hit)
         {
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
-            Debug.Log("vector along slope:" + slopeNormalPerp);
+            //Debug.Log("vector along slope:" + slopeNormalPerp);
 
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 

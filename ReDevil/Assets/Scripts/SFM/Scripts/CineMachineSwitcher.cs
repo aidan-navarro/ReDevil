@@ -31,7 +31,7 @@ public class CineMachineSwitcher : MonoBehaviour
 
     private void Awake()
     {
-       
+
     }
 
     private void OnEnable()
@@ -57,7 +57,7 @@ public class CineMachineSwitcher : MonoBehaviour
             vcam1.Priority = 0;
             vcam2.Priority = 1;
             StartCoroutine("Cutscene");
-        
+            StartCoroutine(FillHealthBar(FindObjectOfType<OniFSMController>(), waitTime));
 
         }
     }
@@ -72,6 +72,19 @@ public class CineMachineSwitcher : MonoBehaviour
         canContinue = true;
         FindObjectOfType<OniFSMController>().OniBossStart();
         FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = true;
+    }
+
+    private IEnumerator FillHealthBar(OniFSMController oni, float maxTime)
+    {
+        float timer = 0f;
+
+        do
+        {
+            oni.SetHealth(Mathf.Lerp(0, oni.GetMaxHealth(), timer / maxTime));
+            timer += Time.deltaTime;
+            yield return null;
+        } 
+        while (timer < maxTime);
     }
 
 }

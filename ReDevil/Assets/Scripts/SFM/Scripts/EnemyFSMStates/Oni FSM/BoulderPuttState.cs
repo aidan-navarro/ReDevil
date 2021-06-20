@@ -32,16 +32,25 @@ public class BoulderPuttState : FSMState
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
+        if (oc.health <= 0)
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.EnemyNoHealth);
+            return;
+        }
+
+        if (!oc.IsEnraged & oc.IsUnderHalfHealth())
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.OniEnraged);
+            return;
+        }
+
         if (attackFinished)
         {
             oc.PerformTransition(Transition.OniIdle);
         }
 
-        if (oc.health <= 0)
-        {
-            oc.StopAllCoroutines();
-            oc.PerformTransition(Transition.EnemyNoHealth);
-        }
     }
 
     IEnumerator PerformBoulderPutt(Transform npc)

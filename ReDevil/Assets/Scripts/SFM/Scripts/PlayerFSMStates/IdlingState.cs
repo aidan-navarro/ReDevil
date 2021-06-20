@@ -48,7 +48,7 @@ public class IdlingState : FSMState
         }
         else
         {
-            Debug.Log("NotOnSlope");
+            //Debug.Log("NotOnSlope");
             if (!pc.facingLeft)
             {
                 pc.SetDashPath(Vector2.right);

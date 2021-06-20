@@ -9,7 +9,7 @@ public class OniWaitingState : FSMState
     bool enteredState = true;
     public OniWaitingState()
     {
-        stateID = FSMStateID.OniEnraged;
+        stateID = FSMStateID.OniWaiting;
     }
     public override void EnterStateInit()
     {
@@ -40,6 +40,7 @@ public class OniWaitingState : FSMState
         if (switchToNextState)
         {
             oc.PerformTransition(Transition.OniIdle);
+            return;
         }
     }
 }
