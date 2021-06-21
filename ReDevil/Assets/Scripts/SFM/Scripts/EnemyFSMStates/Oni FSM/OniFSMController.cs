@@ -274,10 +274,18 @@ public class OniFSMController : EnemyFSMController
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D(collision);
-
         if (collision.gameObject.CompareTag("Player"))
         {
+            StartCoroutine(EnemyIFrames());
+            rig.velocity = Vector2.zero; 
+            
+            Vector2 position = gameObject.transform.position;
+
+            //send all relative information to the player to take damage, and apply knockback
+            PlayerFSMController pc = collision.transform.GetComponent<PlayerFSMController>();
+            pc.KnockbackTransition(damage, knockbackPower, position);
+
+            StartCoroutine(EnemyIFrames());
             OnPlayerHit?.Invoke(this, EventArgs.Empty);
         }
 

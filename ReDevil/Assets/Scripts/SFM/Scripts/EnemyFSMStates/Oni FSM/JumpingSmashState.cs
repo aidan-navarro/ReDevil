@@ -77,6 +77,10 @@ public class JumpingSmashState : FSMState
         {
             // Oni is airborne 
             oc.transform.position = Vector2.MoveTowards(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y), oc.JumpSpeed * Time.deltaTime);
+            if (oc.rig.velocity.y > 0 && Vector2.Distance(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y)) <= 2.0f)
+            {
+                oc.rig.velocity = new Vector2(oc.rig.velocity.x, 0);
+            }
         }
         else if (jumpStarted && oc.GetisGrounded())
         {
