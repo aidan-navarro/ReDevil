@@ -292,6 +292,7 @@ public class PlayerFSMController : AdvancedFSM
     public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; }
 
 
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -302,6 +303,8 @@ public class PlayerFSMController : AdvancedFSM
 
         // game isn't paused at the start 
         isPaused = false;
+        PauseMenu.SetActive(false);
+
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
 
@@ -1176,7 +1179,7 @@ public class PlayerFSMController : AdvancedFSM
 
     // --------------- PAUSING GAME FUNCTIONALITY -----------------
     #region Click below to access pause functionality code
-    private void Pause()
+    public void Pause()
     {
         // set to false
         stateText.enabled = false;
@@ -1195,7 +1198,7 @@ public class PlayerFSMController : AdvancedFSM
         Time.timeScale = 0;
     }
 
-    private void UnPause()
+    public void UnPause()
     {
         // set to false
         stateText.enabled =  true;
