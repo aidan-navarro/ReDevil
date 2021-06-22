@@ -1327,6 +1327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
+      propertyPath: airSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
       propertyPath: MaxHealth
       value: 400
       objectReference: {fileID: 0}
@@ -1347,8 +1352,18 @@ PrefabInstance:
       objectReference: {fileID: 632475210}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
+      propertyPath: chaseSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
       propertyPath: healthText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: jumpSmashRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
