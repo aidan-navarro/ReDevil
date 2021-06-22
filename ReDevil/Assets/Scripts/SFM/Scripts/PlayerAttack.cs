@@ -185,7 +185,6 @@ public class PlayerAttack : MonoBehaviour
 
         //we can't check for a cancel anymore, set to false
         checkCancel = false;
-
         attacking = false;
 
         idleTransition = true;
