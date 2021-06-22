@@ -2254,7 +2254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8335c204d0d6e74099e12cb25b5c600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: OniBossScene
+  sceneName: BossCameraTestScene
 --- !u!61 &515207315
 BoxCollider2D:
   m_ObjectHideFlags: 0

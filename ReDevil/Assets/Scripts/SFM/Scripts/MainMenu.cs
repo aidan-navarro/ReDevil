@@ -19,19 +19,18 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Submit"))
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(playButton);
-            PlayOption();
-            CreditsOption();
-            QuitOption();
-        }
+        //if (Input.GetButtonDown("Submit"))
+        //{
+        //    EventSystem.current.SetSelectedGameObject(null);
+        //    EventSystem.current.SetSelectedGameObject(playButton);
+        //    PlayOption();
+        //    CreditsOption();
+        //    QuitOption();
+        //}
     }
     public void PlayOption()
     {
-       
-        SceneManager.LoadScene(0);   
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void CreditsOption()
@@ -42,6 +41,8 @@ public class MainMenu : MonoBehaviour
 
     public void QuitOption()
     {
+        Debug.Log("Quitting Game");
         Application.Quit();
+        
     }
 }

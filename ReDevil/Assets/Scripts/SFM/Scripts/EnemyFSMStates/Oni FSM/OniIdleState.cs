@@ -76,7 +76,7 @@ public class OniIdleState : FSMState
 
     public IEnumerator IdleTimer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         switchState = true;
     }
 }
