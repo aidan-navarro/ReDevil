@@ -1109,6 +1109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6048817908202131748, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362ebfc693b1ff64185bf4b00c123f5f, type: 3}
 --- !u!114 &325350196 stripped
@@ -3723,6 +3728,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1392575190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6048817908202131748, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 325350195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1541375305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3811,6 +3822,10 @@ PrefabInstance:
       propertyPath: DashIcon2
       value: 
       objectReference: {fileID: 323876005}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1392575190}
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: healthBar
       value: 
