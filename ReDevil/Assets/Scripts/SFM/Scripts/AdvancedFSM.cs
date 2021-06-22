@@ -62,12 +62,14 @@ public enum Transition
     WaniguchiAirborne,  // new transition for when Waniguchi is in the air after the attack jump
     WaniguchiFlinch,
 
+    OniWaiting,
     OniIdle,
     OniChase,
     OniClubSmash,
     OniBoulderPut,
     OniCycloneSmash,
     OniJumpSmash,
+    OniEnraged,
 
     NurikabeIdle,
     NurikabeRise,
@@ -134,12 +136,14 @@ public enum FSMStateID
     WaniguchiFlinching,
 
     // Oni
+    OniWaiting,
     OniIdling,
     OniChasing,
     OniClubSmashing,
     OniBoulderPutting,
     OniCycloneSmashing,
     OniJumpSmashing,
+    OniEnraged,
 
     // Nurikabe
     NurikabeIdling,

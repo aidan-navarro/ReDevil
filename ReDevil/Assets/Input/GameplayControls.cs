@@ -73,6 +73,14 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""30fc28cf-ed75-4ffc-825b-e1f3ca21d0dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -322,7 +330,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""352e2e51-969c-49f4-980d-54a085149278"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Attack"",
@@ -427,6 +435,39 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""action"": ""Dash Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83703a1e-ecb4-4692-98d2-2af6e37d0e95"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a60c116d-b259-464b-a2f2-484ec7cafd22"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a67695bc-f81f-4501-97d1-9ce607e2e8db"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -470,6 +511,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         m_Gameplay_SoulPowerShot = m_Gameplay.FindAction("Soul Power Shot", throwIfNotFound: true);
         m_Gameplay_DashLeft = m_Gameplay.FindAction("Dash Left", throwIfNotFound: true);
         m_Gameplay_DashRight = m_Gameplay.FindAction("Dash Right", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -526,6 +568,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_SoulPowerShot;
     private readonly InputAction m_Gameplay_DashLeft;
     private readonly InputAction m_Gameplay_DashRight;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @GameplayControls m_Wrapper;
@@ -537,6 +580,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         public InputAction @SoulPowerShot => m_Wrapper.m_Gameplay_SoulPowerShot;
         public InputAction @DashLeft => m_Wrapper.m_Gameplay_DashLeft;
         public InputAction @DashRight => m_Wrapper.m_Gameplay_DashRight;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -567,6 +611,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @DashRight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashRight;
                 @DashRight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashRight;
                 @DashRight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashRight;
+                @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -592,6 +639,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @DashRight.started += instance.OnDashRight;
                 @DashRight.performed += instance.OnDashRight;
                 @DashRight.canceled += instance.OnDashRight;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -623,5 +673,6 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         void OnSoulPowerShot(InputAction.CallbackContext context);
         void OnDashLeft(InputAction.CallbackContext context);
         void OnDashRight(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

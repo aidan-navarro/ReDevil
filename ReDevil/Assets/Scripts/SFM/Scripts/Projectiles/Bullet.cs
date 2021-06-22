@@ -13,6 +13,13 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rig;
     public Vector2 direction;
 
+    protected bool onCamera;
+
+    private void Awake()
+    {
+        onCamera = true;
+    }
+
     protected virtual void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -22,9 +29,20 @@ public class Bullet : MonoBehaviour
     {
         //update the speed of the bullet
         rig.velocity = direction * speed;
+    
+            
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnBecameInvisible()
+    {
+        //dont damage off camera things
+        onCamera = false;
+        Debug.Log("Destroying Soul Shot");
+        Destroy(gameObject);
+    }
+
+
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         //if the collision is a player
         if(collision.transform.CompareTag("Player"))
@@ -59,6 +77,7 @@ public class Bullet : MonoBehaviour
         if (collision.transform.CompareTag("Wall") || collision.transform.CompareTag("Bullet"))
         {
             //destroy the bullet
+            Debug.Log("Hit a wall");
             Destroy(this.gameObject);
         }
 

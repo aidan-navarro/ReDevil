@@ -37,14 +37,17 @@ public class JumpingSmashState : FSMState
         {
             oc.TouchingFloor();
         }
+
         Debug.Log("Act");
         if (enteredState)
         {
             oc.OnPlayerHit += OnPlayerHit;
             enteredState = false;
         }
+
         if (!jumpStarted && !finished2ndJump && oc.GetisGrounded())
         {
+            Debug.Log("OnGround");
             // Oni is about to jump
             if (on2ndJump) // Oni is about to jump away from the player's location
             {
@@ -74,6 +77,10 @@ public class JumpingSmashState : FSMState
         {
             // Oni is airborne 
             oc.transform.position = Vector2.MoveTowards(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y), oc.JumpSpeed * Time.deltaTime);
+            if (oc.rig.velocity.y > 0 && Vector2.Distance(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y)) <= 2.0f)
+            {
+                oc.rig.velocity = new Vector2(oc.rig.velocity.x, 0);
+            }
         }
         else if (jumpStarted && oc.GetisGrounded())
         {
@@ -112,18 +119,29 @@ public class JumpingSmashState : FSMState
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
-        if (jumpEnded && finished2ndJump)
-        {
-            oc.OnPlayerHit -= OnPlayerHit;
-            oc.PerformTransition(Transition.OniIdle); 
-        }
-
         if (oc.health <= 0)
         {
             oc.OnPlayerHit -= OnPlayerHit;
             oc.StopAllCoroutines();
             oc.PerformTransition(Transition.EnemyNoHealth);
+            return;
         }
+
+        if (!oc.IsEnraged && oc.IsUnderHalfHealth() && jumpEnded && finished2ndJump)
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.OniEnraged);
+            return;
+        }
+
+        if (jumpEnded && finished2ndJump)
+        {
+            oc.OnPlayerHit -= OnPlayerHit;
+            oc.PerformTransition(Transition.OniIdle);
+            return;
+        }
+
+        
     }
 
     private IEnumerator WaitForJumpSwitch()

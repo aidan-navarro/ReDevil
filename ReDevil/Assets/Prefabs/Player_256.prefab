@@ -524,7 +524,7 @@ MonoBehaviour:
     m_Bits: 4096
   noFriction: {fileID: 6200000, guid: 7431913495d402c4597035c370b510b9, type: 2}
   friction: {fileID: 6200000, guid: 76a446246d764564897671c8e1d701bf, type: 2}
-  slopeCheckDistance: 0
+  slopeCheckDistance: 0.25
   slopeNormalPerp: {x: 0, y: 0}
   isOnSlope: 0
   stateText: {fileID: 0}
@@ -534,6 +534,8 @@ MonoBehaviour:
   SoulLv1Bar: {fileID: 0}
   SoulLv2Bar: {fileID: 0}
   SoulLv3Bar: {fileID: 0}
+  DashIcon1: {fileID: 0}
+  DashIcon2: {fileID: 0}
   health: 0
   MaxHealth: 100
   soul: 0
@@ -543,6 +545,8 @@ MonoBehaviour:
   soulArmaments:
   - {fileID: 243560149}
   selectedArament: {fileID: 243560149}
+  kbTransition: 0
+  flameKnockback: 0
   dashKnockbackPower: 0
   dkbTransition: 0
   moveSpeed: 10
@@ -552,6 +556,7 @@ MonoBehaviour:
   dashLength: 5
   airDashCount: 0
   airDashLimit: 0
+  dashPath: {x: 0, y: 0}
   respawnPoint: {fileID: 0}
   isGrounded: 0
   isTouchingInvisibleWall: 0
@@ -611,7 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immobileTime: 1
   iFrameTime: 2
-  dashKnockbackTimer: 0.25
+  dashKnockbackTimer: 0.15
 --- !u!70 &4225471945767981086
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

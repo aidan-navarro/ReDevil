@@ -22,9 +22,16 @@ public class CineMachineSwitcher : MonoBehaviour
 
     public GameObject invisiWall;
 
+    public GameObject oniHealthBar;
+
+    public Collider2D touchBox;
+
+    public bool canContinue = false;
+    public float waitTime;
+
     private void Awake()
     {
-       
+
     }
 
     private void OnEnable()
@@ -39,7 +46,7 @@ public class CineMachineSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        canContinue = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,7 +56,35 @@ public class CineMachineSwitcher : MonoBehaviour
             PlayerFSMController pc = collision.GetComponent<PlayerFSMController>();
             vcam1.Priority = 0;
             vcam2.Priority = 1;
-            invisiWall.gameObject.SetActive(true);
+            StartCoroutine("Cutscene");
+            StartCoroutine(FillHealthBar(FindObjectOfType<OniFSMController>(), waitTime));
+
         }
     }
+
+    public IEnumerator Cutscene()
+    {
+        touchBox.enabled = false;
+        invisiWall.gameObject.SetActive(true);
+        oniHealthBar.gameObject.SetActive(true);
+        FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = false;
+        yield return new WaitForSeconds(waitTime);
+        canContinue = true;
+        FindObjectOfType<OniFSMController>().OniBossStart();
+        FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = true;
+    }
+
+    private IEnumerator FillHealthBar(OniFSMController oni, float maxTime)
+    {
+        float timer = 0f;
+
+        do
+        {
+            oni.SetHealth(Mathf.Lerp(0, oni.GetMaxHealth(), timer / maxTime));
+            timer += Time.deltaTime;
+            yield return null;
+        } 
+        while (timer < maxTime);
+    }
+
 }

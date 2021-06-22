@@ -5,20 +5,15 @@ using UnityEngine;
 public class SoulShot : Bullet
 {
     public float soulCost;
+    
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Enemy"))
+        if (collision.transform.CompareTag("Enemy") && onCamera)
         {
             EnemyFSMController ec = collision.transform.GetComponent<EnemyFSMController>();
-            ec.TakeDamage(damage);
-            Destroy(gameObject);
-        }
-            //if we hit a wall destroy the gameobject
-            if (collision.transform.CompareTag("Wall") || collision.transform.CompareTag("Bullet"))
-        {
-            //destroy the bullet
-            Destroy(gameObject);
+            ec.TakeDamage(damage); 
         }
     }
+
 }

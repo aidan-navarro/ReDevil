@@ -32,6 +32,8 @@ public class PlayerFSMController : AdvancedFSM
     float slopeCheckDistance;
 
     private float slopeDownAngle;
+    public float GetSlopeDownAngle() { return slopeDownAngle; }
+    
     private float slopeDownAngleOld;
     public Vector2 slopeNormalPerp;
     public bool isOnSlope;
@@ -41,24 +43,16 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     //Player HUD Variables
     //-------------------------------------------------------------------
-    [SerializeField]
-    private Text stateText;
-    [SerializeField]
-    private Text healthText;
-    [SerializeField]
-    private Text SoulText;
-    [SerializeField]
-    private GameObject healthBar;
-    [SerializeField]
-    private GameObject SoulLv1Bar;
-    [SerializeField]
-    private GameObject SoulLv2Bar;
-    [SerializeField]
-    private GameObject SoulLv3Bar;
-    [SerializeField]
-    private GameObject DashIcon1;
-    [SerializeField]
-    private GameObject DashIcon2;
+    [SerializeField] private Text stateText;
+    [SerializeField] private Text healthText;
+    [SerializeField] private Text SoulText;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject SoulLv1Bar;
+    [SerializeField] private GameObject SoulLv2Bar;
+    [SerializeField] private GameObject SoulLv3Bar;
+    [SerializeField] private GameObject DashIcon1;
+    [SerializeField] private GameObject DashIcon2;
+    [SerializeField] private GameObject PauseMenu;
 
     //-------------------------------------------------------------------
     //Meter variables
@@ -94,7 +88,7 @@ public class PlayerFSMController : AdvancedFSM
     public float GetSoul() { return soul; }
     public void SetSoul(float insoul) { soul = insoul; UpdateSoulHud(); }
 
-    private void UpdateSoulHud()
+    public void UpdateSoulHud()
     {
         SoulText.text = ((int)soul).ToString();
 
@@ -214,6 +208,7 @@ public class PlayerFSMController : AdvancedFSM
     // ----------------- END TEST REGION -----------------------
 
     // Dash Attack Path functions
+    [SerializeField]
     protected Vector2 dashPath;
     public Vector2 GetDashPath() { return dashPath; }
     public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; } 
@@ -221,6 +216,7 @@ public class PlayerFSMController : AdvancedFSM
     //respawn
     public RespawnManager respawnPoint;
 
+    
 
     //-------------------------------------------------------------------
     //variables to detect controller input
@@ -236,6 +232,8 @@ public class PlayerFSMController : AdvancedFSM
     [System.NonSerialized]
     private bool attackButtonDown;
     public bool GetAttackButtonDown() { return attackButtonDown; }
+    public void SetAttackButtonDown(bool inAttackButtonDown) { attackButtonDown = inAttackButtonDown; }
+
     [System.NonSerialized]
     private bool jumpButtonDown;
     public bool GetJumpButtonDown() { return jumpButtonDown; }
@@ -282,11 +280,17 @@ public class PlayerFSMController : AdvancedFSM
     public void SetJumpPower(float newJumpPower) { jumpPower = newJumpPower; }
 
     // Player Input
-    private PlayerInput playerInput;
+    public PlayerInput playerInput { get; private set; }
     private GameplayControls gameplayControls;
 
     //Player Sound
-    public PlayerSoundManager soundManager; 
+    public PlayerSoundManager soundManager;
+
+    // Pause boolean
+    private bool isPaused;
+    public bool GetIsPaused() { return isPaused; }
+    public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; }
+
 
 
     //initialize FSM
@@ -296,6 +300,11 @@ public class PlayerFSMController : AdvancedFSM
         playerTransform = objPlayer.transform;
 
         rig = GetComponent<Rigidbody2D>();
+
+        // game isn't paused at the start 
+        isPaused = false;
+        PauseMenu.SetActive(false);
+
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
 
@@ -305,6 +314,7 @@ public class PlayerFSMController : AdvancedFSM
         leftTriggerDown = false;
         rightTriggerDown = false;
 
+        // counting the amount of airdashes
         airDashCount = 0;
         airDashLimit = 2; // hard code
 
@@ -312,7 +322,6 @@ public class PlayerFSMController : AdvancedFSM
         dashInputAllowed = true;
         invincible = false;
 
-        // counting the amount of airdashes
 
         //capsule collider
         col = GetComponent<CapsuleCollider2D>();
@@ -323,6 +332,9 @@ public class PlayerFSMController : AdvancedFSM
         playerInput = GetComponent<PlayerInput>();
 
         playerInput.onActionTriggered += OnActionTriggered;
+
+        UpdateHealthHud();
+        UpdateSoulHud();
 
         ConstructFSM();
     }
@@ -340,39 +352,66 @@ public class PlayerFSMController : AdvancedFSM
 
     private void OnActionTriggered(InputAction.CallbackContext obj)
     {
-        if (obj.action.name == gameplayControls.Gameplay.Jump.name)
+        if (!isPaused)
         {
-            OnJump(obj);
-        }
+            if (obj.action.name == gameplayControls.Gameplay.Jump.name)
+            {
+                OnJump(obj);
+            }
 
-        if (obj.action.name == gameplayControls.Gameplay.Movement.name)
-        {
-            OnMove(obj);
-        }
+            if (obj.action.name == gameplayControls.Gameplay.Movement.name)
+            {
+                OnMove(obj);
+            }
 
-        if (obj.action.name == gameplayControls.Gameplay.Attack.name)
-        {
-            OnAttack(obj);
-        }
+            if (obj.action.name == gameplayControls.Gameplay.Attack.name)
+            {
+                OnAttack(obj);
+            }
 
-        if (obj.action.name == gameplayControls.Gameplay.DashLeft.name)
-        {
-            OnDashLeft(obj);
-        }
+            if (obj.action.name == gameplayControls.Gameplay.DashLeft.name)
+            {
+                OnDashLeft(obj);
+            }
 
-        if (obj.action.name == gameplayControls.Gameplay.DashRight.name)
-        {
-            OnDashRight(obj);
-        }
+            if (obj.action.name == gameplayControls.Gameplay.DashRight.name)
+            {
+                OnDashRight(obj);
+            }
 
-        if (obj.action.name == gameplayControls.Gameplay.ToggleSoulArmament.name)
-        {
-            OnToggleSoulArament(obj);
-        }
+            if (obj.action.name == gameplayControls.Gameplay.ToggleSoulArmament.name)
+            {
+                OnToggleSoulArament(obj);
+            }
 
-        if (obj.action.name == gameplayControls.Gameplay.SoulPowerShot.name)
+            if (obj.action.name == gameplayControls.Gameplay.SoulPowerShot.name)
+            {
+                OnSoulShot(obj);
+            }
+        }
+        if (obj.action.name == gameplayControls.Gameplay.Pause.name)
         {
-            OnSoulShot(obj);
+            //bool test = Gamepad.current.aButton.wasPressedThisFrame;
+            //if (!test)
+            //{
+            //    Debug.Log("Listen for Input " + test);
+            //}
+            if (obj.started)
+            {
+                isPaused = !isPaused;
+                // call the function to activate the start menu
+                if (isPaused)
+                {
+                    Pause();
+                } else
+                {
+                    UnPause();
+                }
+            }
+            //else if (obj.canceled)
+            //{
+            //    Debug.Log("End Input");
+            //}
         }
     }
 
@@ -724,17 +763,17 @@ public class PlayerFSMController : AdvancedFSM
         rig.sharedMaterial = noFriction;
     }
 
-    //Functions to handle movement on a slope
+    #region Functions to handle movement on a slope
     public void SlopeCheck()
     {
-        Debug.Log("Checking For Slope");
+        //Debug.Log("Checking For Slope");
         Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
 
         SlopeCheckHorizontal(checkPos);
         SlopeCheckVertical(checkPos);
     }
 
-    public void SlopeCheckHorizontal(Vector2 checkPos)
+    private void SlopeCheckHorizontal(Vector2 checkPos)
     {
         RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, groundLayer);
         RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, groundLayer);
@@ -756,13 +795,14 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
-    public void SlopeCheckVertical(Vector2 checkPos)
+    private void SlopeCheckVertical(Vector2 checkPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundLayer);
 
         if(hit)
         {
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+            //Debug.Log("vector along slope:" + slopeNormalPerp);
 
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
@@ -779,6 +819,17 @@ public class PlayerFSMController : AdvancedFSM
         }
     }
 
+    public void UpdateSlopeDashVelocity(Vector2 dashVector)
+    {
+        if (isOnSlope)
+        {
+
+        } else
+        {
+            return;
+        }
+    }
+    #endregion
     public void TouchingFloorCeilingWall()
     {
         //equation values to determine if the player is on the ground
@@ -793,7 +844,7 @@ public class PlayerFSMController : AdvancedFSM
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, groundLayer.value);
+        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.5f), 0f, groundLayer.value);
 
         
     }
@@ -914,7 +965,6 @@ public class PlayerFSMController : AdvancedFSM
     // this will bust some logic
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
-        Debug.Log("Player Hit");
         if (selectedArament.IsActive)
         {
             SoulCalculator(-dmg);
@@ -1125,4 +1175,52 @@ public class PlayerFSMController : AdvancedFSM
         Debug.Log("Respawn Location; " + respawnPoint.respawnPoint + "// ID; " + respawnPoint.rand);
         yield return new WaitForEndOfFrame();
     }
+
+
+    // --------------- PAUSING GAME FUNCTIONALITY -----------------
+    #region Click below to access pause functionality code
+    public void Pause()
+    {
+        // set to false
+        stateText.enabled = false;
+        healthText.enabled = false;
+        SoulText.enabled = false;
+
+        healthBar.SetActive(false);
+        SoulLv1Bar.SetActive(false);
+        SoulLv2Bar.SetActive(false);
+        SoulLv3Bar.SetActive(false);
+        DashIcon1.SetActive(false);
+        DashIcon2.SetActive(false);
+
+        // set to true
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void UnPause()
+    {
+        // set to false
+        stateText.enabled =  true;
+        healthText.enabled = true;
+        SoulText.enabled = true;
+
+        healthBar.SetActive(true);
+        SoulLv1Bar.SetActive(true);
+        SoulLv2Bar.SetActive(true);
+        SoulLv3Bar.SetActive(true);
+        DashIcon1.SetActive(true);
+        DashIcon2.SetActive(true);
+        // set to true
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1;
+
+    }
+    private void OnApplicationPause(bool pause)
+    {
+        
+    }
+
+    #endregion
+
 }
