@@ -1146,7 +1146,7 @@ public class PlayerFSMController : AdvancedFSM
     public IEnumerator PlayerDead()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("DeathScene");
     }
 
     public void AddSoul(int soulAdd)
