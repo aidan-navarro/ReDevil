@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour
     public void PlayOption()
     {
        
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);   
     }
 
     public void CreditsOption()

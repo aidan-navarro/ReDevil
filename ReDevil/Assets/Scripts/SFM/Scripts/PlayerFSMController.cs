@@ -52,6 +52,22 @@ public class PlayerFSMController : AdvancedFSM
     [SerializeField] private GameObject SoulLv2Bar;
     [SerializeField] private GameObject SoulLv3Bar;
     [SerializeField] private GameObject SoulBackground;
+    public GameObject GetSoulBackground() { return SoulBackground; }
+    public void ChangeSoulBackgroundColor()
+    {
+        Debug.Log("TriggerNoSoul");
+        StartCoroutine("SoulShiftColor");
+    }
+
+    private IEnumerator SoulShiftColor()
+    {
+        Color tempColor = SoulBackground.GetComponent<Image>().color;
+        SoulBackground.GetComponent<Image>().color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        SoulBackground.GetComponent<Image>().color = Color.black;
+
+    }
+
     [SerializeField] private GameObject DashIcon1;
     [SerializeField] private GameObject DashIcon2;
     [SerializeField] private GameObject PauseMenu;
@@ -441,6 +457,13 @@ public class PlayerFSMController : AdvancedFSM
             {
                 selectedArament.ActivateArament();
             }
+
+            if (soul - selectedArament.SoulCost <= 0.0f)
+            {
+                ChangeSoulBackgroundColor();
+            }
+
+
         }
     }
 
