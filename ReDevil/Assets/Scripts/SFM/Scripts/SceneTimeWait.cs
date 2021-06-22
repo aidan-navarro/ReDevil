@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class SceneTimeWait : MonoBehaviour
 {
+    // we're not doing anything with these
     public GameObject retryButton, restartButton, withdrawButton;
 
     // don't know where the respawn manager is
@@ -67,14 +68,40 @@ public class SceneTimeWait : MonoBehaviour
     //    Debug.Log(obj.valueSizeInBytes);
     //}
 
+    public void MainMenu()
+    {
+        PlayerFSMController pc = FindObjectOfType<PlayerFSMController>();
+        pc.SetIsPaused(false);
+        pc.UnPause();
+
+        SceneManager.LoadScene(0);
+    }
+
+    public void SampleDebugSpawn()
+    {
+        PlayerFSMController pc = FindObjectOfType<PlayerFSMController>();
+        pc.SetIsPaused(false);
+        pc.UnPause();
+
+        SceneManager.LoadScene(1);
+    }
+
     public void RetryOption()
     {
+        PlayerFSMController pc = FindObjectOfType<PlayerFSMController>();
+        pc.SetIsPaused(false);
+        pc.UnPause();
+
         sceneID = respawn.sceneID;
         SceneManager.LoadScene(sceneID);
     }
     
    public void RestartOption()
     {
+        PlayerFSMController pc = FindObjectOfType<PlayerFSMController>();
+        pc.SetIsPaused(false);
+        pc.UnPause();
+
         sceneID = respawn.sceneID;
         respawn.respawnPoint = respawn.startingPoint;
         SceneManager.LoadScene(sceneID);
@@ -82,7 +109,10 @@ public class SceneTimeWait : MonoBehaviour
 
     public void WithdrawOption()
     {
-        
+        PlayerFSMController pc = FindObjectOfType<PlayerFSMController>();
+        pc.SetIsPaused(false);
+        pc.UnPause();
+
         Destroy(respawn.gameObject);
         SceneManager.LoadScene(2);
     }
