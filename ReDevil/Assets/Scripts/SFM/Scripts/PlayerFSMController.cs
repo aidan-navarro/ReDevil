@@ -47,9 +47,11 @@ public class PlayerFSMController : AdvancedFSM
     [SerializeField] private Text healthText;
     [SerializeField] private Text SoulText;
     [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject healthBackground;
     [SerializeField] private GameObject SoulLv1Bar;
     [SerializeField] private GameObject SoulLv2Bar;
     [SerializeField] private GameObject SoulLv3Bar;
+    [SerializeField] private GameObject SoulBackground;
     [SerializeField] private GameObject DashIcon1;
     [SerializeField] private GameObject DashIcon2;
     [SerializeField] private GameObject PauseMenu;
@@ -1187,9 +1189,11 @@ public class PlayerFSMController : AdvancedFSM
         SoulText.enabled = false;
 
         healthBar.SetActive(false);
+        healthBackground.SetActive(false);
         SoulLv1Bar.SetActive(false);
         SoulLv2Bar.SetActive(false);
         SoulLv3Bar.SetActive(false);
+        SoulBackground.SetActive(false);
         DashIcon1.SetActive(false);
         DashIcon2.SetActive(false);
 
@@ -1206,9 +1210,13 @@ public class PlayerFSMController : AdvancedFSM
         SoulText.enabled = true;
 
         healthBar.SetActive(true);
+        healthBackground.SetActive(true);
+
         SoulLv1Bar.SetActive(true);
         SoulLv2Bar.SetActive(true);
         SoulLv3Bar.SetActive(true);
+        SoulBackground.SetActive(true);
+
         DashIcon1.SetActive(true);
         DashIcon2.SetActive(true);
         // set to true
