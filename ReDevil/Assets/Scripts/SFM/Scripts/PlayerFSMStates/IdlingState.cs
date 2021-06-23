@@ -106,6 +106,9 @@ public class IdlingState : FSMState
         if (soulAttackButtonDown && pc.GetSoul() >= player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost)
         {
             pc.PerformTransition(Transition.SoulShot);
+        } else if (soulAttackButtonDown && (pc.GetSoul() - player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost <= 0.0f))
+        {
+            pc.ChangeSoulBackgroundColor();
         }
 
         //dash transition

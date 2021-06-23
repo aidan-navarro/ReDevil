@@ -47,9 +47,27 @@ public class PlayerFSMController : AdvancedFSM
     [SerializeField] private Text healthText;
     [SerializeField] private Text SoulText;
     [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject healthBackground;
     [SerializeField] private GameObject SoulLv1Bar;
     [SerializeField] private GameObject SoulLv2Bar;
     [SerializeField] private GameObject SoulLv3Bar;
+    [SerializeField] private GameObject SoulBackground;
+    public GameObject GetSoulBackground() { return SoulBackground; }
+    public void ChangeSoulBackgroundColor()
+    {
+        Debug.Log("TriggerNoSoul");
+        StartCoroutine("SoulShiftColor");
+    }
+
+    private IEnumerator SoulShiftColor()
+    {
+        Color tempColor = SoulBackground.GetComponent<Image>().color;
+        SoulBackground.GetComponent<Image>().color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        SoulBackground.GetComponent<Image>().color = Color.black;
+
+    }
+
     [SerializeField] private GameObject DashIcon1;
     [SerializeField] private GameObject DashIcon2;
     [SerializeField] private GameObject PauseMenu;
@@ -381,7 +399,17 @@ public class PlayerFSMController : AdvancedFSM
 
             if (obj.action.name == gameplayControls.Gameplay.ToggleSoulArmament.name)
             {
-                OnToggleSoulArament(obj);
+                if (obj.started)
+                {
+                    if (soul - selectedArament.SoulCost <= 0.0f)
+                    {
+                        ChangeSoulBackgroundColor();
+                    }
+                    else
+                    {
+                        OnToggleSoulArament(obj);
+                    }
+                }
             }
 
             if (obj.action.name == gameplayControls.Gameplay.SoulPowerShot.name)
@@ -439,6 +467,10 @@ public class PlayerFSMController : AdvancedFSM
             {
                 selectedArament.ActivateArament();
             }
+
+            
+
+
         }
     }
 
@@ -1187,9 +1219,11 @@ public class PlayerFSMController : AdvancedFSM
         SoulText.enabled = false;
 
         healthBar.SetActive(false);
+        healthBackground.SetActive(false);
         SoulLv1Bar.SetActive(false);
         SoulLv2Bar.SetActive(false);
         SoulLv3Bar.SetActive(false);
+        SoulBackground.SetActive(false);
         DashIcon1.SetActive(false);
         DashIcon2.SetActive(false);
 
@@ -1206,13 +1240,18 @@ public class PlayerFSMController : AdvancedFSM
         SoulText.enabled = true;
 
         healthBar.SetActive(true);
+        healthBackground.SetActive(true);
+
         SoulLv1Bar.SetActive(true);
         SoulLv2Bar.SetActive(true);
         SoulLv3Bar.SetActive(true);
+        SoulBackground.SetActive(true);
+
         DashIcon1.SetActive(true);
         DashIcon2.SetActive(true);
-        // set to true
+        // set to false
         PauseMenu.SetActive(false);
+        moveVector = Vector2.zero;
         Time.timeScale = 1;
 
     }

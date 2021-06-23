@@ -210,7 +210,7 @@ public class PlayerAttack : MonoBehaviour
                 // register a hit
                 DetectWeakspot(eCollider);
 
-                Vector3 position = this.gameObject.transform.position;  // this isn't getting used
+                //Vector3 position = this.gameObject.transform.position;  // this isn't getting used
 
                 //store the amount of hp the enemy has before the initial hit
                 float pastHealth = ec.health;
