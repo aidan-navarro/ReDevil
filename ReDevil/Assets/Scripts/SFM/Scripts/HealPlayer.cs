@@ -24,6 +24,7 @@ public class HealPlayer : MonoBehaviour
         {
             PlayerFSMController pc = other.GetComponent<PlayerFSMController>();
             pc.HealPlayer(healValue);
+            pc.UpdateHealthHud();
             Destroy(gameObject);
         }
     }

@@ -96,7 +96,7 @@ public class PlayerFSMController : AdvancedFSM
     public float GetSoul() { return soul; }
     public void SetSoul(float insoul) { soul = insoul; UpdateSoulHud(); }
 
-    private void UpdateSoulHud()
+    public void UpdateSoulHud()
     {
         SoulText.text = ((int)soul).ToString();
 
@@ -329,6 +329,9 @@ public class PlayerFSMController : AdvancedFSM
         playerInput = GetComponent<PlayerInput>();
 
         playerInput.onActionTriggered += OnActionTriggered;
+
+        UpdateHealthHud();
+        UpdateSoulHud();
 
         ConstructFSM();
     }
