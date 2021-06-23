@@ -660,7 +660,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void CheckDashCancel()
     {
-        //pc.CheckDashInput();
 
         // whenever the window for cancel is true, the player can act into a dash transition
         if (checkCancel)
