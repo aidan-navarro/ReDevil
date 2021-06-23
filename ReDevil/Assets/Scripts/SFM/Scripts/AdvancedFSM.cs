@@ -24,6 +24,7 @@ public enum Transition
     DashKnockback, // state for having the attack connect with the enemy
     AirDash,       // Transition into Air Dash State
     AirDashAttack, // state for air dash attack
+    GroundToAirDashAttack,
     AirDashKnockback,
     WallSlide,
     WallJump,
@@ -92,6 +93,7 @@ public enum FSMStateID
     DashKnockingBack, // new addition, the player makes contact with the dash attack and is bounced the opposite direction
     AirDashing, // Specific case when after the player is bouncing from airdash hit
     AirDashAttacking, // new addition, air dash attack
+    GroundToAirDashAttacking,
     AirDashKnockingBack, // new addition, hitting the enemy during air dash
     WallSliding, //the player is sliding on a wall
     WallJumping, //the player is jumping off the wall

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirDashAttack : FSMState
+public class GroundToAirDashAttack : FSMState
 {
-
-    private bool isGrounded; // just in case we account for any slanted platforms in the future
     private bool onWall;
     private bool isCeiling;
     private float prevGravityScale;
@@ -14,12 +12,10 @@ public class AirDashAttack : FSMState
     private bool dashAttackStarted;
     private bool touchingInvisWall;
 
-    public AirDashAttack()
+    public GroundToAirDashAttack()
     {
-        stateID = FSMStateID.AirDashAttacking;
+        stateID = FSMStateID.GroundToAirDashAttacking;
 
-        // initialize variables
-        isGrounded = false;
         dashAttackStarted = false;
         endDash = false;
     }
@@ -37,7 +33,7 @@ public class AirDashAttack : FSMState
         bool enterKnockback = pc.GetKbTransition(); // in the event we get hit by a projectile
         bool enterDashKnock = pc.GetDKBTransition();
 
-        pc.UpdateState("Air Dash Attack");
+        pc.UpdateState("Ground To Air Dash Attack");
 
         // Track Player conditions
         pc.UpdateDashIcons();
@@ -63,7 +59,7 @@ public class AirDashAttack : FSMState
                 pc.facingLeft = false;
 
                 pc.FlipPlayer();
-            } 
+            }
             else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
@@ -76,6 +72,7 @@ public class AirDashAttack : FSMState
 
             }
         }
+
         // total distance of dash... make a different length?
 
         // TO DO: replace this current logic 
@@ -94,10 +91,9 @@ public class AirDashAttack : FSMState
         // velocity must also change to account for the dash position that we set
         // create a boolean to lock any change to the dash vector while we dash
         pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
-        isGrounded = pc.GetisGrounded();
+
         onWall = pc.GetisTouchingWall();
         isCeiling = pc.GetisTouchingCeiling();
-     
         // during dash
         if (!endDash)
         {
@@ -108,7 +104,6 @@ public class AirDashAttack : FSMState
                 vAbsDash.x = Mathf.Abs(vAbsDash.x);
                 patk.StartAirDashAttack(vAbsDash);
             }
-
             // Conditions to conclude the dash
             else if (dashDistance >= pc.dashLength * pc.dashLength)
             {
@@ -121,7 +116,7 @@ public class AirDashAttack : FSMState
             }
             else if (patk.airDashAttackContact)
             {
-                Debug.Log("Air Dash Attack Hit");
+                Debug.Log("Ground to Air Dash Attack Hit");
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
@@ -146,18 +141,7 @@ public class AirDashAttack : FSMState
                 endDash = true;
                 patk.EndDashAttack();
             }
-            // check for if we land on the ground mid dash? 
-            // account for slanted platforms down the line?
 
-            if (isGrounded)
-            {
-                pc.SetCanDash(true);
-                pc.GetRigidbody2D().gravityScale = prevGravityScale;
-                dashAttackStarted = false;
-                patk.didAirAttack = false;
-                endDash = true;
-                patk.EndDashAttack();
-            }
 
             if (touchingInvisWall)
             {
@@ -180,7 +164,6 @@ public class AirDashAttack : FSMState
             // we must create a condition where if the player is stuck on something, break out of the condition
 
         }
-
     }
 
     public override void Reason(Transform player, Transform npc)
@@ -188,7 +171,6 @@ public class AirDashAttack : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
-        isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
         touchingInvisWall = pc.GetisTouchingInvisibleWall();
 
@@ -215,13 +197,13 @@ public class AirDashAttack : FSMState
                     if (checkAtkVector.y > 0.0f)
                     {
                         pc.AirDashBottomKnockback2(pc.GetDashPath());
-                    } 
+                    }
                     // if the player is overhead, use the regular Dash Knockback function, it's modified to account for off the ground contact
                     else
                     {
                         pc.DashKnockback();
                     }
-                } 
+                }
                 // hitting the enemy from the side
                 else
                 {
@@ -229,7 +211,8 @@ public class AirDashAttack : FSMState
                     if (!patk.firstDashContact)
                     {
                         pc.AirDashKnockback();
-                    } else
+                    }
+                    else
                     {
                         pc.SideDashKnockback(pc.GetDashPath());
                     }
@@ -237,7 +220,7 @@ public class AirDashAttack : FSMState
                 }
                 patk.firstDashContact = true;
                 pc.SetDKBTransition(true);
-                pc.PerformTransition(Transition.DashKnockback); 
+                pc.PerformTransition(Transition.DashKnockback);
 
             }
 
@@ -249,7 +232,7 @@ public class AirDashAttack : FSMState
             }
 
             if (isCeiling)
-            { 
+            {
                 patk.ReInitializeTransitions();
                 pc.PerformTransition(Transition.Airborne);
             }
@@ -261,18 +244,12 @@ public class AirDashAttack : FSMState
                 pc.PerformTransition(Transition.Airborne);
 
             }
-
             // checking the square magnitude of the dash distance, to circumvent a sqrt check
             if (dashDistance >= pc.dashLength * pc.dashLength)
             {
                 //Debug.Log("ReachAirDashDistance");
                 patk.ReInitializeTransitions();
                 pc.PerformTransition(Transition.Airborne);
-            }
-            if (isGrounded)
-            {
-                patk.ReInitializeTransitions();
-                pc.PerformTransition(Transition.Idle);
             }
         }
 

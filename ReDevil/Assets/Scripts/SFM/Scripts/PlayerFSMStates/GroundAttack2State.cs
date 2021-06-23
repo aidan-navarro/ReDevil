@@ -80,7 +80,16 @@ public class GroundAttack2State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.DashAttack);
+            if (pc.moveVector.y > 0.0f)
+            {
+                Debug.Log("DashUp");
+                pc.SetDashPath(pc.moveVector);
+                pc.PerformTransition(Transition.GroundToAirDashAttack);
+            }
+            else
+            {
+                pc.PerformTransition(Transition.DashAttack);
+            }
         }
 
         //dead transition

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject retry, restart, withdraw;
 
     // don't know where the respawn manager is
     private static RespawnManager respawn;
