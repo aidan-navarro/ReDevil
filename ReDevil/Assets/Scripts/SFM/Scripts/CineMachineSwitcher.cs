@@ -70,7 +70,7 @@ public class CineMachineSwitcher : MonoBehaviour
         FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = false;
         yield return new WaitForSeconds(waitTime);
         canContinue = true;
-        FindObjectOfType<OniFSMController>().OniBossStart();
+        FindObjectOfType<OniFSMController>().OnOniBossStart?.Invoke();
         FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = true;
     }
 

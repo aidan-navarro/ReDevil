@@ -100,7 +100,7 @@ public class JumpingSmashState : FSMState
         }
     }
 
-    private void OnPlayerHit(object sender, EventArgs e)
+    private void OnPlayerHit()
     {
         Debug.Log("OnPlayerHit");
         jumpEnded = true;

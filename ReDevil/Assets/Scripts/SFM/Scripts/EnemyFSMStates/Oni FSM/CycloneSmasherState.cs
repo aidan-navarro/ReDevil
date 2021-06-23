@@ -39,7 +39,7 @@ public class CycloneSmasherState : FSMState
         }
     }
 
-    private void OnWallHit(object sender, EventArgs e)
+    private void OnWallHit()
     {
         UnityEngine.Object.Destroy(pillar);
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEditor;
 using UnityEngine.UI;
 using System;
@@ -57,10 +58,10 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float playerPointLineRange = 0.5f;
 
-    public event EventHandler OnPlayerHit;
-    public event EventHandler OnWallHit;
-    public event EventHandler OnOniBossStart;
-    public event EventHandler OnOniEnraged;
+    public UnityAction OnPlayerHit;
+    public UnityAction OnWallHit;
+    public UnityAction OnOniBossStart;
+    public UnityAction OnOniEnraged;
 
  
     [SerializeField]
@@ -286,12 +287,12 @@ public class OniFSMController : EnemyFSMController
             pc.KnockbackTransition(damage, knockbackPower, position);
 
             StartCoroutine(EnemyIFrames());
-            OnPlayerHit?.Invoke(this, EventArgs.Empty);
+            OnPlayerHit?.Invoke();
         }
 
         if (collision.gameObject.CompareTag("Wall"))
         {
-            OnWallHit?.Invoke(this, EventArgs.Empty);
+            OnWallHit?.Invoke();
         }
     }
 
@@ -303,6 +304,6 @@ public class OniFSMController : EnemyFSMController
 
     public void OniBossStart()
     {
-        OnOniBossStart?.Invoke(this, EventArgs.Empty);
+        OnOniBossStart?.Invoke();
     }
 }

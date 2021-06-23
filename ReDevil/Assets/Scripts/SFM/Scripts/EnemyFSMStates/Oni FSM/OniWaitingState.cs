@@ -29,7 +29,7 @@ public class OniWaitingState : FSMState
         }
     }
 
-    private void OnOniBossStart(object sender, EventArgs e)
+    private void OnOniBossStart()
     {
         switchToNextState = true;
     }
