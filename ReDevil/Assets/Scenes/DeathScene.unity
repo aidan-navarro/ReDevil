@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 42948927}
   - component: {fileID: 42948926}
   - component: {fileID: 42948925}
-  - component: {fileID: 42948928}
+  - component: {fileID: 42948929}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -226,7 +226,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &42948928
+--- !u!114 &42948929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 42948923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e135c41f193a875428208e91aa829ad4, type: 3}
+  m_Script: {fileID: 11500000, guid: eaba4861e1f77c14998e0a3ad1745c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   retryButton: {fileID: 1061731358}
@@ -408,9 +408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 722768132}
+    m_SelectOnDown: {fileID: 1061731359}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -438,8 +438,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42948928}
-        m_TargetAssemblyTypeName: SceneTimeWait, Assembly-CSharp
+      - m_Target: {fileID: 42948929}
+        m_TargetAssemblyTypeName: DeathScreen, Assembly-CSharp
         m_MethodName: WithdrawOption
         m_Mode: 1
         m_Arguments:
@@ -675,9 +675,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 722768132}
+    m_SelectOnDown: {fileID: 1965991515}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -705,8 +705,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42948928}
-        m_TargetAssemblyTypeName: SceneTimeWait, Assembly-CSharp
+      - m_Target: {fileID: 42948929}
+        m_TargetAssemblyTypeName: DeathScreen, Assembly-CSharp
         m_MethodName: RetryOption
         m_Mode: 1
         m_Arguments:
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1140,8 +1140,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42948928}
-        m_TargetAssemblyTypeName: SceneTimeWait, Assembly-CSharp
+      - m_Target: {fileID: 42948929}
+        m_TargetAssemblyTypeName: DeathScreen, Assembly-CSharp
         m_MethodName: RestartOption
         m_Mode: 1
         m_Arguments:

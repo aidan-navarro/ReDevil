@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.EventSystems;
 
 //FSM Class for the Player which also contains variables + unique functions for the player
 public class PlayerFSMController : AdvancedFSM
@@ -1230,6 +1231,14 @@ public class PlayerFSMController : AdvancedFSM
         // set to true
         PauseMenu.SetActive(true);
         Time.timeScale = 0;
+
+        //Set the first button in the pause menu
+        PauseMenu pause = PauseMenu.GetComponent<PauseMenu>();
+
+        //start by clearing the latest selection
+        EventSystem.current.SetSelectedGameObject(null);
+        //set to the first button in the pause menu
+        EventSystem.current.SetSelectedGameObject(pause.retry);
     }
 
     public void UnPause()
