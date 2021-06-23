@@ -10,11 +10,13 @@ public class SceneTimeWait : MonoBehaviour
     // we're not doing anything with these
     public GameObject retryButton, restartButton, withdrawButton;
 
-    // don't know where the respawn manager is
     private static RespawnManager respawn;
 
     // menu selection integer
     private string sceneID;
+
+    private PlayerFSMController pc;
+
 
     //public int GetISelect()
     //{
@@ -35,6 +37,7 @@ public class SceneTimeWait : MonoBehaviour
     {
         respawn = FindObjectOfType<RespawnManager>();
         sceneID = null;
+        pc = FindObjectOfType<PlayerFSMController>();
         //playerInput.onActionTriggered += OnActionTriggered;
     }
 
@@ -43,15 +46,15 @@ public class SceneTimeWait : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //// must change this
-        //if (Input.GetButtonDown("Submit"))
-        //{
-        //    EventSystem.current.SetSelectedGameObject(null);
-        //    EventSystem.current.SetSelectedGameObject(retryButton);
-        //    RetryOption();
-        //    RestartOption();
-        //    WithdrawOption();
-        //}
+       // must change this
+       if (Input.GetButtonDown("Submit"))
+       {
+           EventSystem.current.SetSelectedGameObject(null);
+           EventSystem.current.SetSelectedGameObject(retryButton);
+           RetryOption();
+           RestartOption();
+           WithdrawOption();
+       }
     }
 
     //private void OnActionTriggered(InputAction.CallbackContext obj)
@@ -70,11 +73,10 @@ public class SceneTimeWait : MonoBehaviour
 
     public void MainMenu()
     {
-        PlayerFSMController pc = FindObjectOfType<PlayerFSMController>();
         pc.SetIsPaused(false);
         pc.UnPause();
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void SampleDebugSpawn()
@@ -83,7 +85,7 @@ public class SceneTimeWait : MonoBehaviour
         pc.SetIsPaused(false);
         pc.UnPause();
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void RetryOption()
@@ -114,7 +116,7 @@ public class SceneTimeWait : MonoBehaviour
         pc.UnPause();
 
         Destroy(respawn.gameObject);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("MainMenu");
     }
 
 

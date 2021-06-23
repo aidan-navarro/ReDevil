@@ -129,6 +129,10 @@ public class MidairState : FSMState
         {
             pc.PerformTransition(Transition.SoulShot);
         }
+        else if (soulAttackButtonDown && (pc.GetSoul() - player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost <= 0.0f))
+        {
+            pc.ChangeSoulBackgroundColor();
+        }
 
         if (pc.GetAttackButtonDown() && !pc.GetisGrounded() && !patk.didAirAttack)
         {

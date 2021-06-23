@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2205779553596125160
+--- !u!114 &656160398806777772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1183,12 +1183,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6048817908202131748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e135c41f193a875428208e91aa829ad4, type: 3}
+  m_Script: {fileID: 11500000, guid: f67d1722ac429fe409f714ca708726a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retryButton: {fileID: 0}
-  restartButton: {fileID: 0}
-  withdrawButton: {fileID: 0}
 --- !u!1001 &5107046115445576190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1347,7 +1344,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2205779553596125160}
+      objectReference: {fileID: 656160398806777772}
     - target: {fileID: 5867534514386606009, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1361,7 +1358,7 @@ PrefabInstance:
     - target: {fileID: 5867534514386606009, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneTimeWait, Assembly-CSharp
+      value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5867534514386606009, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
@@ -1382,7 +1379,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2205779553596125160}
+      objectReference: {fileID: 656160398806777772}
     - target: {fileID: 6132916003780471572, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1396,7 +1393,7 @@ PrefabInstance:
     - target: {fileID: 6132916003780471572, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneTimeWait, Assembly-CSharp
+      value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6132916003780471572, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
@@ -1412,7 +1409,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2205779553596125160}
+      objectReference: {fileID: 656160398806777772}
+    - target: {fileID: 8895783756177133708, guid: 4177f6c23449bb942b699ba90dda3f81,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4177f6c23449bb942b699ba90dda3f81, type: 3}
 --- !u!1 &6048817908202131748 stripped
