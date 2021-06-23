@@ -356,6 +356,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 660753506}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &660753508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1647963690517509393, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 660753506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &660753509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1647963689431004910, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 660753506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &695855447
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,11 +787,11 @@ MonoBehaviour:
   healthText: {fileID: 1837322084}
   SoulText: {fileID: 960792490}
   healthBar: {fileID: 629451639}
-  healthBackground: {fileID: 0}
+  healthBackground: {fileID: 660753509}
   SoulLv1Bar: {fileID: 457782484}
   SoulLv2Bar: {fileID: 436808538}
   SoulLv3Bar: {fileID: 2147201615}
-  SoulBackground: {fileID: 0}
+  SoulBackground: {fileID: 660753508}
   DashIcon1: {fileID: 1287003451}
   DashIcon2: {fileID: 1604421758}
   PauseMenu: {fileID: 660753507}
