@@ -57,19 +57,21 @@ public class OniFSMController : EnemyFSMController
     public List<Transform> ArenaTransforms => arenaPoints;
     [SerializeField]
     private float playerPointLineRange = 0.5f;
+    [SerializeField]
+    private float idleWaitTime = 1.0f;
+    public float IdleWaitTime => idleWaitTime;
 
     public UnityAction OnPlayerHit;
     public UnityAction OnWallHit;
     public UnityAction OnOniBossStart;
-    public UnityAction OnOniEnraged;
+    public UnityAction OnOniBeginEnraged;
+    public UnityAction OnOniEndEnraged;
 
  
     [SerializeField]
     private GameObject healthBar;
-    [SerializeField]
-    private float MaxHealth;
 
-    public bool IsEnraged { get; private set; }
+    public bool IsEnraged;
 
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealth(); }
@@ -78,7 +80,7 @@ public class OniFSMController : EnemyFSMController
 
     public void UpdateHealth()
     {
-        healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        healthBar.transform.localScale = new Vector3(health / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     //initialize FSM
@@ -123,7 +125,7 @@ public class OniFSMController : EnemyFSMController
 
         OniEnragedState oniEnragedState = new OniEnragedState();
 
-        oniEnragedState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        oniEnragedState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
 
         OniIdleState oniIdleState = new OniIdleState();
 
@@ -148,14 +150,19 @@ public class OniFSMController : EnemyFSMController
         boulderPuttState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         ClubSmashState clubSmashState = new ClubSmashState();
-        clubSmashState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        clubSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         clubSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         clubSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         JumpingSmashState jumpingSmashState = new JumpingSmashState();
-        jumpingSmashState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        jumpingSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         jumpingSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         jumpingSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+
+        OniJumpAwayState jumpAwayState = new OniJumpAwayState();
+        jumpAwayState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        jumpAwayState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        jumpAwayState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         CycloneSmasherState cycloneSmasherState = new CycloneSmasherState();
         cycloneSmasherState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
@@ -173,6 +180,7 @@ public class OniFSMController : EnemyFSMController
         AddFSMState(boulderPuttState);
         AddFSMState(clubSmashState);
         AddFSMState(jumpingSmashState);
+        AddFSMState(jumpAwayState);
         AddFSMState(cycloneSmasherState);
 
         AddFSMState(enemyDead);
@@ -216,9 +224,10 @@ public class OniFSMController : EnemyFSMController
 
         // Find the position to spawn in the pillar
 
+        PillarSpawn = pillarSpawnPoint.position;
+
         if (inFront)
-        {
-            PillarSpawn = pillarSpawnPoint.position;
+        {      
             pillarToSpawn = boulderPillarPrehab;
         }
         else
@@ -230,8 +239,9 @@ public class OniFSMController : EnemyFSMController
             {
                 // To determine if the arenaPoint is in between the oni and player I'll use DistancePointLine
                 //playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
-                
-                
+                playerInBetween = Mathf.Sign((transform.position - PillarSpawn).x) != Mathf.Sign((transform.position - arenaTransform.position).x);
+
+
                 if (playerInBetween && Vector3.Distance(transform.position, PillarSpawn) < Vector3.Distance(transform.position, arenaTransform.position))
                 {
                     PillarSpawn = arenaTransform.position;

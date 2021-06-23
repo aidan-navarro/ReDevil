@@ -69,6 +69,7 @@ public enum Transition
     OniBoulderPut,
     OniCycloneSmash,
     OniJumpSmash,
+    OniJumpAway,
     OniEnraged,
 
     NurikabeIdle,
@@ -143,6 +144,7 @@ public enum FSMStateID
     OniBoulderPutting,
     OniCycloneSmashing,
     OniJumpSmashing,
+    OniJumpAway,
     OniEnraged,
 
     // Nurikabe

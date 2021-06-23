@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpingSmashState : FSMState
+public class OniJumpAwayState : FSMState
 {
     bool jumpStarted;
     bool jumpSwitch;
     bool jumpEnded;
-    bool enteredState = true;
     Vector2 jumpingTarget;
 
-    public JumpingSmashState()
+    public OniJumpAwayState()
     {
-        stateID = FSMStateID.OniJumpSmashing;
+        stateID = FSMStateID.OniJumpAway;
     }
 
     public override void EnterStateInit()
@@ -22,7 +20,6 @@ public class JumpingSmashState : FSMState
         jumpStarted = false;
         jumpEnded = false;
         jumpSwitch = false;
-        enteredState = true;
     }
 
     public override void Act(Transform player, Transform npc)
@@ -34,28 +31,26 @@ public class JumpingSmashState : FSMState
             oc.TouchingFloor();
         }
 
-        if (enteredState)
-        {
-            oc.OnPlayerHit += OnPlayerHit;
-            enteredState = false;
-        }
-
         if (!jumpStarted && !jumpEnded && oc.GetisGrounded())
         {
-            Debug.Log("OnGround");
-            // Oni is going to jump on the player
+            jumpingTarget = player.position;
+            foreach (Transform arenaTransform in oc.ArenaTransforms) // Find the furtherest point away from the player
             {
-                Debug.Log("Jumping on the player");
-                jumpingTarget = player.position;
+                if (Vector3.Distance(player.position, jumpingTarget) < Vector3.Distance(player.position, arenaTransform.position))
+                {
+                    Debug.Log(arenaTransform.position);
+                    jumpingTarget = arenaTransform.position;
+                }
             }
 
             // Launch the Oni into the air
             oc.Jump();
             jumpStarted = true;
             oc.SetisGrounded(false);
-            
+
             oc.StartCoroutine(WaitForJumpSwitch());
         }
+
         else if (jumpStarted && !oc.GetisGrounded())
         {
             // Oni is airborne 
@@ -75,20 +70,12 @@ public class JumpingSmashState : FSMState
         }
     }
 
-    private void OnPlayerHit()
-    {
-        Debug.Log("OnPlayerHit");
-        jumpEnded = true;
-        jumpStarted = false;
-    }
-
     public override void Reason(Transform player, Transform npc)
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
         if (oc.health <= 0)
         {
-            oc.OnPlayerHit -= OnPlayerHit;
             oc.StopAllCoroutines();
             oc.PerformTransition(Transition.EnemyNoHealth);
             return;
@@ -103,18 +90,16 @@ public class JumpingSmashState : FSMState
 
         if (jumpEnded)
         {
-            oc.OnPlayerHit -= OnPlayerHit;
-            oc.PerformTransition(Transition.OniJumpAway);
+            oc.PerformTransition(Transition.OniIdle);
             return;
         }
 
-        
     }
-
     private IEnumerator WaitForJumpSwitch()
     {
         jumpSwitch = true;
         yield return new WaitForSeconds(0.1f);
         jumpSwitch = false;
     }
+
 }

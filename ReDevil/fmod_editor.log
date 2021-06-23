@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001F82F0CBF88 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001F8B8A15D48 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -27,4 +27,66 @@
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.
+[LOG] SoundI::release                          :  (000001F8BB583F08)
+[LOG] SoundI::release                          :     PC_Step01-003 (000001F82F8C6578)
+[LOG] SoundI::release                          :  (000001F8B8116F18)
+[LOG] SoundI::release                          :     PC_Step01-004 (000001F82F8C6A58)
+[LOG] SoundI::release                          :  (000001F8B8116AC8)
+[LOG] SoundI::release                          :     PC_Step01-005 (000001F82F8C6238)
+[LOG] SoundI::release                          :  (000001F8BB585778)
+[LOG] SoundI::release                          :     PC_Step01-006 (000001F8BC195BF8)
+[LOG] SoundI::release                          :  (000001F8B8117D78)
+[LOG] SoundI::release                          :     PC_Step01-001 (000001F82F8C6D98)
+[LOG] SoundI::release                          :  (000001F8B81128A8)
+[LOG] SoundI::release                          :     PC_Step01-002 (000001F82F8C5D58)
+[LOG] SoundI::release                          :  (000001F8B8117648)
+[LOG] SoundI::release                          :     PC_Jump_Feet01 (000001F82F8C6BF8)
+[LOG] SoundI::release                          :  (000001F8B8113428)
+[LOG] SoundI::release                          :     PC_Jump_Feet02 (000001F82F8C82B8)
+[LOG] SoundI::release                          :  (000001F8B8116398)
+[LOG] SoundI::release                          :     PC_Jump_Feet03 (000001F82F8C5398)
+[LOG] SoundI::release                          :  (000001F8B8111BB8)
+[LOG] SoundI::release                          :     PC_Jump_Feet04 (000001F82F8C5878)
+[LOG] SoundI::release                          :  (000001F8BB5858E8)
+[LOG] SoundI::release                          :     PC_Jump_Cloth01 (000001F8BC195F38)
+[LOG] SoundI::release                          :  (000001F8B8116678)
+[LOG] SoundI::release                          :     PC_Jump_Cloth02 (000001F82F8C68B8)
+[LOG] SoundI::release                          :  (000001F8B81171F8)
+[LOG] SoundI::release                          :     PC_Jump_Cloth03 (000001F82F8C6098)
+[LOG] SoundI::release                          :  (000001F8BB5844C8)
+[LOG] SoundI::release                          :     PC_Jump_Cloth04 (000001F8BC195D98)
+[LOG] SoundI::release                          :  (000001F8BB585608)
+[LOG] SoundI::release                          :     Pc_Land_Cloth03 (000001F8BC196C38)
+[LOG] SoundI::release                          :  (000001F8BB583C28)
+[LOG] SoundI::release                          :     Pc_Land_Cloth04 (000001F8BC194878)
+[LOG] SoundI::release                          :  (000001F8BB57F448)
+[LOG] SoundI::release                          :     Pc_Land_Cloth05 (000001F82F8C75B8)
+[LOG] SoundI::release                          :  (000001F8BB583D98)
+[LOG] SoundI::release                          :     Pc_Land_Cloth06 (000001F82F8C7F78)
+[LOG] SoundI::release                          :  (000001F8B81149B8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth01 (000001F82F8C5538)
+[LOG] SoundI::release                          :  (000001F8BB584638)
+[LOG] SoundI::release                          :     Pc_Land_Cloth02 (000001F82F8C8118)
+[LOG] SoundI::release                          :  (000001F8B8117A98)
+[LOG] SoundI::release                          :     PC_Land_Feet03 (000001F82F8C63D8)
+[LOG] SoundI::release                          :  (000001F8B8110628)
+[LOG] SoundI::release                          :     PC_Land_Feet04 (000001F82F8C7758)
+[LOG] SoundI::release                          :  (000001F8B81156A8)
+[LOG] SoundI::release                          :     PC_Land_Feet05 (000001F82F8C8458)
+[LOG] SoundI::release                          :  (000001F8BB584358)
+[LOG] SoundI::release                          :     PC_Land_Feet06 (000001F82F8C4B78)
+[LOG] SoundI::release                          :  (000001F8BB584918)
+[LOG] SoundI::release                          :     PC_Land_Feet01 (000001F82F8C5EF8)
+[LOG] SoundI::release                          :  (000001F8BB5847A8)
+[LOG] SoundI::release                          :     PC_Land_Feet02 (000001F82F8C5A18)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
