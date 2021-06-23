@@ -399,7 +399,17 @@ public class PlayerFSMController : AdvancedFSM
 
             if (obj.action.name == gameplayControls.Gameplay.ToggleSoulArmament.name)
             {
-                OnToggleSoulArament(obj);
+                if (obj.started)
+                {
+                    if (soul - selectedArament.SoulCost <= 0.0f)
+                    {
+                        ChangeSoulBackgroundColor();
+                    }
+                    else
+                    {
+                        OnToggleSoulArament(obj);
+                    }
+                }
             }
 
             if (obj.action.name == gameplayControls.Gameplay.SoulPowerShot.name)
@@ -458,10 +468,7 @@ public class PlayerFSMController : AdvancedFSM
                 selectedArament.ActivateArament();
             }
 
-            if (soul - selectedArament.SoulCost <= 0.0f)
-            {
-                ChangeSoulBackgroundColor();
-            }
+            
 
 
         }
@@ -1242,8 +1249,9 @@ public class PlayerFSMController : AdvancedFSM
 
         DashIcon1.SetActive(true);
         DashIcon2.SetActive(true);
-        // set to true
+        // set to false
         PauseMenu.SetActive(false);
+        moveVector = Vector2.zero;
         Time.timeScale = 1;
 
     }
