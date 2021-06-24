@@ -84,6 +84,7 @@ public class GroundAttack2State : FSMState
             {
                 Debug.Log("DashUp");
                 pc.SetDashPath(pc.moveVector);
+                pc.IncrementAirDashCount();
                 pc.PerformTransition(Transition.GroundToAirDashAttack);
             }
             else
