@@ -124,6 +124,7 @@ public class IdlingState : FSMState
                 {
                     Debug.Log("DashUp");
                     pc.SetDashPath(pc.moveVector);
+                    pc.IncrementAirDashCount();
                     pc.PerformTransition(Transition.GroundToAirDashAttack);
                 }
                 else
