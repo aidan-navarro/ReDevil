@@ -27,21 +27,27 @@ public class PauseMenu : MonoBehaviour
     }
     public void RestartOption()
     {
-        pc.SetIsPaused(false);
-        pc.UnPause();
+        //pc.SetIsPaused(false);
+        //pc.UnPause();
 
         sceneID = respawn.sceneID;
         respawn.respawnPoint = respawn.startingPoint;
-        SceneManager.LoadScene(sceneID);
+
+        //loadingScreen.LoadLevelAsync(sceneID);
+        LoadingData.sceneToLoad = sceneID;
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void SampleDebugSpawn()
     {
-        pc.SetIsPaused(false);
-        pc.UnPause();
+        //pc.SetIsPaused(false);
+        //pc.UnPause();
 
         Destroy(respawn);
-        SceneManager.LoadScene("SampleScene");
+        LoadingData.sceneToLoad = "SampleScene";
+        SceneManager.LoadScene("LoadingScreen");
+        //loadingScreen.LoadLevelAsync("SampleScene");
+    
     }
     public void MainMenu()
     {

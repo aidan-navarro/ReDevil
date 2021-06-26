@@ -323,6 +323,8 @@ public class PlayerFSMController : AdvancedFSM
         // game isn't paused at the start 
         isPaused = false;
         PauseMenu.SetActive(false);
+        SetIsPaused(false);
+        UnPause();
 
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;

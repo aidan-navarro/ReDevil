@@ -34,7 +34,8 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 
     public void PlayOption()
     {
-        SceneManager.LoadScene("SampleScene");
+        LoadingData.sceneToLoad = "SampleScene";
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void CreditsOption()
