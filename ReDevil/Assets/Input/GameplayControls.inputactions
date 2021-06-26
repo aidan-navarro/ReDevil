@@ -457,6 +457,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "a336cac7-f03c-4d53-9d57-b0320fb47f12",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "38aba802-5f22-43e3-bfe5-46d6504ffd01",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d9dbb235-c138-4895-a0b2-522c5be8f13e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

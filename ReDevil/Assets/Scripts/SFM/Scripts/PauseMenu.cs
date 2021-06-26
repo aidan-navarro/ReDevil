@@ -9,8 +9,9 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject retry, restart, withdraw;
 
+    // don't know where the respawn manager is
     private static RespawnManager respawn;
-    private static LoadingScreen loadingScreen;
+
     // menu selection integer
     private string sceneID;
 
@@ -20,36 +21,33 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         respawn = FindObjectOfType<RespawnManager>();
-        loadingScreen = FindObjectOfType<LoadingScreen>();
         sceneID = null;
         pc = FindObjectOfType<PlayerFSMController>();
 
     }
     public void RestartOption()
     {
+        pc.SetIsPaused(false);
         pc.UnPause();
 
         sceneID = respawn.sceneID;
         respawn.respawnPoint = respawn.startingPoint;
-
-       // SceneManager.LoadScene(sceneID);
-        loadingScreen.LoadLevelAsync(sceneID);
+        SceneManager.LoadScene(sceneID);
     }
 
     public void SampleDebugSpawn()
     {
+        pc.SetIsPaused(false);
         pc.UnPause();
 
-       // SceneManager.LoadScene("SampleScene");
-        loadingScreen.LoadLevelAsync("SampleScene");
+        Destroy(respawn);
+        SceneManager.LoadScene("SampleScene");
     }
     public void MainMenu()
     {
+        pc.SetIsPaused(false);
         pc.UnPause();
 
-       // SceneManager.LoadScene("MainMenu");
-        loadingScreen.LoadLevelAsync("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
-
-
 }
