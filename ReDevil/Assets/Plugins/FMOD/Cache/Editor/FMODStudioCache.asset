@@ -91,6 +91,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1290
+--- !u!114 &-5579868259489760376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/Player_Jump
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/Player_Jump
+  guid: 5d341b3e35328b4ab23949695ab34685
+  Banks:
+  - {fileID: 1149553343516350785}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 800
 --- !u!114 &-4465705393667181238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,12 +200,16 @@ MonoBehaviour:
   - {fileID: 3585599333606253556}
   - {fileID: 5645659211587581071}
   - {fileID: 1463152534022509714}
+  - {fileID: -5579868259489760376}
+  - {fileID: 8551205089459398808}
+  - {fileID: 4762778834825572300}
+  - {fileID: 2492029422509439398}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1149553343516350785}
   StringsBanks:
   - {fileID: 2963554395431899856}
-  stringsBankWriteTime: 637560044935510558
+  stringsBankWriteTime: 637587543462565016
   cacheVersion: 6
 --- !u!114 &91175235257437251
 MonoBehaviour:
@@ -244,7 +271,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637560044935438130
+  lastModified: 637587543462284961
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -294,6 +321,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &2492029422509439398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/Player_Land
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/Player_Land
+  guid: f14da48858e5e34eb060c9b9b654f2d8
+  Banks:
+  - {fileID: 1149553343516350785}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 743
 --- !u!114 &2663467878571479146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,11 +382,11 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637560044935510558
+  lastModified: 637587543462565016
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 830
+    Value: 1012
   Exists: 1
 --- !u!114 &3585599333606253556
 MonoBehaviour:
@@ -384,6 +434,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &4762778834825572300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SwordSwing
+  m_EditorClassIdentifier: 
+  Path: event:/SwordSwing
+  guid: bbd6fca684bc684682c9da4107abefed
+  Banks:
+  - {fileID: 1149553343516350785}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1290
 --- !u!114 &5645659211587581071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +481,29 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 164625
 --- !u!114 &8164866308813361068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/Player_Run
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/Player_Run
+  guid: 88af88bddf6437449d5eda7aaa72c2dd
+  Banks:
+  - {fileID: 1149553343516350785}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 254
+--- !u!114 &8551205089459398808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

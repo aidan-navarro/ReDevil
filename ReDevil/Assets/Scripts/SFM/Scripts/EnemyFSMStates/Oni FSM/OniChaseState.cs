@@ -36,10 +36,24 @@ public class OniChaseState : FSMState
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
+        if (oc.health <= 0)
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.EnemyNoHealth);
+            return;
+        }
+
+        if (!oc.IsEnraged && oc.IsUnderHalfHealth())
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.OniEnraged);
+            return;
+        }
         if (oc.IsWithinClubRange(player))
         {
             oc.StopCoroutine(ChaseTimer());
             oc.PerformTransition(Transition.OniClubSmash);
+            return;
         }
 
         else if (switchToAttack)
@@ -47,18 +61,13 @@ public class OniChaseState : FSMState
             List<Transition> possibleTransitions = new List<Transition>();
             possibleTransitions.Add(Transition.OniBoulderPut);
             possibleTransitions.Add(Transition.OniJumpSmash);
-            if (oc.IsUnderHalfHealth())
+            if (oc.IsEnraged)
             {
                 possibleTransitions.Add(Transition.OniCycloneSmash);
             }
             oc.StopCoroutine(ChaseTimer());
             oc.PerformTransition(possibleTransitions[Random.Range(0, possibleTransitions.Count)]);
-        }
-
-        if (oc.health <= 0)
-        {
-            oc.StopAllCoroutines();
-            oc.PerformTransition(Transition.EnemyNoHealth);
+            return;
         }
 
 

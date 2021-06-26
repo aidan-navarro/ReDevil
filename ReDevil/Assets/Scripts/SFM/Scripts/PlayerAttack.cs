@@ -185,7 +185,6 @@ public class PlayerAttack : MonoBehaviour
 
         //we can't check for a cancel anymore, set to false
         checkCancel = false;
-
         attacking = false;
 
         idleTransition = true;
@@ -211,7 +210,7 @@ public class PlayerAttack : MonoBehaviour
                 // register a hit
                 DetectWeakspot(eCollider);
 
-                Vector3 position = this.gameObject.transform.position;  // this isn't getting used
+                //Vector3 position = this.gameObject.transform.position;  // this isn't getting used
 
                 //store the amount of hp the enemy has before the initial hit
                 float pastHealth = ec.health;
@@ -661,7 +660,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void CheckDashCancel()
     {
-        //pc.CheckDashInput();
 
         // whenever the window for cancel is true, the player can act into a dash transition
         if (checkCancel)

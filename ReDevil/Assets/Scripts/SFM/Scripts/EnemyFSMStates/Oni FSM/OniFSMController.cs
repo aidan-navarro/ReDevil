@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEditor;
 using UnityEngine.UI;
 using System;
@@ -48,30 +49,38 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float cycloneSpeed;
     public float CycloneSpeed => cycloneSpeed;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI stateText;
 
     [SerializeField]
     private List<Transform> arenaPoints;
     public List<Transform> ArenaTransforms => arenaPoints;
     [SerializeField]
     private float playerPointLineRange = 0.5f;
+    [SerializeField]
+    private float idleWaitTime = 1.0f;
+    public float IdleWaitTime => idleWaitTime;
 
-    public event EventHandler OnPlayerHit;
-    public event EventHandler OnWallHit;
-    public event EventHandler OnOniBossStart;
-    public event EventHandler OnOniEnraged;
+    public UnityAction OnPlayerHit;
+    public UnityAction OnWallHit;
+    public UnityAction OnOniBossStart;
+    public UnityAction OnOniBeginEnraged;
+    public UnityAction OnOniEndEnraged;
 
  
     [SerializeField]
     private GameObject healthBar;
-    [SerializeField]
-    private float MaxHealth;
+
+    public bool IsEnraged;
 
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealth(); }
 
+    public float GetMaxHealth() { return maxHealth; }
+
     public void UpdateHealth()
     {
-        healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        healthBar.transform.localScale = new Vector3(health / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     //initialize FSM
@@ -98,8 +107,10 @@ public class OniFSMController : EnemyFSMController
     }
     protected override void FSMUpdate()
     {
-        CurrentState.Reason(playerTransform, transform);
+        stateText.text = CurrentStateID.ToString();
         CurrentState.Act(playerTransform, transform);
+        CurrentState.Reason(playerTransform, transform);
+        
     }
 
     private void ConstructFSM()
@@ -112,6 +123,10 @@ public class OniFSMController : EnemyFSMController
 
         oniWaitingState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
 
+        OniEnragedState oniEnragedState = new OniEnragedState();
+
+        oniEnragedState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
+
         OniIdleState oniIdleState = new OniIdleState();
 
         oniIdleState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
@@ -119,6 +134,7 @@ public class OniFSMController : EnemyFSMController
         oniIdleState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
         oniIdleState.AddTransition(Transition.OniChase, FSMStateID.OniChasing);
         oniIdleState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
+        oniIdleState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         OniChaseState oniChaseState = new OniChaseState();
         oniChaseState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
@@ -126,33 +142,45 @@ public class OniFSMController : EnemyFSMController
         oniChaseState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
         oniChaseState.AddTransition(Transition.OniClubSmash, FSMStateID.OniClubSmashing);
         oniChaseState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
+        oniChaseState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         BoulderPuttState boulderPuttState = new BoulderPuttState();
         boulderPuttState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
         boulderPuttState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        boulderPuttState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         ClubSmashState clubSmashState = new ClubSmashState();
-        clubSmashState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        clubSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         clubSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        clubSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         JumpingSmashState jumpingSmashState = new JumpingSmashState();
-        jumpingSmashState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        jumpingSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         jumpingSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        jumpingSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+
+        OniJumpAwayState jumpAwayState = new OniJumpAwayState();
+        jumpAwayState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        jumpAwayState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        jumpAwayState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         CycloneSmasherState cycloneSmasherState = new CycloneSmasherState();
         cycloneSmasherState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
         cycloneSmasherState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        cycloneSmasherState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
         //there are no transitions out of the dead state
 
         AddFSMState(oniWaitingState);
+        AddFSMState(oniEnragedState);
         AddFSMState(oniIdleState);
         AddFSMState(oniChaseState);
         AddFSMState(boulderPuttState);
         AddFSMState(clubSmashState);
         AddFSMState(jumpingSmashState);
+        AddFSMState(jumpAwayState);
         AddFSMState(cycloneSmasherState);
 
         AddFSMState(enemyDead);
@@ -196,9 +224,10 @@ public class OniFSMController : EnemyFSMController
 
         // Find the position to spawn in the pillar
 
+        PillarSpawn = pillarSpawnPoint.position;
+
         if (inFront)
-        {
-            PillarSpawn = pillarSpawnPoint.position;
+        {      
             pillarToSpawn = boulderPillarPrehab;
         }
         else
@@ -210,8 +239,9 @@ public class OniFSMController : EnemyFSMController
             {
                 // To determine if the arenaPoint is in between the oni and player I'll use DistancePointLine
                 //playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
-                
-                
+                playerInBetween = Mathf.Sign((transform.position - PillarSpawn).x) != Mathf.Sign((transform.position - arenaTransform.position).x);
+
+
                 if (playerInBetween && Vector3.Distance(transform.position, PillarSpawn) < Vector3.Distance(transform.position, arenaTransform.position))
                 {
                     PillarSpawn = arenaTransform.position;
@@ -255,16 +285,24 @@ public class OniFSMController : EnemyFSMController
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D(collision);
-
         if (collision.gameObject.CompareTag("Player"))
         {
-            OnPlayerHit?.Invoke(this, EventArgs.Empty);
+            StartCoroutine(EnemyIFrames());
+            rig.velocity = Vector2.zero; 
+            
+            Vector2 position = gameObject.transform.position;
+
+            //send all relative information to the player to take damage, and apply knockback
+            PlayerFSMController pc = collision.transform.GetComponent<PlayerFSMController>();
+            pc.KnockbackTransition(damage, knockbackPower, position);
+
+            StartCoroutine(EnemyIFrames());
+            OnPlayerHit?.Invoke();
         }
 
         if (collision.gameObject.CompareTag("Wall"))
         {
-            OnWallHit?.Invoke(this, EventArgs.Empty);
+            OnWallHit?.Invoke();
         }
     }
 
@@ -276,6 +314,6 @@ public class OniFSMController : EnemyFSMController
 
     public void OniBossStart()
     {
-        OnOniBossStart?.Invoke(this, EventArgs.Empty);
+        OnOniBossStart?.Invoke();
     }
 }

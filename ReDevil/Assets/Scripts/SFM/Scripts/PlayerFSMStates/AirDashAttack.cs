@@ -34,7 +34,6 @@ public class AirDashAttack : FSMState
         pc.SetKbTransition(false);
         pc.SetFlameKB(false);
 
-
         bool enterKnockback = pc.GetKbTransition(); // in the event we get hit by a projectile
         bool enterDashKnock = pc.GetDKBTransition();
 

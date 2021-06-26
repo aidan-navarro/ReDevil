@@ -25,6 +25,8 @@ public class InvincibleTimer : MonoBehaviour
     {
         pc.SetInvincible(true);
         pc.SetImmobile(true);
+        pc.SetFrictionMaterial();
+
         gameObject.layer = LayerMask.NameToLayer("IFrames");
 
 

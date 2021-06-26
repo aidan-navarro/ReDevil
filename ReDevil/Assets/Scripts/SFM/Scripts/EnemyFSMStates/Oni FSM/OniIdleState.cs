@@ -28,7 +28,7 @@ public class OniIdleState : FSMState
         {
             Debug.Log("Oni Idle");
             enteredState = false;
-            oc.StartCoroutine(IdleTimer());
+            oc.StartCoroutine(IdleTimer(oc));
         }
         oc.CheckRange(player);
 
@@ -38,10 +38,24 @@ public class OniIdleState : FSMState
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
+        if (oc.health <= 0)
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.EnemyNoHealth);
+            return;
+        }
+
+        if (!oc.IsEnraged && oc.IsUnderHalfHealth())
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.OniEnraged);
+            return;
+        }
         if (oc.IsWithinClubRange(player))
         {
-            oc.StopCoroutine(IdleTimer());
+            oc.StopCoroutine(IdleTimer(oc));
             oc.PerformTransition(Transition.OniClubSmash);
+            return;
         }
 
         else if (switchState)
@@ -54,20 +68,15 @@ public class OniIdleState : FSMState
             {
                 possibleTransitions.Add(Transition.OniCycloneSmash);
             }
-            oc.StopCoroutine(IdleTimer());
+            oc.StopCoroutine(IdleTimer(oc));
             oc.PerformTransition(possibleTransitions[Random.Range(0, possibleTransitions.Count)]);
-        }
-
-        if (oc.health <= 0)
-        {
-            oc.StopAllCoroutines();
-            oc.PerformTransition(Transition.EnemyNoHealth);
+            return;
         }
     }
 
-    public IEnumerator IdleTimer()
+    public IEnumerator IdleTimer(OniFSMController oc)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(oc.IdleWaitTime);
         switchState = true;
     }
 }

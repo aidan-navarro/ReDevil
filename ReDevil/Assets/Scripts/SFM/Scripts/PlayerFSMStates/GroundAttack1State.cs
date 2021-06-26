@@ -68,9 +68,19 @@ public class GroundAttack1State : FSMState
 
         if (patk.dashTransition) //if dash cancel = true, change to dash state
         {
+
             attackStarted = false;
             patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.DashAttack); 
+            if (pc.moveVector.y > 0.0f)
+            {
+                Debug.Log("DashUp");
+                pc.SetDashPath(pc.moveVector);
+                pc.PerformTransition(Transition.GroundToAirDashAttack);
+            }
+            else
+            {
+                pc.PerformTransition(Transition.DashAttack);
+            }
         }
 
         if (patk.idleTransition && !patk.attacking)

@@ -33,13 +33,14 @@ public class CycloneSmasherState : FSMState
             enteredState = false;
         }
 
-        else if (cycloneCharged)
+        else if (cycloneCharged && pillar != null)
         {
-            oc.ChargeTowardsPlayer();
+            oc.transform.position = Vector3.MoveTowards(oc.transform.position, new Vector2(pillar.transform.position.x, pillar.transform.position.y), oc.CycloneSpeed * Time.deltaTime);
+
         }
     }
 
-    private void OnWallHit(object sender, EventArgs e)
+    private void OnWallHit()
     {
         UnityEngine.Object.Destroy(pillar);
     }
@@ -48,18 +49,29 @@ public class CycloneSmasherState : FSMState
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
 
-        if (!enteredState && pillar == null)
-        {
-            oc.PerformTransition(Transition.OniIdle);
-            npc.GetComponent<SpriteRenderer>().color = Color.white;
-        }
-
         if (oc.health <= 0)
         {
             oc.StopAllCoroutines();
             oc.PerformTransition(Transition.EnemyNoHealth);
             npc.GetComponent<SpriteRenderer>().color = Color.white;
+            return;
         }
+
+        if (!oc.IsEnraged && oc.IsUnderHalfHealth())
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.OniEnraged);
+            return;
+        }
+
+        if (!enteredState && pillar == null)
+        {
+            oc.PerformTransition(Transition.OniIdle);
+            npc.GetComponent<SpriteRenderer>().color = Color.white;
+            return;
+        }
+
+        
     }
 
     IEnumerator ChargeUpCyclone(Transform npc)
