@@ -40,6 +40,7 @@ public class PauseMenu : MonoBehaviour
         pc.SetIsPaused(false);
         pc.UnPause();
 
+        Destroy(respawn);
         SceneManager.LoadScene("SampleScene");
     }
     public void MainMenu()

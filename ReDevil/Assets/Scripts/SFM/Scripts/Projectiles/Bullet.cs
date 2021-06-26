@@ -61,7 +61,7 @@ public class Bullet : MonoBehaviour
         {
             EnemyFSMController ec = collision.transform.GetComponent<EnemyFSMController>();
             //friendly fire. Call the function that has the enemy take damage.
-
+            ec.TakeDamage(damage);
 
             //make sure physics don't affect the enemy hit
             ec.rig.position = ec.currentPos;
