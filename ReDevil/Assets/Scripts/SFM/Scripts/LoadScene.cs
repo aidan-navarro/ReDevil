@@ -33,7 +33,8 @@ public class LoadScene : MonoBehaviour
                 respawn = FindObjectOfType<RespawnManager>();
                 Destroy(respawn.gameObject);
             }
-            SceneManager.LoadScene(sceneName);
+            LoadingData.sceneToLoad = sceneName;
+            SceneManager.LoadScene("LoadingScreen");
         }
     }
 }
