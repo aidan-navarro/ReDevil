@@ -75,6 +75,8 @@ public class GroundAttack3State : FSMState
             {
                 Debug.Log("DashUp");
                 pc.SetDashPath(pc.moveVector);
+                pc.IncrementAirDashCount();
+
                 pc.PerformTransition(Transition.GroundToAirDashAttack);
             }
             else
@@ -88,6 +90,7 @@ public class GroundAttack3State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
+
             pc.PerformTransition(Transition.NoHealth);
         }
 

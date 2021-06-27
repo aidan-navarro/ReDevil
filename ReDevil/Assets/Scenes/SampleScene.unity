@@ -999,6 +999,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105658685744569389, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 61.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 105658685744569389, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -110.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 656160398806777772, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: loadScreen
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205515467588604832, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267701733805886648, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1647963689631872992, guid: 362ebfc693b1ff64185bf4b00c123f5f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1108,6 +1133,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979185463876499299, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979185463876499299, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316969900911162664, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_Value
+      value: 0.095
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788531703408051368, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362ebfc693b1ff64185bf4b00c123f5f, type: 3}

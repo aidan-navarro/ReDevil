@@ -66,6 +66,22 @@ public class GroundAttack2State : FSMState
         {
             attackStarted = false;
             patk.ReInitializeTransitions();
+            if (pc.moveVector.x > 0f)
+            {
+                pc.direction = 1;
+                pc.facingLeft = false;
+
+
+                pc.FlipPlayer();
+            }
+            else if (pc.moveVector.x < 0f)
+            {
+                pc.direction = -1;
+                pc.facingLeft = true;
+
+                pc.FlipPlayer();
+
+            }
             pc.PerformTransition(Transition.GroundAttack3);
         }
 
@@ -84,6 +100,7 @@ public class GroundAttack2State : FSMState
             {
                 Debug.Log("DashUp");
                 pc.SetDashPath(pc.moveVector);
+                pc.IncrementAirDashCount();
                 pc.PerformTransition(Transition.GroundToAirDashAttack);
             }
             else

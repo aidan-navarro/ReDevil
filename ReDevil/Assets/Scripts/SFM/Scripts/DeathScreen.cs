@@ -29,19 +29,23 @@ public class DeathScreen : MonoBehaviour
     public void RetryOption()
     {
         sceneID = respawn.sceneID;
-        SceneManager.LoadScene(sceneID);
+        LoadingData.sceneToLoad = sceneID;
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void RestartOption()
     {
         sceneID = respawn.sceneID;
         respawn.respawnPoint = respawn.startingPoint;
-        SceneManager.LoadScene(sceneID);
+
+        LoadingData.sceneToLoad = sceneID;
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void WithdrawOption()
     {
         Destroy(respawn.gameObject);
-        SceneManager.LoadScene("MainMenu");
+        LoadingData.sceneToLoad = "MainMenu";
+        SceneManager.LoadScene("LoadingScreen");
     }
 }
