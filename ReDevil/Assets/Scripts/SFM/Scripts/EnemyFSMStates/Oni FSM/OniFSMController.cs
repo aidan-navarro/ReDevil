@@ -239,7 +239,7 @@ public class OniFSMController : EnemyFSMController
             {
                 // To determine if the arenaPoint is in between the oni and player I'll use DistancePointLine
                 //playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
-                playerInBetween = Mathf.Sign((transform.position - PillarSpawn).x) != Mathf.Sign((transform.position - arenaTransform.position).x);
+                playerInBetween = Mathf.Sign((transform.position - arenaTransform.position).x) == Mathf.Sign((playerTransform.position - arenaTransform.position).x);
 
 
                 if (playerInBetween && Vector3.Distance(transform.position, PillarSpawn) < Vector3.Distance(transform.position, arenaTransform.position))
