@@ -52,6 +52,7 @@ public class WaniguchiFSMController : EnemyFSMController
 
         WaniguchiAttackState waniguchiAttack = new WaniguchiAttackState();
         waniguchiAttack.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
+        waniguchiAttack.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
         waniguchiAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         waniguchiAttack.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair); // the attack state will transition right into the midair state
 
@@ -61,7 +62,7 @@ public class WaniguchiFSMController : EnemyFSMController
         waniguchiAirState.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
 
         WaniguchiFlinchState waniguchiFlinchState = new WaniguchiFlinchState();
-        waniguchiFlinchState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiFlinching);
+        waniguchiFlinchState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
         waniguchiFlinchState.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair);
         waniguchiFlinchState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 

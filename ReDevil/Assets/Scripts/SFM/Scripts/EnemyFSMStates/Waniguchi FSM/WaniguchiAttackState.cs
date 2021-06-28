@@ -28,7 +28,7 @@ public class WaniguchiAttackState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
-
+        Animator anim = ec.GetComponent<Animator>();
         ec.TouchingFloor();
         isGrounded = ec.GetisGrounded(); 
         
@@ -48,6 +48,7 @@ public class WaniguchiAttackState : FSMState
             //set an initial velocity for the waniguchi to jump
             ec.WaniguchiAttack();
             atkStart = true;
+
             ec.attacking = atkStart;
         }
 
@@ -74,6 +75,7 @@ public class WaniguchiAttackState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
+        Animator anim = ec.GetComponent<Animator>();
 
         // new change: set the attacking method to transition over to airborne
         ec.TouchingFloor();
