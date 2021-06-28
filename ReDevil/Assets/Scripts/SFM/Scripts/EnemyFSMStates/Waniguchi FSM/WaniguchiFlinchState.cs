@@ -23,11 +23,15 @@ public class WaniguchiFlinchState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
+        Animator anim = wc.GetComponent<Animator>();
+
+
         et = wc.GetComponent<EnemyTimer>();
         Debug.Log("Waniguchi Flinch");
 
         wc.FlinchEnemy(wc.GetKnockbackVel());
         wc.SetEnemyFlinch(false);
+
         et.StartCoroutine("EnemyKnockbackTimer");
 
         wc.TouchingFloor();
