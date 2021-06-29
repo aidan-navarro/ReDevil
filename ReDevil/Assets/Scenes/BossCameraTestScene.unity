@@ -499,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 1575489276325362628, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: orthographic size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276398568402, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -560,6 +560,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575489276398568413, guid: 69c30ee0916387442bdeef7357d4a1e1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4225471945767981086, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -1239,6 +1244,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 568327944, guid: 96824b6c9d5d5ab41a41c814f74d59cb, type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 861395230, guid: 96824b6c9d5d5ab41a41c814f74d59cb, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1251,6 +1260,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872456, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872456, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872563, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
@@ -1365,7 +1384,7 @@ PrefabInstance:
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
       propertyPath: clubRange
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
@@ -1396,6 +1415,11 @@ PrefabInstance:
         type: 3}
       propertyPath: healthText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}

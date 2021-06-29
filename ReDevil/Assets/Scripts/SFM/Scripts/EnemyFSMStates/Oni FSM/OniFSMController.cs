@@ -38,8 +38,8 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float CycloneSmashKnockback;
     [SerializeField]
-    private float jumpSpeed;
-    public float JumpSpeed => jumpSpeed;
+    private float jumpHeight;
+    public float JumpHeight => jumpHeight;
     [SerializeField]
     private float airSpeed;
     public float AirSpeed => airSpeed;
@@ -210,11 +210,13 @@ public class OniFSMController : EnemyFSMController
         }
     }
 
-    public void Jump()
+    public void Jump(Vector2 jumpingTarget)
     {
-        Vector2 newVel = rig.velocity;
-        newVel.y = jumpSpeed;
-        rig.velocity = newVel;
+        if (GetisGrounded())
+        {
+            float distanceFromTarget = jumpingTarget.x - transform.position.x;
+            rig.AddForce(new Vector2(distanceFromTarget, jumpHeight), ForceMode2D.Impulse);
+        }
     }
 
     public GameObject SpawnPillar(bool inFront)
@@ -266,11 +268,15 @@ public class OniFSMController : EnemyFSMController
     public void MoveTowardsPlayer()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), chaseSpeed * Time.deltaTime);
+        //Vector2 MoveTowardsVector = new Vector2(playerTransform.position.x, transform.position.y) - new Vector2(playerTransform.position.x, transform.position.y);
+        //rig.velocity = MoveTowardsVector.normalized * Time.deltaTime * chaseSpeed;
     }
 
     public void ChargeTowardsPlayer()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), cycloneSpeed * Time.deltaTime);
+        //Vector2 MoveTowardsVector = new Vector2(playerTransform.position.x, transform.position.y) - new Vector2(playerTransform.position.x, transform.position.y);
+        //rig.velocity = MoveTowardsVector.normalized * Time.deltaTime * cycloneSpeed;
     }
 
     public bool IsUnderHalfHealth()
