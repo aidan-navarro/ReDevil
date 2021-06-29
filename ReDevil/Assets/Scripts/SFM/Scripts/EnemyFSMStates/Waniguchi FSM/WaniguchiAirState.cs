@@ -22,11 +22,12 @@ public class WaniguchiAirState : FSMState
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
 
+
         // if we've commenced attacking from the Waniguchi Attack State and the Waniguchi has left the ground
         // it's still checking if we touched the ground
         ec.TouchingFloor();
         isGrounded = ec.GetisGrounded();
-
+        
         //if (!isGrounded)
         //{
         //    Debug.Log("We Are Attacking");
@@ -39,15 +40,17 @@ public class WaniguchiAirState : FSMState
             ec.SetCurrentPos(ec.rig.position);
             ec.rig.position = ec.GetCurrentPos();
             ec.WaniguchiStop();
-            ec.attacking = false;
+            ec.attacking = false; 
+
         }
 
-       
+
     }
 
     public override void Reason(Transform player, Transform npc)
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
+        Animator anim = ec.GetComponent<Animator>();
 
         if (!ec.attacking)
         {
@@ -57,6 +60,7 @@ public class WaniguchiAirState : FSMState
 
         if (ec.GetEnemyFlinch())
         {
+            anim.SetBool("Flinch", ec.GetEnemyFlinch());
             ec.PerformTransition(Transition.WaniguchiFlinch);
         }
 
