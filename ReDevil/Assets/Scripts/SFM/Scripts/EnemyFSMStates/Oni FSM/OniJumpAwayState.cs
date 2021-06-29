@@ -44,27 +44,28 @@ public class OniJumpAwayState : FSMState
             }
 
             // Launch the Oni into the air
-            oc.Jump();
+            oc.Jump(jumpingTarget);
             jumpStarted = true;
             oc.SetisGrounded(false);
 
             oc.StartCoroutine(WaitForJumpSwitch());
         }
 
-        else if (jumpStarted && !oc.GetisGrounded())
-        {
-            // Oni is airborne 
-            oc.transform.position = Vector2.MoveTowards(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y), oc.JumpSpeed * Time.deltaTime);
-            if (oc.rig.velocity.y > 0 && Vector2.Distance(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y)) <= 2.0f)
-            {
-                oc.rig.velocity = new Vector2(oc.rig.velocity.x, 0);
-            }
-        }
+        //else if (jumpStarted && !oc.GetisGrounded())
+        //{
+        //    // Oni is airborne 
+        //    oc.transform.position = Vector2.MoveTowards(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y), oc.JumpHeight * Time.deltaTime);
+        //    if (oc.rig.velocity.y > 0 && Vector2.Distance(oc.transform.position, new Vector2(jumpingTarget.x, oc.transform.position.y)) <= 2.0f)
+        //    {
+        //        oc.rig.velocity = new Vector2(oc.rig.velocity.x, 0);
+        //    }
+        //}
         else if (jumpStarted && oc.GetisGrounded())
         {
             // Oni has landed on the ground
             Debug.Log("Oni Landed");
             oc.JumpSmashAttack();
+            oc.rig.velocity = new Vector2();
             jumpEnded = true;
             jumpStarted = false;
         }
