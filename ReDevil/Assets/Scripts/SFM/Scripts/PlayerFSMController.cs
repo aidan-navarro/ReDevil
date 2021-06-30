@@ -951,24 +951,32 @@ public class PlayerFSMController : AdvancedFSM
     // this alters the visibility of the dash icons in the UI
     public void UpdateDashIcons()
     {
-       switch(airDashCount)
-       {
-            case 0:
-                DashIcon1.SetActive(true);
-                DashIcon2.SetActive(true);
-                break;
-            case 1:
-                DashIcon1.SetActive(true);
-                DashIcon2.SetActive(false);
-                break;
-            case 2:
-                DashIcon1.SetActive(false);
-                DashIcon2.SetActive(false);
-                break;
-            default:
-                DashIcon1.SetActive(true);
-                DashIcon2.SetActive(true);
-                break;
+        if (!isPaused)
+        {
+            switch (airDashCount)
+            {
+                case 0:
+                    DashIcon1.SetActive(true);
+                    DashIcon2.SetActive(true);
+                    break;
+                case 1:
+                    DashIcon1.SetActive(true);
+                    DashIcon2.SetActive(false);
+                    break;
+                case 2:
+                    DashIcon1.SetActive(false);
+                    DashIcon2.SetActive(false);
+                    break;
+                default:
+                    DashIcon1.SetActive(true);
+                    DashIcon2.SetActive(true);
+                    break;
+            }
+
+        } else
+        {
+            DashIcon1.SetActive(false);
+            DashIcon2.SetActive(false);
         }
     }
 
