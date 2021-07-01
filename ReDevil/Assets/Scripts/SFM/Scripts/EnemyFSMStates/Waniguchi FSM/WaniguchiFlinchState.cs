@@ -30,6 +30,7 @@ public class WaniguchiFlinchState : FSMState
         Debug.Log("Waniguchi Flinch");
 
         wc.FlinchEnemy(wc.GetKnockbackVel());
+        anim.Play("Flinch", -1, 0.0f);
         wc.SetEnemyFlinch(false);
 
         et.StartCoroutine("EnemyKnockbackTimer");

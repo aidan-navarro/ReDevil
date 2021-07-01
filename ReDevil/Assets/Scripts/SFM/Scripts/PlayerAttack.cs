@@ -222,10 +222,8 @@ public class PlayerAttack : MonoBehaviour
                 float presentHealth = ec.health;
 
                 ec.SetIsHit(true);
-                if (groundHitCounter >= 3)
-                {
-                    ec.SetEnemyFlinch(true);
-                }
+                ec.SetEnemyFlinch(true);
+                
                     //if the present health goes below 0, set it to zero since you can't steal a negative soul value
                 if (presentHealth < 0)
                 {

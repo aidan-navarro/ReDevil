@@ -107,13 +107,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   rig: {fileID: 0}
-  health: 50
+  health: 200
   maxHealth: 0
   range: 10
   damage: 10
   attackInterval: 2
   knockbackPower: 5
-  atkDirectionRight: {x: 5, y: 5}
+  atkDirectionRight: {x: 5, y: 4}
   projectileSpeed: 0
   currentPos: {x: 0, y: 0}
   isGrounded: 0
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.3800001, y: 1.0191935}
+  m_Offset: {x: -1.5650413, y: 0.7262124}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.690407, y: 0.1462585}
@@ -146,7 +146,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.84, y: 2.4077342}
+  m_Size: {x: 6.469918, y: 1.8217716}
   m_EdgeRadius: 0
 --- !u!50 &2195217055851651137
 Rigidbody2D:

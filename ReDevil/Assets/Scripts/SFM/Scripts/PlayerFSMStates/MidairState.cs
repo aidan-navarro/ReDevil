@@ -29,6 +29,7 @@ public class MidairState : FSMState
 
         pc.UpdateState("In Midair");
         pc.CheckAirDash();
+        pc.UpdateDashIcons();
         // Setting the Dash Vector, we only want to change this whenever the player hasn't gone
         // into dash. That way we avoid mid-air path change
         // We're using the move vector from the Player FSM Controller to dictate the dash path
