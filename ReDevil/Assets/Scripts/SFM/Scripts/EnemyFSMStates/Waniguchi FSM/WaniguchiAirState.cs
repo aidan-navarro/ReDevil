@@ -21,7 +21,7 @@ public class WaniguchiAirState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
-
+        EnemyTimer et = npc.GetComponent<EnemyTimer>();
 
         // if we've commenced attacking from the Waniguchi Attack State and the Waniguchi has left the ground
         // it's still checking if we touched the ground
@@ -34,6 +34,8 @@ public class WaniguchiAirState : FSMState
 
         //}
         //else 
+        
+        // THIS IS GETTING CALLED TOO FAST
         if (isGrounded)
         {
             Debug.Log("Grounding");
@@ -52,15 +54,18 @@ public class WaniguchiAirState : FSMState
         WaniguchiFSMController ec = npc.GetComponent<WaniguchiFSMController>();
         Animator anim = ec.GetComponent<Animator>();
 
-        if (!ec.attacking)
+        if (!ec.attacking && ec.GetisGrounded())
         {
             Debug.Log("Landed");
+            ec.ResumeAnim();
+
             ec.PerformTransition(Transition.WaniguchiIdle);
         }
 
         if (ec.GetEnemyFlinch())
         {
             anim.SetBool("Flinch", ec.GetEnemyFlinch());
+            anim.Play("Flinch", -1, 0.0f);
             ec.PerformTransition(Transition.WaniguchiFlinch);
         }
 

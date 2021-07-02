@@ -21,8 +21,10 @@ public class WaniguchiIdleState : EnemyIdleState
         base.Act(player, npc);
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
         Animator anim = wc.GetComponent<Animator>();
+        wc.ResumeAnim();
         anim.SetBool("Attack", false);
         anim.SetBool("Flinch", false);
+
         wc.TouchingFloor();
 
         if (wc.GetIsHit())
@@ -44,10 +46,11 @@ public class WaniguchiIdleState : EnemyIdleState
             anim.SetTrigger("AttackTrigger");
             wc.PerformTransition(Transition.WaniguchiAttack);
         }
-        if (wc.GetEnemyFlinch())
+        else if (wc.GetEnemyFlinch())
         {
             Debug.Log("Transition"); 
             anim.SetBool("Flinch", wc.GetEnemyFlinch());
+
             wc.PerformTransition(Transition.WaniguchiFlinch);
         }
 

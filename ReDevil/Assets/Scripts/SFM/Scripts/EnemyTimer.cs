@@ -21,8 +21,16 @@ public class EnemyTimer : MonoBehaviour
     }
 
     // use this to delay enemy reactions
+    public IEnumerator SlightDelay()
+    {
+        yield return new WaitForSeconds(0.7f);
+    }
+
     public IEnumerator EnemyKnockbackTimer()
     {
         yield return new WaitForSeconds(knockbackTimer);
+        ec.TouchingFloor();
+        ec.SetEnemyFlinch(false);
+        Debug.Log("End Timer");
     }
 }
