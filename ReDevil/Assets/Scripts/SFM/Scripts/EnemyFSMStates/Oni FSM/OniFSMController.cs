@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEditor;
 using UnityEngine.UI;
 using System;
@@ -37,8 +38,8 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float CycloneSmashKnockback;
     [SerializeField]
-    private float jumpSpeed;
-    public float JumpSpeed => jumpSpeed;
+    private float jumpHeight;
+    public float JumpHeight => jumpHeight;
     [SerializeField]
     private float airSpeed;
     public float AirSpeed => airSpeed;
@@ -56,19 +57,21 @@ public class OniFSMController : EnemyFSMController
     public List<Transform> ArenaTransforms => arenaPoints;
     [SerializeField]
     private float playerPointLineRange = 0.5f;
+    [SerializeField]
+    private float idleWaitTime = 1.0f;
+    public float IdleWaitTime => idleWaitTime;
 
-    public event EventHandler OnPlayerHit;
-    public event EventHandler OnWallHit;
-    public event EventHandler OnOniBossStart;
-    public event EventHandler OnOniEnraged;
+    public UnityAction OnPlayerHit;
+    public UnityAction OnWallHit;
+    public UnityAction OnOniBossStart;
+    public UnityAction OnOniBeginEnraged;
+    public UnityAction OnOniEndEnraged;
 
  
     [SerializeField]
     private GameObject healthBar;
-    [SerializeField]
-    private float MaxHealth;
 
-    public bool IsEnraged { get; private set; }
+    public bool IsEnraged;
 
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealth(); }
@@ -77,7 +80,7 @@ public class OniFSMController : EnemyFSMController
 
     public void UpdateHealth()
     {
-        healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        healthBar.transform.localScale = new Vector3(health / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     //initialize FSM
@@ -122,7 +125,7 @@ public class OniFSMController : EnemyFSMController
 
         OniEnragedState oniEnragedState = new OniEnragedState();
 
-        oniEnragedState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        oniEnragedState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
 
         OniIdleState oniIdleState = new OniIdleState();
 
@@ -147,14 +150,19 @@ public class OniFSMController : EnemyFSMController
         boulderPuttState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         ClubSmashState clubSmashState = new ClubSmashState();
-        clubSmashState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        clubSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         clubSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         clubSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         JumpingSmashState jumpingSmashState = new JumpingSmashState();
-        jumpingSmashState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        jumpingSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         jumpingSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         jumpingSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+
+        OniJumpAwayState jumpAwayState = new OniJumpAwayState();
+        jumpAwayState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        jumpAwayState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        jumpAwayState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         CycloneSmasherState cycloneSmasherState = new CycloneSmasherState();
         cycloneSmasherState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
@@ -172,6 +180,7 @@ public class OniFSMController : EnemyFSMController
         AddFSMState(boulderPuttState);
         AddFSMState(clubSmashState);
         AddFSMState(jumpingSmashState);
+        AddFSMState(jumpAwayState);
         AddFSMState(cycloneSmasherState);
 
         AddFSMState(enemyDead);
@@ -201,11 +210,13 @@ public class OniFSMController : EnemyFSMController
         }
     }
 
-    public void Jump()
+    public void Jump(Vector2 jumpingTarget)
     {
-        Vector2 newVel = rig.velocity;
-        newVel.y = jumpSpeed;
-        rig.velocity = newVel;
+        if (GetisGrounded())
+        {
+            float distanceFromTarget = jumpingTarget.x - transform.position.x;
+            rig.AddForce(new Vector2(distanceFromTarget, jumpHeight), ForceMode2D.Impulse);
+        }
     }
 
     public GameObject SpawnPillar(bool inFront)
@@ -215,9 +226,10 @@ public class OniFSMController : EnemyFSMController
 
         // Find the position to spawn in the pillar
 
+        PillarSpawn = pillarSpawnPoint.position;
+
         if (inFront)
-        {
-            PillarSpawn = pillarSpawnPoint.position;
+        {      
             pillarToSpawn = boulderPillarPrehab;
         }
         else
@@ -229,8 +241,9 @@ public class OniFSMController : EnemyFSMController
             {
                 // To determine if the arenaPoint is in between the oni and player I'll use DistancePointLine
                 //playerInBetween = HandleUtility.DistancePointLine(playerTransform.position, transform.position, arenaTransform.position) < playerPointLineRange ? true : false;
-                
-                
+                playerInBetween = Mathf.Sign((transform.position - arenaTransform.position).x) == Mathf.Sign((playerTransform.position - arenaTransform.position).x);
+
+
                 if (playerInBetween && Vector3.Distance(transform.position, PillarSpawn) < Vector3.Distance(transform.position, arenaTransform.position))
                 {
                     PillarSpawn = arenaTransform.position;
@@ -255,11 +268,15 @@ public class OniFSMController : EnemyFSMController
     public void MoveTowardsPlayer()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), chaseSpeed * Time.deltaTime);
+        //Vector2 MoveTowardsVector = new Vector2(playerTransform.position.x, transform.position.y) - new Vector2(playerTransform.position.x, transform.position.y);
+        //rig.velocity = MoveTowardsVector.normalized * Time.deltaTime * chaseSpeed;
     }
 
     public void ChargeTowardsPlayer()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), cycloneSpeed * Time.deltaTime);
+        //Vector2 MoveTowardsVector = new Vector2(playerTransform.position.x, transform.position.y) - new Vector2(playerTransform.position.x, transform.position.y);
+        //rig.velocity = MoveTowardsVector.normalized * Time.deltaTime * cycloneSpeed;
     }
 
     public bool IsUnderHalfHealth()
@@ -286,12 +303,12 @@ public class OniFSMController : EnemyFSMController
             pc.KnockbackTransition(damage, knockbackPower, position);
 
             StartCoroutine(EnemyIFrames());
-            OnPlayerHit?.Invoke(this, EventArgs.Empty);
+            OnPlayerHit?.Invoke();
         }
 
         if (collision.gameObject.CompareTag("Wall"))
         {
-            OnWallHit?.Invoke(this, EventArgs.Empty);
+            OnWallHit?.Invoke();
         }
     }
 
@@ -303,6 +320,6 @@ public class OniFSMController : EnemyFSMController
 
     public void OniBossStart()
     {
-        OnOniBossStart?.Invoke(this, EventArgs.Empty);
+        OnOniBossStart?.Invoke();
     }
 }

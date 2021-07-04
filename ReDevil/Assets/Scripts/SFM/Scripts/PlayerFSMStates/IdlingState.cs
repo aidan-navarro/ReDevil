@@ -27,6 +27,7 @@ public class IdlingState : FSMState
         rig.velocity = new Vector2(rig.velocity.x, 0);
         //set friction material
         pc.SlopeCheck();
+
         if (pc.isOnSlope)
         {
             Vector2 dashSlopeVector = pc.slopeNormalPerp;
@@ -106,6 +107,9 @@ public class IdlingState : FSMState
         if (soulAttackButtonDown && pc.GetSoul() >= player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost)
         {
             pc.PerformTransition(Transition.SoulShot);
+        } else if (soulAttackButtonDown && (pc.GetSoul() - player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost <= 0.0f))
+        {
+            pc.ChangeSoulBackgroundColor();
         }
 
         //dash transition
@@ -116,7 +120,17 @@ public class IdlingState : FSMState
             // ground dash transition, if the player is on the ground, register a dash attack
             if (pc.GetisGrounded())
             {
-                pc.PerformTransition(Transition.DashAttack);
+                if (pc.moveVector.y > 0.0f)
+                {
+                    Debug.Log("DashUp");
+                    pc.SetDashPath(pc.moveVector);
+                    pc.IncrementAirDashCount();
+                    pc.PerformTransition(Transition.GroundToAirDashAttack);
+                }
+                else
+                {
+                    pc.PerformTransition(Transition.DashAttack);
+                }
             }
             //else
             //{

@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using System;
 
-
-public class MainMenu : MonoBehaviour
+//This script holds all functions that are used on the main menu buttons
+public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 {
+    public GameplayControls controls;
 
-    public GameObject playButton, creditsButton, quitButton;
-
-    // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-        
+        controls = new GameplayControls();
+        controls.Menu.Select.performed += ctx => OnSelect(ctx);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnSelect(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Submit"))
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(playButton);
-            PlayOption();
-            CreditsOption();
-            QuitOption();
-        }
+        Debug.Log("Pressed Select Button");
     }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
     public void PlayOption()
     {
-       
-        SceneManager.LoadScene(0);
+        LoadingData.sceneToLoad = "SampleScene";
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void CreditsOption()
@@ -42,6 +46,8 @@ public class MainMenu : MonoBehaviour
 
     public void QuitOption()
     {
+        Debug.Log("Quitting Game");
         Application.Quit();
+
     }
 }

@@ -28,7 +28,7 @@ public class OniIdleState : FSMState
         {
             Debug.Log("Oni Idle");
             enteredState = false;
-            oc.StartCoroutine(IdleTimer());
+            oc.StartCoroutine(IdleTimer(oc));
         }
         oc.CheckRange(player);
 
@@ -53,7 +53,7 @@ public class OniIdleState : FSMState
         }
         if (oc.IsWithinClubRange(player))
         {
-            oc.StopCoroutine(IdleTimer());
+            oc.StopCoroutine(IdleTimer(oc));
             oc.PerformTransition(Transition.OniClubSmash);
             return;
         }
@@ -68,15 +68,15 @@ public class OniIdleState : FSMState
             {
                 possibleTransitions.Add(Transition.OniCycloneSmash);
             }
-            oc.StopCoroutine(IdleTimer());
+            oc.StopCoroutine(IdleTimer(oc));
             oc.PerformTransition(possibleTransitions[Random.Range(0, possibleTransitions.Count)]);
             return;
         }
     }
 
-    public IEnumerator IdleTimer()
+    public IEnumerator IdleTimer(OniFSMController oc)
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(oc.IdleWaitTime);
         switchState = true;
     }
 }

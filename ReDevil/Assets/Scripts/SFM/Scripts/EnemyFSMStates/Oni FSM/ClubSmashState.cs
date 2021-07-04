@@ -48,7 +48,7 @@ public class ClubSmashState : FSMState
 
         if (attackEnded)
         {
-            oc.PerformTransition(Transition.OniIdle);
+            oc.PerformTransition(Transition.OniJumpAway);
             return;
         }
     }

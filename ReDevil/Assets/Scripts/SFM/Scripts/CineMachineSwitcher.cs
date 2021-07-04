@@ -29,6 +29,9 @@ public class CineMachineSwitcher : MonoBehaviour
     public bool canContinue = false;
     public float waitTime;
 
+    private OniFSMController oniBoss;
+    private PlayerFSMController player;
+
     private void Awake()
     {
 
@@ -47,31 +50,46 @@ public class CineMachineSwitcher : MonoBehaviour
     void Start()
     {
         canContinue = false;
+        oniBoss = FindObjectOfType<OniFSMController>();
+        oniBoss.OnOniBeginEnraged += StartOniEnragedCutscene;
+        player = FindObjectOfType<PlayerFSMController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            PlayerFSMController pc = collision.GetComponent<PlayerFSMController>();
             vcam1.Priority = 0;
             vcam2.Priority = 1;
-            StartCoroutine("Cutscene");
-            StartCoroutine(FillHealthBar(FindObjectOfType<OniFSMController>(), waitTime));
+            StartCoroutine(IntroOniCutscene());
+            StartCoroutine(FillHealthBar(oniBoss, waitTime));
 
         }
     }
 
-    public IEnumerator Cutscene()
+    public void StartOniEnragedCutscene()
+    {
+        StartCoroutine(EnragedOniCutscene());
+    }
+
+    public IEnumerator IntroOniCutscene()
     {
         touchBox.enabled = false;
         invisiWall.gameObject.SetActive(true);
         oniHealthBar.gameObject.SetActive(true);
-        FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = false;
+        player.GetComponent<PlayerInput>().enabled = false;
         yield return new WaitForSeconds(waitTime);
         canContinue = true;
-        FindObjectOfType<OniFSMController>().OniBossStart();
-        FindObjectOfType<PlayerFSMController>().GetComponent<PlayerInput>().enabled = true;
+        oniBoss.OnOniBossStart?.Invoke();
+        player.GetComponent<PlayerInput>().enabled = true;
+    }
+
+    public IEnumerator EnragedOniCutscene()
+    {
+        player.GetComponent<PlayerInput>().enabled = false;
+        yield return new WaitForSeconds(waitTime);
+        oniBoss.OnOniEndEnraged?.Invoke();
+        player.GetComponent<PlayerInput>().enabled = true;
     }
 
     private IEnumerator FillHealthBar(OniFSMController oni, float maxTime)

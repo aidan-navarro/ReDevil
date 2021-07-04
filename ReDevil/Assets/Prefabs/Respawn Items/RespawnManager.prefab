@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {x: 0, y: 0}
+  startingPoint: {x: 0, y: 0}
+  initialized: 0
   rand: 0
+  sceneID: 

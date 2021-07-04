@@ -9,6 +9,10 @@ public class WaniguchiFSMController : EnemyFSMController
     private Vector2 knockbackVel;
     public Vector2 GetKnockbackVel() { return knockbackVel; }
 
+    // animator properties
+    private Animator waniAnim;
+    private float prevAnimSpeed;
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -25,6 +29,10 @@ public class WaniguchiFSMController : EnemyFSMController
 
         //box collider
         col = GetComponent<BoxCollider2D>();
+
+        // animator
+        waniAnim = GetComponent<Animator>();
+        prevAnimSpeed = waniAnim.speed;
 
         //set currentPos
         currentPos = rig.position;
@@ -52,6 +60,7 @@ public class WaniguchiFSMController : EnemyFSMController
 
         WaniguchiAttackState waniguchiAttack = new WaniguchiAttackState();
         waniguchiAttack.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
+        waniguchiAttack.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
         waniguchiAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         waniguchiAttack.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair); // the attack state will transition right into the midair state
 
@@ -61,7 +70,7 @@ public class WaniguchiFSMController : EnemyFSMController
         waniguchiAirState.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
 
         WaniguchiFlinchState waniguchiFlinchState = new WaniguchiFlinchState();
-        waniguchiFlinchState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiFlinching);
+        waniguchiFlinchState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
         waniguchiFlinchState.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair);
         waniguchiFlinchState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
@@ -84,14 +93,14 @@ public class WaniguchiFSMController : EnemyFSMController
         if (collision.transform.CompareTag("Player"))
         {
             StartCoroutine(EnemyIFrames());
+            // is this getting called accidentally?
             if(!attacking)
             {
                 rig.velocity = Vector2.zero;
                 rig.position = currentPos; //THIS SPECIFIC LINE OF CODE WILL CAUSE ISSUES WITH ENEMIES THAT MOVE TO ATTACK
             }
-            
             Vector2 position = this.gameObject.transform.position;
-
+            ResumeAnim();
             //send all relative information to the player to take damage, and apply knockback
             PlayerFSMController pc = collision.transform.GetComponent<PlayerFSMController>();
             pc.KnockbackTransition(damage, knockbackPower, position);
@@ -105,6 +114,7 @@ public class WaniguchiFSMController : EnemyFSMController
     {
         //base.FlinchEnemy(flinchKB);
         //rig.AddForce(flinchKB, ForceMode2D.Impulse);
+        Debug.Log("Waniflinch");
         if (facingRight)
         {
             rig.velocity = flinchKB * new Vector2(-1, 1);
@@ -131,5 +141,15 @@ public class WaniguchiFSMController : EnemyFSMController
     public void WaniguchiStop()
     {
         rig.velocity = Vector2.zero;
+    }
+
+    private void PauseAnim()
+    {
+        waniAnim.speed = 0;
+    }
+
+    public void ResumeAnim()
+    {
+        waniAnim.speed = prevAnimSpeed;
     }
 }

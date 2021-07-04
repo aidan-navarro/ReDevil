@@ -24,8 +24,17 @@ public class LoadScene : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            Destroy(respawn.gameObject);
-            SceneManager.LoadScene(sceneName);
+            if(respawn != null)
+            {
+                Destroy(respawn.gameObject);
+            }
+            else
+            {
+                respawn = FindObjectOfType<RespawnManager>();
+                Destroy(respawn.gameObject);
+            }
+            LoadingData.sceneToLoad = sceneName;
+            SceneManager.LoadScene("LoadingScreen");
         }
     }
 }

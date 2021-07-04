@@ -210,7 +210,7 @@ public class PlayerAttack : MonoBehaviour
                 // register a hit
                 DetectWeakspot(eCollider);
 
-                Vector3 position = this.gameObject.transform.position;  // this isn't getting used
+                //Vector3 position = this.gameObject.transform.position;  // this isn't getting used
 
                 //store the amount of hp the enemy has before the initial hit
                 float pastHealth = ec.health;
@@ -222,10 +222,8 @@ public class PlayerAttack : MonoBehaviour
                 float presentHealth = ec.health;
 
                 ec.SetIsHit(true);
-                if (groundHitCounter >= 3)
-                {
-                    ec.SetEnemyFlinch(true);
-                }
+                ec.SetEnemyFlinch(true);
+                
                     //if the present health goes below 0, set it to zero since you can't steal a negative soul value
                 if (presentHealth < 0)
                 {
@@ -660,7 +658,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void CheckDashCancel()
     {
-        //pc.CheckDashInput();
 
         // whenever the window for cancel is true, the player can act into a dash transition
         if (checkCancel)

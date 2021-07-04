@@ -20,12 +20,15 @@ public class WaniguchiIdleState : EnemyIdleState
     {
         base.Act(player, npc);
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
+        Animator anim = wc.GetComponent<Animator>();
+        wc.ResumeAnim();
+        anim.SetBool("Attack", false);
+        anim.SetBool("Flinch", false);
 
         wc.TouchingFloor();
 
         if (wc.GetIsHit())
         {
-            Debug.Log("Waniguchi is hit");
             timer = 0;
             wc.SetIsHit(false);
         }
@@ -34,15 +37,20 @@ public class WaniguchiIdleState : EnemyIdleState
     public override void Reason(Transform player, Transform npc)
     {
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
+        Animator anim = wc.GetComponent<Animator>();
 
         //attack transition
         if (atkTransition)
         {
+            //anim.SetBool("Attack", atkTransition);
+            anim.SetTrigger("AttackTrigger");
             wc.PerformTransition(Transition.WaniguchiAttack);
         }
-        if (wc.GetEnemyFlinch())
+        else if (wc.GetEnemyFlinch())
         {
-            Debug.Log("Transition");
+            Debug.Log("Transition"); 
+            anim.SetBool("Flinch", wc.GetEnemyFlinch());
+
             wc.PerformTransition(Transition.WaniguchiFlinch);
         }
 

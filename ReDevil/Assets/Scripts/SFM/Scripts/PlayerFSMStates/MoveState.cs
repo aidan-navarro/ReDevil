@@ -162,7 +162,17 @@ public class MoveState : FSMState
             if (pc.GetisGrounded())
             {
                 pc.soundManager.StopRun();
-                pc.PerformTransition(Transition.DashAttack);
+                if (pc.moveVector.y > 0.0f)
+                {
+                    Debug.Log("DashUp");
+                    pc.SetDashPath(pc.moveVector);
+                    pc.IncrementAirDashCount();
+                    pc.PerformTransition(Transition.GroundToAirDashAttack);
+                }
+                else
+                {
+                    pc.PerformTransition(Transition.DashAttack);
+                }
             }
             //else
             //{

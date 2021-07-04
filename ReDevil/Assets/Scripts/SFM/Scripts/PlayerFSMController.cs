@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.EventSystems;
 
 //FSM Class for the Player which also contains variables + unique functions for the player
 public class PlayerFSMController : AdvancedFSM
@@ -47,9 +48,27 @@ public class PlayerFSMController : AdvancedFSM
     [SerializeField] private Text healthText;
     [SerializeField] private Text SoulText;
     [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject healthBackground;
     [SerializeField] private GameObject SoulLv1Bar;
     [SerializeField] private GameObject SoulLv2Bar;
     [SerializeField] private GameObject SoulLv3Bar;
+    [SerializeField] private GameObject SoulBackground;
+    public GameObject GetSoulBackground() { return SoulBackground; }
+    public void ChangeSoulBackgroundColor()
+    {
+        Debug.Log("TriggerNoSoul");
+        StartCoroutine("SoulShiftColor");
+    }
+
+    private IEnumerator SoulShiftColor()
+    {
+        Color tempColor = SoulBackground.GetComponent<Image>().color;
+        SoulBackground.GetComponent<Image>().color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        SoulBackground.GetComponent<Image>().color = Color.black;
+
+    }
+
     [SerializeField] private GameObject DashIcon1;
     [SerializeField] private GameObject DashIcon2;
     [SerializeField] private GameObject PauseMenu;
@@ -304,6 +323,8 @@ public class PlayerFSMController : AdvancedFSM
         // game isn't paused at the start 
         isPaused = false;
         PauseMenu.SetActive(false);
+        SetIsPaused(false);
+        UnPause();
 
         //set value for gravity based on rigs gravity scaling
         gravityScale = rig.gravityScale;
@@ -381,7 +402,17 @@ public class PlayerFSMController : AdvancedFSM
 
             if (obj.action.name == gameplayControls.Gameplay.ToggleSoulArmament.name)
             {
-                OnToggleSoulArament(obj);
+                if (obj.started)
+                {
+                    if (soul - selectedArament.SoulCost <= 0.0f)
+                    {
+                        ChangeSoulBackgroundColor();
+                    }
+                    else
+                    {
+                        OnToggleSoulArament(obj);
+                    }
+                }
             }
 
             if (obj.action.name == gameplayControls.Gameplay.SoulPowerShot.name)
@@ -439,6 +470,10 @@ public class PlayerFSMController : AdvancedFSM
             {
                 selectedArament.ActivateArament();
             }
+
+            
+
+
         }
     }
 
@@ -536,6 +571,7 @@ public class PlayerFSMController : AdvancedFSM
         idling.AddTransition(Transition.Jump, FSMStateID.Jumping); // if i jump while idle, transition to Jump State
         idling.AddTransition(Transition.Dash, FSMStateID.Dashing); // if i press the dash button, transition to dash state
         idling.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking);
+        idling.AddTransition(Transition.GroundToAirDashAttack, FSMStateID.GroundToAirDashAttacking);
         idling.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         idling.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
         idling.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
@@ -553,6 +589,7 @@ public class PlayerFSMController : AdvancedFSM
         //moving.AddTransition(Transition.Dash, FSMStateID.Dashing);
         moving.AddTransition(Transition.GroundAttack1, FSMStateID.GroundFirstStrike);
         moving.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // If I'm moving currently, go into a dash attack
+        moving.AddTransition(Transition.GroundToAirDashAttack, FSMStateID.GroundToAirDashAttacking);
         moving.AddTransition(Transition.WallJump, FSMStateID.WallJumping);
         moving.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -662,6 +699,7 @@ public class PlayerFSMController : AdvancedFSM
         ga1.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
         //ga1.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga1.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
+        ga1.AddTransition(Transition.GroundToAirDashAttack, FSMStateID.GroundToAirDashAttacking); // dash cancel
         ga1.AddTransition(Transition.GroundAttack2, FSMStateID.GroundSecondStrike);
         ga1.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -671,6 +709,8 @@ public class PlayerFSMController : AdvancedFSM
         ga2.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
         //ga2.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga2.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
+        ga2.AddTransition(Transition.GroundToAirDashAttack, FSMStateID.GroundToAirDashAttacking); // dash cancel
+
         ga2.AddTransition(Transition.GroundAttack3, FSMStateID.GroundThirdStrike);
         ga2.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
 
@@ -680,7 +720,16 @@ public class PlayerFSMController : AdvancedFSM
         ga3.AddTransition(Transition.Idle, FSMStateID.Idling); //the attack just ends
         //ga3.AddTransition(Transition.Dash, FSMStateID.Dashing); // dash cancel
         ga3.AddTransition(Transition.DashAttack, FSMStateID.DashAttacking); // dash cancel
+        ga3.AddTransition(Transition.GroundToAirDashAttack, FSMStateID.GroundToAirDashAttacking); // dash cancel
         ga3.AddTransition(Transition.Knockback, FSMStateID.KnockedBack); //if i get hit, knock back the player
+
+        GroundToAirDashAttack groundToAirDashAttack = new GroundToAirDashAttack();
+
+        groundToAirDashAttack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        groundToAirDashAttack.AddTransition(Transition.Airborne, FSMStateID.Midair);
+        groundToAirDashAttack.AddTransition(Transition.Knockback, FSMStateID.KnockedBack);
+        groundToAirDashAttack.AddTransition(Transition.WallSlide, FSMStateID.WallSliding);
+        groundToAirDashAttack.AddTransition(Transition.DashKnockback, FSMStateID.DashKnockingBack);
 
         AirAttackState airAttack = new AirAttackState();
 
@@ -723,6 +772,7 @@ public class PlayerFSMController : AdvancedFSM
         //attack state list
         AddFSMState(groundDashAttack); // adding to the attack states
         AddFSMState(airDashAttack); // adding to state
+        AddFSMState(groundToAirDashAttack);
         AddFSMState(groundDashKnockback); // adding right after dash attack
         AddFSMState(airAttack);
         AddFSMState(ga1);
@@ -901,24 +951,32 @@ public class PlayerFSMController : AdvancedFSM
     // this alters the visibility of the dash icons in the UI
     public void UpdateDashIcons()
     {
-       switch(airDashCount)
-       {
-            case 0:
-                DashIcon1.SetActive(true);
-                DashIcon2.SetActive(true);
-                break;
-            case 1:
-                DashIcon1.SetActive(true);
-                DashIcon2.SetActive(false);
-                break;
-            case 2:
-                DashIcon1.SetActive(false);
-                DashIcon2.SetActive(false);
-                break;
-            default:
-                DashIcon1.SetActive(true);
-                DashIcon2.SetActive(true);
-                break;
+        if (!isPaused)
+        {
+            switch (airDashCount)
+            {
+                case 0:
+                    DashIcon1.SetActive(true);
+                    DashIcon2.SetActive(true);
+                    break;
+                case 1:
+                    DashIcon1.SetActive(true);
+                    DashIcon2.SetActive(false);
+                    break;
+                case 2:
+                    DashIcon1.SetActive(false);
+                    DashIcon2.SetActive(false);
+                    break;
+                default:
+                    DashIcon1.SetActive(true);
+                    DashIcon2.SetActive(true);
+                    break;
+            }
+
+        } else
+        {
+            DashIcon1.SetActive(false);
+            DashIcon2.SetActive(false);
         }
     }
 
@@ -1146,7 +1204,7 @@ public class PlayerFSMController : AdvancedFSM
     public IEnumerator PlayerDead()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("DeathScene");
     }
 
     public void AddSoul(int soulAdd)
@@ -1187,15 +1245,25 @@ public class PlayerFSMController : AdvancedFSM
         SoulText.enabled = false;
 
         healthBar.SetActive(false);
+        healthBackground.SetActive(false);
         SoulLv1Bar.SetActive(false);
         SoulLv2Bar.SetActive(false);
         SoulLv3Bar.SetActive(false);
+        SoulBackground.SetActive(false);
         DashIcon1.SetActive(false);
         DashIcon2.SetActive(false);
 
         // set to true
         PauseMenu.SetActive(true);
         Time.timeScale = 0;
+
+        //Set the first button in the pause menu
+        PauseMenu pause = PauseMenu.GetComponent<PauseMenu>();
+
+        //start by clearing the latest selection
+        EventSystem.current.SetSelectedGameObject(null);
+        //set to the first button in the pause menu
+        EventSystem.current.SetSelectedGameObject(pause.retry);
     }
 
     public void UnPause()
@@ -1206,13 +1274,18 @@ public class PlayerFSMController : AdvancedFSM
         SoulText.enabled = true;
 
         healthBar.SetActive(true);
+        healthBackground.SetActive(true);
+
         SoulLv1Bar.SetActive(true);
         SoulLv2Bar.SetActive(true);
         SoulLv3Bar.SetActive(true);
+        SoulBackground.SetActive(true);
+
         DashIcon1.SetActive(true);
         DashIcon2.SetActive(true);
-        // set to true
+        // set to false
         PauseMenu.SetActive(false);
+        moveVector = Vector2.zero;
         Time.timeScale = 1;
 
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,24 +26,37 @@ public class OniEnragedState : FSMState
         if (enteredState)
         {
             enteredState = false;
-            oc.StartCoroutine(Enraged(oc));
+            oc.OnOniBeginEnraged?.Invoke();
+            Debug.Log("OnOniBeginEnraged");
+            oc.OnOniEndEnraged += OniEndEnraged;
         }
+    }
+
+    private void OniEndEnraged()
+    {
+        switchToNextState = true;
+        
     }
 
     public override void Reason(Transform player, Transform npc)
     {
         OniFSMController oc = npc.GetComponent<OniFSMController>();
+
+        if (oc.health <= 0)
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.EnemyNoHealth);
+            return;
+        }
+
         if (switchToNextState)
         {
-            oc.PerformTransition(Transition.OniIdle);
+            oc.OnOniEndEnraged -= OniEndEnraged;
+            oc.IsEnraged = true;
+            oc.PerformTransition(Transition.OniCycloneSmash);
+            return;
         }
     }
 
-    private IEnumerator Enraged(OniFSMController oniFSMController)
-    {
-        yield return new WaitForSeconds(0.2f);
-        oniFSMController.GetComponent<SpriteRenderer>().color = Color.red;
-        switchToNextState = true;
-    }
 
 }

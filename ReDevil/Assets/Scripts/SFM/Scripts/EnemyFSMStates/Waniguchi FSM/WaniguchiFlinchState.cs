@@ -23,14 +23,18 @@ public class WaniguchiFlinchState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
+        Animator anim = wc.GetComponent<Animator>();
+
+        wc.ResumeAnim();
         et = wc.GetComponent<EnemyTimer>();
-        Debug.Log("Waniguchi Flinch");
+        Debug.Log("Waniguchi Flinch"); // only happening once???
+
 
         wc.FlinchEnemy(wc.GetKnockbackVel());
-        wc.SetEnemyFlinch(false);
+        //anim.Play("Flinch", -1, 0.0f);
+
         et.StartCoroutine("EnemyKnockbackTimer");
 
-        wc.TouchingFloor();
         
     }
 
@@ -39,21 +43,25 @@ public class WaniguchiFlinchState : FSMState
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
 
         bool grounded = wc.GetisGrounded();
+        if (!wc.GetEnemyFlinch())
+        {
+            if (grounded)
+            {
+                Debug.Log("TouchGroound");
+                wc.ResumeAnim();
+                wc.PerformTransition(Transition.WaniguchiIdle);
+            }
+            else
+            {
+                Debug.Log("InAir");
+                wc.PerformTransition(Transition.WaniguchiAirborne);
+            }
 
-        if (grounded)
-        {
-            wc.PerformTransition(Transition.WaniguchiIdle);
+            if (wc.health <= 0)
+            {
+                wc.PerformTransition(Transition.EnemyNoHealth);
+            }
         }
-        else
-        {
-            wc.PerformTransition(Transition.WaniguchiAirborne);
-        }
-
-        if (wc.health <= 0)
-        {
-            wc.PerformTransition(Transition.EnemyNoHealth);
-        }
-       
 
     }
 }

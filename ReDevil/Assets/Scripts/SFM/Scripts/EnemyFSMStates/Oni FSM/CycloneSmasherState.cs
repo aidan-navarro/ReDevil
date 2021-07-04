@@ -33,13 +33,14 @@ public class CycloneSmasherState : FSMState
             enteredState = false;
         }
 
-        else if (cycloneCharged)
+        else if (cycloneCharged && pillar != null)
         {
-            oc.ChargeTowardsPlayer();
+            oc.transform.position = Vector3.MoveTowards(oc.transform.position, new Vector2(pillar.transform.position.x, pillar.transform.position.y), oc.CycloneSpeed * Time.deltaTime);
+
         }
     }
 
-    private void OnWallHit(object sender, EventArgs e)
+    private void OnWallHit()
     {
         UnityEngine.Object.Destroy(pillar);
     }
