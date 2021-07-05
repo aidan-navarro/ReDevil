@@ -24,6 +24,8 @@ public class IdlingState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
 
+        pc.TouchingInvisibleWall();
+
         rig.velocity = new Vector2(rig.velocity.x, 0);
         //set friction material
         pc.SlopeCheck();

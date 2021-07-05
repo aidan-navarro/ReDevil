@@ -26,6 +26,7 @@ public class MidairState : FSMState
         //Debug.Log("State ID: Midair");
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        pc.TouchingInvisibleWall();
 
         pc.UpdateState("In Midair");
         pc.CheckAirDash();

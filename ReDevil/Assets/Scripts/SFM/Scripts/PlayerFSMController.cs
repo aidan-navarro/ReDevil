@@ -901,10 +901,16 @@ public class PlayerFSMController : AdvancedFSM
 
     public void TouchingInvisibleWall()
     {
-        //make temp bools to check top and side
-        Vector2 feetPos = col.bounds.center;
-        feetPos.y -= col.bounds.extents.y;
-        bool isTouchingTop = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
+        ////make temp bools to check top and side
+        //Vector2 feetPos = col.bounds.center;
+        //feetPos.y -= col.bounds.extents.y;
+        //bool isTouchingTop = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
+        //Debug.Log("Touching the top: " + isTouchingTop);
+
+        Vector2 headPos = col.bounds.center;
+        headPos.y += col.bounds.extents.y;
+        bool isTouchingTop = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
+        Debug.Log("Touching the top: " + isTouchingCeiling);
 
         //Check if the side is touching an invisible wall
         Vector2 sidePos = col.bounds.center;
