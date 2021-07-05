@@ -58,7 +58,6 @@ public class GroundDashKnockback : FSMState
             timer.StopAllCoroutines();
         }
 
-
         pc.TouchingFloorCeilingWall();
         
 

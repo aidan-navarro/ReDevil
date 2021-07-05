@@ -156,8 +156,8 @@ public class GroundDashAttack : FSMState
                 endDash = true;
 
 
-                //stop velocity to prevent weird bounding
-                rig.velocity = Vector2.zero;
+                ////stop velocity to prevent weird bounding
+                //rig.velocity = Vector2.zero;
 
                 patk.EndDashAttack();
 
@@ -173,6 +173,15 @@ public class GroundDashAttack : FSMState
                 endDash = true;
 
 
+                patk.EndDashAttack();
+            }
+            if (patk.airDashAttackContact)
+            {
+                Debug.Log("Air Dash Attack Hit");
+                pc.SetCanDash(true);
+                pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                dashAttackStarted = false;
+                endDash = true;
                 patk.EndDashAttack();
             }
             // make a break out condition if we get stuck on a corner
@@ -206,14 +215,26 @@ public class GroundDashAttack : FSMState
             }
             if (!isGrounded)
             {
-                pc.SetCanDash(true);
-                pc.GetRigidbody2D().gravityScale = prevGravityScale;
-                patk.EndDashAttack();
-                dashAttackStarted = false;
-                endDash = true;
+                //pc.SetCanDash(true);
+                //pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                //patk.EndDashAttack();
+                //dashAttackStarted = false;
+                //endDash = true;
+                //dashed max distance or we hit someone, end the dash.
+                if (dashDistance >= pc.dashLength)
+                {
+                    Debug.Log("Dash off ledge Distance Reached");
+                    pc.SetCanDash(true);
+                    pc.GetRigidbody2D().gravityScale = prevGravityScale;
+                    dashAttackStarted = false;
+                    endDash = true;
+
+                    patk.EndDashAttack();
+
+                }
             }
 
-            if(touchingInvisWall)
+            if (touchingInvisWall)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
@@ -258,7 +279,44 @@ public class GroundDashAttack : FSMState
                 pc.SetDKBTransition(true); // hit the transition to true just before we hit the knockback state
                 pc.PerformTransition(Transition.DashKnockback); // change this into custom knockback
             }
+            else if (patk.airDashAttackContact)
+            {
+                // check the angle in which the player makes contact with an enemy
+                Vector2 checkAtkVector = patk.GetNormalizedAttackVector();
+                // vertical hit angle (top or bottom)
+                if (Mathf.Abs(checkAtkVector.y) > Mathf.Abs(checkAtkVector.x))
+                {
+                    Debug.Log("Hitting from the top or bottom");
+                    // if the enemy is overhead 
+                    if (checkAtkVector.y > 0.0f)
+                    {
+                        pc.AirDashBottomKnockback2(pc.GetDashPath());
+                    }
+                    // if the player is overhead, use the regular Dash Knockback function, it's modified to account for off the ground contact
+                    else
+                    {
+                        pc.DashKnockback();
+                    }
+                }
+                // hitting the enemy from the side
+                else
+                {
+                    // if the first hit of the air dash attack hasn't hit yet
+                    if (!patk.firstDashContact)
+                    {
+                        pc.AirDashKnockback();
+                    }
+                    else
+                    {
+                        pc.SideDashKnockback(pc.GetDashPath());
+                    }
 
+                }
+                patk.firstDashContact = true;
+                pc.SetDKBTransition(true);
+                pc.PerformTransition(Transition.DashKnockback);
+
+            }
             // just in case
             if (onWall)
             {
@@ -283,10 +341,11 @@ public class GroundDashAttack : FSMState
                 pc.PerformTransition(Transition.Idle);
             }
             // if we ground dash off of the ledge
-            else if (!isGrounded && !pc.isOnSlope)
+            else if (!isGrounded && !pc.isOnSlope && dashDistance >= pc.dashLength)
             {
                 patk.ReInitializeTransitions();
                 pc.PerformTransition(Transition.Airborne);
+                 //dashed max distance or we hit someone, end the dash.
             }
         }
 
