@@ -47,6 +47,7 @@ public class PlayerAttack : MonoBehaviour
     // dash attack specific, only want to have the dash attack trigger once on hit
     public bool dashAttackContact; // going to get flicked back to false once it hits
     public bool airDashAttackContact; // dash attack in the air
+    public bool airDashKillingBlow; // if the air dash killed an enemy
     public bool firstDashContact; // condition if the first dash attack has connected then change knockback properties
     public bool airAttackContact; // to make sure that the air attack only registers once
 
@@ -393,12 +394,14 @@ public class PlayerAttack : MonoBehaviour
                     Debug.Log("Air Hit");
                     airDashAttackContact = true;
                     // get and normalize the attack vector 
-         
                     if (presentHealth == 0)
                     {
                         Debug.Log("Killed Enemy in Air");
+                        firstDashContact = false;
+                        airDashKillingBlow = true;
                         pc.DecrementAirDashCount();
-                    }
+                    } 
+
                 }
             }
         }
@@ -716,5 +719,6 @@ public class PlayerAttack : MonoBehaviour
         groundAttack2Transition = false;
         groundAttack3Transition = false;
         airAttackContact = false;
+        airDashKillingBlow = false;
     }
 }

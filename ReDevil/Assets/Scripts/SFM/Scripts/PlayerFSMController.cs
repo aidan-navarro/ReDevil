@@ -219,9 +219,9 @@ public class PlayerFSMController : AdvancedFSM
     [SerializeField] private int airDashLimit; // set value in inspector
     public int GetAirDashCount() { return airDashCount; }
     public void SetAirDashCount(int dash) { airDashCount = dash; }
-    public void IncrementAirDashCount() { airDashCount++; }
-    public void DecrementAirDashCount() { airDashCount--; }
-    public void ResetAirDashCount() { airDashCount = 0; }
+    public void IncrementAirDashCount() { airDashCount++; } 
+    public void DecrementAirDashCount() { airDashCount--; } // decrementing air dash should only happen when you kill an enemy
+    public void ResetAirDashCount() { airDashCount = 0; } // air dash only resets upon touching ground or wall
 
 
     // ----------------- END TEST REGION -----------------------

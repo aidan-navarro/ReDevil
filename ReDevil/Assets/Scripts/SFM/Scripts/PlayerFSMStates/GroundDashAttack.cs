@@ -49,6 +49,7 @@ public class GroundDashAttack : FSMState
         pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
 
+        pc.UpdateDashIcons();
         if (!dashAttackStarted)
         {
             pc.SetCanDash(false);
@@ -279,6 +280,8 @@ public class GroundDashAttack : FSMState
                 pc.SetDKBTransition(true); // hit the transition to true just before we hit the knockback state
                 pc.PerformTransition(Transition.DashKnockback); // change this into custom knockback
             }
+
+            // AERIAL ENEMY ATTACK CONDITION
             else if (patk.airDashAttackContact)
             {
                 // check the angle in which the player makes contact with an enemy
@@ -290,29 +293,47 @@ public class GroundDashAttack : FSMState
                     // if the enemy is overhead 
                     if (checkAtkVector.y > 0.0f)
                     {
-                        pc.AirDashBottomKnockback2(pc.GetDashPath());
+                        if (!patk.airDashKillingBlow)
+                        {
+                            pc.AirDashBottomKnockback2(pc.GetDashPath());
+                        }
+                        else
+                        {
+                            pc.IncrementAirDashCount();
+                            pc.AirDashKnockback();
+
+                        }
                     }
                     // if the player is overhead, use the regular Dash Knockback function, it's modified to account for off the ground contact
                     else
                     {
+                        pc.IncrementAirDashCount();
                         pc.DashKnockback();
                     }
                 }
                 // hitting the enemy from the side
                 else
                 {
-                    // if the first hit of the air dash attack hasn't hit yet
-                    if (!patk.firstDashContact)
+                    if (!patk.airDashKillingBlow)
                     {
-                        pc.AirDashKnockback();
+                        pc.IncrementAirDashCount();
+
+                        if (!patk.firstDashContact)
+                        {
+
+                            pc.AirDashKnockback();
+                            patk.firstDashContact = true;
+                        }
+                        else
+                        {
+                            pc.SideDashKnockback(pc.GetDashPath());
+                        }
                     }
                     else
                     {
-                        pc.SideDashKnockback(pc.GetDashPath());
+                        pc.AirDashKnockback();
                     }
-
                 }
-                patk.firstDashContact = true;
                 pc.SetDKBTransition(true);
                 pc.PerformTransition(Transition.DashKnockback);
 
@@ -343,7 +364,10 @@ public class GroundDashAttack : FSMState
             // if we ground dash off of the ledge
             else if (!isGrounded && !pc.isOnSlope && dashDistance >= pc.dashLength)
             {
+                pc.IncrementAirDashCount();
+
                 patk.ReInitializeTransitions();
+
                 pc.PerformTransition(Transition.Airborne);
                  //dashed max distance or we hit someone, end the dash.
             }

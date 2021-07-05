@@ -214,8 +214,16 @@ public class AirDashAttack : FSMState
                     // if the enemy is overhead 
                     if (checkAtkVector.y > 0.0f)
                     {
-                        pc.AirDashBottomKnockback2(pc.GetDashPath());
-                    } 
+                        if (!patk.airDashKillingBlow)
+                        {
+                            pc.AirDashBottomKnockback2(pc.GetDashPath());
+                        }
+                        else
+                        {
+                            pc.AirDashKnockback();
+
+                        }
+                    }
                     // if the player is overhead, use the regular Dash Knockback function, it's modified to account for off the ground contact
                     else
                     {
@@ -226,16 +234,23 @@ public class AirDashAttack : FSMState
                 else
                 {
                     // if the first hit of the air dash attack hasn't hit yet
-                    if (!patk.firstDashContact)
+                    if (!patk.airDashKillingBlow)
                     {
-                        pc.AirDashKnockback();
+                        if (!patk.firstDashContact)
+                        {
+                            pc.AirDashKnockback();
+                            patk.firstDashContact = true;
+                        }
+                        else
+                        {
+                            pc.SideDashKnockback(pc.GetDashPath());
+                        }
                     } else
                     {
-                        pc.SideDashKnockback(pc.GetDashPath());
+                        pc.AirDashKnockback();
                     }
 
                 }
-                patk.firstDashContact = true;
                 pc.SetDKBTransition(true);
                 pc.PerformTransition(Transition.DashKnockback); 
 
