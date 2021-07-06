@@ -60,6 +60,9 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float idleWaitTime = 1.0f;
     public float IdleWaitTime => idleWaitTime;
+    [SerializeField]
+    private float jumpDistanceRequirement = 6.0f;
+    public float JumpDistanceRequirement => jumpDistanceRequirement;
 
     public UnityAction OnPlayerHit;
     public UnityAction OnWallHit;

@@ -62,7 +62,10 @@ public class OniIdleState : FSMState
         {
             List<Transition> possibleTransitions = new List<Transition>();
             possibleTransitions.Add(Transition.OniBoulderPut);
-            possibleTransitions.Add(Transition.OniJumpSmash);
+            if (Vector3.Distance(oc.transform.position, player.position) >= oc.JumpDistanceRequirement)
+            {
+                possibleTransitions.Add(Transition.OniJumpSmash);
+            } 
             possibleTransitions.Add(Transition.OniChase);
             if (oc.IsUnderHalfHealth())
             {
