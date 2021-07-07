@@ -41,9 +41,9 @@ public class WaniguchiFlinchState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         WaniguchiFSMController wc = npc.GetComponent<WaniguchiFSMController>();
-
+        Animator anim = wc.GetComponent<Animator>();
         bool grounded = wc.GetisGrounded();
-        if (!wc.GetEnemyFlinch())
+        if (!wc.GetEnemyFlinch() && wc.health > 0)
         {
             if (grounded)
             {
@@ -57,11 +57,12 @@ public class WaniguchiFlinchState : FSMState
                 wc.PerformTransition(Transition.WaniguchiAirborne);
             }
 
-            if (wc.health <= 0)
-            {
-                wc.PerformTransition(Transition.EnemyNoHealth);
-            }
+            
         }
-
+          else if (wc.health <= 0)
+            {
+            
+                wc.PerformTransition(Transition.WaniguchiDead);
+            }
     }
 }
