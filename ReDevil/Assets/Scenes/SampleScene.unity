@@ -5199,12 +5199,12 @@ PrefabInstance:
     - target: {fileID: 3299616218296317354, guid: 458ea89371ab7ad49bca338c5175b5e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.68
+      value: -17.99
       objectReference: {fileID: 0}
     - target: {fileID: 3299616218296317354, guid: 458ea89371ab7ad49bca338c5175b5e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.81
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 3299616218296317354, guid: 458ea89371ab7ad49bca338c5175b5e7,
         type: 3}
@@ -5235,6 +5235,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Basan
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849919984609090101, guid: 458ea89371ab7ad49bca338c5175b5e7,
+        type: 3}
+      propertyPath: health
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458ea89371ab7ad49bca338c5175b5e7, type: 3}

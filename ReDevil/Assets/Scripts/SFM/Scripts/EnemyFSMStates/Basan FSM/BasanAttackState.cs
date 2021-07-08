@@ -50,6 +50,7 @@ public class BasanAttackState : FSMState
 
         if (ec.GetEnemyFlinch())
         {
+            anim.SetBool("Attack", false);
             // force the attack duration's time to the threshold
             attackDuration = bf.getAttackTime();
             bf.DeactivateFlamethrower();
