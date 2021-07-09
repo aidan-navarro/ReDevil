@@ -40,7 +40,7 @@ public class BasanFlinchState : FSMState
     
         if (bc.health <= 0)
         {
-            bc.PerformTransition(Transition.EnemyNoHealth);
+            bc.PerformTransition(Transition.BasanDead);
         }
     }
 }

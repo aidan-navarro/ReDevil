@@ -78,16 +78,16 @@ public class BasanAttackState : FSMState
             ec.PerformTransition(Transition.BasanIdle);
         }
 
-        else if (ec.GetEnemyFlinch())
+        else if (ec.GetEnemyFlinch() && ec.health > 0)
         {
             ec.PerformTransition(Transition.BasanFlinch);
         }
 
         //dead transition
-        if (ec.health <= 0)
+        else if (ec.health <= 0)
         {
             ec.StopBasanAttack();
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.BasanDead);
         }
     }
 }

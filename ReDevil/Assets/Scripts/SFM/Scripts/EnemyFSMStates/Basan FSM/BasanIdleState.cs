@@ -101,15 +101,15 @@ public class BasanIdleState : EnemyIdleState
             ec.PerformTransition(Transition.BasanAttack);
         }
 
-        if (ec.GetEnemyFlinch())
+        if (ec.GetEnemyFlinch() && ec.health > 0)
         {
             ec.PerformTransition(Transition.BasanFlinch);
         }
 
         //dead transition
-        if (ec.health <= 0)
+        else if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.BasanDead);
         }
     }
 }
