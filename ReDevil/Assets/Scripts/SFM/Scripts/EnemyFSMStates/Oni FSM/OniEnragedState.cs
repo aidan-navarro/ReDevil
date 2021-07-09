@@ -7,6 +7,7 @@ public class OniEnragedState : FSMState
 {
     bool switchToNextState;
     bool enteredState = true;
+  
 
     public OniEnragedState()
     {
@@ -25,6 +26,9 @@ public class OniEnragedState : FSMState
         OniFSMController oc = npc.GetComponent<OniFSMController>();
         if (enteredState)
         {
+            oc.oniSprite.gameObject.SetActive(true);
+            oc.cutsceneHolder.GetComponent<Animator>().Play("OniSprite");
+            Debug.Log("Cutscene played");
             enteredState = false;
             oc.OnOniBeginEnraged?.Invoke();
             Debug.Log("OnOniBeginEnraged");
@@ -58,5 +62,6 @@ public class OniEnragedState : FSMState
         }
     }
 
+    
 
 }

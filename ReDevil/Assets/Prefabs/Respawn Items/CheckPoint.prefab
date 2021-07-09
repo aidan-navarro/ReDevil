@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5461352182783346137}
   - component: {fileID: 5461352182783346138}
   - component: {fileID: 5461352182783346139}
+  - component: {fileID: 1025045385}
+  - component: {fileID: 1025045380}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: CheckPoint
@@ -28,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5461352182783346140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.06, y: 6.62, z: 0}
-  m_LocalScale: {x: 0.08540277, y: 0.10152315, z: 1}
+  m_LocalScale: {x: 8.232907, y: 7.9838543, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fc6d54c5a09edc148b107cff1c20f2ea, type: 3}
+  m_Sprite: {fileID: 283582871561767070, guid: d44e767f37a84a8478254ccbf6f71b2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,9 +99,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.60233355, y: 0.25341284}
+  m_Offset: {x: -0.020235835, y: 0}
   serializedVersion: 2
-  m_Radius: 14.815162
+  m_Radius: 0.3503538
 --- !u!114 &5461352182783346139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +114,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4828ec8c4e80dc749a9597fb2ea5cd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cpNotTriggered: {fileID: 21300000, guid: fc6d54c5a09edc148b107cff1c20f2ea, type: 3}
-  cpTriggered: {fileID: 21300000, guid: cf768de892600084494e55b4c41db2cf, type: 3}
   cpReached: 0
+  animator: {fileID: 0}
+--- !u!95 &1025045385
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461352182783346140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 536cf9372c4466445bc776b237b5f81e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1025045380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461352182783346140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bee6cd1ae1b0341b87f1e219c172ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {x: 0, y: 0}
+  startingPoint: {x: 0, y: 0}
+  initialized: 0
+  rand: 0
+  sceneID: 
