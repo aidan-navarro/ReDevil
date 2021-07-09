@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ReDevil/Assets/Sprites/Test Sprites/Tilemap/Test Tiles/RedEvil_SideWalk_Top_01.asset.meta
 guid: aef89f2a929f41f4b848fc2df841a35d
+=======
+guid: 5042b5d4450b87242a5e05f3dc230b02
+>>>>>>> caaac942f2131d3952bfe64133e1e3794aa22661:ReDevil/Assets/Sprites/Test Sprites/Tilemap/TestTiles_Sprites_RDT/BrickBuilding/Brick_Tile_Map_Test1_1.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
