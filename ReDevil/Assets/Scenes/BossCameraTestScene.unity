@@ -1174,12 +1174,12 @@ PrefabInstance:
     - target: {fileID: 5461352182783346136, guid: 229752a3c0db93442a22e24c87a03b9c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.18579
+      value: 13.32
       objectReference: {fileID: 0}
     - target: {fileID: 5461352182783346136, guid: 229752a3c0db93442a22e24c87a03b9c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5108576
+      value: -0.86
       objectReference: {fileID: 0}
     - target: {fileID: 5461352182783346136, guid: 229752a3c0db93442a22e24c87a03b9c,
         type: 3}
@@ -2102,29 +2102,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0deef84ea10b5444a3c6f0134254835, type: 3}
---- !u!1 &1025045379 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5461352182783346140, guid: 229752a3c0db93442a22e24c87a03b9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 525107617}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1025045380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025045379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03bee6cd1ae1b0341b87f1e219c172ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnPoint: {x: 0, y: 0}
-  startingPoint: {x: 0, y: 0}
-  initialized: 0
-  rand: 0
-  sceneID: 
 --- !u!1 &1059015407
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,7 +3152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2058069330
 Transform:
   m_ObjectHideFlags: 0

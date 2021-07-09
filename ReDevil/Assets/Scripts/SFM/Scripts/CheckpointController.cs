@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
-    public Sprite cpNotTriggered;
-    public Sprite cpTriggered;
-    private SpriteRenderer cpSpriteRenderer;
     public bool cpReached;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        cpSpriteRenderer = GetComponent<SpriteRenderer>(); 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            cpSpriteRenderer.sprite = cpTriggered;
+         
             cpReached = true;
+            animator.SetBool("CheckpointReached", true);
 
             //Raquel if you see this code this is what I was talking about doing for your pickup items
             //Make a temporary variable (PlayerFSMController pc)
