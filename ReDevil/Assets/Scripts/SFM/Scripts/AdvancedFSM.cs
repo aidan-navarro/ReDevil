@@ -62,6 +62,7 @@ public enum Transition
     WaniguchiAttack,
     WaniguchiAirborne,  // new transition for when Waniguchi is in the air after the attack jump
     WaniguchiFlinch,
+    WaniguchiDead, // go into this state to play the animation out
 
     OniWaiting,
     OniIdle,
@@ -137,6 +138,7 @@ public enum FSMStateID
     WaniguchiAttacking,
     WaniguchiMidair, // state for when the waniguchi is in the air
     WaniguchiFlinching,
+    WaniguchiDying, // state strictly to play the Waniguchi's dying animation
 
     // Oni
     OniWaiting,

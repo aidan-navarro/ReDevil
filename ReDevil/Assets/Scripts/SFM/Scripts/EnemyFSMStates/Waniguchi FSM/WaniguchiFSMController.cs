@@ -12,6 +12,12 @@ public class WaniguchiFSMController : EnemyFSMController
     // animator properties
     private Animator waniAnim;
     private float prevAnimSpeed;
+    [SerializeField] private bool deathConfirmed;
+    public bool GetDeathConfirmed() { return deathConfirmed; }
+    public void SetDeathConfirmed(bool inDeathConfirmed)
+    {
+        deathConfirmed = inDeathConfirmed;
+    }
 
     //initialize FSM
     protected override void Initialize()
@@ -33,6 +39,9 @@ public class WaniguchiFSMController : EnemyFSMController
         // animator
         waniAnim = GetComponent<Animator>();
         prevAnimSpeed = waniAnim.speed;
+
+        // don't die just yet
+        deathConfirmed = false;
 
         //set currentPos
         currentPos = rig.position;
@@ -57,22 +66,29 @@ public class WaniguchiFSMController : EnemyFSMController
         enemyIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         enemyIdle.AddTransition(Transition.WaniguchiAttack, FSMStateID.WaniguchiAttacking); //transition to attacking state
         enemyIdle.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
+        enemyIdle.AddTransition(Transition.WaniguchiDead, FSMStateID.WaniguchiDying);
 
         WaniguchiAttackState waniguchiAttack = new WaniguchiAttackState();
         waniguchiAttack.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
         waniguchiAttack.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
         waniguchiAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         waniguchiAttack.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair); // the attack state will transition right into the midair state
+        waniguchiAttack.AddTransition(Transition.WaniguchiDead, FSMStateID.WaniguchiDying);
 
         WaniguchiAirState waniguchiAirState = new WaniguchiAirState();
         waniguchiAirState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         waniguchiAirState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling); // The ideal result is that from midair, we transition to the idle state and stop moving when we land
         waniguchiAirState.AddTransition(Transition.WaniguchiFlinch, FSMStateID.WaniguchiFlinching);
+        waniguchiAirState.AddTransition(Transition.WaniguchiDead, FSMStateID.WaniguchiDying);
 
         WaniguchiFlinchState waniguchiFlinchState = new WaniguchiFlinchState();
         waniguchiFlinchState.AddTransition(Transition.WaniguchiIdle, FSMStateID.WaniguchiIdling);
         waniguchiFlinchState.AddTransition(Transition.WaniguchiAirborne, FSMStateID.WaniguchiMidair);
         waniguchiFlinchState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        waniguchiFlinchState.AddTransition(Transition.WaniguchiDead, FSMStateID.WaniguchiDying);
+
+        WaniguchiDyingState waniguchiDyingState = new WaniguchiDyingState();
+        waniguchiDyingState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
@@ -83,6 +99,7 @@ public class WaniguchiFSMController : EnemyFSMController
         AddFSMState(waniguchiAttack);
         AddFSMState(waniguchiAirState);
         AddFSMState(waniguchiFlinchState);
+        AddFSMState(waniguchiDyingState);
         AddFSMState(enemyDead);
 
     }
@@ -151,5 +168,11 @@ public class WaniguchiFSMController : EnemyFSMController
     public void ResumeAnim()
     {
         waniAnim.speed = prevAnimSpeed;
+    }
+
+    // reference this in the animator
+    public void ConfirmDeath()
+    {
+        deathConfirmed = true;
     }
 }

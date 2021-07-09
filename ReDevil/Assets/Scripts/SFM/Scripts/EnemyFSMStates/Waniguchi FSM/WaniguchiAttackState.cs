@@ -92,18 +92,19 @@ public class WaniguchiAttackState : FSMState
             Debug.Log("Not going into the Airborne State");
         }
 
-        if (ec.GetEnemyFlinch())
+        if (ec.GetEnemyFlinch() && ec.health > 0)
         {
-            Debug.Log("Transition");
+            Debug.Log("flinch Transition");
             anim.SetBool("Flinch", ec.GetEnemyFlinch());
             anim.Play("Flinch", -1, 0.0f);
             ec.PerformTransition(Transition.WaniguchiFlinch);
         }
 
         //dead transition
-        if (ec.health <= 0)
+        else if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+
+            ec.PerformTransition(Transition.WaniguchiDead);
         }
     }
 }

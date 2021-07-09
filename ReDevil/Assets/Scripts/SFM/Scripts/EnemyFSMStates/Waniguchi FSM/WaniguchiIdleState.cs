@@ -46,7 +46,7 @@ public class WaniguchiIdleState : EnemyIdleState
             anim.SetTrigger("AttackTrigger");
             wc.PerformTransition(Transition.WaniguchiAttack);
         }
-        else if (wc.GetEnemyFlinch())
+        else if (wc.GetEnemyFlinch() && wc.health > 0)
         {
             Debug.Log("Transition"); 
             anim.SetBool("Flinch", wc.GetEnemyFlinch());
@@ -55,9 +55,9 @@ public class WaniguchiIdleState : EnemyIdleState
         }
 
         //dead transition
-        if (wc.health <= 0)
+        else if (wc.health <= 0)
         {
-            wc.PerformTransition(Transition.EnemyNoHealth);
+            wc.PerformTransition(Transition.WaniguchiDead);
         }
     }
 }
