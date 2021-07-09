@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: RedEvil_SideWalk_Bottom_01
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 4004026242685144674, guid: febebb31b5ad36c4d8edf4f2025f1f0c,
+  m_Sprite: {fileID: -2158775462957504836, guid: 9f98ceb965652d5478fb824bfc39062a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
