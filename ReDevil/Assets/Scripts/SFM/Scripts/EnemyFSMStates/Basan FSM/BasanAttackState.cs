@@ -25,6 +25,7 @@ public class BasanAttackState : FSMState
         BasanFSMController ec = npc.GetComponent<BasanFSMController>();
         BasanFlamethrower bf = npc.GetComponent<BasanFlamethrower>();
 
+        Animator anim = ec.GetComponent<Animator>();
         //for initial setup to ensure we only call basan attack once, reset attack start ONLY IF
         //the enemy is NOT attacking
         //if(attackStart && !ec.attacking)
@@ -37,16 +38,19 @@ public class BasanAttackState : FSMState
         {
             //turn on flamethrower coroutine
             //ec.BasanAttack();
+            anim.SetBool("Attack", true);
             bf.ActivateFlamethrower();
             attackStart = true;
         } 
         else
         {
+            anim.SetBool("Attack", false);
             bf.DeactivateFlamethrower();
         }
 
         if (ec.GetEnemyFlinch())
         {
+            anim.SetBool("Attack", false);
             // force the attack duration's time to the threshold
             attackDuration = bf.getAttackTime();
             bf.DeactivateFlamethrower();
@@ -74,16 +78,16 @@ public class BasanAttackState : FSMState
             ec.PerformTransition(Transition.BasanIdle);
         }
 
-        else if (ec.GetEnemyFlinch())
+        else if (ec.GetEnemyFlinch() && ec.health > 0)
         {
             ec.PerformTransition(Transition.BasanFlinch);
         }
 
         //dead transition
-        if (ec.health <= 0)
+        else if (ec.health <= 0)
         {
             ec.StopBasanAttack();
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.BasanDead);
         }
     }
 }

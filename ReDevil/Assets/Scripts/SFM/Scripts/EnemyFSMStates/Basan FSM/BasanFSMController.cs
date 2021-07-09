@@ -11,6 +11,15 @@ public class BasanFSMController : EnemyFSMController
     [SerializeField]
     private Vector2 knockbackVel;
     public Vector2 GetKnockbackVel() { return knockbackVel; }
+
+    // Death Specific
+    [SerializeField] private bool deathConfirmed;
+    public bool GetDeathConfirmed() { return deathConfirmed; }
+    public void SetDeathConfirmed(bool inDeathConfirmed)
+    {
+        deathConfirmed = inDeathConfirmed;
+    }
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -53,14 +62,20 @@ public class BasanFSMController : EnemyFSMController
         enemyIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         enemyIdle.AddTransition(Transition.BasanFlinch, FSMStateID.BasanFlinching); // transition to flinching state
         enemyIdle.AddTransition(Transition.BasanAttack, FSMStateID.BasanAttacking); //transition to attacking state
+        enemyIdle.AddTransition(Transition.BasanDead, FSMStateID.BasanDying); //transition to attacking state
 
         BasanAttackState ndpAttack = new BasanAttackState();
         ndpAttack.AddTransition(Transition.BasanIdle, FSMStateID.BasanIdling);
+        ndpAttack.AddTransition(Transition.BasanDead, FSMStateID.BasanDying);
         ndpAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         BasanFlinchState bsFlinch = new BasanFlinchState();
         bsFlinch.AddTransition(Transition.BasanIdle, FSMStateID.BasanIdling);
+        bsFlinch.AddTransition(Transition.BasanDead, FSMStateID.BasanDying);
         bsFlinch.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+
+        BasanDyingState bsDyingState = new BasanDyingState();
+        bsDyingState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
@@ -71,6 +86,7 @@ public class BasanFSMController : EnemyFSMController
         AddFSMState(enemyIdle);
         AddFSMState(ndpAttack);
         AddFSMState(bsFlinch);
+        AddFSMState(bsDyingState);
         AddFSMState(enemyDead);
 
     }
@@ -121,5 +137,10 @@ public class BasanFSMController : EnemyFSMController
     public void StopBasanAttack()
     {
         StopCoroutine("ActivateFlamethrower");
+    }
+
+    public void ConfirmDeath()
+    {
+        deathConfirmed = true;
     }
 }

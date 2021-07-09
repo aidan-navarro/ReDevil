@@ -16,7 +16,9 @@ public class BasanIdleState : EnemyIdleState
     public override void Act(Transform player, Transform npc)
     {
         BasanFSMController ec = npc.GetComponent<BasanFSMController>();
-
+        Animator anim = ec.GetComponent<Animator>();
+        anim.SetBool("Attack", false);
+        anim.SetBool("Flinch", false);
         //ec.flameThrowerObject.GetComponent<Flamethrower>().enabled = false;
         bool positionSet = false;
         //just a failsafe in case my code is weird and idk where to fix it cause if not constructor where else
@@ -90,22 +92,24 @@ public class BasanIdleState : EnemyIdleState
     public override void Reason(Transform player, Transform npc)
     {
         BasanFSMController ec = npc.GetComponent<BasanFSMController>();
+        Animator anim = ec.GetComponent<Animator>();
 
         //attack transition
         if (atkTransition)
         {
+            anim.SetTrigger("Initial Attack Trigger");
             ec.PerformTransition(Transition.BasanAttack);
         }
 
-        if (ec.GetEnemyFlinch())
+        if (ec.GetEnemyFlinch() && ec.health > 0)
         {
             ec.PerformTransition(Transition.BasanFlinch);
         }
 
         //dead transition
-        if (ec.health <= 0)
+        else if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.BasanDead);
         }
     }
 }
