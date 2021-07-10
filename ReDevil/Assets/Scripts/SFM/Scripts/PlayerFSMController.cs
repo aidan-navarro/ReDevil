@@ -125,6 +125,14 @@ public class PlayerFSMController : AdvancedFSM
     private SoulArmament selectedArament;
     public SoulArmament CurrentArament => selectedArament;
 
+    // multiplier for testing
+    [SerializeField, Header("Soul Multiplier Settings")]
+    private float soulMultiplier;
+
+    public float GetSoulMultiplier() { return soulMultiplier; }
+    public void SetSoulMultiplier(float inSoulMultiplier) { soulMultiplier = inSoulMultiplier; }
+
+
     //-------------------------------------------------------------------
     //Variables for taking damage and knockback
     //-------------------------------------------------------------------
@@ -470,10 +478,6 @@ public class PlayerFSMController : AdvancedFSM
             {
                 selectedArament.ActivateArament();
             }
-
-            
-
-
         }
     }
 
