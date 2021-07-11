@@ -51,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void MainMenu()
     {
+        Destroy(respawn);
         pc.SetIsPaused(false);
         pc.UnPause();
 
