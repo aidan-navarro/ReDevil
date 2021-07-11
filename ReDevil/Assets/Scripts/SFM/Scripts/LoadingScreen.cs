@@ -17,7 +17,7 @@ public class LoadingScreen : MonoBehaviour, GameplayControls.IMenuActions
 
     [SerializeField] private TextMeshProUGUI text;
 
-    PlayerFSMController pc;
+    //PlayerFSMController pc;
 
     // Player Input
     private GameplayControls menuControls;
@@ -31,7 +31,7 @@ public class LoadingScreen : MonoBehaviour, GameplayControls.IMenuActions
         menuControls.Menu.Select.started += ctx => triggerActivation = true;
         
 
-        pc = FindObjectOfType<PlayerFSMController>();
+        //pc = FindObjectOfType<PlayerFSMController>();
 
         text.enabled = false;
         triggerActivation = false;
