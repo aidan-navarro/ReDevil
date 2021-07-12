@@ -11,6 +11,10 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 {
     public GameplayControls controls;
 
+    public GameObject credits, title, character, play, quit, creditsButton;
+
+    public bool creditsToggled = false;
+
     public void Awake()
     {
         controls = new GameplayControls();
@@ -41,13 +45,41 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
     public void CreditsOption()
     {
         Debug.Log("Credits overlay opens here");
-
+        credits.SetActive(true);
+        creditsToggled = true;
     }
 
     public void QuitOption()
     {
         Debug.Log("Quitting Game");
         Application.Quit();
+    }
 
+    public void CreditsOverlay()
+    {
+        creditsToggled = false;
+    }
+
+    public void Update()
+    {
+       if(creditsToggled == true)
+        {
+            title.SetActive(false);
+            character.SetActive(false);
+            play.SetActive(false);
+            quit.SetActive(false);
+            creditsButton.SetActive(false);
+            credits.SetActive(true);
+        }
+
+       if (creditsToggled == false)
+        {
+            title.SetActive(true);
+            character.SetActive(true);
+            play.SetActive(true);
+            quit.SetActive(true);
+            creditsButton.SetActive(true);
+            credits.SetActive(false);
+        }
     }
 }
