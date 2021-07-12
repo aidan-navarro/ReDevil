@@ -348,6 +348,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1647963689631873020, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362ebfc693b1ff64185bf4b00c123f5f, type: 3}
 --- !u!1 &660753507 stripped
@@ -804,6 +809,7 @@ MonoBehaviour:
   soulArmaments:
   - {fileID: 1596751761}
   selectedArament: {fileID: 1596751761}
+  soulMultiplier: 0
   kbTransition: 0
   flameKnockback: 0
   dashKnockbackPower: 0
@@ -2600,6 +2606,7 @@ MonoBehaviour:
   didAirAttack: 0
   dashAttackContact: 0
   airDashAttackContact: 0
+  airDashKillingBlow: 0
   firstDashContact: 0
   airAttackContact: 0
   idleTransition: 0
