@@ -261,9 +261,16 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetAttackButtonDown() { return attackButtonDown; }
     public void SetAttackButtonDown(bool inAttackButtonDown) { attackButtonDown = inAttackButtonDown; }
 
-    [System.NonSerialized]
+    [SerializeField]
     private bool jumpButtonDown;
     public bool GetJumpButtonDown() { return jumpButtonDown; }
+
+    // GROUND + WALL CHECK SPECIFICS
+    [SerializeField]
+    private bool groundJump;
+    public bool GetGroundJump() { return groundJump; }
+    public void SetGroundJump(bool inGroundJump) { groundJump = inGroundJump; }
+
     [System.NonSerialized]
     private bool soulAttackButtonDown;
     public bool GetSoulAttackButtonDown() { return soulAttackButtonDown; }
@@ -385,7 +392,22 @@ public class PlayerFSMController : AdvancedFSM
         {
             if (obj.action.name == gameplayControls.Gameplay.Jump.name)
             {
-                OnJump(obj);
+                //OnJump(obj);
+                if (obj.canceled)
+                {
+                    jumpButtonDown = false;
+                    groundJump = false;
+                }
+
+                else if (obj.started)
+                {
+                    jumpButtonDown = true;
+                    if (isGrounded)
+                    {
+                        groundJump = true;
+                    } 
+                }
+
             }
 
             if (obj.action.name == gameplayControls.Gameplay.Movement.name)
@@ -899,8 +921,9 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.5f), 0f, groundLayer.value);
+        Debug.Log("Touching the wall: " + isTouchingWall);
 
-        
+
     }
 
     public void TouchingInvisibleWall()

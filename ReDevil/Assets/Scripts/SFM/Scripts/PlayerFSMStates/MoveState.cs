@@ -193,13 +193,14 @@ public class MoveState : FSMState
             pc.PerformTransition(Transition.Idle);
         }
 
-        //jump transition
-        if (pc.GetJumpButtonDown() && onWall)
+        //jump transition 
+        // NEED TO MAKE A CONDITION WHERE WE DON'T IMMEDIATELY TRANSITION TO WALL JUMP IF ON THE GROUND INITIALLY
+        if (pc.GetJumpButtonDown() && onWall && grounded)
         {
             pc.soundManager.StopRun();
-            pc.PerformTransition(Transition.WallJump);
+            pc.PerformTransition(Transition.Jump);
         }
-        else if (pc.GetJumpButtonDown())
+        else if (pc.GetJumpButtonDown() && grounded)
         {
             pc.soundManager.StopRun();
             pc.PerformTransition(Transition.Jump);

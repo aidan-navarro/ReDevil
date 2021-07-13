@@ -58,7 +58,7 @@ public class WallSlideState : FSMState
 
 
         //jump transition
-        if (pc.GetJumpButtonDown())
+        if (pc.GetJumpButtonDown() && !pc.GetGroundJump())
         {
             pc.PerformTransition(Transition.WallJump);
         }

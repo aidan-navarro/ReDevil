@@ -12920,6 +12920,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 447
       objectReference: {fileID: 0}
+    - target: {fileID: 1609412732492918221, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647963689488099193, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1647963689631872992, guid: 362ebfc693b1ff64185bf4b00c123f5f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -13029,6 +13039,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647963689858938238, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647963690375575724, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647963691344187055, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390584215560797867, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374260188259431746, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4638538774668329370, guid: 362ebfc693b1ff64185bf4b00c123f5f,
         type: 3}
@@ -17724,7 +17759,7 @@ PrefabInstance:
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.260046
+      value: 8.315601
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
