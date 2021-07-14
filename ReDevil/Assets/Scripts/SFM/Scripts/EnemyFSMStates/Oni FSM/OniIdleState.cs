@@ -66,6 +66,10 @@ public class OniIdleState : FSMState
             {
                 possibleTransitions.Add(Transition.OniJumpSmash);
             } 
+            if (!oc.IsWithinClubRange(player))
+            {
+                possibleTransitions.Add(Transition.OniBoulderPut);
+            }
             possibleTransitions.Add(Transition.OniChase);
             oc.StopCoroutine(IdleTimer(oc));
             oc.PerformTransition(possibleTransitions[Random.Range(0, possibleTransitions.Count)]);
