@@ -16,9 +16,14 @@ public class OniFSMController : EnemyFSMController
     private GameObject boulderPrehab;
     [SerializeField]
     private Transform firepoint;
-
     [SerializeField]
-    private Transform pillarSpawnPoint;
+    private float firepointSpawnBufferX = 0.25f;
+    [SerializeField]
+    private float firepointSpawnBufferY = 0.50f;
+    [SerializeField]
+    private Transform boulderPillarSpawnPoint;
+    [SerializeField]
+    private float pillarSpawnBufferX = 0.25f;
     [SerializeField]
     private Transform clubAttackPoint;
     [SerializeField]
@@ -63,6 +68,11 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private float jumpDistanceRequirement = 6.0f;
     public float JumpDistanceRequirement => jumpDistanceRequirement;
+    [SerializeField]
+    private Collider2D clubCollider;
+    [SerializeField]
+    private Collider2D jumpAttackCollider;
+    private ContactFilter2D contactFilter2D  = new ContactFilter2D();
 
     public UnityAction OnPlayerHit;
     public UnityAction OnWallHit;
@@ -110,7 +120,15 @@ public class OniFSMController : EnemyFSMController
         //set currentPos
         currentPos = rig.position;
 
+        contactFilter2D.layerMask = playerLayer;
+
+        //SetSpawnPoints();
         ConstructFSM();
+    }
+
+    public void OnValidate()
+    {
+        SetSpawnPoints();
     }
     protected override void FSMUpdate()
     {
@@ -195,10 +213,24 @@ public class OniFSMController : EnemyFSMController
 
     public void ClubSmashAttack()
     {
-        Collider2D collider = Physics2D.OverlapCircle(clubAttackPoint.position, clubRange, playerLayer);
-        if (collider != null)
+        //Collider2D collider = Physics2D.OverlapCircle(clubAttackPoint.position, clubRange, playerLayer);
+        //if (collider != null)
+        //{
+        //    collider.GetComponent<PlayerFSMController>().KnockbackTransition(clubDamage, clubKnockback, transform.position);
+        //}
+
+        Collider2D[] collider2Ds = new Collider2D[10];
+
+        int hits = clubCollider.OverlapCollider(contactFilter2D, collider2Ds);
+
+        for(int i = 0; i < hits; i++)
         {
-            collider.GetComponent<PlayerFSMController>().KnockbackTransition(clubDamage, clubKnockback, transform.position);
+            PlayerFSMController player = collider2Ds[i].GetComponent<PlayerFSMController>();
+            if (player != null)
+            {
+                player.KnockbackTransition(clubDamage, clubKnockback, transform.position);
+                return;
+            }
         }
 
     }
@@ -210,11 +242,26 @@ public class OniFSMController : EnemyFSMController
 
     public void JumpSmashAttack()
     {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, jumpSmashRange, playerLayer);
-        if (collider != null)
+        //Collider2D collider = Physics2D.OverlapCircle(transform.position, jumpSmashRange, playerLayer);
+        //if (collider != null)
+        //{
+        //    collider.GetComponent<PlayerFSMController>().KnockbackTransition(jumpSmashDamage, jumpSmashKnockback, transform.position);
+        //}
+
+        Collider2D[] collider2Ds = new Collider2D[3];
+
+        int hits = jumpAttackCollider.OverlapCollider(contactFilter2D, collider2Ds);
+
+        for (int i = 0; i < hits; i++)
         {
-            collider.GetComponent<PlayerFSMController>().KnockbackTransition(jumpSmashDamage, jumpSmashKnockback, transform.position);
+            PlayerFSMController player = collider2Ds[i].GetComponent<PlayerFSMController>();
+            if (player != null)
+            {
+                player.KnockbackTransition(jumpSmashDamage, jumpSmashKnockback, transform.position);
+                return;
+            }
         }
+
     }
 
     public void Jump(Vector2 jumpingTarget)
@@ -233,7 +280,7 @@ public class OniFSMController : EnemyFSMController
 
         // Find the position to spawn in the pillar
 
-        PillarSpawn = pillarSpawnPoint.position;
+        PillarSpawn = boulderPillarSpawnPoint.position;
 
         if (inFront)
         {      
@@ -328,5 +375,28 @@ public class OniFSMController : EnemyFSMController
     public void OniBossStart()
     {
         OnOniBossStart?.Invoke();
+    }
+
+    private void SetSpawnPoints()
+    {
+        
+        SpriteRenderer oniRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer pillarRenderer = boulderPillarPrehab.GetComponent<SpriteRenderer>();
+        SpriteRenderer boulderRenderer = boulderPrehab.GetComponent<SpriteRenderer>();
+
+        boulderPillarSpawnPoint.position = transform.position;
+        Vector3 newSpawnPoint = new Vector3();
+        newSpawnPoint.x -= (pillarSpawnBufferX + oniRenderer.bounds.size.x / 2 + pillarRenderer.bounds.size.x / 2);
+        newSpawnPoint.y -= oniRenderer.bounds.size.y / 2;
+        newSpawnPoint.z = transform.position.z;
+        boulderPillarSpawnPoint.localPosition = newSpawnPoint;
+
+
+        firepoint.position = transform.position;
+        Vector3 newFirePoint = new Vector3();
+        newFirePoint.x -= (firepointSpawnBufferX + boulderRenderer.bounds.size.x / 2 + oniRenderer.bounds.size.x / 2);
+        newFirePoint.y += -oniRenderer.bounds.size.y / 2 + firepointSpawnBufferY;
+        newFirePoint.z = transform.position.z;
+        firepoint.localPosition = newFirePoint;
     }
 }

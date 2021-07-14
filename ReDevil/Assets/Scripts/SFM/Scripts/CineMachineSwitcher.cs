@@ -27,7 +27,8 @@ public class CineMachineSwitcher : MonoBehaviour
     public Collider2D touchBox;
 
     public bool canContinue = false;
-    public float waitTime;
+    [SerializeField]
+    private float waitTime;
 
     private OniFSMController oniBoss;
     private PlayerFSMController player;
@@ -87,7 +88,7 @@ public class CineMachineSwitcher : MonoBehaviour
     public IEnumerator EnragedOniCutscene()
     {
         player.GetComponent<PlayerInput>().enabled = false;
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(oniBoss.cutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         oniBoss.OnOniEndEnraged?.Invoke();
         player.GetComponent<PlayerInput>().enabled = true;
     }

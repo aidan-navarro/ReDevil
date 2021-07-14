@@ -914,7 +914,7 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
         bool isTouchingTop = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
-        Debug.Log("Touching the top: " + isTouchingCeiling);
+        //Debug.Log("Touching the top: " + isTouchingCeiling);
 
         //Check if the side is touching an invisible wall
         Vector2 sidePos = col.bounds.center;
