@@ -75,6 +75,8 @@ public class IdlingState : FSMState
         pc.TouchingInvisibleWall();
 
         pc.SetKbTransition(false);
+        pc.SetDKBTransition(false);
+
         //pc.CheckDashInput();
         pc.UpdateState("Idle");
     }
@@ -144,7 +146,7 @@ public class IdlingState : FSMState
         //jump transition
         if (jumpButtonDown && onWall)
         {
-            pc.PerformTransition(Transition.WallJump);
+            pc.PerformTransition(Transition.Jump);
         }
         else if (jumpButtonDown)
         {
