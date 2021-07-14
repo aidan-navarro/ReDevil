@@ -66,6 +66,9 @@ public class OniFSMController : EnemyFSMController
     private float idleWaitTime = 1.0f;
     public float IdleWaitTime => idleWaitTime;
     [SerializeField]
+    private float chaseTime = 2.0f;
+    public float ChaseTime => chaseTime;
+    [SerializeField]
     private float jumpDistanceRequirement = 6.0f;
     public float JumpDistanceRequirement => jumpDistanceRequirement;
     [SerializeField]

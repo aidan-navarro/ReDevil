@@ -59,7 +59,11 @@ public class BoulderPuttState : FSMState
         OniFSMController oc = npc.GetComponent<OniFSMController>();
         pillar = oc.SpawnPillar(true);
         // Wait a moment before destorying it
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
+        if (pillar == null)
+        {
+            oc.PerformTransition(Transition.OniClubSmash);
+        }
         Object.Destroy(pillar);
 
         oc.BoulderPut();
