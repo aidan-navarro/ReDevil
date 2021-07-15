@@ -158,6 +158,7 @@ public class OniFSMController : EnemyFSMController
         OniIdleState oniIdleState = new OniIdleState();
 
         oniIdleState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        oniIdleState.AddTransition(Transition.OniClubSmash, FSMStateID.OniClubSmashing);
         oniIdleState.AddTransition(Transition.OniBoulderPut, FSMStateID.OniBoulderPutting);
         oniIdleState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
         oniIdleState.AddTransition(Transition.OniChase, FSMStateID.OniChasing);

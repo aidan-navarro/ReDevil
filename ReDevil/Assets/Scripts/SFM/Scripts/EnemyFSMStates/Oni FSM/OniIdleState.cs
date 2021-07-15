@@ -55,7 +55,10 @@ public class OniIdleState : FSMState
         {
             oc.StopCoroutine(IdleTimer(oc));
             oc.PerformTransition(Transition.OniClubSmash);
-            return;
+            Debug.Log("Oni Transition to Club Smash");
+            //return;
+
+            
         }
 
         else if (switchState)
@@ -72,7 +75,10 @@ public class OniIdleState : FSMState
             }
             possibleTransitions.Add(Transition.OniChase);
             oc.StopCoroutine(IdleTimer(oc));
-            oc.PerformTransition(possibleTransitions[Random.Range(0, possibleTransitions.Count)]);
+
+            int transition = Random.Range(0, possibleTransitions.Count);
+            Debug.Log("Oni Transition Code: " + transition);
+            oc.PerformTransition(possibleTransitions[transition]);
             return;
         }
     }

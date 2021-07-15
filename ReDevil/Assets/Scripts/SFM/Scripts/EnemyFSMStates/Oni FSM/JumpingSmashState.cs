@@ -45,8 +45,9 @@ public class JumpingSmashState : FSMState
             Debug.Log("OnGround");
             // Oni is going to jump on the player
             {
-                Debug.Log("Jumping on the player");
+                
                 jumpingTarget = player.position;
+                Debug.Log("Jumping on the player: " + jumpingTarget);
             }
 
             // Launch the Oni into the air

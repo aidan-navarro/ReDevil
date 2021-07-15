@@ -992,6 +992,7 @@ MonoBehaviour:
   - {fileID: 0}
   playerPointLineRange: 0.5
   idleWaitTime: 1.5
+  chaseTime: 2
   jumpDistanceRequirement: 6
   clubCollider: {fileID: 0}
   jumpAttackCollider: {fileID: 0}
