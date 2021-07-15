@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 
     public void PlayOption()
     {
-        LoadingData.sceneToLoad = "SampleScene";
+        LoadingData.sceneToLoad = "Tutorial Level";
         SceneManager.LoadScene("LoadingScreen");
     }
 
