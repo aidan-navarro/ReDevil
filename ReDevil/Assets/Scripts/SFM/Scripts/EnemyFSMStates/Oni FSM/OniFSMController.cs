@@ -373,6 +373,7 @@ public class OniFSMController : EnemyFSMController
 
     public override void TakeDamage(float damage)
     {
+        Debug.Log("Oni is Taking " + damage + " damage");
         health -= damage;
         UpdateHealth();
     }

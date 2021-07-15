@@ -8477,6 +8477,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4399357031525886351, guid: cfc6eda6b345433418785d71e8e6ac95,
+        type: 3}
+      propertyPath: m_Name
+      value: Oni Image
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399357031525886351, guid: cfc6eda6b345433418785d71e8e6ac95,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4399357031739613240, guid: cfc6eda6b345433418785d71e8e6ac95,
         type: 3}
       propertyPath: m_Name
@@ -18065,7 +18075,7 @@ PrefabInstance:
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.135601
+      value: 8.075274
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -66738,7 +66748,7 @@ PrefabInstance:
     - target: {fileID: 904229016661981803, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2235937426850047248, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
