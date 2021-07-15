@@ -921,7 +921,7 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.5f), 0f, groundLayer.value);
-        Debug.Log("Touching the wall: " + isTouchingWall);
+        //Debug.Log("Touching the wall: " + isTouchingWall);
 
 
     }

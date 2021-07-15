@@ -53,7 +53,7 @@ public class OniIdleState : FSMState
         }
         if (oc.IsWithinClubRange(player))
         {
-            oc.StopCoroutine(IdleTimer(oc));
+            oc.StopAllCoroutines();
             oc.PerformTransition(Transition.OniClubSmash);
             return;
         }
