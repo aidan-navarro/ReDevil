@@ -584,7 +584,7 @@ public class PlayerAttack : MonoBehaviour
 
                 //gain soul equal to the damage dealt to the enemy.
                 if (!pc.CurrentArament.IsActive)
-                    pc.SoulCalculator((pastHealth - presentHealth) * pc.GetSoulMultiplier());
+                    pc.SoulCalculator(Math.Abs(pastHealth - presentHealth) * pc.GetSoulMultiplier());
 
                 return true;
             }

@@ -33,7 +33,7 @@ public class LoadingScreen : MonoBehaviour, GameplayControls.IMenuActions
 
         //pc = FindObjectOfType<PlayerFSMController>();
 
-        text.enabled = false;
+        text.SetText("Loading");
         triggerActivation = false;
 
     }
@@ -77,7 +77,7 @@ public class LoadingScreen : MonoBehaviour, GameplayControls.IMenuActions
             loadingSlider.value = progress;
             if (progress >= 1f)
             {
-                text.enabled = true;
+                text.SetText("Press A to Continue");
                 if (triggerActivation)
                 {
                     Debug.Log("Load Complete");

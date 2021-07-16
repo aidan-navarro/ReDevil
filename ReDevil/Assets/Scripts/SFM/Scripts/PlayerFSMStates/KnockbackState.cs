@@ -18,6 +18,12 @@ public class KnockbackState : FSMState
         //Debug.Log("Knockback State");
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
+
+        patk.StopGroundAttack();
+        patk.StopAirAttack();
+        patk.StopAirDownStrikeAttack();
+
         timer = pc.GetComponent<InvincibleTimer>();
         pc.SetKbTransition(false);
 
