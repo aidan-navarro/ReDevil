@@ -122,6 +122,7 @@ MonoBehaviour:
   enemyFlinch: 0
   attacking: 0
   knockbackVel: {x: 0, y: 1.5}
+  deathConfirmed: 0
 --- !u!61 &6812406579473504763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.5650413, y: 0.6093245}
+  m_Offset: {x: -1.5650413, y: 0.7618561}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.690407, y: 0.1462585}
@@ -146,7 +147,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.469918, y: 2.0555477}
+  m_Size: {x: 6.469918, y: 1.7504845}
   m_EdgeRadius: 0
 --- !u!50 &2195217055851651137
 Rigidbody2D:

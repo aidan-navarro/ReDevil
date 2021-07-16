@@ -53,6 +53,7 @@ public enum Transition
     BasanIdle,
     BasanFlinch,
     BasanAttack,
+    BasanDead,
 
     ChochinObakeIdle,
     ChochinObakeAttack,
@@ -127,6 +128,7 @@ public enum FSMStateID
     BasanIdling,
     BasanFlinching,
     BasanAttacking,
+    BasanDying,
 
     //ChochinObake
     ChochinObakeIdling,

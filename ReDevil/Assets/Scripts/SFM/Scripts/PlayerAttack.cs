@@ -231,9 +231,11 @@ public class PlayerAttack : MonoBehaviour
                     presentHealth = 0;
                 }
 
-                //gain soul equal to the damage dealt to the enemy.
-                pc.SoulCalculator(pastHealth - presentHealth);
-
+                if (!pc.CurrentArament.IsActive)
+                {
+                    //gain soul equal to the damage dealt to the enemy.
+                    pc.SoulCalculator((pastHealth - presentHealth)*pc.GetSoulMultiplier());
+                }
                 return true;
             }
         }
@@ -301,7 +303,9 @@ public class PlayerAttack : MonoBehaviour
                 }
 
                 //gain soul equal to the damage dealt to the enemy.
-                pc.SoulCalculator(pastHealth - presentHealth);
+                if (!pc.CurrentArament.IsActive)
+                    pc.SoulCalculator((pastHealth - presentHealth) * pc.GetSoulMultiplier());
+
                 airAttackContact = true;
                 return true;
             }
@@ -378,7 +382,9 @@ public class PlayerAttack : MonoBehaviour
                 }
 
                 //gain soul equal to the damage dealt to the enemy.
-                pc.SoulCalculator(pastHealth - presentHealth);
+                if (!pc.CurrentArament.IsActive)
+                    pc.SoulCalculator((pastHealth - presentHealth) * pc.GetSoulMultiplier());
+
                 attackVector = ec.transform.position - pc.transform.position;
 
                 ec.SetEnemyFlinch(true);
@@ -577,7 +583,8 @@ public class PlayerAttack : MonoBehaviour
                 }
 
                 //gain soul equal to the damage dealt to the enemy.
-                pc.SoulCalculator(pastHealth - presentHealth);
+                if (!pc.CurrentArament.IsActive)
+                    pc.SoulCalculator((pastHealth - presentHealth) * pc.GetSoulMultiplier());
 
                 return true;
             }

@@ -548,6 +548,7 @@ MonoBehaviour:
   soulArmaments:
   - {fileID: 243560149}
   selectedArament: {fileID: 243560149}
+  soulMultiplier: 1
   kbTransition: 0
   flameKnockback: 0
   dashKnockbackPower: 0
@@ -596,6 +597,7 @@ MonoBehaviour:
   didAirAttack: 0
   dashAttackContact: 0
   airDashAttackContact: 0
+  airDashKillingBlow: 0
   firstDashContact: 0
   airAttackContact: 0
   idleTransition: 0
