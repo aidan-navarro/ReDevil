@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 {
     public GameplayControls controls;
 
-    public GameObject credits, title, character, play, quit, creditsButton;
+    public GameObject credits, title, play, quit, creditsButton;
 
     public bool creditsToggled = false;
 
@@ -65,7 +65,6 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
        if(creditsToggled == true)
         {
             title.SetActive(false);
-            character.SetActive(false);
             play.SetActive(false);
             quit.SetActive(false);
             creditsButton.SetActive(false);
@@ -75,7 +74,6 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
        if (creditsToggled == false)
         {
             title.SetActive(true);
-            character.SetActive(true);
             play.SetActive(true);
             quit.SetActive(true);
             creditsButton.SetActive(true);
