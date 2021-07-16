@@ -21,8 +21,10 @@ public class ClubSmashState : FSMState
 
     public override void Act(Transform player, Transform npc)
     {
+        Debug.Log("Nigel Thornberry is Smashing!!!");
         if (!attackStarted)
         {
+            
             attackStarted = true;
             npc.GetComponent<OniFSMController>().StartCoroutine(PerformClubSmash(npc));
         }

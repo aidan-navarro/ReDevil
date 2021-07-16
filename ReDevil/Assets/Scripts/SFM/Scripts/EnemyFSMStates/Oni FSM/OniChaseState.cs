@@ -25,7 +25,7 @@ public class OniChaseState : FSMState
         if (enteredState)
         {
             enteredState = false;
-            oc.StartCoroutine(ChaseTimer());
+            oc.StartCoroutine(ChaseTimer(oc));
         }
 
         oc.MoveTowardsPlayer();
@@ -51,7 +51,7 @@ public class OniChaseState : FSMState
         }
         if (oc.IsWithinClubRange(player))
         {
-            oc.StopCoroutine(ChaseTimer());
+            oc.StopCoroutine(ChaseTimer(oc));
             oc.PerformTransition(Transition.OniClubSmash);
             return;
         }
@@ -61,11 +61,7 @@ public class OniChaseState : FSMState
             List<Transition> possibleTransitions = new List<Transition>();
             possibleTransitions.Add(Transition.OniBoulderPut);
             possibleTransitions.Add(Transition.OniJumpSmash);
-            if (oc.IsEnraged)
-            {
-                possibleTransitions.Add(Transition.OniCycloneSmash);
-            }
-            oc.StopCoroutine(ChaseTimer());
+            oc.StopCoroutine(ChaseTimer(oc));
             oc.PerformTransition(possibleTransitions[Random.Range(0, possibleTransitions.Count)]);
             return;
         }
@@ -73,9 +69,9 @@ public class OniChaseState : FSMState
 
     }
 
-    public IEnumerator ChaseTimer()
+    public IEnumerator ChaseTimer(OniFSMController oni)
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(oni.ChaseTime);
         switchToAttack = true;
     }
 

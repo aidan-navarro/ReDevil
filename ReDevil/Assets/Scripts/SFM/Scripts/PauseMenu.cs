@@ -31,23 +31,36 @@ public class PauseMenu : MonoBehaviour
         //pc.UnPause();
 
         sceneID = respawn.sceneID;
-        respawn.respawnPoint = respawn.startingPoint;
+        //respawn.respawnPoint = respawn.startingPoint;
 
         //loadingScreen.LoadLevelAsync(sceneID);
         LoadingData.sceneToLoad = sceneID;
         SceneManager.LoadScene("LoadingScreen");
     }
 
-    public void SampleDebugSpawn()
+    //public void SampleDebugSpawn()
+    //{
+    //    //pc.SetIsPaused(false);
+    //    //pc.UnPause();
+
+    //    Destroy(respawn);
+    //    LoadingData.sceneToLoad = "SampleScene";
+    //    SceneManager.LoadScene("LoadingScreen");
+    //    //loadingScreen.LoadLevelAsync("SampleScene");
+    
+    //}
+
+    public void RestartLevelOption()
     {
         //pc.SetIsPaused(false);
         //pc.UnPause();
+        sceneID = respawn.sceneID;
 
         Destroy(respawn);
-        LoadingData.sceneToLoad = "SampleScene";
+        LoadingData.sceneToLoad = sceneID;
         SceneManager.LoadScene("LoadingScreen");
         //loadingScreen.LoadLevelAsync("SampleScene");
-    
+
     }
     public void MainMenu()
     {

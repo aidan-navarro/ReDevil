@@ -1536,7 +1536,7 @@ PrefabInstance:
     - target: {fileID: 5867534514386606009, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SampleDebugSpawn
+      value: RestartLevelOption
       objectReference: {fileID: 0}
     - target: {fileID: 5867534514386606009, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
@@ -1626,7 +1626,7 @@ PrefabInstance:
     - target: {fileID: 8574754528054526251, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}
       propertyPath: m_text
-      value: Test Room
+      value: Start Over
       objectReference: {fileID: 0}
     - target: {fileID: 8895783756177133708, guid: 4177f6c23449bb942b699ba90dda3f81,
         type: 3}

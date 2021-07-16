@@ -196,7 +196,15 @@ public class GroundToAirDashAttack : FSMState
                     // if the enemy is overhead 
                     if (checkAtkVector.y > 0.0f)
                     {
-                        pc.AirDashBottomKnockback2(pc.GetDashPath());
+                        if (!patk.airDashKillingBlow)
+                        {
+                            pc.AirDashBottomKnockback2(pc.GetDashPath());
+                        }
+                        else
+                        {
+                            pc.AirDashKnockback();
+
+                        }
                     }
                     // if the player is overhead, use the regular Dash Knockback function, it's modified to account for off the ground contact
                     else

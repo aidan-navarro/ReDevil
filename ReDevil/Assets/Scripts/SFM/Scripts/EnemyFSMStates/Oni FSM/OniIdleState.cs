@@ -51,27 +51,33 @@ public class OniIdleState : FSMState
             oc.PerformTransition(Transition.OniEnraged);
             return;
         }
-        if (oc.IsWithinClubRange(player))
-        {
-            oc.StopCoroutine(IdleTimer(oc));
-            oc.PerformTransition(Transition.OniClubSmash);
-            return;
-        }
 
         else if (switchState)
         {
             List<Transition> possibleTransitions = new List<Transition>();
-            possibleTransitions.Add(Transition.OniBoulderPut);
-            possibleTransitions.Add(Transition.OniJumpSmash);
-            possibleTransitions.Add(Transition.OniChase);
-            if (oc.IsUnderHalfHealth())
+            //possibleTransitions.Add(Transition.OniBoulderPut);
+            if (Vector3.Distance(oc.transform.position, player.position) >= oc.JumpDistanceRequirement)
             {
-                possibleTransitions.Add(Transition.OniCycloneSmash);
+                possibleTransitions.Add(Transition.OniJumpSmash);
             }
+            if (!oc.IsWithinClubRange(player))
+            {
+                possibleTransitions.Add(Transition.OniBoulderPut);
+            }
+            possibleTransitions.Add(Transition.OniChase);
             oc.StopCoroutine(IdleTimer(oc));
             oc.PerformTransition(possibleTransitions[Random.Range(0, possibleTransitions.Count)]);
             return;
         }
+
+        if (oc.IsWithinClubRange(player))
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.OniClubSmash);
+            return;
+        }
+
+        
     }
 
     public IEnumerator IdleTimer(OniFSMController oc)
