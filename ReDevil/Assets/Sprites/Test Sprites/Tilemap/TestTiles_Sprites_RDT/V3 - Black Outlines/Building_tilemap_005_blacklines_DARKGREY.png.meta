@@ -1,0 +1,1858 @@
+fileFormatVersion: 2
+guid: 6192ad883a9ee7d418eff87399d7b6b2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7031981435912750190
+    second: Building_tilemap_005_blacklines_DARKGREY_0
+  - first:
+      213: -3866984327680934616
+    second: Building_tilemap_005_blacklines_DARKGREY_1
+  - first:
+      213: -4878989403015974960
+    second: Building_tilemap_005_blacklines_DARKGREY_2
+  - first:
+      213: 4270827813101615971
+    second: Building_tilemap_005_blacklines_DARKGREY_3
+  - first:
+      213: 9132125152845107274
+    second: Building_tilemap_005_blacklines_DARKGREY_4
+  - first:
+      213: -5349521294058117390
+    second: Building_tilemap_005_blacklines_DARKGREY_5
+  - first:
+      213: -4696665285858200610
+    second: Building_tilemap_005_blacklines_DARKGREY_6
+  - first:
+      213: 4337329683317737515
+    second: Building_tilemap_005_blacklines_DARKGREY_7
+  - first:
+      213: 4205469979426023347
+    second: Building_tilemap_005_blacklines_DARKGREY_8
+  - first:
+      213: -1684992348548453920
+    second: Building_tilemap_005_blacklines_DARKGREY_9
+  - first:
+      213: -1665381316368417491
+    second: Building_tilemap_005_blacklines_DARKGREY_10
+  - first:
+      213: 3779657881796558524
+    second: Building_tilemap_005_blacklines_DARKGREY_11
+  - first:
+      213: -541626043631559338
+    second: Building_tilemap_005_blacklines_DARKGREY_12
+  - first:
+      213: -3443341737551424191
+    second: Building_tilemap_005_blacklines_DARKGREY_13
+  - first:
+      213: 3740152268605436447
+    second: Building_tilemap_005_blacklines_DARKGREY_14
+  - first:
+      213: 3981463829738213474
+    second: Building_tilemap_005_blacklines_DARKGREY_15
+  - first:
+      213: -7035608443497495885
+    second: Building_tilemap_005_blacklines_DARKGREY_16
+  - first:
+      213: 432990419300269658
+    second: Building_tilemap_005_blacklines_DARKGREY_17
+  - first:
+      213: -2883545809667305022
+    second: Building_tilemap_005_blacklines_DARKGREY_18
+  - first:
+      213: -6275575177449828924
+    second: Building_tilemap_005_blacklines_DARKGREY_19
+  - first:
+      213: 8114538296937004735
+    second: Building_tilemap_005_blacklines_DARKGREY_20
+  - first:
+      213: -7696460744276866595
+    second: Building_tilemap_005_blacklines_DARKGREY_21
+  - first:
+      213: -7438312495112654549
+    second: Building_tilemap_005_blacklines_DARKGREY_22
+  - first:
+      213: -6616074116357438961
+    second: Building_tilemap_005_blacklines_DARKGREY_23
+  - first:
+      213: -1784944009275028039
+    second: Building_tilemap_005_blacklines_DARKGREY_24
+  - first:
+      213: -3188162542964905820
+    second: Building_tilemap_005_blacklines_DARKGREY_25
+  - first:
+      213: -2598444685660151499
+    second: Building_tilemap_005_blacklines_DARKGREY_26
+  - first:
+      213: -6097561798849410830
+    second: Building_tilemap_005_blacklines_DARKGREY_27
+  - first:
+      213: 4094552837987351315
+    second: Building_tilemap_005_blacklines_DARKGREY_28
+  - first:
+      213: -7951221642045274537
+    second: Building_tilemap_005_blacklines_DARKGREY_29
+  - first:
+      213: -1718786890218409890
+    second: Building_tilemap_005_blacklines_DARKGREY_30
+  - first:
+      213: -6490916008495628050
+    second: Building_tilemap_005_blacklines_DARKGREY_31
+  - first:
+      213: 3774483271569772691
+    second: Building_tilemap_005_blacklines_DARKGREY_32
+  - first:
+      213: -2694634875945458315
+    second: Building_tilemap_005_blacklines_DARKGREY_33
+  - first:
+      213: 2779940595533757591
+    second: Building_tilemap_005_blacklines_DARKGREY_34
+  - first:
+      213: 8625639484584265327
+    second: Building_tilemap_005_blacklines_DARKGREY_35
+  - first:
+      213: 4799858813418378811
+    second: Building_tilemap_005_blacklines_DARKGREY_36
+  - first:
+      213: -5809367699910310959
+    second: Building_tilemap_005_blacklines_DARKGREY_37
+  - first:
+      213: 2650384791164275905
+    second: Building_tilemap_005_blacklines_DARKGREY_38
+  - first:
+      213: 6526207208252624088
+    second: Building_tilemap_005_blacklines_DARKGREY_39
+  - first:
+      213: -8917617627138856584
+    second: Building_tilemap_005_blacklines_DARKGREY_40
+  - first:
+      213: 4227614822979352938
+    second: Building_tilemap_005_blacklines_DARKGREY_41
+  - first:
+      213: -3932774093816925071
+    second: Building_tilemap_005_blacklines_DARKGREY_42
+  - first:
+      213: 1589853481377770605
+    second: Building_tilemap_005_blacklines_DARKGREY_43
+  - first:
+      213: 1630182750143585159
+    second: Building_tilemap_005_blacklines_DARKGREY_44
+  - first:
+      213: -2096418772967309930
+    second: Building_tilemap_005_blacklines_DARKGREY_45
+  - first:
+      213: -7039566718887310749
+    second: Building_tilemap_005_blacklines_DARKGREY_46
+  - first:
+      213: 8306683412492581683
+    second: Building_tilemap_005_blacklines_DARKGREY_47
+  - first:
+      213: 9073621245281024754
+    second: Building_tilemap_005_blacklines_DARKGREY_48
+  - first:
+      213: 5309595914845435609
+    second: Building_tilemap_005_blacklines_DARKGREY_49
+  - first:
+      213: -9007187396519891134
+    second: Building_tilemap_005_blacklines_DARKGREY_50
+  - first:
+      213: -1797624997065482173
+    second: Building_tilemap_005_blacklines_DARKGREY_51
+  - first:
+      213: 1713814512391494468
+    second: Building_tilemap_005_blacklines_DARKGREY_52
+  - first:
+      213: 5352911973447521292
+    second: Building_tilemap_005_blacklines_DARKGREY_53
+  - first:
+      213: -6206071604120882607
+    second: Building_tilemap_005_blacklines_DARKGREY_54
+  - first:
+      213: -3311904113755247228
+    second: Building_tilemap_005_blacklines_DARKGREY_55
+  - first:
+      213: -4544733075673748830
+    second: Building_tilemap_005_blacklines_DARKGREY_56
+  - first:
+      213: 8084475744996157689
+    second: Building_tilemap_005_blacklines_DARKGREY_57
+  - first:
+      213: 5521983658379534782
+    second: Building_tilemap_005_blacklines_DARKGREY_58
+  - first:
+      213: 1668536378278736879
+    second: Building_tilemap_005_blacklines_DARKGREY_59
+  - first:
+      213: -2853810745265601357
+    second: Building_tilemap_005_blacklines_DARKGREY_60
+  - first:
+      213: -4762753992910775138
+    second: Building_tilemap_005_blacklines_DARKGREY_61
+  - first:
+      213: 4595931485385452669
+    second: Building_tilemap_005_blacklines_DARKGREY_62
+  - first:
+      213: 161315597787273751
+    second: Building_tilemap_005_blacklines_DARKGREY_63
+  - first:
+      213: -5336363649496227774
+    second: Building_tilemap_005_blacklines_DARKGREY_64
+  - first:
+      213: -3715953757045238890
+    second: Building_tilemap_005_blacklines_DARKGREY_65
+  - first:
+      213: 1932017844829566591
+    second: Building_tilemap_005_blacklines_DARKGREY_66
+  - first:
+      213: -2287995898375599183
+    second: Building_tilemap_005_blacklines_DARKGREY_67
+  - first:
+      213: 1114664544128605548
+    second: Building_tilemap_005_blacklines_DARKGREY_68
+  - first:
+      213: -8067985638564042673
+    second: Building_tilemap_005_blacklines_DARKGREY_69
+  - first:
+      213: 8521434937867308306
+    second: Building_tilemap_005_blacklines_DARKGREY_70
+  - first:
+      213: 8175223198080576762
+    second: Building_tilemap_005_blacklines_DARKGREY_71
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6488b2ebdd969160800000000000000
+      internalID: 7031981435912750190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d339cfd36b55ac0800000000000000
+      internalID: -3866984327680934616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df665aecf85a4cb0800000000000000
+      internalID: -4878989403015974960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36bb7c8a447054b30800000000000000
+      internalID: 4270827813101615971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a401eb34173dbbe70800000000000000
+      internalID: 9132125152845107274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f6274dd9bea2c5b0800000000000000
+      internalID: -5349521294058117390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed373877ec712deb0800000000000000
+      internalID: -4696665285858200610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2849e7ed5a413c30800000000000000
+      internalID: 4337329683317737515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1854
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b7e14d2aa4dc5a30800000000000000
+      internalID: 4205469979426023347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9a48fe264bd98e0800000000000000
+      internalID: -1684992348548453920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2db94e248063e8e0800000000000000
+      internalID: -1665381316368417491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_11
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe3df861da047430800000000000000
+      internalID: 3779657881796558524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65d9d34abf1cb78f0800000000000000
+      internalID: -541626043631559338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_13
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14598fceeeac630d0800000000000000
+      internalID: -3443341737551424191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_14
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1239101ca0b7e330800000000000000
+      internalID: 3740152268605436447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 260dc992240014730800000000000000
+      internalID: 3981463829738213474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_16
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b2c79a956f7c5e90800000000000000
+      internalID: -7035608443497495885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_17
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1598
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e3a850e7a420600800000000000000
+      internalID: 432990419300269658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1d6312d569bf7d0800000000000000
+      internalID: -2883545809667305022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd08d220ada8e8a0800000000000000
+      internalID: -6275575177449828924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_20
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbebb31a691ac9070800000000000000
+      internalID: 8114538296937004735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_21
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd983ad0bbda03590800000000000000
+      internalID: -7696460744276866595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_22
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b21f570123ec5c890800000000000000
+      internalID: -7438312495112654549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_23
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f02cbd605abfe24a0800000000000000
+      internalID: -6616074116357438961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_24
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd433f61ea9a37e0800000000000000
+      internalID: -1784944009275028039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_25
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a8ee5c0f0f51c3d0800000000000000
+      internalID: -3188162542964905820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_26
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1342
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531a9b6535870fbd0800000000000000
+      internalID: -2598444685660151499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f8c697a9db116ba0800000000000000
+      internalID: -6097561798849410830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31bbd4ebc16c2d830800000000000000
+      internalID: 4094552837987351315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_29
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7564e7f3b0697a190800000000000000
+      internalID: -7951221642045274537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_30
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e50feeb0e64a528e0800000000000000
+      internalID: -1718786890218409890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_31
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0c8b6d742abe5a0800000000000000
+      internalID: -6490916008495628050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_32
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39012949988a16430800000000000000
+      internalID: 3774483271569772691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_33
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57564eb6bdbba9ad0800000000000000
+      internalID: -2694634875945458315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_34
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79c3a7d2e35549620800000000000000
+      internalID: 2779940595533757591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_35
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1086
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f668a3f196d64b770800000000000000
+      internalID: 8625639484584265327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3694d9f8268c9240800000000000000
+      internalID: 4799858813418378811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_37
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3c7353bdaf06fa0800000000000000
+      internalID: -5809367699910310959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_38
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ccc17bdcee08c420800000000000000
+      internalID: 2650384791164275905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_39
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dccd7ae0eeb19a50800000000000000
+      internalID: 6526207208252624088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_40
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87960a304024e3480800000000000000
+      internalID: -8917617627138856584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_41
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a693cda58418baa30800000000000000
+      internalID: 4227614822979352938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_42
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174fe246ccafb69c0800000000000000
+      internalID: -3932774093816925071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_43
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ca072615b401610800000000000000
+      internalID: 1589853481377770605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_44
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 830
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b174df2929f9610800000000000000
+      internalID: 1630182750143585159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69db2d8bb3608e2e0800000000000000
+      internalID: -2096418772967309930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_46
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36a4f0ccd5f6e4e90800000000000000
+      internalID: -7039566718887310749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_47
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33bff3f8d84474370800000000000000
+      internalID: 8306683412492581683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_48
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fab96fc27afbed70800000000000000
+      internalID: 9073621245281024754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_49
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d63a356a597fa940800000000000000
+      internalID: 5309595914845435609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_50
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f6e05f8ca000380800000000000000
+      internalID: -9007187396519891134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_51
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 340ac82e69d8d07e0800000000000000
+      internalID: -1797624997065482173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_52
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b11060831b8c710800000000000000
+      internalID: 1713814512391494468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_53
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 574
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c045643341d594a40800000000000000
+      internalID: 5352911973447521292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1527cb9d1ca9fd9a0800000000000000
+      internalID: -6206071604120882607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_55
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48da67971c0c902d0800000000000000
+      internalID: -3311904113755247228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_56
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa6f71c85ddde0c0800000000000000
+      internalID: -4544733075673748830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_57
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f8e1cf4bd3d13070800000000000000
+      internalID: 8084475744996157689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_58
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1693d61e602ac40800000000000000
+      internalID: 5521983658379534782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_59
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3fe1aeef4d72710800000000000000
+      internalID: 1668536378278736879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_60
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b440405f3a3568d0800000000000000
+      internalID: -2853810745265601357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_61
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cdaf34a7c47edb0800000000000000
+      internalID: -4762753992910775138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_62
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 318
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7cee6ee55708cf30800000000000000
+      internalID: 4595931485385452669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71a17d67eab1d3200800000000000000
+      internalID: 161315597787273751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_64
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2406877b88d61f5b0800000000000000
+      internalID: -5336363649496227774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_65
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6935a85feb74e6cc0800000000000000
+      internalID: -3715953757045238890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_66
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7638cc5ef7efca10800000000000000
+      internalID: 1932017844829566591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_67
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bb85cd4ad76f30e0800000000000000
+      internalID: -2287995898375599183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_68
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d12844f75187f00800000000000000
+      internalID: 1114664544128605548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_69
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f48ef68cec1c80090800000000000000
+      internalID: -8067985638564042673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_70
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21d0f207de7324670800000000000000
+      internalID: 8521434937867308306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_tilemap_005_blacklines_DARKGREY_71
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 62
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc20293f2a347170800000000000000
+      internalID: 8175223198080576762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
