@@ -26,7 +26,6 @@ public class OniIdleState : FSMState
 
         if (enteredState)
         {
-            Debug.Log("Oni Idle");
             enteredState = false;
             oc.StartCoroutine(IdleTimer(oc));
         }
