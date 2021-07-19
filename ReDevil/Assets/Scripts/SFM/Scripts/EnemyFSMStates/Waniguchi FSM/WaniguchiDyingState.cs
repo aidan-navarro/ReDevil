@@ -33,7 +33,7 @@ public class WaniguchiDyingState : FSMState
         if (!enterDeath)
         {
             anim.SetTrigger("Death");
-
+            wc.ActivateDeathParticles();
             enterDeath = true;
         }
     }

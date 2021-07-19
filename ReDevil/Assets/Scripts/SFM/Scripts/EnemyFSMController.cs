@@ -66,6 +66,13 @@ public class EnemyFSMController : AdvancedFSM
     [SerializeField] protected bool enemyFlinch;
     public bool GetEnemyFlinch() { return enemyFlinch; }
     public void SetEnemyFlinch(bool inEnemyFlinch) { enemyFlinch = inEnemyFlinch; }
+    
+    // Particle System... part of the enemy fsm? or perhaps something i can toy with in the animator
+    [SerializeField] private ParticleSystem m_particles;
+    [SerializeField] private Vector3 deathParticlesSpawnPos;
+    public ParticleSystem GetParticles() { return m_particles; }
+
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -219,6 +226,18 @@ public class EnemyFSMController : AdvancedFSM
         }
     }
 
+    public void ActivateDeathParticles()
+    {
+        int direction = 0;
+        if (facingRight)
+        { direction = -1; }
+        else
+        {
+            direction = 1;
+        }
+        Instantiate(m_particles, (deathParticlesSpawnPos * direction) + transform.position, Quaternion.Euler(-90f, 0.0f, 0.0f));
+
+    }
     public void Killed()
     {
         Destroy(this.gameObject);
@@ -227,7 +246,16 @@ public class EnemyFSMController : AdvancedFSM
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(m_vDebugGround, 0.1f);
+        //Gizmos.color = Color.green;
+        int direction = 0;
+        if (facingRight)
+        { direction = -1; }
+        else
+        {
+            direction = 1;
+        }
         Gizmos.color = Color.green;
+        Gizmos.DrawSphere((deathParticlesSpawnPos * direction) + transform.position, 0.05f);
 
     }
 }

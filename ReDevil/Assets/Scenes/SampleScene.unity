@@ -1033,6 +1033,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1268441801, guid: 362ebfc693b1ff64185bf4b00c123f5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 105658685744569389, guid: 362ebfc693b1ff64185bf4b00c123f5f,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -4233,9 +4237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4828ec8c4e80dc749a9597fb2ea5cd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cpNotTriggered: {fileID: 21300000, guid: fc6d54c5a09edc148b107cff1c20f2ea, type: 3}
-  cpTriggered: {fileID: 21300000, guid: cf768de892600084494e55b4c41db2cf, type: 3}
   cpReached: 0
+  animator: {fileID: 0}
 --- !u!58 &1350272901
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4339,6 +4342,17 @@ PrefabInstance:
         type: 3}
       propertyPath: health
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055195221196047188, guid: 753d3bcb76d3a4d4783a37665718358d,
+        type: 3}
+      propertyPath: m_particles
+      value: 
+      objectReference: {fileID: 931274754222382483, guid: 9b4c13fad1f8b1a4a83225eccec2ba64,
+        type: 3}
+    - target: {fileID: 2055195221196047188, guid: 753d3bcb76d3a4d4783a37665718358d,
+        type: 3}
+      propertyPath: deathParticlesSpawnPos.x
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 2672422898649518013, guid: 753d3bcb76d3a4d4783a37665718358d,
         type: 3}
@@ -4874,9 +4888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4828ec8c4e80dc749a9597fb2ea5cd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cpNotTriggered: {fileID: 21300000, guid: fc6d54c5a09edc148b107cff1c20f2ea, type: 3}
-  cpTriggered: {fileID: 21300000, guid: cf768de892600084494e55b4c41db2cf, type: 3}
   cpReached: 0
+  animator: {fileID: 0}
 --- !u!58 &1883128642
 CircleCollider2D:
   m_ObjectHideFlags: 0

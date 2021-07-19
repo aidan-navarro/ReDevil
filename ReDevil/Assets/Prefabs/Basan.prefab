@@ -123,6 +123,9 @@ MonoBehaviour:
   airborneEnemy: 0
   isHit: 0
   enemyFlinch: 0
+  m_particles: {fileID: 931274754222382483, guid: 9b4c13fad1f8b1a4a83225eccec2ba64,
+    type: 3}
+  deathParticlesSpawnPos: {x: 0.22, y: 0, z: 0}
   flamethrower: {fileID: 2356310727318964796, guid: 4c8e5de6a4e08814db88610f89f0128b,
     type: 3}
   firepoint: {fileID: 7762641877270609394}
