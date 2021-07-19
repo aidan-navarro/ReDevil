@@ -27,6 +27,9 @@ public class KnockbackState : FSMState
         timer = pc.GetComponent<InvincibleTimer>();
         pc.SetKbTransition(false);
 
+        // just in case there's a moment where player gets hit during the middle of a dash knockback transition
+        pc.SetDKBTransition(false);
+
         //if we are not invincible, do the following
         if(!pc.GetInvincible())
         {
