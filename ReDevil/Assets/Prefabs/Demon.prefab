@@ -955,6 +955,8 @@ MonoBehaviour:
   airborneEnemy: 0
   isHit: 0
   enemyFlinch: 0
+  m_particles: {fileID: 0}
+  deathParticlesSpawnPos: {x: 0, y: 0, z: 0}
   pillarPrehab: {fileID: 8029492881868461989, guid: fea67d519576ba646b5e30b557c6eb5a,
     type: 3}
   boulderPillarPrehab: {fileID: 5654116121971536337, guid: 7c8991bb819d6bf43a77d6da4ba88b69,

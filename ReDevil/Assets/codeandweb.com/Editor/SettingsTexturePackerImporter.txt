@@ -3,15 +3,18 @@ importPivots: 1
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 - Assets/Sprites/Basan/Basan Sprites.tpsheet
+- Assets/Sprites/Chochin Obake/Chochin Obake Fireball.tpsheet
 - Assets/Sprites/Test Sprites/WaniguchiTest/IdleTest.tpsheet
 - Assets/Sprites/Waniguchi/Waniguchi Sprites.tpsheet
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
 - Assets/Sprites/Basan/Basan Sprites.png
+- Assets/Sprites/Chochin Obake/Chochin Obake Fireball.png
 - Assets/Sprites/Test Sprites/WaniguchiTest/IdleTest.png
 - Assets/Sprites/Waniguchi/Waniguchi Sprites.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
 - 
 - 
 - 
