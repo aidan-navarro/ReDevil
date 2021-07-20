@@ -211,6 +211,7 @@ MonoBehaviour:
   touchBox: {fileID: 140899061}
   canContinue: 0
   waitTime: 2
+  ReturnSceneName: SampleScene
 --- !u!4 &140899060
 Transform:
   m_ObjectHideFlags: 0
@@ -408,7 +409,7 @@ PrefabInstance:
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: DashIcon2
       value: 
-      objectReference: {fileID: 1563507170}
+      objectReference: {fileID: 0}
     - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: PauseMenu
       value: 
@@ -1046,6 +1047,11 @@ PrefabInstance:
       objectReference: {fileID: 1918945427}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
       propertyPath: firepointSpawnBufferX
       value: 0.4
       objectReference: {fileID: 0}
@@ -1451,6 +1457,7 @@ MonoBehaviour:
   touchBox: {fileID: 0}
   canContinue: 0
   waitTime: 1
+  ReturnSceneName: 
 --- !u!95 &1314630654
 Animator:
   serializedVersion: 3
@@ -1709,12 +1716,6 @@ PrefabInstance:
 --- !u!1 &1563507169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 334789607312338688, guid: 362ebfc693b1ff64185bf4b00c123f5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1563507168}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1563507170 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1136330149723544916, guid: 362ebfc693b1ff64185bf4b00c123f5f,
     type: 3}
   m_PrefabInstance: {fileID: 1563507168}
   m_PrefabAsset: {fileID: 0}

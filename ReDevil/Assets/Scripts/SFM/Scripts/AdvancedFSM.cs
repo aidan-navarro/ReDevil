@@ -74,6 +74,7 @@ public enum Transition
     OniJumpSmash,
     OniJumpAway,
     OniEnraged,
+    OniDeath,
 
     NurikabeIdle,
     NurikabeRise,
@@ -152,6 +153,7 @@ public enum FSMStateID
     OniJumpSmashing,
     OniJumpAway,
     OniEnraged,
+    OniDeath,
 
     // Nurikabe
     NurikabeIdling,
