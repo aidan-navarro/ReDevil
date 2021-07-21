@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TipTextChanger : MonoBehaviour
 {
 
     [SerializeField] int maxIndex;
     public string[] tipsText;
-    public Text text;
+    public TextMeshProUGUI text;
     public int index;
     public float timer;
     public float maxTime;

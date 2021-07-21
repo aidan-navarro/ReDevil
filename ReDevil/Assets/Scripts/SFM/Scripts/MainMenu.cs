@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.UI;
 
 //This script holds all functions that are used on the main menu buttons
 public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
@@ -12,6 +13,8 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
     public GameplayControls controls;
 
     public GameObject credits, title, play, quit, creditsButton;
+
+    public Button closeCredits, playButton;
 
     public bool creditsToggled = false;
 
@@ -44,9 +47,13 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 
     public void CreditsOption()
     {
-        Debug.Log("Credits overlay opens here");
+        title.SetActive(false);
+        play.SetActive(false);
+        quit.SetActive(false);
+        creditsButton.SetActive(false);
         credits.SetActive(true);
-        creditsToggled = true;
+
+        closeCredits.Select();
     }
 
     public void QuitOption()
@@ -57,27 +64,13 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 
     public void CreditsOverlay()
     {
-        creditsToggled = false;
+        title.SetActive(true);
+        play.SetActive(true);
+        quit.SetActive(true);
+        creditsButton.SetActive(true);
+        credits.SetActive(false);
+
+        playButton.Select();
     }
 
-    public void Update()
-    {
-       if(creditsToggled == true)
-        {
-            title.SetActive(false);
-            play.SetActive(false);
-            quit.SetActive(false);
-            creditsButton.SetActive(false);
-            credits.SetActive(true);
-        }
-
-       if (creditsToggled == false)
-        {
-            title.SetActive(true);
-            play.SetActive(true);
-            quit.SetActive(true);
-            creditsButton.SetActive(true);
-            credits.SetActive(false);
-        }
-    }
 }
