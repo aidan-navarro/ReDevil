@@ -21,14 +21,17 @@ public class NodeppouAttackState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         NodeppouFSMController ec = npc.GetComponent<NodeppouFSMController>();
+        Animator anim = ec.GetComponent<Animator>();
         if(bulletFired)
         {
             bulletFired = false;
         }
 
-        if(!bulletFired)
+        if(!bulletFired && !ec.GetEnemyFlinch())
         {
-            ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, ec.atkDirectionRight, ec.projectileSpeed);
+            // play the animation instead and have the animation call the instantiate projectile function
+            anim.SetBool("Attacking", true);
+            //ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, ec.atkDirectionRight, ec.projectileSpeed);
         }
         
         bulletFired = true;
@@ -40,7 +43,7 @@ public class NodeppouAttackState : FSMState
     {
         NodeppouFSMController ec = npc.GetComponent<NodeppouFSMController>();
 
-        if(bulletFired)
+        if (bulletFired)
         {
             ec.PerformTransition(Transition.NodeppouIdle); 
         }
@@ -53,7 +56,7 @@ public class NodeppouAttackState : FSMState
         //dead transition
         if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.NodeppouDead);
         }
     }
 }

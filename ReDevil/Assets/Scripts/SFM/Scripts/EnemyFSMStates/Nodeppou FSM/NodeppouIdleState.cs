@@ -17,6 +17,9 @@ public class NodeppouIdleState : EnemyIdleState
         base.Act(player, npc);
 
         NodeppouFSMController nc = npc.GetComponent<NodeppouFSMController>();
+        Animator anim = nc.GetComponent<Animator>();
+
+        anim.SetBool("Attacking", false);
 
         if (nc.GetIsHit())
         {
@@ -44,7 +47,7 @@ public class NodeppouIdleState : EnemyIdleState
         //dead transition
         if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.NodeppouDead);
         }
     }
 }

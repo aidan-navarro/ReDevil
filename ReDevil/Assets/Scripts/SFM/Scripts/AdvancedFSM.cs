@@ -46,6 +46,7 @@ public enum Transition
     NodeppouIdle,
     NodeppouFlinch,
     NodeppouAttack,
+    NodeppouDead,
 
     ShutenDojiIdle,
     ShutenDojiAttack,
@@ -119,6 +120,7 @@ public enum FSMStateID
     NodeppouIdling,
     NodeppouFlinching, // flinching
     NodeppouAttacking,
+    NodeppouDying,
 
     //ShutenDoji
     ShutenDojiIdling,

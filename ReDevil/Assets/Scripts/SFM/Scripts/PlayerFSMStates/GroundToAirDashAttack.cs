@@ -52,25 +52,25 @@ public class GroundToAirDashAttack : FSMState
 
             pc.SetDashStartPos(pc.transform.position);
 
-            // must change this logic as well
-            if (pc.moveVector.x > 0f)
-            {
-                pc.direction = 1;
-                pc.facingLeft = false;
+            //// must change this logic as well
+            //if (pc.moveVector.x > 0f)
+            //{
+            //    pc.direction = 1;
+            //    pc.facingLeft = false;
 
-                pc.FlipPlayer();
-            }
-            else if (pc.moveVector.x < 0f)
-            {
-                pc.direction = -1;
-                pc.facingLeft = true;
+            //    pc.FlipPlayer();
+            //}
+            //else if (pc.moveVector.x < 0f)
+            //{
+            //    pc.direction = -1;
+            //    pc.facingLeft = true;
 
-                pc.FlipPlayer();
-            }
-            else
-            {
+            //    pc.FlipPlayer();
+            //}
+            //else
+            //{
 
-            }
+            //}
         }
 
         // total distance of dash... make a different length?

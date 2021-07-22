@@ -59,25 +59,6 @@ public class AirDashAttack : FSMState
             pc.GetRigidbody2D().gravityScale = 0;
 
             pc.SetDashStartPos(pc.transform.position);
-
-            //// must change this logic as well
-            ///
-            // may not need it
-            //
-            //if (pc.moveVector.x > 0f)
-            //{
-            //    pc.direction = 1;
-            //    pc.facingLeft = false;
-
-            //    //pc.FlipPlayer();
-            //} 
-            //else if (pc.moveVector.x < 0f)
-            //{
-            //    pc.direction = -1;
-            //    pc.facingLeft = true;
-
-            //    //pc.FlipPlayer();
-            //}
          
         }
         // total distance of dash... make a different length?
