@@ -10763,6 +10763,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nodeppou (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4695725541999158842, guid: fd3494471fc3da947b543fad238cd91e,
+        type: 3}
+      propertyPath: knockbackVel.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6015329603617948162, guid: fd3494471fc3da947b543fad238cd91e,
         type: 3}
       propertyPath: m_RootOrder
@@ -19079,7 +19084,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 27
-      m_TileSpriteIndex: 27
+      m_TileSpriteIndex: 31
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -22989,7 +22994,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 26
-      m_TileSpriteIndex: 25
+      m_TileSpriteIndex: 30
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -26826,25 +26831,25 @@ Tilemap:
   - m_RefCount: 91
     m_Data: {fileID: 3828630112128861375, guid: 30712a8eb66fcb24084af13d2ca78f95,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -9067110159828729504, guid: 30712a8eb66fcb24084af13d2ca78f95,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 147
     m_Data: {fileID: -7465560871786056597, guid: 30712a8eb66fcb24084af13d2ca78f95,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -3351671991572914554, guid: 30712a8eb66fcb24084af13d2ca78f95,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: 5131037097426012241, guid: 30712a8eb66fcb24084af13d2ca78f95,
       type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1322771070472484857, guid: 96de0b614f9185046a0824b319cfa7d7,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -9067110159828729504, guid: 30712a8eb66fcb24084af13d2ca78f95,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -3351671991572914554, guid: 30712a8eb66fcb24084af13d2ca78f95,
+      type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1402
     m_Data:
@@ -45280,7 +45285,7 @@ PrefabInstance:
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.078398
+      value: 6.135601
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -67802,7 +67807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774211328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 344.6, y: 31.2, z: 0}
+  m_LocalPosition: {x: 344.7, y: 31.2, z: 0}
   m_LocalScale: {x: 36.162495, y: 10.422568, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
