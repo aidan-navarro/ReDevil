@@ -154,7 +154,7 @@ MonoBehaviour:
   m_particles: {fileID: 931274754222382483, guid: 9b4c13fad1f8b1a4a83225eccec2ba64,
     type: 3}
   deathParticlesSpawnPos: {x: 0, y: 0, z: 0}
-  bullet: {fileID: 6037910996505951, guid: 00248696111dd5648ba94cc91d1b8bb9, type: 3}
+  bullet: {fileID: 6037910996505951, guid: b9016e9b8c2b95c4c85871a9beb9bf89, type: 3}
   firepoint: {fileID: 7628134607034346793}
   knockbackVel: {x: 0, y: 1}
   deathConfirmed: 0
