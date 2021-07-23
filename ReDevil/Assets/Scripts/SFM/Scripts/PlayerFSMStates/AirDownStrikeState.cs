@@ -30,6 +30,10 @@ public class AirDownStrikeState : FSMState
             patk.AirDownStrikeAttack();
             attackStarted = true;
         }
+        if (pc.GetisGrounded())
+        {
+            pc.SetFrictionMaterial();
+        }
 
         //check for a knockback cancel
         patk.CheckKnockbackCancel();

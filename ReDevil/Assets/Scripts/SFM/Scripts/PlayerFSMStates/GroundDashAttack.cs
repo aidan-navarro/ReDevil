@@ -152,6 +152,7 @@ public class GroundDashAttack : FSMState
             {
                 Debug.Log("Dash Distance Reached");
                 pc.SetCanDash(true);
+                pc.GetRigidbody2D().velocity = new Vector2(0, 0);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
                 endDash = true;

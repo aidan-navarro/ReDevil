@@ -14,10 +14,17 @@ public class NodeppouFlinchState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         NodeppouFSMController nc = npc.GetComponent<NodeppouFSMController>();
+        Animator anim = nc.GetComponent<Animator>();
         et = nc.GetComponent<EnemyTimer>();
 
         nc.FlinchEnemy(nc.GetKnockbackVel());
-        nc.SetEnemyFlinch(false);
+
+        if (nc.GetEnemyFlinch())
+        {
+            anim.SetTrigger("FlinchTrigger");
+            nc.SetEnemyFlinch(false);
+        }
+
         et.StartCoroutine("EnemyKnockbackTimer");
 
         nc.TouchingFloor();
@@ -36,7 +43,7 @@ public class NodeppouFlinchState : FSMState
 
         if (nc.health <= 0)
         {
-            nc.PerformTransition(Transition.EnemyNoHealth);
+            nc.PerformTransition(Transition.NodeppouDead);
         }
     }
 }

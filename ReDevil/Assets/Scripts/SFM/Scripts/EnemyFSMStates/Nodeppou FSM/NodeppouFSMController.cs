@@ -11,6 +11,14 @@ public class NodeppouFSMController : EnemyFSMController
     private Vector2 knockbackVel;
     public Vector2 GetKnockbackVel() { return knockbackVel; }
 
+    // Death Specific... place in EnemyFSM???
+    [SerializeField] private bool deathConfirmed;
+    public bool GetDeathConfirmed() { return deathConfirmed; }
+    public void SetDeathConfirmed(bool inDeathConfirmed)
+    {
+        deathConfirmed = inDeathConfirmed;
+    }
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -50,15 +58,19 @@ public class NodeppouFSMController : EnemyFSMController
         //add transitions
         enemyIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
         enemyIdle.AddTransition(Transition.NodeppouFlinch, FSMStateID.NodeppouFlinching);
-        enemyIdle.AddTransition(Transition.NodeppouAttack, FSMStateID.NodeppouAttacking); //transition to attacking state
+        enemyIdle.AddTransition(Transition.NodeppouAttack, FSMStateID.NodeppouAttacking);//transition to attacking state
+        enemyIdle.AddTransition(Transition.NodeppouDead, FSMStateID.NodeppouDying); 
 
         NodeppouAttackState ndpAttack = new NodeppouAttackState();
         ndpAttack.AddTransition(Transition.NodeppouIdle, FSMStateID.NodeppouIdling);
         ndpAttack.AddTransition(Transition.NodeppouFlinch, FSMStateID.NodeppouFlinching);
-        ndpAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        ndpAttack.AddTransition(Transition.NodeppouDead, FSMStateID.NodeppouDying);
 
         NodeppouFlinchState ndpFlinch = new NodeppouFlinchState();
         ndpFlinch.AddTransition(Transition.NodeppouIdle, FSMStateID.NodeppouIdling);
+        ndpFlinch.AddTransition(Transition.NodeppouDead, FSMStateID.NodeppouDying);
+
+        NodeppouDyingState ndpDying = new NodeppouDyingState();
         ndpFlinch.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         //Create the Dead state
@@ -70,8 +82,15 @@ public class NodeppouFSMController : EnemyFSMController
         AddFSMState(enemyIdle);
         AddFSMState(ndpAttack);
         AddFSMState(ndpFlinch);
+        AddFSMState(ndpDying);
         AddFSMState(enemyDead);
 
+    }
+
+    // animator must call a void function with no parameters
+    public void NodeppouProjectile()
+    {
+        InstantiateProjectile(bullet, firepoint.position, firepoint.rotation, atkDirectionRight, projectileSpeed);
     }
 
     public override void FlinchEnemy(Vector2 flinchKB)
@@ -86,4 +105,10 @@ public class NodeppouFSMController : EnemyFSMController
             rig.velocity = flinchKB;
         }
     }
+
+    public void ConfirmDeath()
+    {
+        deathConfirmed = true;
+    }
+
 }

@@ -179,7 +179,7 @@ TextureImporter:
       name: scaffolding_test_005_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 256
         y: 1027
         width: 256
         height: 256
@@ -200,7 +200,7 @@ TextureImporter:
       name: scaffolding_test_005_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 512
         y: 1027
         width: 256
         height: 256
@@ -221,7 +221,7 @@ TextureImporter:
       name: scaffolding_test_005_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 768
         y: 1027
         width: 256
         height: 256
@@ -242,7 +242,7 @@ TextureImporter:
       name: scaffolding_test_005_3
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1024
         y: 1027
         width: 256
         height: 256
@@ -263,8 +263,8 @@ TextureImporter:
       name: scaffolding_test_005_4
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1027
+        x: 256
+        y: 771
         width: 256
         height: 256
       alignment: 0
@@ -284,7 +284,7 @@ TextureImporter:
       name: scaffolding_test_005_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 512
         y: 771
         width: 256
         height: 256
@@ -305,7 +305,7 @@ TextureImporter:
       name: scaffolding_test_005_6
       rect:
         serializedVersion: 2
-        x: 256
+        x: 768
         y: 771
         width: 256
         height: 256
@@ -326,7 +326,7 @@ TextureImporter:
       name: scaffolding_test_005_7
       rect:
         serializedVersion: 2
-        x: 512
+        x: 1024
         y: 771
         width: 256
         height: 256
@@ -347,8 +347,8 @@ TextureImporter:
       name: scaffolding_test_005_8
       rect:
         serializedVersion: 2
-        x: 768
-        y: 771
+        x: 0
+        y: 515
         width: 256
         height: 256
       alignment: 0
@@ -368,8 +368,8 @@ TextureImporter:
       name: scaffolding_test_005_9
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 771
+        x: 256
+        y: 515
         width: 256
         height: 256
       alignment: 0
@@ -389,7 +389,7 @@ TextureImporter:
       name: scaffolding_test_005_10
       rect:
         serializedVersion: 2
-        x: 0
+        x: 512
         y: 515
         width: 256
         height: 256
@@ -410,7 +410,7 @@ TextureImporter:
       name: scaffolding_test_005_11
       rect:
         serializedVersion: 2
-        x: 256
+        x: 768
         y: 515
         width: 256
         height: 256
@@ -431,7 +431,7 @@ TextureImporter:
       name: scaffolding_test_005_12
       rect:
         serializedVersion: 2
-        x: 512
+        x: 1024
         y: 515
         width: 256
         height: 256
@@ -452,8 +452,8 @@ TextureImporter:
       name: scaffolding_test_005_13
       rect:
         serializedVersion: 2
-        x: 768
-        y: 515
+        x: 0
+        y: 259
         width: 256
         height: 256
       alignment: 0
@@ -473,8 +473,8 @@ TextureImporter:
       name: scaffolding_test_005_14
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 515
+        x: 256
+        y: 259
         width: 256
         height: 256
       alignment: 0
@@ -494,7 +494,7 @@ TextureImporter:
       name: scaffolding_test_005_15
       rect:
         serializedVersion: 2
-        x: 0
+        x: 512
         y: 259
         width: 256
         height: 256
@@ -515,7 +515,7 @@ TextureImporter:
       name: scaffolding_test_005_16
       rect:
         serializedVersion: 2
-        x: 256
+        x: 768
         y: 259
         width: 256
         height: 256
@@ -536,7 +536,7 @@ TextureImporter:
       name: scaffolding_test_005_17
       rect:
         serializedVersion: 2
-        x: 512
+        x: 1024
         y: 259
         width: 256
         height: 256
@@ -557,48 +557,6 @@ TextureImporter:
       name: scaffolding_test_005_18
       rect:
         serializedVersion: 2
-        x: 768
-        y: 259
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df11040f61309a500800000000000000
-      internalID: 407860638308635133
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scaffolding_test_005_19
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 259
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96eb4e72a2230f400800000000000000
-      internalID: 355839527201586793
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scaffolding_test_005_20
-      rect:
-        serializedVersion: 2
         x: 1024
         y: 3
         width: 256
@@ -610,8 +568,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 225ea2b86122e7470800000000000000
-      internalID: 8394184235684652322
+      spriteID: df11040f61309a500800000000000000
+      internalID: 407860638308635133
       vertices: []
       indices: 
       edges: []

@@ -1,0 +1,553 @@
+fileFormatVersion: 2
+guid: 50627502dbb59cd418b0245f131b26bd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1275177786427730656
+    second: scaffolding_Ramp_001_0
+  - first:
+      213: -8402071379655790275
+    second: scaffolding_Ramp_001_1
+  - first:
+      213: 5239768309775132320
+    second: scaffolding_Ramp_001_2
+  - first:
+      213: -4419821863980134723
+    second: scaffolding_Ramp_001_3
+  - first:
+      213: -1628236022725758467
+    second: scaffolding_Ramp_001_4
+  - first:
+      213: -3852185976250732190
+    second: scaffolding_Ramp_001_5
+  - first:
+      213: 5989590201511240833
+    second: scaffolding_Ramp_001_6
+  - first:
+      213: -2418393439597132892
+    second: scaffolding_Ramp_001_7
+  - first:
+      213: 9057682042623303177
+    second: scaffolding_Ramp_001_8
+  - first:
+      213: 6328967221142468145
+    second: scaffolding_Ramp_001_9
+  - first:
+      213: -588930381627905336
+    second: scaffolding_Ramp_001_10
+  - first:
+      213: -7452155692181314922
+    second: scaffolding_Ramp_001_11
+  - first:
+      213: 8980595627449281838
+    second: scaffolding_Ramp_001_12
+  - first:
+      213: -9208472719313609362
+    second: scaffolding_Ramp_001_13
+  - first:
+      213: -8873369673034630520
+    second: scaffolding_Ramp_001_14
+  - first:
+      213: -1556554475766528390
+    second: scaffolding_Ramp_001_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_0
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1027
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02591863f88ad4ee0800000000000000
+      internalID: -1275177786427730656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_1
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1027
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d31f326a898d56b80800000000000000
+      internalID: -8402071379655790275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 771
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6ee79248567b840800000000000000
+      internalID: 5239768309775132320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_3
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 771
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: -128}
+        - {x: 40.577194, y: -128}
+        - {x: 128, y: -83.99841}
+        - {x: 128, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe85f29e63a9a2c0800000000000000
+      internalID: -4419821863980134723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_4
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 771
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: 0}
+        - {x: -128, y: -83.99841}
+        - {x: -126.27294, y: -83.99841}
+        - {x: 128, y: 43.598297}
+        - {x: 128, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: df1bfeec6f75769e0800000000000000
+      internalID: -1628236022725758467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_5
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 771
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: 128}
+        - {x: -128, y: 43.598297}
+        - {x: 128, y: 59.673473}
+        - {x: 128, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26175dca3494a8ac0800000000000000
+      internalID: -3852185976250732190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 515
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 184ec37dd8c4f1350800000000000000
+      internalID: 5989590201511240833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 515
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: -128}
+        - {x: 39, y: -128}
+        - {x: 128, y: -83.80028}
+        - {x: 128, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a38da9daf3207ed0800000000000000
+      internalID: -2418393439597132892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 515
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: 0}
+        - {x: -128, y: -83.80028}
+        - {x: -126.03171, y: -83.80028}
+        - {x: 128, y: 43.79643}
+        - {x: 128, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e1ffef3d953bd70800000000000000
+      internalID: 9057682042623303177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_9
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 515
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136b943c72205d750800000000000000
+      internalID: 6328967221142468145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 259
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca22ad20f2b3d7f0800000000000000
+      internalID: -588930381627905336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 259
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: -128}
+        - {x: 40.05518, y: -127.808914}
+        - {x: 128, y: -82.59748}
+        - {x: 128, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 692a0a491ef949890800000000000000
+      internalID: -7452155692181314922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 259
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: 1}
+        - {x: -127.7993, y: -82.59748}
+        - {x: 128, y: 45}
+        - {x: 128, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d6a85542c71ac70800000000000000
+      internalID: 8980595627449281838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 259
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6ddf61b9dee43080800000000000000
+      internalID: -9208472719313609362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: 128}
+        - {x: -128, y: 60.267815}
+        - {x: 128, y: 60.267815}
+        - {x: 128, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88afb06ab457bd480800000000000000
+      internalID: -8873369673034630520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffolding_Ramp_001_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 3
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -127.6787, y: 128}
+        - {x: -127.6787, y: 60.267815}
+        - {x: -96.54247, y: 60.267815}
+        - {x: 38.04639, y: 127.58261}
+        - {x: 38.04639, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76446683f1066ae0800000000000000
+      internalID: -1556554475766528390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

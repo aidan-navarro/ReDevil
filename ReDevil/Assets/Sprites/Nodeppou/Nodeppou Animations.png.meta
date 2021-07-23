@@ -1,0 +1,862 @@
+fileFormatVersion: 2
+guid: 466e0b89f5bd146409893fecffe05ab8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6747172649196379162
+    second: Attack 1
+  - first:
+      213: 788942383804112981
+    second: Attack 2
+  - first:
+      213: -3956997830633155299
+    second: Attack 3
+  - first:
+      213: -4726717756779000426
+    second: Attack 4
+  - first:
+      213: 5069692756385249475
+    second: Attack 5
+  - first:
+      213: -5420584898237638016
+    second: Attack 8
+  - first:
+      213: 1568022984224192825
+    second: Attack 9
+  - first:
+      213: -559694594224500804
+    second: Attack 10
+  - first:
+      213: -5682287434850110701
+    second: Attack 11
+  - first:
+      213: -8303900602193580188
+    second: Attack 12
+  - first:
+      213: -4195463418915457419
+    second: Flinch 1
+  - first:
+      213: -8916312568025051251
+    second: Flinch 2
+  - first:
+      213: -4533791424740300781
+    second: Flinch 3
+  - first:
+      213: -715650263908412578
+    second: Flinch 4
+  - first:
+      213: 6094420707340450524
+    second: Flinch 5
+  - first:
+      213: 4917063301516837917
+    second: Flinch 6
+  - first:
+      213: 5544556250592111438
+    second: Flinch 7
+  - first:
+      213: -4831494886962406877
+    second: Flinch 8
+  - first:
+      213: 8656861905302313818
+    second: Flinch 9
+  - first:
+      213: -9217039764094678607
+    second: Idle 1
+  - first:
+      213: -9049329326073271048
+    second: Idle 2
+  - first:
+      213: -2213779565476403461
+    second: Idle 3
+  - first:
+      213: -358435236810343998
+    second: Idle 4
+  - first:
+      213: 9024932177014453384
+    second: Idle 5
+  - first:
+      213: -8292259831965733452
+    second: Idle 6
+  - first:
+      213: 4004456331477477666
+    second: Idle 7
+  - first:
+      213: -2697351507245136206
+    second: Idle 8
+  - first:
+      213: 7278296371789192952
+    second: Idle 9
+  - first:
+      213: -2437932773944901621
+    second: Idle 10
+  - first:
+      213: 2343130586174396503
+    second: Idle 11
+  - first:
+      213: -5411792742546144849
+    second: Idle 12
+  - first:
+      213: -2513240139872422364
+    second: Idle 13
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Attack 1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 7506
+        width: 1799
+        height: 685
+      alignment: 9
+      pivot: {x: 0.3513063, y: 0.00875912}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e32b6e393a3d52a0800000000000000
+      internalID: -6747172649196379162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 2
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 7495
+        width: 1685
+        height: 696
+      alignment: 9
+      pivot: {x: 0.37804154, y: 0.00718391}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 550e4e60be2e2fa00800000000000000
+      internalID: 788942383804112981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 3
+      rect:
+        serializedVersion: 2
+        x: 3489
+        y: 7481
+        width: 1580
+        height: 710
+      alignment: 9
+      pivot: {x: 0.4056962, y: 0.0084507}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d159e18207be519c0800000000000000
+      internalID: -3956997830633155299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 4
+      rect:
+        serializedVersion: 2
+        x: 5071
+        y: 7539
+        width: 1600
+        height: 652
+      alignment: 9
+      pivot: {x: 0.418125, y: 0.00920245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d08a15e33576eb0800000000000000
+      internalID: -4726717756779000426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 6854
+        width: 1801
+        height: 625
+      alignment: 9
+      pivot: {x: 0.38034424, y: 0.0096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8b6b893ba2b5640800000000000000
+      internalID: 5069692756385249475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 8
+      rect:
+        serializedVersion: 2
+        x: 1804
+        y: 6836
+        width: 1876
+        height: 643
+      alignment: 9
+      pivot: {x: 0.3640725, y: 0.00933126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08ad2b921c636c4b0800000000000000
+      internalID: -5420584898237638016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 9
+      rect:
+        serializedVersion: 2
+        x: 3682
+        y: 6823
+        width: 1875
+        height: 656
+      alignment: 9
+      pivot: {x: 0.36213332, y: 0.00914634}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 939b45ea89cb2c510800000000000000
+      internalID: 1568022984224192825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 10
+      rect:
+        serializedVersion: 2
+        x: 5559
+        y: 6817
+        width: 1833
+        height: 662
+      alignment: 9
+      pivot: {x: 0.3633388, y: 0.00906344}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbfca806bb09b38f0800000000000000
+      internalID: -559694594224500804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 6161
+        width: 1852
+        height: 654
+      alignment: 9
+      pivot: {x: 0.3488121, y: 0.00917431}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 313f71e1fa57421b0800000000000000
+      internalID: -5682287434850110701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack 12
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 6143
+        width: 1847
+        height: 672
+      alignment: 9
+      pivot: {x: 0.34380075, y: 0.00892857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46f6914f56e92cc80800000000000000
+      internalID: -8303900602193580188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 1
+      rect:
+        serializedVersion: 2
+        x: 3704
+        y: 6144
+        width: 1811
+        height: 671
+      alignment: 9
+      pivot: {x: 0.34180012, y: 0.008941878}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 576f56fbf38b6c5c0800000000000000
+      internalID: -4195463418915457419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 2
+      rect:
+        serializedVersion: 2
+        x: 5517
+        y: 6171
+        width: 1722
+        height: 644
+      alignment: 9
+      pivot: {x: 0.35133564, y: 0.00931677}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8f0484c5f4e24480800000000000000
+      internalID: -8916312568025051251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 5383
+        width: 1458
+        height: 758
+      alignment: 9
+      pivot: {x: 0.39300412, y: 0.007915568}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31864a268bcb411c0800000000000000
+      internalID: -4533791424740300781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 4
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 5308
+        width: 1451
+        height: 833
+      alignment: 9
+      pivot: {x: 0.40799448, y: 0.007202881}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e53135c60ef7116f0800000000000000
+      internalID: -715650263908412578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 5
+      rect:
+        serializedVersion: 2
+        x: 2914
+        y: 5293
+        width: 1490
+        height: 848
+      alignment: 9
+      pivot: {x: 0.40738255, y: 0.007075472}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdaffccf75bb39450800000000000000
+      internalID: 6094420707340450524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 6
+      rect:
+        serializedVersion: 2
+        x: 4406
+        y: 5313
+        width: 1559
+        height: 828
+      alignment: 9
+      pivot: {x: 0.3970494, y: 0.007246377}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d144501650bec3440800000000000000
+      internalID: 4917063301516837917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 7
+      rect:
+        serializedVersion: 2
+        x: 5967
+        y: 5363
+        width: 1625
+        height: 778
+      alignment: 9
+      pivot: {x: 0.38953847, y: 0.0077120825}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4be6b9988832fc40800000000000000
+      internalID: 5544556250592111438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 4658
+        width: 1726
+        height: 633
+      alignment: 9
+      pivot: {x: 0.36732328, y: 0.009478673}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32a5d78aff413fcb0800000000000000
+      internalID: -4831494886962406877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flinch 9
+      rect:
+        serializedVersion: 2
+        x: 1729
+        y: 4627
+        width: 1810
+        height: 664
+      alignment: 9
+      pivot: {x: 0.34696132, y: 0.009036144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5bd72f690a532870800000000000000
+      internalID: 8656861905302313818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 1
+      rect:
+        serializedVersion: 2
+        x: 3541
+        y: 4607
+        width: 1818
+        height: 684
+      alignment: 9
+      pivot: {x: 0.3437844, y: 0.00877193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b98c742b2f761080800000000000000
+      internalID: -9217039764094678607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 2
+      rect:
+        serializedVersion: 2
+        x: 5361
+        y: 4603
+        width: 1819
+        height: 688
+      alignment: 9
+      pivot: {x: 0.3468939, y: 0.008720931}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fca0ef5ce25a6280800000000000000
+      internalID: -9049329326073271048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 3912
+        width: 1776
+        height: 689
+      alignment: 9
+      pivot: {x: 0.356982, y: 0.008708273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf6a2ccd6331741e0800000000000000
+      internalID: -2213779565476403461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 4
+      rect:
+        serializedVersion: 2
+        x: 1779
+        y: 3907
+        width: 1765
+        height: 694
+      alignment: 9
+      pivot: {x: 0.3631728, y: 0.008645534}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c9bfea1d05960bf0800000000000000
+      internalID: -358435236810343998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 5
+      rect:
+        serializedVersion: 2
+        x: 3546
+        y: 3916
+        width: 1769
+        height: 685
+      alignment: 9
+      pivot: {x: 0.36291692, y: 0.008759124}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88470f4bffffe3d70800000000000000
+      internalID: 9024932177014453384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 6
+      rect:
+        serializedVersion: 2
+        x: 5317
+        y: 3918
+        width: 1750
+        height: 683
+      alignment: 9
+      pivot: {x: 0.368, y: 0.008784773}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd217afd99fbec80800000000000000
+      internalID: -8292259831965733452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 3229
+        width: 1837
+        height: 676
+      alignment: 9
+      pivot: {x: 0.35057157, y: 0.00887574}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229674421dfa29730800000000000000
+      internalID: 4004456331477477666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 8
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 3235
+        width: 1780
+        height: 670
+      alignment: 9
+      pivot: {x: 0.36011237, y: 0.0089552235}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b60a486815119ad0800000000000000
+      internalID: -2697351507245136206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 9
+      rect:
+        serializedVersion: 2
+        x: 3622
+        y: 3237
+        width: 1781
+        height: 668
+      alignment: 9
+      pivot: {x: 0.35766423, y: 0.008982036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fe5282fcf3b10560800000000000000
+      internalID: 7278296371789192952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 10
+      rect:
+        serializedVersion: 2
+        x: 5405
+        y: 3239
+        width: 1765
+        height: 666
+      alignment: 9
+      pivot: {x: 0.35750708, y: 0.009009009}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b004bbe0f09ba2ed0800000000000000
+      internalID: -2437932773944901621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2558
+        width: 1774
+        height: 669
+      alignment: 9
+      pivot: {x: 0.35343856, y: 0.00896861}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 758174b8ad8748020800000000000000
+      internalID: 2343130586174396503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 12
+      rect:
+        serializedVersion: 2
+        x: 1777
+        y: 2551
+        width: 1792
+        height: 676
+      alignment: 9
+      pivot: {x: 0.34933037, y: 0.00887574}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa1008e6c2375e4b0800000000000000
+      internalID: -5411792742546144849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle 13
+      rect:
+        serializedVersion: 2
+        x: 3571
+        y: 2543
+        width: 1815
+        height: 684
+      alignment: 9
+      pivot: {x: 0.3443526, y: 0.00877193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 426b6a3986d2f1dd0800000000000000
+      internalID: -2513240139872422364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
