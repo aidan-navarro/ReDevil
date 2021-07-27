@@ -46,18 +46,21 @@ public class OniChaseState : FSMState
         if (!oc.IsEnraged && oc.IsUnderHalfHealth())
         {
             oc.StopAllCoroutines();
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniEnraged);
             return;
         }
         if (oc.IsWithinClubRange(player))
         {
             oc.StopCoroutine(ChaseTimer(oc));
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniClubSmash);
             return;
         }
 
         else if (switchToAttack)
         {
+            oc.DisableIFrames();
             List<Transition> possibleTransitions = new List<Transition>();
             possibleTransitions.Add(Transition.OniBoulderPut);
             possibleTransitions.Add(Transition.OniJumpSmash);

@@ -35,7 +35,7 @@ public class ClubSmashState : FSMState
 
         if (oc.health <= 0)
         {
-            npc.GetComponent<OniFSMController>().StopAllCoroutines();
+            oc.StopAllCoroutines();
             oc.PerformTransition(Transition.EnemyNoHealth);
             return;
         }
@@ -43,12 +43,14 @@ public class ClubSmashState : FSMState
         if (!oc.IsEnraged && oc.IsUnderHalfHealth())
         {
             oc.StopAllCoroutines();
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniEnraged);
             return;
         }
 
         if (attackEnded)
         {
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniJumpAway);
             return;
         }

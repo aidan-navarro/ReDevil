@@ -53,19 +53,14 @@ public class CycloneSmasherState : FSMState
         {
             oc.StopAllCoroutines();
             oc.PerformTransition(Transition.EnemyNoHealth);
+            UnityEngine.Object.Destroy(pillar);
             npc.GetComponent<SpriteRenderer>().color = Color.white;
-            return;
-        }
-
-        if (!oc.IsEnraged && oc.IsUnderHalfHealth())
-        {
-            oc.StopAllCoroutines();
-            oc.PerformTransition(Transition.OniEnraged);
             return;
         }
 
         if (!enteredState && pillar == null)
         {
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniIdle);
             npc.GetComponent<SpriteRenderer>().color = Color.white;
             return;

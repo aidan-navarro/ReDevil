@@ -354,7 +354,11 @@ public class OniFSMController : EnemyFSMController
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(EnemyIFrames());
-            rig.velocity = Vector2.zero; 
+
+            if (CurrentStateID != FSMStateID.OniJumpAway || CurrentStateID != FSMStateID.OniJumpSmashing)
+            {
+                rig.velocity = Vector2.zero;
+            }
             
             Vector2 position = gameObject.transform.position;
 
@@ -381,6 +385,11 @@ public class OniFSMController : EnemyFSMController
     public void OniBossStart()
     {
         OnOniBossStart?.Invoke();
+    }
+
+    public void DisableIFrames()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     private void SetSpawnPoints()

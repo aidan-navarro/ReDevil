@@ -55,6 +55,7 @@ public class OniEnragedState : FSMState
 
         if (switchToNextState)
         {
+            oc.DisableIFrames();
             oc.OnOniEndEnraged -= OniEndEnraged;
             oc.IsEnraged = true;
             oc.PerformTransition(Transition.OniCycloneSmash);

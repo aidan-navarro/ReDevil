@@ -85,12 +85,14 @@ public class OniJumpAwayState : FSMState
         if (!oc.IsEnraged && oc.IsUnderHalfHealth() && jumpEnded)
         {
             oc.StopAllCoroutines();
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniEnraged);
             return;
         }
 
         if (jumpEnded)
         {
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniIdle);
             return;
         }
