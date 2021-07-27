@@ -1000,8 +1000,9 @@ MonoBehaviour:
   jumpAttackCollider: {fileID: 0}
   healthBar: {fileID: 538834143}
   IsEnraged: 0
-  cutsceneHolder: {fileID: 0}
-  oniSprite: {fileID: 0}
+  oniEnragedCutsceneHolder: {fileID: 0}
+  oniEnragedSprite: {fileID: 0}
+  oniDeathCutsceneHolder: {fileID: 0}
 --- !u!61 &2235937427701872566
 BoxCollider2D:
   m_ObjectHideFlags: 0

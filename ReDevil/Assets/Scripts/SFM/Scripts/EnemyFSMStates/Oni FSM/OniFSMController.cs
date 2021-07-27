@@ -91,9 +91,9 @@ public class OniFSMController : EnemyFSMController
 
     public bool IsEnraged;
 
-    public GameObject cutsceneHolder;
-
-    public GameObject oniSprite;
+    public GameObject oniEnragedCutsceneHolder;
+    public GameObject oniEnragedSprite;
+    public GameObject oniDeathCutsceneHolder;
 
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealth(); }

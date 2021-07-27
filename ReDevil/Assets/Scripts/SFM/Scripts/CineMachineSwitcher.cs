@@ -95,7 +95,7 @@ public class CineMachineSwitcher : MonoBehaviour
     public IEnumerator EnragedOniCutscene()
     {
         player.GetComponent<PlayerInput>().enabled = false;
-        yield return new WaitForSeconds(oniBoss.cutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(oniBoss.oniEnragedCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         oniBoss.OnOniEndEnraged?.Invoke();
         player.GetComponent<PlayerInput>().enabled = true;
     }
@@ -109,8 +109,8 @@ public class CineMachineSwitcher : MonoBehaviour
     {
         player.GetComponent<PlayerInput>().enabled = false;
         oniHealthBar.gameObject.SetActive(false);
-        StartCoroutine(OniFadeAway(oniBoss, oniBoss.cutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
-        yield return new WaitForSeconds(oniBoss.cutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        StartCoroutine(OniFadeAway(oniBoss, oniBoss.oniEnragedCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
+        yield return new WaitForSeconds(oniBoss.oniEnragedCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single); // Return to the regular level;
     }
 
