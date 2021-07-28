@@ -5,6 +5,7 @@ tpsheetFileNames:
 - Assets/Sprites/Basan/Basan Sprites.tpsheet
 - Assets/Sprites/Chochin Obake/Chochin Obake Fireball.tpsheet
 - Assets/Sprites/Nodeppou/Nodeppou Animations.tpsheet
+- Assets/Sprites/Nurikabe/Nurikabe Death Upright.tpsheet
 - Assets/Sprites/Test Sprites/WaniguchiTest/IdleTest.tpsheet
 - Assets/Sprites/Waniguchi/Waniguchi Sprites.tpsheet
 textureFileNames:
@@ -12,10 +13,12 @@ textureFileNames:
 - Assets/Sprites/Basan/Basan Sprites.png
 - Assets/Sprites/Chochin Obake/Chochin Obake Fireball.png
 - Assets/Sprites/Nodeppou/Nodeppou Animations.png
+- Assets/Sprites/Nurikabe/Nurikabe Death Upright.png
 - Assets/Sprites/Test Sprites/WaniguchiTest/IdleTest.png
 - Assets/Sprites/Waniguchi/Waniguchi Sprites.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
 - 
 - 
 - 
