@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5678867171895630866}
   - component: {fileID: 2395992579139616217}
   - component: {fileID: 5868420604981842050}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SoulShot
   m_TagString: HitBox
   m_Icon: {fileID: 0}

@@ -19,6 +19,11 @@ public class WaniguchiFSMController : EnemyFSMController
         deathConfirmed = inDeathConfirmed;
     }
 
+    //// Particle System... part of the enemy fsm? or perhaps something i can toy with in the animator
+    //[SerializeField] private ParticleSystem m_particles;
+    //[SerializeField] private Vector3 deathParticlesSpawnPos;
+    //public ParticleSystem GetParticles() { return m_particles; }
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -175,4 +180,5 @@ public class WaniguchiFSMController : EnemyFSMController
     {
         deathConfirmed = true;
     }
+
 }

@@ -14,6 +14,9 @@ public class AirDashAttack : FSMState
     private bool dashAttackStarted;
     private bool touchingInvisWall;
 
+    // force breakout timer
+    private float dashTimer;
+
     public AirDashAttack()
     {
         stateID = FSMStateID.AirDashAttacking;
@@ -22,6 +25,7 @@ public class AirDashAttack : FSMState
         isGrounded = false;
         dashAttackStarted = false;
         endDash = false;
+        dashTimer = 0;
     }
 
     public override void Act(Transform player, Transform npc)
@@ -31,7 +35,7 @@ public class AirDashAttack : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
         // flamethrower specific 
-        pc.SetKbTransition(false);
+        // pc.SetKbTransition(false);
         pc.SetFlameKB(false);
 
         bool enterKnockback = pc.GetKbTransition(); // in the event we get hit by a projectile
@@ -62,19 +66,16 @@ public class AirDashAttack : FSMState
                 pc.direction = 1;
                 pc.facingLeft = false;
 
-                pc.FlipPlayer();
+                //pc.FlipPlayer();
             } 
             else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
                 pc.facingLeft = true;
 
-                pc.FlipPlayer();
+                //pc.FlipPlayer();
             }
-            else
-            {
-
-            }
+         
         }
         // total distance of dash... make a different length?
 
@@ -90,7 +91,8 @@ public class AirDashAttack : FSMState
         // dashDistance = Mathf.Abs(dashSP.x - pc.transform.position.x);
         // instead of checking the x distance, we're instead checking the whole magnitude of the vector
         dashDistance = UsefullFunctions.Vec2Magnitude(dashDiff);
-        Debug.Log("Dash Path -> " + pc.GetDashPath());
+        //Debug.Log("Dash Path -> " + pc.GetDashPath());
+
         // velocity must also change to account for the dash position that we set
         // create a boolean to lock any change to the dash vector while we dash
         pc.GetRigidbody2D().velocity = pc.GetDashPath() * pc.dashSpeed;
@@ -101,6 +103,8 @@ public class AirDashAttack : FSMState
         // during dash
         if (!endDash)
         {
+            //dashTimer += Time.deltaTime;
+
             // checking the square magnitude of the dash distance, to circumvent a sqrt check
             if (dashDistance < pc.dashLength * pc.dashLength && !patk.airDashAttackContact)
             {
@@ -121,7 +125,6 @@ public class AirDashAttack : FSMState
             }
             else if (patk.airDashAttackContact)
             {
-                Debug.Log("Air Dash Attack Hit");
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
                 dashAttackStarted = false;
@@ -177,8 +180,15 @@ public class AirDashAttack : FSMState
                 endDash = true;
             }
 
-            // we must create a condition where if the player is stuck on something, break out of the condition
-
+            //// we must create a condition where if the player is stuck on something, break out of the condition
+            //if (dashTimer >= 2)
+            //{
+            //    pc.SetCanDash(true);
+            //    pc.GetRigidbody2D().gravityScale = prevGravityScale;
+            //    dashAttackStarted = false;
+            //    endDash = true;
+            //    patk.EndDashAttack();
+            //}
         }
 
     }
