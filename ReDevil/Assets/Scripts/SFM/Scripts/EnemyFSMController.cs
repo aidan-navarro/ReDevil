@@ -255,7 +255,7 @@ public class EnemyFSMController : AdvancedFSM
             direction = 1;
         }
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere((deathParticlesSpawnPos * direction) + transform.position, 0.05f);
+        Gizmos.DrawSphere((deathParticlesSpawnPos * direction) + transform.position, 0.5f);
 
     }
 }

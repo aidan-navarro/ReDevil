@@ -31,7 +31,7 @@ public class NurikabeActiveState : FSMState
         ec.timer = 0;
         if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.NurikabeDead);
         }
     }
 }

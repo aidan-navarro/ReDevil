@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4185239371265568231}
   - component: {fileID: 549075422211723395}
   - component: {fileID: 5161010132675448416}
+  - component: {fileID: 4877614789172546684}
   m_Layer: 12
   m_Name: Nurikabe
   m_TagString: Enemy
@@ -164,10 +165,33 @@ MonoBehaviour:
   airborneEnemy: 1
   isHit: 0
   enemyFlinch: 0
+  m_particles: {fileID: 931274754222382483, guid: 9b4c13fad1f8b1a4a83225eccec2ba64,
+    type: 3}
+  deathParticlesSpawnPos: {x: 0, y: -2, z: 0}
   riseValue: 5
   riseSpeed: 4
   idlePoint: {x: 0, y: 0}
   activePoint: {x: 0, y: 0}
   timer: 0
   isActive: 0
+  deathConfirmed: 0
   flinchVector: {x: 0, y: 0}
+--- !u!95 &4877614789172546684
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881911363023968712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ccf22b362fbf3045a26b79fc4bfa82f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
