@@ -80,6 +80,7 @@ public enum Transition
     NurikabeRise,
     NurikabeActive,
     NurikabeFlinch, // to add later
+    NurikabeDead
 }
 
 public enum FSMStateID
@@ -159,7 +160,8 @@ public enum FSMStateID
     NurikabeIdling,
     NurikabeRising,
     NurikabeActivating,
-    NurikabeFlinching
+    NurikabeFlinching,
+    NurikabeDying
 }
 
 public class AdvancedFSM : FSM 
