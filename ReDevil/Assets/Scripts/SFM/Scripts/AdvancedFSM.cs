@@ -59,6 +59,7 @@ public enum Transition
     ChochinObakeIdle,
     ChochinObakeAttack,
     ChochinOkabeFlinch, // to add later
+    ChochinOkabeDead,
 
     WaniguchiIdle,
     WaniguchiAttack,
@@ -137,6 +138,7 @@ public enum FSMStateID
     ChochinObakeIdling,
     ChochinObakeAttacking,
     ChochinOkabeFlinching,
+    ChochinOkabeDying,
 
     //Waniguchi
     WaniguchiIdling,
