@@ -7,6 +7,8 @@ public class ChochinObakeFSMController : EnemyFSMController
     public GameObject bullet;
     public Transform firepoint;
 
+    private Vector2 bulletDirectionNormalized;
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -64,6 +66,11 @@ public class ChochinObakeFSMController : EnemyFSMController
 
     }
 
+    public void UpdatePlayerPos(Vector2 inRightDirection)
+    {
+        bulletDirectionNormalized = inRightDirection;
+    }
+
     public override void InstantiateProjectile(GameObject bullet, Vector3 pos, Quaternion rot, Vector2 rightDirection, float inSpeed)
     {
         Debug.Log("Bullet speed: " + inSpeed);
@@ -71,5 +78,15 @@ public class ChochinObakeFSMController : EnemyFSMController
         bulletClone = Instantiate(bullet, pos, rot) as GameObject;
         bulletClone.GetComponent<Bullet>().speed = inSpeed;
         bulletClone.GetComponent<Bullet>().direction = rightDirection;        
+    }
+    public void ChochinProjectile()
+    {
+        InstantiateProjectile(bullet, firepoint.position, firepoint.rotation, bulletDirectionNormalized, projectileSpeed);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
