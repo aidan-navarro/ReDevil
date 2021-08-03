@@ -21,6 +21,8 @@ public class CineMachineSwitcher : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private bool playerCamera = true;
+    [SerializeField]
+    private GameObject fadeOutCutsceneHolder;
 
     public GameObject invisiWall;
 
@@ -69,8 +71,15 @@ public class CineMachineSwitcher : MonoBehaviour
         {
             vcam1.Priority = 0;
             vcam2.Priority = 1;
-            StartCoroutine(IntroOniCutscene());
-            StartCoroutine(FillHealthBar(oniBoss, waitTime));
+            if (oniBoss != null)
+            {
+                StartCoroutine(IntroOniCutscene());
+                StartCoroutine(FillHealthBar(oniBoss, waitTime));
+            }
+            else
+            {
+                StartCoroutine(FadeOutCutscene());
+            }
 
         }
     }
@@ -109,8 +118,9 @@ public class CineMachineSwitcher : MonoBehaviour
     {
         player.GetComponent<PlayerInput>().enabled = false;
         oniHealthBar.gameObject.SetActive(false);
-        StartCoroutine(OniFadeAway(oniBoss, oniBoss.oniEnragedCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
-        yield return new WaitForSeconds(oniBoss.oniEnragedCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        StartCoroutine(OniFadeAway(oniBoss, oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
+        yield return new WaitForSeconds(0.1f); // Give the animator a moment to switch to the fade out
+        yield return new WaitForSeconds(oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single); // Return to the regular level;
     }
 
@@ -141,6 +151,16 @@ public class CineMachineSwitcher : MonoBehaviour
             yield return null;
         }
         while (timer < maxTime);
+    }
+
+    public IEnumerator FadeOutCutscene()
+    {
+        yield return new WaitForSeconds(1.0f);
+        fadeOutCutsceneHolder.gameObject.SetActive(true);
+        fadeOutCutsceneHolder.GetComponent<Animator>().Play("FadeOut");
+        yield return new WaitForSeconds(fadeOutCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single); // Return to the regular level;
+
     }
 
 }
