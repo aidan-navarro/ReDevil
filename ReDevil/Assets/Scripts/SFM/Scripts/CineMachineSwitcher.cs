@@ -118,8 +118,8 @@ public class CineMachineSwitcher : MonoBehaviour
     {
         player.GetComponent<PlayerInput>().enabled = false;
         oniHealthBar.gameObject.SetActive(false);
+        oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().Play("EndCutscene");
         StartCoroutine(OniFadeAway(oniBoss, oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
-        yield return new WaitForSeconds(0.1f); // Give the animator a moment to switch to the fade out
         yield return new WaitForSeconds(oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single); // Return to the regular level;
     }

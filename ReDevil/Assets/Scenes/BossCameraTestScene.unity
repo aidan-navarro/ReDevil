@@ -206,6 +206,7 @@ MonoBehaviour:
   vcam1: {fileID: 2013697264}
   vcam2: {fileID: 1800377832}
   playerCamera: 1
+  fadeOutCutsceneHolder: {fileID: 0}
   invisiWall: {fileID: 2058069329}
   oniHealthBar: {fileID: 1128619796}
   touchBox: {fileID: 140899061}
@@ -727,6 +728,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &475093330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 475093332}
+  - component: {fileID: 475093331}
+  m_Layer: 0
+  m_Name: ComboTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &475093331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475093330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39406d1b1c093f4fbe7377364d606b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboKeys: 630000006f0000006d000000620000006f000000
+  waitTimeBetweenKeys: 2
+--- !u!4 &475093332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475093330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 323.2896, y: 82.777565, z: -169.75879}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &509214464
 GameObject:
@@ -1490,6 +1536,7 @@ MonoBehaviour:
   vcam1: {fileID: 0}
   vcam2: {fileID: 0}
   playerCamera: 1
+  fadeOutCutsceneHolder: {fileID: 0}
   invisiWall: {fileID: 0}
   oniHealthBar: {fileID: 0}
   touchBox: {fileID: 0}
@@ -2226,10 +2273,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4120293405298434596, guid: 09351bddfb5107a4496cbcfcd49203c0,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4120293406525346398, guid: 09351bddfb5107a4496cbcfcd49203c0,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120293406672993937, guid: 09351bddfb5107a4496cbcfcd49203c0,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120293406672993943, guid: 09351bddfb5107a4496cbcfcd49203c0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4120293406761757184, guid: 09351bddfb5107a4496cbcfcd49203c0,
         type: 3}
