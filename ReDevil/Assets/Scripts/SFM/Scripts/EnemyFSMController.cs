@@ -235,7 +235,9 @@ public class EnemyFSMController : AdvancedFSM
         {
             direction = 1;
         }
-        Instantiate(m_particles, (deathParticlesSpawnPos * direction) + transform.position, Quaternion.Euler(-90f, 0.0f, 0.0f));
+        Vector3 spawnOffset = deathParticlesSpawnPos;
+        spawnOffset.x *= direction;
+        Instantiate(m_particles, spawnOffset + transform.position, Quaternion.Euler(-90f, 0.0f, 0.0f));
 
     }
     public void Killed()

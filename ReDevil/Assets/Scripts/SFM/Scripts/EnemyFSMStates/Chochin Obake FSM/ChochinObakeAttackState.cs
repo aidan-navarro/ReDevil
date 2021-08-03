@@ -22,6 +22,8 @@ public class ChochinObakeAttackState : FSMState
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         ChochinObakeFSMController ec = npc.GetComponent<ChochinObakeFSMController>();
+        Animator anim = ec.GetComponent<Animator>();
+
         if (bulletFired)
         {
             bulletFired = false;
@@ -38,8 +40,10 @@ public class ChochinObakeAttackState : FSMState
             }
             else
             {
+                ec.UpdatePlayerPos(bulletDirectionNormalized);
+                anim.SetTrigger("Firing");
                 //Debug.Log(bulletDirection);
-                ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, bulletDirectionNormalized, ec.projectileSpeed);
+                //ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, bulletDirectionNormalized, ec.projectileSpeed);
             }
             
         }
