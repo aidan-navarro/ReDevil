@@ -61438,6 +61438,10 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 511205097, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 883189261, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -61445,7 +61449,7 @@ PrefabInstance:
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.078333
+      value: 8.086421
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -62691,12 +62695,12 @@ PrefabInstance:
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
@@ -62711,7 +62715,7 @@ PrefabInstance:
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
@@ -62723,11 +62727,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3235432377783279816, guid: b9acda0326de82d44a22ecaf633eded1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d95bae5374dd271439ba26e9f7ad6744, type: 2}
     - target: {fileID: 5862607875839125830, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_Name
       value: Nurikabe Tall (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8255860860307004343, guid: b9acda0326de82d44a22ecaf633eded1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 281156562338972011, guid: da402cb831d02c54baec944898fde28c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9acda0326de82d44a22ecaf633eded1, type: 3}
 --- !u!1 &1320128971
@@ -78604,12 +78619,12 @@ PrefabInstance:
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
@@ -78624,7 +78639,7 @@ PrefabInstance:
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
@@ -78636,11 +78651,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3235432377783279816, guid: b9acda0326de82d44a22ecaf633eded1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d95bae5374dd271439ba26e9f7ad6744, type: 2}
     - target: {fileID: 5862607875839125830, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_Name
       value: Nurikabe Tall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8255860860307004343, guid: b9acda0326de82d44a22ecaf633eded1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 281156562338972011, guid: da402cb831d02c54baec944898fde28c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9acda0326de82d44a22ecaf633eded1, type: 3}
 --- !u!1 &1430818573
@@ -109223,12 +109249,12 @@ PrefabInstance:
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
@@ -109243,7 +109269,7 @@ PrefabInstance:
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893915145598402762, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
@@ -109255,11 +109281,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3235432377783279816, guid: b9acda0326de82d44a22ecaf633eded1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d95bae5374dd271439ba26e9f7ad6744, type: 2}
     - target: {fileID: 5862607875839125830, guid: b9acda0326de82d44a22ecaf633eded1,
         type: 3}
       propertyPath: m_Name
       value: Nurikabe Tall (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8255860860307004343, guid: b9acda0326de82d44a22ecaf633eded1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 281156562338972011, guid: da402cb831d02c54baec944898fde28c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9acda0326de82d44a22ecaf633eded1, type: 3}
 --- !u!1 &1927328588
