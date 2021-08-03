@@ -49,7 +49,7 @@ public class NurikabeIdleState : EnemyIdleState
         // just in case, might not need it in idle state
         if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.NurikabeDead);
         }
     }
 }

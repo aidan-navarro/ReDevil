@@ -44,7 +44,7 @@ public class NurikabeRisingState : FSMState
 
         if (nc.health <= 0)
         {
-            nc.PerformTransition(Transition.EnemyNoHealth);
+            nc.PerformTransition(Transition.NurikabeDead);
         }
     }
 }

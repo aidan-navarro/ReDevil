@@ -42,7 +42,6 @@ public class NodeppouDyingState : FSMState
         // the animator will have its event triggered
         if (nc.GetDeathConfirmed())
         {
-            Debug.Log("SquirrelDeath");
             nc.PerformTransition(Transition.EnemyNoHealth);
         }
     }

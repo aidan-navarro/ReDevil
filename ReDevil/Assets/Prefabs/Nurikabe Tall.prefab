@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8166499110893886825}
   - component: {fileID: 5539281904639877133}
   - component: {fileID: 927277511402012398}
+  - component: {fileID: 3235432377783279816}
   m_Layer: 12
   m_Name: Nurikabe Tall
   m_TagString: Enemy
@@ -164,10 +165,33 @@ MonoBehaviour:
   airborneEnemy: 1
   isHit: 0
   enemyFlinch: 0
+  m_particles: {fileID: 931274754222382483, guid: 9b4c13fad1f8b1a4a83225eccec2ba64,
+    type: 3}
+  deathParticlesSpawnPos: {x: 0, y: -3.5, z: 0}
   riseValue: -7.25
   riseSpeed: 4
   idlePoint: {x: 0, y: 0}
   activePoint: {x: 0, y: 0}
   timer: 0
   isActive: 0
+  deathConfirmed: 0
   flinchVector: {x: 0, y: 0}
+--- !u!95 &3235432377783279816
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5862607875839125830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ccf22b362fbf3045a26b79fc4bfa82f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

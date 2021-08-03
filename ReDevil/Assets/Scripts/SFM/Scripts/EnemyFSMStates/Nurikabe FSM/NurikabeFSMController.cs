@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NurikabeFSMController : EnemyFSMController
-{    
+{
     // use this value to adjust how high
     [Header("Nurikabe Settings")]
     [SerializeField] private float riseValue;
@@ -17,6 +17,14 @@ public class NurikabeFSMController : EnemyFSMController
 
     public float timer;
     public bool isActive;
+
+    // Death Specific... place in EnemyFSM???
+    [SerializeField] private bool deathConfirmed;
+    public bool GetDeathConfirmed() { return deathConfirmed; }
+    public void SetDeathConfirmed(bool inDeathConfirmed)
+    {
+        deathConfirmed = inDeathConfirmed;
+    }
 
     [SerializeField] private Vector2 flinchVector;
 
@@ -57,21 +65,25 @@ public class NurikabeFSMController : EnemyFSMController
         NurikabeIdleState nurikabeIdle = new NurikabeIdleState();
 
         nurikabeIdle.AddTransition(Transition.NurikabeRise, FSMStateID.NurikabeRising); // from the rest state, if player is in range, then rise
-        nurikabeIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        nurikabeIdle.AddTransition(Transition.NurikabeDead, FSMStateID.NurikabeDying);
 
         NurikabeRisingState nurikabeRising = new NurikabeRisingState();
 
         nurikabeRising.AddTransition(Transition.NurikabeActive, FSMStateID.NurikabeActivating);
-        nurikabeRising.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        nurikabeRising.AddTransition(Transition.NurikabeDead, FSMStateID.NurikabeDying);
 
         NurikabeActiveState nurikabeActive = new NurikabeActiveState();
-        nurikabeActive.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        nurikabeActive.AddTransition(Transition.NurikabeDead, FSMStateID.NurikabeDying);
+
+        NurikabeDyingState nurikabeDying = new NurikabeDyingState();
+        nurikabeDying.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         EnemyDeadState enemyDead = new EnemyDeadState();
 
         AddFSMState(nurikabeIdle);
         AddFSMState(nurikabeRising);
         AddFSMState(nurikabeActive);
+        AddFSMState(nurikabeDying);
         AddFSMState(enemyDead);
 
     }
@@ -120,6 +132,11 @@ public class NurikabeFSMController : EnemyFSMController
             rig.AddForce(flinchVector, ForceMode2D.Impulse);
 
         }
+    }
+
+    public void ConfirmDeath()
+    {
+        deathConfirmed = true;
     }
 
     private void OnDrawGizmos()
