@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 942986219773589610}
   - component: {fileID: 2686868786626676813}
   - component: {fileID: 4330898527306792066}
+  - component: {fileID: 182110052557151704}
   m_Layer: 0
   m_Name: ChochinObake
   m_TagString: Enemy
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3470007661149216615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.9456463, y: 25.242401, z: 0}
-  m_LocalScale: {x: 0.69757, y: 0.69757, z: 0.69757}
+  m_LocalScale: {x: 0.29387286, y: 0.29387286, z: 0.29387286}
   m_Children:
   - {fileID: 7216240505341182194}
   m_Father: {fileID: 0}
@@ -75,7 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 5859798f1bbf59248afecab9d63a9874, type: 3}
+  m_Sprite: {fileID: -9217039764094678607, guid: 5e84fb4320e41484db52fc931f6730af,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,8 +120,12 @@ MonoBehaviour:
   airborneEnemy: 1
   isHit: 0
   enemyFlinch: 0
+  m_particles: {fileID: 931274754222382483, guid: 9b4c13fad1f8b1a4a83225eccec2ba64,
+    type: 3}
+  deathParticlesSpawnPos: {x: 0, y: -2, z: 0}
   bullet: {fileID: 6037910996505951, guid: 00248696111dd5648ba94cc91d1b8bb9, type: 3}
   firepoint: {fileID: 7216240505341182194}
+  deathConfirmed: 0
 --- !u!50 &2686868786626676813
 Rigidbody2D:
   serializedVersion: 4
@@ -154,19 +160,38 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -4.41}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.19, y: 2.3}
+    pivot: {x: 0.5, y: 0.9989909}
+    oldSize: {x: 4.82, y: 9.91}
     newSize: {x: 2.25, y: 2.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.25, y: 2.25}
+  m_Size: {x: 7.14, y: 11.198478}
   m_EdgeRadius: 0
+--- !u!95 &182110052557151704
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3470007661149216615}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0eccbb13b9dfb1449beb1b23fb66a37a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5329323563146315440
 GameObject:
   m_ObjectHideFlags: 0

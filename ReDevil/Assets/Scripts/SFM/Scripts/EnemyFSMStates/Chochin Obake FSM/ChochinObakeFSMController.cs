@@ -7,6 +7,16 @@ public class ChochinObakeFSMController : EnemyFSMController
     public GameObject bullet;
     public Transform firepoint;
 
+    private Vector2 bulletDirectionNormalized;
+
+    // Death Specific... place in EnemyFSM???
+    [SerializeField] private bool deathConfirmed;
+    public bool GetDeathConfirmed() { return deathConfirmed; }
+    public void SetDeathConfirmed(bool inDeathConfirmed)
+    {
+        deathConfirmed = inDeathConfirmed;
+    }
+
     //initialize FSM
     protected override void Initialize()
     {
@@ -44,13 +54,15 @@ public class ChochinObakeFSMController : EnemyFSMController
         ChochinObakeIdleState enemyIdle = new ChochinObakeIdleState();
 
         //add transitions
-        enemyIdle.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        enemyIdle.AddTransition(Transition.ChochinOkabeDead, FSMStateID.ChochinOkabeDying); //transition to attacking state
         enemyIdle.AddTransition(Transition.ChochinObakeAttack, FSMStateID.ChochinObakeAttacking); //transition to attacking state
 
-        ChochinObakeAttackState ndpAttack = new ChochinObakeAttackState();
-        ndpAttack.AddTransition(Transition.ChochinObakeIdle, FSMStateID.ChochinObakeIdling);
-        ndpAttack.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        ChochinObakeAttackState chochinAttack = new ChochinObakeAttackState();
+        chochinAttack.AddTransition(Transition.ChochinOkabeDead, FSMStateID.ChochinOkabeDying);
+        chochinAttack.AddTransition(Transition.ChochinObakeIdle, FSMStateID.ChochinObakeIdling);
 
+        ChochinOkabeDyingState chochinDying = new ChochinOkabeDyingState();
+        chochinDying.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
 
         //Create the Dead state
         EnemyDeadState enemyDead = new EnemyDeadState();
@@ -59,9 +71,15 @@ public class ChochinObakeFSMController : EnemyFSMController
 
         //Add state to the state list
         AddFSMState(enemyIdle);
-        AddFSMState(ndpAttack);
+        AddFSMState(chochinAttack);
+        AddFSMState(chochinDying);
         AddFSMState(enemyDead);
 
+    }
+
+    public void UpdatePlayerPos(Vector2 inRightDirection)
+    {
+        bulletDirectionNormalized = inRightDirection;
     }
 
     public override void InstantiateProjectile(GameObject bullet, Vector3 pos, Quaternion rot, Vector2 rightDirection, float inSpeed)
@@ -71,5 +89,18 @@ public class ChochinObakeFSMController : EnemyFSMController
         bulletClone = Instantiate(bullet, pos, rot) as GameObject;
         bulletClone.GetComponent<Bullet>().speed = inSpeed;
         bulletClone.GetComponent<Bullet>().direction = rightDirection;        
+    }
+    public void ChochinProjectile()
+    {
+        InstantiateProjectile(bullet, firepoint.position, firepoint.rotation, bulletDirectionNormalized, projectileSpeed);
+    }
+    public void ConfirmDeath()
+    {
+        deathConfirmed = true;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
