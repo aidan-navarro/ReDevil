@@ -42,12 +42,15 @@ public class BoulderPuttState : FSMState
         if (!oc.IsEnraged & oc.IsUnderHalfHealth())
         {
             oc.StopAllCoroutines();
+            oc.DisableIFrames();
+            Object.Destroy(pillar);
             oc.PerformTransition(Transition.OniEnraged);
             return;
         }
 
         if (attackFinished)
         {
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniIdle);
         }
 

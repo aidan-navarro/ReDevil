@@ -82,6 +82,8 @@ public class OniFSMController : EnemyFSMController
     public UnityAction OnOniBossStart;
     public UnityAction OnOniBeginEnraged;
     public UnityAction OnOniEndEnraged;
+    public UnityAction OnOniBeginDeath;
+    public UnityAction OnOniEndDeath;
 
  
     [SerializeField]
@@ -89,9 +91,9 @@ public class OniFSMController : EnemyFSMController
 
     public bool IsEnraged;
 
-    public GameObject cutsceneHolder;
-
-    public GameObject oniSprite;
+    public GameObject oniEnragedCutsceneHolder;
+    public GameObject oniEnragedSprite;
+    public GameObject oniDeathCutsceneHolder;
 
     public float GetHealth() { return health; }
     public void SetHealth(float inHealth) { health = inHealth; UpdateHealth(); }
@@ -157,7 +159,7 @@ public class OniFSMController : EnemyFSMController
 
         OniIdleState oniIdleState = new OniIdleState();
 
-        oniIdleState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        oniIdleState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         oniIdleState.AddTransition(Transition.OniClubSmash, FSMStateID.OniClubSmashing);
         oniIdleState.AddTransition(Transition.OniBoulderPut, FSMStateID.OniBoulderPutting);
         oniIdleState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
@@ -166,7 +168,7 @@ public class OniFSMController : EnemyFSMController
         oniIdleState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         OniChaseState oniChaseState = new OniChaseState();
-        oniChaseState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        oniChaseState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         oniChaseState.AddTransition(Transition.OniBoulderPut, FSMStateID.OniBoulderPutting);
         oniChaseState.AddTransition(Transition.OniJumpSmash, FSMStateID.OniJumpSmashing);
         oniChaseState.AddTransition(Transition.OniClubSmash, FSMStateID.OniClubSmashing);
@@ -175,31 +177,31 @@ public class OniFSMController : EnemyFSMController
 
         BoulderPuttState boulderPuttState = new BoulderPuttState();
         boulderPuttState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
-        boulderPuttState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        boulderPuttState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         boulderPuttState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         ClubSmashState clubSmashState = new ClubSmashState();
         clubSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
-        clubSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        clubSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         clubSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         JumpingSmashState jumpingSmashState = new JumpingSmashState();
         jumpingSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
-        jumpingSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        jumpingSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         jumpingSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         OniJumpAwayState jumpAwayState = new OniJumpAwayState();
         jumpAwayState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
-        jumpAwayState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        jumpAwayState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         jumpAwayState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         CycloneSmasherState cycloneSmasherState = new CycloneSmasherState();
         cycloneSmasherState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
-        cycloneSmasherState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
+        cycloneSmasherState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         cycloneSmasherState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
 
         //Create the Dead state
-        EnemyDeadState enemyDead = new EnemyDeadState();
+        OniDeathState oniDeath = new OniDeathState();
         //there are no transitions out of the dead state
 
         AddFSMState(oniWaitingState);
@@ -212,7 +214,7 @@ public class OniFSMController : EnemyFSMController
         AddFSMState(jumpAwayState);
         AddFSMState(cycloneSmasherState);
 
-        AddFSMState(enemyDead);
+        AddFSMState(oniDeath);
     }
 
     public void ClubSmashAttack()
@@ -352,7 +354,11 @@ public class OniFSMController : EnemyFSMController
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(EnemyIFrames());
-            rig.velocity = Vector2.zero; 
+
+            if (CurrentStateID != FSMStateID.OniJumpAway || CurrentStateID != FSMStateID.OniJumpSmashing)
+            {
+                rig.velocity = Vector2.zero;
+            }
             
             Vector2 position = gameObject.transform.position;
 
@@ -379,6 +385,11 @@ public class OniFSMController : EnemyFSMController
     public void OniBossStart()
     {
         OnOniBossStart?.Invoke();
+    }
+
+    public void DisableIFrames()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     private void SetSpawnPoints()

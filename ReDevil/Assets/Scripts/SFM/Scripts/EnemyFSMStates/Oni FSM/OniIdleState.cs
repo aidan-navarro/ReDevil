@@ -47,6 +47,7 @@ public class OniIdleState : FSMState
         if (!oc.IsEnraged && oc.IsUnderHalfHealth())
         {
             oc.StopAllCoroutines();
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniEnraged);
             return;
         }

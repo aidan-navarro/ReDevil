@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3470007661149216615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.9456463, y: 25.242401, z: 0}
-  m_LocalScale: {x: 0.69757, y: 0.69757, z: 0.69757}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7216240505341182194}
   m_Father: {fileID: 0}
@@ -118,6 +118,8 @@ MonoBehaviour:
   airborneEnemy: 1
   isHit: 0
   enemyFlinch: 0
+  m_particles: {fileID: 0}
+  deathParticlesSpawnPos: {x: 0, y: 0, z: 0}
   bullet: {fileID: 6037910996505951, guid: 00248696111dd5648ba94cc91d1b8bb9, type: 3}
   firepoint: {fileID: 7216240505341182194}
 --- !u!50 &2686868786626676813

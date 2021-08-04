@@ -39,6 +39,7 @@ public class OniWaitingState : FSMState
         OniFSMController oc = npc.GetComponent<OniFSMController>();
         if (switchToNextState)
         {
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniIdle);
             return;
         }

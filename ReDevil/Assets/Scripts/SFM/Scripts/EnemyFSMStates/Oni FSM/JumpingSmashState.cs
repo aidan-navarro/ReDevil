@@ -99,6 +99,7 @@ public class JumpingSmashState : FSMState
         if (!oc.IsEnraged && oc.IsUnderHalfHealth() && jumpEnded)
         {
             oc.StopAllCoroutines();
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniEnraged);
             return;
         }
@@ -106,6 +107,7 @@ public class JumpingSmashState : FSMState
         if (jumpEnded)
         {
             oc.OnPlayerHit -= OnPlayerHit;
+            oc.DisableIFrames();
             oc.PerformTransition(Transition.OniJumpAway);
             return;
         }
