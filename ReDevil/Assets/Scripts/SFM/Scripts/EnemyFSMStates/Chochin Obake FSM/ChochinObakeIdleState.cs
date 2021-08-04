@@ -32,7 +32,7 @@ public class ChochinObakeIdleState : EnemyIdleState
         //dead transition
         if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.ChochinOkabeDead);
         }
     }
 }

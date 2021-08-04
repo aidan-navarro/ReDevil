@@ -15,6 +15,7 @@ public class ChochinObakeAttackState : FSMState
     public override void EnterStateInit()
     {
         base.EnterStateInit();
+        bulletFired = false;
     }
 
     //Act: What are we doing in this state?
@@ -23,11 +24,6 @@ public class ChochinObakeAttackState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         ChochinObakeFSMController ec = npc.GetComponent<ChochinObakeFSMController>();
         Animator anim = ec.GetComponent<Animator>();
-
-        if (bulletFired)
-        {
-            bulletFired = false;
-        }
 
         if (!bulletFired)
         {
@@ -40,6 +36,8 @@ public class ChochinObakeAttackState : FSMState
             }
             else
             {
+                // plays the animation for firing, the function to instantiate a bullet is tied to the animation
+
                 ec.UpdatePlayerPos(bulletDirectionNormalized);
                 anim.SetTrigger("Firing");
                 //Debug.Log(bulletDirection);
@@ -65,7 +63,7 @@ public class ChochinObakeAttackState : FSMState
         //dead transition
         if (ec.health <= 0)
         {
-            ec.PerformTransition(Transition.EnemyNoHealth);
+            ec.PerformTransition(Transition.ChochinOkabeDead);
         }
     }
 }
