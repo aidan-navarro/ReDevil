@@ -58,8 +58,11 @@ public class CineMachineSwitcher : MonoBehaviour
     {
         canContinue = false;
         oniBoss = FindObjectOfType<OniFSMController>();
-        oniBoss.OnOniBeginEnraged += StartOniEnragedCutscene;
-        oniBoss.OnOniBeginDeath += StartOniDeathCutscene;
+        if (oniBoss != null)
+        {
+            oniBoss.OnOniBeginEnraged += StartOniEnragedCutscene;
+            oniBoss.OnOniBeginDeath += StartOniDeathCutscene;
+        }
         player = FindObjectOfType<PlayerFSMController>();
     }
 
