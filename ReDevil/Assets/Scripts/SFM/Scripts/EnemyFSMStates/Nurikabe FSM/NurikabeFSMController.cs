@@ -34,6 +34,8 @@ public class NurikabeFSMController : EnemyFSMController
         GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
         playerTransform = objPlayer.transform;
 
+        deathConfirmed = false;
+
         rig = GetComponent<Rigidbody2D>();
         if (airborneEnemy)
         {
