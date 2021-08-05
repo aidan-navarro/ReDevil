@@ -29,8 +29,8 @@ public class OniDeathState : FSMState
     
     private IEnumerator PreformOniDeath(OniFSMController oc)
     {
-        oc.OnOniBeginDeath?.Invoke();
         oc.oniDeathCutsceneHolder.gameObject.SetActive(true);
+        oc.OnOniBeginDeath?.Invoke();
         oc.oniDeathCutsceneHolder.GetComponent<Animator>().Play("EndCutscene");
         yield return new WaitForSeconds(oc.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         oc.OnOniEndDeath.Invoke();
