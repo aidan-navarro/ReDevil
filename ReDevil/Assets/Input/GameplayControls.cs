@@ -508,6 +508,44 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""EasterEgg"",
+            ""id"": ""3bcf6b05-908a-438a-a174-8a53c2b4630f"",
+            ""actions"": [
+                {
+                    ""name"": ""HitOni"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9de320d-340b-4d4e-96c6-62279be14b24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""14f8837f-f53d-4c24-836b-7ec168e32932"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HitOni"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58268714-7136-4962-a57c-3bc9ef09f4b4"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HitOni"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -553,6 +591,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Select = m_Menu.FindAction("Select", throwIfNotFound: true);
+        // EasterEgg
+        m_EasterEgg = asset.FindActionMap("EasterEgg", throwIfNotFound: true);
+        m_EasterEgg_HitOni = m_EasterEgg.FindAction("HitOni", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -720,6 +761,39 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // EasterEgg
+    private readonly InputActionMap m_EasterEgg;
+    private IEasterEggActions m_EasterEggActionsCallbackInterface;
+    private readonly InputAction m_EasterEgg_HitOni;
+    public struct EasterEggActions
+    {
+        private @GameplayControls m_Wrapper;
+        public EasterEggActions(@GameplayControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HitOni => m_Wrapper.m_EasterEgg_HitOni;
+        public InputActionMap Get() { return m_Wrapper.m_EasterEgg; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EasterEggActions set) { return set.Get(); }
+        public void SetCallbacks(IEasterEggActions instance)
+        {
+            if (m_Wrapper.m_EasterEggActionsCallbackInterface != null)
+            {
+                @HitOni.started -= m_Wrapper.m_EasterEggActionsCallbackInterface.OnHitOni;
+                @HitOni.performed -= m_Wrapper.m_EasterEggActionsCallbackInterface.OnHitOni;
+                @HitOni.canceled -= m_Wrapper.m_EasterEggActionsCallbackInterface.OnHitOni;
+            }
+            m_Wrapper.m_EasterEggActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @HitOni.started += instance.OnHitOni;
+                @HitOni.performed += instance.OnHitOni;
+                @HitOni.canceled += instance.OnHitOni;
+            }
+        }
+    }
+    public EasterEggActions @EasterEgg => new EasterEggActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -752,5 +826,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     public interface IMenuActions
     {
         void OnSelect(InputAction.CallbackContext context);
+    }
+    public interface IEasterEggActions
+    {
+        void OnHitOni(InputAction.CallbackContext context);
     }
 }

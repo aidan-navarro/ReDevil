@@ -296,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 164.99982, y: -786.6122}
+  m_AnchoredPosition: {x: 164.99982, y: -814}
   m_SizeDelta: {x: 2000, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &113240952
@@ -431,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 663, y: -854}
+  m_AnchoredPosition: {x: 663, y: -881.3878}
   m_SizeDelta: {x: 2000, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &169805300
@@ -456,7 +456,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Rowan Butt
 
-    Kyle Goodyear'
+    Kyle Goodyear
+
+    Tony Borges'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1009,9 +1011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Producer
-
-'
+  m_text: "Producer / \nGame Designer\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb08f5514b2d48941b0749c50636381b, type: 2}
   m_sharedMaterial: {fileID: 1675528576343106504, guid: cb08f5514b2d48941b0749c50636381b,
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -21.19
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -2135,7 +2135,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 164.99982, y: -854}
+  m_AnchoredPosition: {x: 164.99982, y: -881.3878}
   m_SizeDelta: {x: 2000, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1353154199
@@ -2269,7 +2269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 164.99982, y: -442}
+  m_AnchoredPosition: {x: 164.99982, y: -480}
   m_SizeDelta: {x: 2000, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1360282264
@@ -2996,7 +2996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 663, y: -786.6122}
+  m_AnchoredPosition: {x: 663, y: -814}
   m_SizeDelta: {x: 2000, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1899865216
