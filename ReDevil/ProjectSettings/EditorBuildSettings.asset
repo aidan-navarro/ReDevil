@@ -18,9 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial Level.unity
     guid: e6879207d93ae9c44b7f67bf7d8d4aa9
   - enabled: 0
-    path: Assets/Scenes/OniBossScene.unity
-    guid: 733fc565514a6244ab1057915bdbc858
-  - enabled: 0
     path: Assets/Scenes/BossCameraTestScene.unity
     guid: 49de97d3b0fc8664abdd3134f9135b8e
   - enabled: 1
