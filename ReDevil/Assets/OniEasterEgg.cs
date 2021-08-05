@@ -31,7 +31,7 @@ public class OniEasterEgg : MonoBehaviour
             canPress = false;
             Debug.Log("Smack Oni");
             counter++;
-            if (counter < 50)
+            if (counter < 150)
             {
                 //Oni loses life points
                 animator.SetBool("Hurt", true);
