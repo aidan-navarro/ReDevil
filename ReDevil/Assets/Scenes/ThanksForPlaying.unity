@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 826560292}
   - component: {fileID: 826560295}
   m_Layer: 5
-  m_Name: Oni
+  m_Name: Oni Easter Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
