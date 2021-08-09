@@ -12,16 +12,26 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 {
     public GameplayControls controls;
 
-    public GameObject credits, title, play, quit, creditsButton;
+    public GameObject credits, title, play, quit, creditsButton, oniSprite;
 
     public Button closeCredits, playButton;
 
+    public ComboReader reader;
+
     public bool creditsToggled = false;
+
+    public string mainLevel, oniLevel;
 
     public void Awake()
     {
         controls = new GameplayControls();
         controls.Menu.Select.performed += ctx => OnSelect(ctx);
+    }
+
+    public void Start()
+    {
+        reader.ComboFinished.AddListener(SwitchToOniLevel);
+        LoadingData.sceneToLoad = mainLevel;
     }
 
     public void OnSelect(InputAction.CallbackContext context)
@@ -41,7 +51,7 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
 
     public void PlayOption()
     {
-        LoadingData.sceneToLoad = "Tutorial Level";
+        //LoadingData.sceneToLoad = "Tutorial Level";
         SceneManager.LoadScene("LoadingScreen");
     }
 
@@ -73,4 +83,9 @@ public class MainMenu : MonoBehaviour, GameplayControls.IMenuActions
         playButton.Select();
     }
 
+    public void SwitchToOniLevel()
+    {
+        LoadingData.sceneToLoad = oniLevel;
+        oniSprite.SetActive(true);
+    }
 }
