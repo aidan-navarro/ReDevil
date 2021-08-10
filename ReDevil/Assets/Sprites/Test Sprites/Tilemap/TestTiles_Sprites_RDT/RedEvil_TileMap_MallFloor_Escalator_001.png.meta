@@ -1,7 +1,118 @@
 fileFormatVersion: 2
 guid: 8c57001f1babac747abc62a0c9ad620c
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2589792298443193688
+    second: RedEvil_TileMap_MallFloor_Escalator_001_0
+  - first:
+      213: 7340509133489002749
+    second: RedEvil_TileMap_MallFloor_Escalator_001_1
+  - first:
+      213: -6111210224832979970
+    second: RedEvil_TileMap_MallFloor_Escalator_001_2
+  - first:
+      213: -4430056976538243384
+    second: RedEvil_TileMap_MallFloor_Escalator_001_3
+  - first:
+      213: -2287841842418439216
+    second: RedEvil_TileMap_MallFloor_Escalator_001_4
+  - first:
+      213: -4221175109388097274
+    second: RedEvil_TileMap_MallFloor_Escalator_001_5
+  - first:
+      213: -4109307068184226257
+    second: RedEvil_TileMap_MallFloor_Escalator_001_6
+  - first:
+      213: -3546403214202505386
+    second: RedEvil_TileMap_MallFloor_Escalator_001_7
+  - first:
+      213: -6790319292608105412
+    second: RedEvil_TileMap_MallFloor_Escalator_001_8
+  - first:
+      213: 7892414867671811206
+    second: RedEvil_TileMap_MallFloor_Escalator_001_9
+  - first:
+      213: 737408713276589489
+    second: RedEvil_TileMap_MallFloor_Escalator_001_10
+  - first:
+      213: -2842406054250413099
+    second: RedEvil_TileMap_MallFloor_Escalator_001_11
+  - first:
+      213: 382478930360118150
+    second: RedEvil_TileMap_MallFloor_Escalator_001_12
+  - first:
+      213: 6376341162508861460
+    second: RedEvil_TileMap_MallFloor_Escalator_001_13
+  - first:
+      213: 5089774344520317844
+    second: RedEvil_TileMap_MallFloor_Escalator_001_14
+  - first:
+      213: 278074896343134057
+    second: RedEvil_TileMap_MallFloor_Escalator_001_15
+  - first:
+      213: -227523935189846402
+    second: RedEvil_TileMap_MallFloor_Escalator_001_16
+  - first:
+      213: 9103199745875234780
+    second: RedEvil_TileMap_MallFloor_Escalator_001_17
+  - first:
+      213: -2776746770894191452
+    second: RedEvil_TileMap_MallFloor_Escalator_001_18
+  - first:
+      213: 4717483046592806966
+    second: RedEvil_TileMap_MallFloor_Escalator_001_19
+  - first:
+      213: 4338098310554509504
+    second: RedEvil_TileMap_MallFloor_Escalator_001_20
+  - first:
+      213: 2073694489394572048
+    second: RedEvil_TileMap_MallFloor_Escalator_001_21
+  - first:
+      213: 7129373372857279366
+    second: RedEvil_TileMap_MallFloor_Escalator_001_22
+  - first:
+      213: 3983432129952797108
+    second: RedEvil_TileMap_MallFloor_Escalator_001_23
+  - first:
+      213: 2469110859900476757
+    second: RedEvil_TileMap_MallFloor_Escalator_001_24
+  - first:
+      213: -1816044785793671531
+    second: RedEvil_TileMap_MallFloor_Escalator_001_25
+  - first:
+      213: 2251763841255398592
+    second: RedEvil_TileMap_MallFloor_Escalator_001_26
+  - first:
+      213: -7114501497859483010
+    second: RedEvil_TileMap_MallFloor_Escalator_001_27
+  - first:
+      213: 5474296676937487838
+    second: RedEvil_TileMap_MallFloor_Escalator_001_28
+  - first:
+      213: 378966203954150902
+    second: RedEvil_TileMap_MallFloor_Escalator_001_29
+  - first:
+      213: -301936428031518719
+    second: RedEvil_TileMap_MallFloor_Escalator_001_30
+  - first:
+      213: -4653186705961124872
+    second: RedEvil_TileMap_MallFloor_Escalator_001_31
+  - first:
+      213: -4107238475050493079
+    second: RedEvil_TileMap_MallFloor_Escalator_001_32
+  - first:
+      213: 5163020987957470323
+    second: RedEvil_TileMap_MallFloor_Escalator_001_33
+  - first:
+      213: -4441881282322452392
+    second: RedEvil_TileMap_MallFloor_Escalator_001_34
+  - first:
+      213: -8856782698761186475
+    second: RedEvil_TileMap_MallFloor_Escalator_001_35
+  - first:
+      213: -4364844423090450047
+    second: RedEvil_TileMap_MallFloor_Escalator_001_36
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,12 +152,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -73,9 +184,876 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1485
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85dbfb6cf5ac0f320800000000000000
+      internalID: 2589792298443193688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1485
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df85f1c4a2abed560800000000000000
+      internalID: 7340509133489002749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1485
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb5819ddae903ba0800000000000000
+      internalID: -6111210224832979970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1485
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce62bab6a64582c0800000000000000
+      internalID: -4430056976538243384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1229
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbaf5047f3ff30e0800000000000000
+      internalID: -2287841842418439216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1229
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 609a33e4a9f5b65c0800000000000000
+      internalID: -4221175109388097274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1229
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2690e75efec8f6c0800000000000000
+      internalID: -4109307068184226257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1229
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 657f72bf015a8cec0800000000000000
+      internalID: -3546403214202505386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1229
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34bc9c7490f3c1a0800000000000000
+      internalID: -6790319292608105412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_9
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1229
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 684079f918d778d60800000000000000
+      internalID: 7892414867671811206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_10
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1229
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b50129515dcb3a00800000000000000
+      internalID: 737408713276589489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d30cfcd0cebd88d0800000000000000
+      internalID: -2842406054250413099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68baf2a8f86de4500800000000000000
+      internalID: 382478930360118150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_13
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 410ca0601805d7850800000000000000
+      internalID: 6376341162508861460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49bb700bcc282a640800000000000000
+      internalID: 5089774344520317844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_15
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96f6c7915abebd300800000000000000
+      internalID: 278074896343134057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e763c19bf2ca7dcf0800000000000000
+      internalID: -227523935189846402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_17
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdfc15420ff055e70800000000000000
+      internalID: 9103199745875234780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_18
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 973
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a483a116830779d0800000000000000
+      internalID: -2776746770894191452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 717
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 630871a26ddd77140800000000000000
+      internalID: 4717483046592806966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 717
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -49.785213, y: 128}
+        - {x: -49.785213, y: 126.24755}
+        - {x: 121.80649, y: 38.23974}
+        - {x: 128, y: 38.23974}
+        - {x: 128, y: 85.54394}
+        - {x: 41.510372, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c0e251ed65043c30800000000000000
+      internalID: 4338098310554509504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_21
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 717
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 74.22117, y: -23.365726}
+        - {x: 72.02127, y: -13.4648485}
+        - {x: -128, y: 85.54394}
+        - {x: -128, y: 36.039543}
+        - {x: 52.22223, y: -51.968266}
+        - {x: 56.622017, y: -51.968266}
+        - {x: 56.622017, y: -46.467777}
+        - {x: 74.22117, y: -31.06641}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b6c05b62e37cc10800000000000000
+      internalID: 2073694489394572048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_22
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 717
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68369404f4f90f260800000000000000
+      internalID: 7129373372857279366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_23
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 717
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1d6b4ca6ef74730800000000000000
+      internalID: 3983432129952797108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 461
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55d5d63ce3b044220800000000000000
+      internalID: 2469110859900476757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 461
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59e519e93ec1cc6e0800000000000000
+      internalID: -1816044785793671531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 461
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ccd814884fdf3f10800000000000000
+      internalID: 2251763841255398592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_27
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 461
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ad91af496344d90800000000000000
+      internalID: -7114501497859483010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_28
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 461
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed5d5f7d2db98fb40800000000000000
+      internalID: 5474296676937487838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_29
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 461
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fdb09031cb524500800000000000000
+      internalID: 378966203954150902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1085e6e1b6e4fcbf0800000000000000
+      internalID: -301936428031518719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 205
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -127.88144, y: 128}
+        - {x: -127.88144, y: 124.69286}
+        - {x: -89.3833, y: 105.9912}
+        - {x: 108.607124, y: 1.4819324}
+        - {x: 125.10633, y: -1.8183606}
+        - {x: 128, y: -1.8183606}
+        - {x: 128, y: 45.485836}
+        - {x: -37.6858, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fbfd95385f8c6fb0800000000000000
+      internalID: -4653186705961124872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 205
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: 45.485836}
+        - {x: -128, y: -1.8183606}
+        - {x: 46.722496, y: -90.92627}
+        - {x: 53.322178, y: -90.92627}
+        - {x: 56.622017, y: -89.82617}
+        - {x: 72.02127, y: -74.424805}
+        - {x: 72.02127, y: -63.42383}
+        - {x: 57.721966, y: -44.722168}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b5cc63e582007c0800000000000000
+      internalID: -4107238475050493079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_33
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 205
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3746713db3cb6a740800000000000000
+      internalID: 5163020987957470323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_34
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 205
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -127.93192, y: 128}
+        - {x: -127.93192, y: 124.69286}
+        - {x: 115.15632, y: 1.4819324}
+        - {x: 128, y: -1.8183606}
+        - {x: 128, y: -1.8183606}
+        - {x: 128, y: 45.485836}
+        - {x: -37.736286, y: 128}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850b6b002844b52c0800000000000000
+      internalID: -4441881282322452392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_35
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 205
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -128, y: -1.8183606}
+        - {x: 124.768234, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: -81.02539}
+        - {x: -128, y: 45.485836}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 553938b8f03661580800000000000000
+      internalID: -8856782698761186475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedEvil_TileMap_MallFloor_Escalator_001_36
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 205
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18159d58f15fc63c0800000000000000
+      internalID: -4364844423090450047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
