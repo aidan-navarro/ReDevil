@@ -58,6 +58,7 @@ public class OniEasterEgg : MonoBehaviour
 
     private void SetCanPress()
     {
+        animator.SetBool("Hurt", false);
         canPress = true;
     }
 
