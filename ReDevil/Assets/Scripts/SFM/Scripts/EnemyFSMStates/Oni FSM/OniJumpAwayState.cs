@@ -40,6 +40,12 @@ public class OniJumpAwayState : FSMState
                 {
                     Debug.Log(arenaTransform.position);
                     jumpingTarget = arenaTransform.position;
+                    if (Vector3.Distance(jumpingTarget, oc.transform.position) < oc.JumpDistanceRequirement) // If the oni is on the point then just move on to the next state
+                    {
+                        jumpStarted = false;
+                        jumpEnded = true;
+                        return;
+                    }
                 }
             }
 

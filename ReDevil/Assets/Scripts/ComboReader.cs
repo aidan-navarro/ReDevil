@@ -16,9 +16,9 @@ public class ComboReader : MonoBehaviour
     private float comboProgress;
     private bool comboStarted = false;
 
-    public UnityAction ComboStarted;
-    public UnityAction ComboFailed;
-    public UnityAction ComboFinished;
+    public UnityEvent ComboStarted;
+    public UnityEvent ComboFailed;
+    public UnityEvent ComboFinished;
     // Start is called before the first frame update
     void Start()
     {

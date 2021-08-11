@@ -8,24 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: e9fa1a1819dc4bb428822a9922b51454
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 797d9e832f04b4e4095d0f787007749c
   - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: 3e08eeacefb234a499b8cf6115f456e4
   - enabled: 1
     path: Assets/Scenes/Tutorial Level.unity
     guid: e6879207d93ae9c44b7f67bf7d8d4aa9
-  - enabled: 0
-    path: Assets/Scenes/BossCameraTestScene.unity
-    guid: 49de97d3b0fc8664abdd3134f9135b8e
   - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: 03ea339d3391ea24484afe0f3bd65ab5
   - enabled: 1
     path: Assets/Scenes/ThanksForPlaying.unity
     guid: c40160bebb482b14bb2de6124ed6af49
+  - enabled: 1
+    path: Assets/Scenes/Oni Level.unity
+    guid: 7030c0e7514cf9c4893a63cc64fc6aff
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 68283c0b758a3bb4894630ba86605bc6,
       type: 2}
