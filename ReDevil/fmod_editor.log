@@ -7,44 +7,26 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000002526E0A50E8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000021CD89CB088 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42CDFB8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Chonchin Obake', format=5, channels=1, frequency=48000, lengthbytes=10464, lengthpcm=53782, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.300334.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathWhistle02', format=5, channels=1, frequency=48000, lengthbytes=11360, lengthpcm=74863, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.060708.
@@ -53,14 +35,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathWhistle01', format=5, channels=1, frequency=48000, lengthbytes=11456, lengthpcm=76207, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.054140.
@@ -69,14 +51,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathVOX03', format=5, channels=1, frequency=48000, lengthbytes=5472, lengthpcm=63207, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.191786.
@@ -85,14 +67,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathWhistle04', format=5, channels=1, frequency=48000, lengthbytes=11776, lengthpcm=75311, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.050408.
@@ -101,14 +83,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathWhistle03', format=5, channels=1, frequency=48000, lengthbytes=11488, lengthpcm=74414, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.039869.
@@ -117,14 +99,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathVOX02', format=5, channels=1, frequency=48000, lengthbytes=6080, lengthpcm=67242, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.219165.
@@ -133,14 +115,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathVOX04', format=5, channels=1, frequency=48000, lengthbytes=5856, lengthpcm=66345, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.257590.
@@ -149,104 +131,97 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 347616
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 25792
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000723913F5B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000AC5AA2F098
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFDCAF27B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFDCAF27AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFDCAF27BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFDCAF27CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000251C42C2618
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF834FB7B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF834FB7AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF834FB7BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF834FB7CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000021E11353EF8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='YokaiDeathVOX01', format=5, channels=1, frequency=48000, lengthbytes=5696, lengthpcm=67242, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.143907.
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] SoundI::release                          :  (000002526E3EDDA8)
-[LOG] SoundI::release                          :     Chonchin Obake (00000251A8A2F0E8)
-[LOG] SoundI::release                          :  (000002526E3EBC98)
-[LOG] SoundI::release                          :     YokaiDeathVOX01 (00000251A8A2F428)
-[LOG] SoundI::release                          :  (000002526E3EAE38)
-[LOG] SoundI::release                          :     YokaiDeathVOX02 (00000251A8A2FC48)
-[LOG] SoundI::release                          :  (000002526E3EE088)
-[LOG] SoundI::release                          :     YokaiDeathVOX03 (00000251A8A302C8)
-[LOG] SoundI::release                          :  (000002526E3EB568)
-[LOG] SoundI::release                          :     YokaiDeathVOX04 (00000251A8A2EF48)
-[LOG] SoundI::release                          :  (000002526E3EA878)
-[LOG] SoundI::release                          :     YokaiDeathWhistle01 (00000251A8A2FDE8)
-[LOG] SoundI::release                          :  (000002526E3EA708)
-[LOG] SoundI::release                          :     YokaiDeathWhistle02 (00000251A8A2E8C8)
-[LOG] SoundI::release                          :  (000002526E3EAB58)
-[LOG] SoundI::release                          :     YokaiDeathWhistle03 (00000251A8A30468)
-[LOG] SoundI::release                          :  (000002526E3EC6A8)
-[LOG] SoundI::release                          :     YokaiDeathWhistle04 (00000251A8A2EC08)
-[LOG] SoundI::release                          :  (0000025270869818)
-[LOG] SoundI::release                          :     PC_Step01-003 (000002526E5DDC68)
-[LOG] SoundI::release                          :  (000002527086F138)
-[LOG] SoundI::release                          :     PC_Step01-004 (00000251A8A30C88)
-[LOG] SoundI::release                          :  (0000025270870558)
-[LOG] SoundI::release                          :     PC_Step01-005 (00000251A8A2EDA8)
-[LOG] SoundI::release                          :  (000002527086A0B8)
-[LOG] SoundI::release                          :     PC_Step01-006 (000002526E5DC5A8)
-[LOG] SoundI::release                          :  (000002527086F418)
-[LOG] SoundI::release                          :     PC_Step01-001 (00000251A8A2E588)
-[LOG] SoundI::release                          :  (000002527086B4D8)
-[LOG] SoundI::release                          :     PC_Step01-002 (000002526E5DE968)
-[LOG] SoundI::release                          :  (00000252708693C8)
-[LOG] SoundI::release                          :     PC_Step_Cloth01 (000002526E5DE148)
-[LOG] SoundI::release                          :  (00000252708706C8)
-[LOG] SoundI::release                          :     PC_Step_Cloth02 (000002526E5DB8A8)
-[LOG] SoundI::release                          :  (000002527086ECE8)
-[LOG] SoundI::release                          :     PC_Step_Cloth03 (00000251A8A2F288)
-[LOG] SoundI::release                          :  (000002527086FF98)
-[LOG] SoundI::release                          :     PC_Step_Cloth04 (00000251A8A30948)
-[LOG] SoundI::release                          :  (00000252708690E8)
-[LOG] SoundI::release                          :     PC_Step_Cloth05 (000002526E5DC8E8)
-[LOG] SoundI::release                          :  (000002527086E898)
-[LOG] SoundI::release                          :     PC_Step_Cloth06 (00000251A8A31CC8)
-[LOG] SoundI::release                          :  (000002527086F2A8)
-[LOG] SoundI::release                          :     PC_Jump_Feet01 (00000251A8A2E0A8)
-[LOG] SoundI::release                          :  (000002527086B648)
-[LOG] SoundI::release                          :     PC_Jump_Feet02 (000002526E5DEB08)
-[LOG] SoundI::release                          :  (000002527086EB78)
-[LOG] SoundI::release                          :     PC_Jump_Feet03 (00000251C449BF08)
-[LOG] SoundI::release                          :  (0000025270870838)
-[LOG] SoundI::release                          :     PC_Jump_Feet04 (000002526E5DEE48)
-[LOG] SoundI::release                          :  (000002527086DFF8)
-[LOG] SoundI::release                          :     PC_Jump_Cloth01 (000002526E5DCA88)
-[LOG] SoundI::release                          :  (000002527086E728)
-[LOG] SoundI::release                          :     PC_Jump_Cloth02 (00000251A8A2FF88)
-[LOG] SoundI::release                          :  (000002527086EE58)
-[LOG] SoundI::release                          :     PC_Jump_Cloth03 (00000251A8A2E728)
-[LOG] SoundI::release                          :  (000002527086B088)
-[LOG] SoundI::release                          :     PC_Jump_Cloth04 (000002526E5DE2E8)
-[LOG] SoundI::release                          :  (000002527086E168)
-[LOG] SoundI::release                          :     Pc_Land_Cloth03 (000002526E5DBA48)
-[LOG] SoundI::release                          :  (0000025270869F48)
-[LOG] SoundI::release                          :     Pc_Land_Cloth04 (000002526E5DE628)
-[LOG] SoundI::release                          :  (0000025270868F78)
-[LOG] SoundI::release                          :     Pc_Land_Cloth05 (000002526E5DC268)
-[LOG] SoundI::release                          :  (000002527086E2D8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth06 (000002526E5DDAC8)
-[LOG] SoundI::release                          :  (000002527086B368)
-[LOG] SoundI::release                          :     Pc_Land_Cloth01 (000002526E5DE488)
-[LOG] SoundI::release                          :  (000002527086AAC8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth02 (000002526E5DDE08)
-[LOG] SoundI::release                          :  (000002527086EFC8)
-[LOG] SoundI::release                          :     PC_Land_Feet03 (00000251A8A31988)
-[LOG] SoundI::release                          :  (000002527086EA08)
-[LOG] SoundI::release                          :     PC_Land_Feet04 (000002526E5DECA8)
-[LOG] SoundI::release                          :  (000002527086FCB8)
-[LOG] SoundI::release                          :     PC_Land_Feet05 (000002526E5DC408)
-[LOG] SoundI::release                          :  (000002527086E448)
-[LOG] SoundI::release                          :     PC_Land_Feet06 (000002526E5DC748)
-[LOG] SoundI::release                          :  (0000025270868C98)
-[LOG] SoundI::release                          :     PC_Land_Feet01 (000002526E5DDFA8)
-[LOG] SoundI::release                          :  (000002527086A398)
-[LOG] SoundI::release                          :     PC_Land_Feet02 (000002526E5DB088)
+[LOG] SoundI::release                          :  (0000021D46E4E928)
+[LOG] SoundI::release                          :     YokaiDeathVOX01 (0000021D466DDDF8)
+[LOG] SoundI::release                          :  (0000021D46E4D678)
+[LOG] SoundI::release                          :     YokaiDeathVOX02 (0000021D46845528)
+[LOG] SoundI::release                          :  (0000021B33977C98)
+[LOG] SoundI::release                          :     YokaiDeathVOX03 (0000021D285BAC78)
+[LOG] SoundI::release                          :  (0000021D46E4D958)
+[LOG] SoundI::release                          :     YokaiDeathVOX04 (0000021D466DEE38)
+[LOG] SoundI::release                          :  (0000021B3397B1C8)
+[LOG] SoundI::release                          :     YokaiDeathWhistle01 (0000021D4695ABC8)
+[LOG] SoundI::release                          :  (0000021B3397A7B8)
+[LOG] SoundI::release                          :     YokaiDeathWhistle02 (0000021D46958188)
+[LOG] SoundI::release                          :  (0000021D46E4D228)
+[LOG] SoundI::release                          :     YokaiDeathWhistle03 (0000021D46845388)
+[LOG] SoundI::release                          :  (0000021D46E4C6A8)
+[LOG] SoundI::release                          :     YokaiDeathWhistle04 (0000021D285BAFB8)
+[LOG] SoundI::release                          :  (0000021E154052F8)
+[LOG] SoundI::release                          :     PC_Step01-003 (0000021D289BFA18)
+[LOG] SoundI::release                          :  (0000021E1185DC98)
+[LOG] SoundI::release                          :     PC_Step01-004 (0000021D46843B28)
+[LOG] SoundI::release                          :  (0000021E1185DE08)
+[LOG] SoundI::release                          :     PC_Step01-005 (0000021D43F72E78)
+[LOG] SoundI::release                          :  (0000021E154037A8)
+[LOG] SoundI::release                          :     PC_Step01-006 (0000021D289BF6D8)
+[LOG] SoundI::release                          :  (0000021E1185D288)
+[LOG] SoundI::release                          :     PC_Step01-001 (0000021D46844B68)
+[LOG] SoundI::release                          :  (0000021E15401978)
+[LOG] SoundI::release                          :     PC_Step01-002 (0000021D43F71C98)
+[LOG] SoundI::release                          :  (0000021E15401808)
+[LOG] SoundI::release                          :     PC_Step_Cloth01 (0000021D289C1758)
+[LOG] SoundI::release                          :  (0000021E1185BFD8)
+[LOG] SoundI::release                          :     PC_Step_Cloth02 (0000021D43F73698)
+[LOG] SoundI::release                          :  (0000021E11858938)
+[LOG] SoundI::release                          :     PC_Step_Cloth03 (0000021D43F72CD8)
+[LOG] SoundI::release                          :  (0000021E1185CB58)
+[LOG] SoundI::release                          :     PC_Step_Cloth04 (0000021D43F72998)
+[LOG] SoundI::release                          :  (0000021E15405188)
+[LOG] SoundI::release                          :     PC_Step_Cloth05 (0000021D289BE698)
+[LOG] SoundI::release                          :  (0000021E1185A1A8)
+[LOG] SoundI::release                          :     PC_Step_Cloth06 (0000021D43F72658)
+[LOG] SoundI::release                          :  (0000021E1185CE38)
+[LOG] SoundI::release                          :     PC_Jump_Feet01 (0000021D46843648)
+[LOG] SoundI::release                          :  (0000021E11859068)
+[LOG] SoundI::release                          :     PC_Jump_Feet02 (0000021D43F72318)
+[LOG] SoundI::release                          :  (0000021E11857DB8)
+[LOG] SoundI::release                          :     PC_Jump_Feet03 (0000021D43F71E38)
+[LOG] SoundI::release                          :  (0000021E11858098)
+[LOG] SoundI::release                          :     PC_Jump_Feet04 (0000021D43F73838)
+[LOG] SoundI::release                          :  (0000021E15403D68)
+[LOG] SoundI::release                          :     PC_Jump_Cloth01 (0000021D289C22B8)
+[LOG] SoundI::release                          :  (0000021E1185D118)
+[LOG] SoundI::release                          :     PC_Jump_Cloth02 (0000021D43F72B38)
+[LOG] SoundI::release                          :  (0000021E1185D568)
+[LOG] SoundI::release                          :     PC_Jump_Cloth03 (0000021D43F71FD8)
+[LOG] SoundI::release                          :  (0000021E15402AB8)
+[LOG] SoundI::release                          :     PC_Jump_Cloth04 (0000021D289BF538)
+[LOG] SoundI::release                          :  (0000021E15404048)
+[LOG] SoundI::release                          :     Pc_Land_Cloth03 (0000021D289BE838)
+[LOG] SoundI::release                          :  (0000021E15402D98)
+[LOG] SoundI::release                          :     Pc_Land_Cloth04 (0000021D289C0098)
+[LOG] SoundI::release                          :  (0000021E15404EA8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth05 (0000021D289C1A98)
+[LOG] SoundI::release                          :  (0000021E15405018)
+[LOG] SoundI::release                          :     Pc_Land_Cloth06 (0000021D289BF878)
+[LOG] SoundI::release                          :  (0000021E154055D8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth01 (0000021D43F73018)
+[LOG] SoundI::release                          :  (0000021E15403ED8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth02 (0000021D289C0578)
+[LOG] SoundI::release                          :  (0000021E1185CCC8)
+[LOG] SoundI::release                          :     PC_Land_Feet03 (0000021D43F727F8)
+[LOG] SoundI::release                          :  (0000021E1185C148)
+[LOG] SoundI::release                          :     PC_Land_Feet04 (0000021D43F72178)
+[LOG] SoundI::release                          :  (0000021E11859908)
+[LOG] SoundI::release                          :     PC_Land_Feet05 (0000021D43F724B8)
+[LOG] SoundI::release                          :  (0000021E15401C58)
+[LOG] SoundI::release                          :     PC_Land_Feet06 (0000021D289C1418)
+[LOG] SoundI::release                          :  (0000021E15404BC8)
+[LOG] SoundI::release                          :     PC_Land_Feet01 (0000021D289C08B8)
+[LOG] SoundI::release                          :  (0000021E15404328)
+[LOG] SoundI::release                          :     PC_Land_Feet02 (0000021D289C1C38)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
