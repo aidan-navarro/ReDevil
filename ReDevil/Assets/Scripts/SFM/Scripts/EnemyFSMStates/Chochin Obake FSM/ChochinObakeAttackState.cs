@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChochinObakeAttackState : FSMState
 {
     bool bulletFired;
-
+   
     //Constructor
     public ChochinObakeAttackState()
     {

@@ -181,4 +181,8 @@ public class WaniguchiFSMController : EnemyFSMController
         deathConfirmed = true;
     }
 
+    private void WaniguchiDeathSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Yokai_Death");
+    }
 }
