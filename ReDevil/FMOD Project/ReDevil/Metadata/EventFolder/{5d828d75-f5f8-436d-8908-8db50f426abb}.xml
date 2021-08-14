@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EventFolder" id="{5d828d75-f5f8-436d-8908-8db50f426abb}">
+		<property name="name">
+			<value>WANIGUCHI</value>
+		</property>
+		<relationship name="folder">
+			<destination>{f0d4f166-1840-4240-bd90-8e13ff64ffce}</destination>
+		</relationship>
+	</object>
+</objects>

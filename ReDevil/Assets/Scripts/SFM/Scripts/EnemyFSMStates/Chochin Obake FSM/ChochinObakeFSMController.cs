@@ -103,4 +103,14 @@ public class ChochinObakeFSMController : EnemyFSMController
     //    Gizmos.color = Color.red;
     //    Gizmos.DrawWireSphere(transform.position, range);
     //}
+
+    private void ChochinAttackSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/CHOCIN/Chochin_Attack");
+    } 
+    
+    private void ChochinDeathSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Yokai_Death");
+    }
 }

@@ -45,6 +45,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 254
+--- !u!114 &-8326725390643312400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MAIN.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/ReDevil/Build/Desktop/MAIN.bank
+  Name: MAIN
+  StudioPath: bank:/MAIN
+  lastModified: 637645410092694927
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-7956775430524190907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +87,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 743
+--- !u!114 &-7357640540652031958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/SwordSwing
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/SwordSwing
+  guid: bbd6fca684bc684682c9da4107abefed
+  Banks:
+  - {fileID: 9028138863102106356}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1290
 --- !u!114 &-7158766203780788471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +202,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &-5136405049944984179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/Yokai_Death
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/Yokai_Death
+  guid: d01cf9550ed1bb44ab81556bd0be1b95
+  Banks:
+  - {fileID: 9028138863102106356}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1587
 --- !u!114 &-4465705393667181238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,12 +330,12 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637593715172243846
+  lastModified: 637645361695355430
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1012
-  Exists: 1
+    Value: 1022
+  Exists: 0
 --- !u!114 &-388164487858964447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,22 +372,22 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -718915644933060803}
-  - {fileID: 8017208646381497514}
+  - {fileID: 4372257090248360936}
+  - {fileID: 9028138863102106356}
   EditorEvents:
-  - {fileID: -1512020016287300466}
-  - {fileID: 4937288159173776980}
-  - {fileID: 4601264043492200658}
   - {fileID: 6826698916491104189}
   - {fileID: 2708344532025573119}
-  - {fileID: -9115821394515919172}
   - {fileID: 4321024030236432393}
+  - {fileID: 2988079187500264606}
+  - {fileID: 8646040088643492480}
+  - {fileID: -7357640540652031958}
+  - {fileID: -5136405049944984179}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 8017208646381497514}
+  - {fileID: 9028138863102106356}
   StringsBanks:
-  - {fileID: -718915644933060803}
-  stringsBankWriteTime: 637593715172243846
+  - {fileID: 4372257090248360936}
+  stringsBankWriteTime: 637645410092734979
   cacheVersion: 6
 --- !u!114 &91175235257437251
 MonoBehaviour:
@@ -369,6 +434,27 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 254
+--- !u!114 &656258091868873732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MAIN.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/ReDevil/Build/Desktop/MAIN.strings.bank
+  Name: MAIN.strings
+  StudioPath: bank:/MAIN.strings
+  lastModified: 637645410092734979
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1062
+  Exists: 1
 --- !u!114 &1149553343516350785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,7 +581,8 @@ MonoBehaviour:
   Path: event:/PLAYER/Player_Run
   guid: 88af88bddf6437449d5eda7aaa72c2dd
   Banks:
-  - {fileID: 8017208646381497514}
+  - {fileID: -8326725390643312400}
+  - {fileID: 9028138863102106356}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -524,6 +611,30 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1012
   Exists: 1
+--- !u!114 &2988079187500264606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/BASAN/Basan_Attack
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/BASAN/Basan_Attack
+  guid: 54a507762152ce49abf414748188fa60
+  Banks:
+  - {fileID: -8326725390643312400}
+  - {fileID: 9028138863102106356}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1730
 --- !u!114 &3585599333606253556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,7 +719,8 @@ MonoBehaviour:
   Path: event:/PLAYER/Player_Land
   guid: f14da48858e5e34eb060c9b9b654f2d8
   Banks:
-  - {fileID: 8017208646381497514}
+  - {fileID: -8326725390643312400}
+  - {fileID: 9028138863102106356}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -616,6 +728,27 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 743
+--- !u!114 &4372257090248360936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MAIN.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/ReDevil/Build/Desktop/MAIN.strings.bank
+  Name: MAIN.strings
+  StudioPath: bank:/MAIN.strings
+  lastModified: 637645410092734979
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1062
+  Exists: 1
 --- !u!114 &4601264043492200658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +841,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 164625
+--- !u!114 &6777705703490829957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/Yokai_Death
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/Yokai_Death
+  guid: d01cf9550ed1bb44ab81556bd0be1b95
+  Banks:
+  - {fileID: -8326725390643312400}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1587
 --- !u!114 &6826698916491104189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +879,8 @@ MonoBehaviour:
   Path: event:/PLAYER/Player_Jump
   guid: 5d341b3e35328b4ab23949695ab34685
   Banks:
-  - {fileID: 8017208646381497514}
+  - {fileID: -8326725390643312400}
+  - {fileID: 9028138863102106356}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -731,6 +888,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &7477867311315533686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/SwordSwing
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/SwordSwing
+  guid: bbd6fca684bc684682c9da4107abefed
+  Banks:
+  - {fileID: -8326725390643312400}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1290
 --- !u!114 &7741002538185011133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,7 +949,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637593715172213825
+  lastModified: 637642263887836100
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -819,3 +999,46 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 254
+--- !u!114 &8646040088643492480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/CHOCIN/Chochin_Attack
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/CHOCIN/Chochin_Attack
+  guid: cb386019abd9a34e987ade9f818a85b8
+  Banks:
+  - {fileID: -8326725390643312400}
+  - {fileID: 9028138863102106356}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1120
+--- !u!114 &9028138863102106356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MAIN.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/ReDevil/Build/Desktop/MAIN.bank
+  Name: MAIN
+  StudioPath: bank:/MAIN
+  lastModified: 637645410092694927
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
