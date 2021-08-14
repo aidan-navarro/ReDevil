@@ -91,6 +91,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.083333336
+    functionName: ChochinAttackSound
+    data: 
+    objectReferenceParameter: {fileID: 3470007661149216615, guid: ba2190c119991de49a12a8510f9c183c,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.25
     functionName: ChochinProjectile
     data: 
