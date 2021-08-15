@@ -28,7 +28,7 @@ public class ShutenDojiAttackState : FSMState
 
         if (!bulletFired)
         {
-            ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, ec.atkDirectionRight, ec.projectileSpeed);
+            //ec.InstantiateProjectile(ec.bullet, ec.firepoint.position, ec.firepoint.rotation, ec.atkDirectionRight, ec.projectileSpeed, ec.facingRight);
         }
 
         bulletFired = true;
