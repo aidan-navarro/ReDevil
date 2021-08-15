@@ -82,17 +82,28 @@ public class ChochinObakeFSMController : EnemyFSMController
         bulletDirectionNormalized = inRightDirection;
     }
 
-    public override void InstantiateProjectile(GameObject bullet, Vector3 pos, Quaternion rot, Vector2 rightDirection, float inSpeed)
+    public override void InstantiateProjectile(GameObject bullet, Vector3 pos, Quaternion rot, Vector2 rightDirection, float inSpeed, bool facingRight)
     {
         Debug.Log("Bullet speed: " + inSpeed);
+        int spriteDir = 0;
+        if (facingRight)
+        {
+            spriteDir = -1;
+        }
+        else
+        {
+            spriteDir = 1;
+        }
+
         GameObject bulletClone;
         bulletClone = Instantiate(bullet, pos, rot) as GameObject;
+        bulletClone.transform.localScale = new Vector2(bulletClone.transform.localScale.x * spriteDir, bulletClone.transform.localScale.y);
         bulletClone.GetComponent<Bullet>().speed = inSpeed;
         bulletClone.GetComponent<Bullet>().direction = rightDirection;        
     }
     public void ChochinProjectile()
     {
-        InstantiateProjectile(bullet, firepoint.position, firepoint.rotation, bulletDirectionNormalized, projectileSpeed);
+        InstantiateProjectile(bullet, firepoint.position, firepoint.rotation, bulletDirectionNormalized, projectileSpeed, facingRight);
     }
     public void ConfirmDeath()
     {

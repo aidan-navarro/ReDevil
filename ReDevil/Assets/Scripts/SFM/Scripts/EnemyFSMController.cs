@@ -50,6 +50,7 @@ public class EnemyFSMController : AdvancedFSM
     public bool GetisTouchingWall() { return isTouchingWall; }
     public void SetisTouchingWall(bool inIsTouchingWall) { isTouchingWall = inIsTouchingWall; }
 
+    [SerializeField]
     protected bool facingRight; //bool used to flip the enemy
 
     protected bool atkTransition;
@@ -211,10 +212,21 @@ public class EnemyFSMController : AdvancedFSM
 
 
     //This function will only fire a projectile in a straight line.  Adjust this function as needed per enemy
-    public virtual void InstantiateProjectile(GameObject bullet, Vector3 pos, Quaternion rot, Vector2 rightDirection, float inSpeed)
+    public virtual void InstantiateProjectile(GameObject bullet, Vector3 pos, Quaternion rot, Vector2 rightDirection, float inSpeed, bool facingRight)
     {
+        int spriteDir = 0;
+        if(facingRight)
+        {
+            spriteDir = -1;
+        }
+        else
+        {
+            spriteDir = 1;
+        }
+
         GameObject bulletClone;
         bulletClone = Instantiate(bullet, pos, rot) as GameObject;
+        bulletClone.transform.localScale = new Vector2(bulletClone.transform.localScale.x * spriteDir, bulletClone.transform.localScale.y);
         bulletClone.GetComponent<Bullet>().speed = inSpeed;
         if (facingRight)
         {
