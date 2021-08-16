@@ -10,6 +10,7 @@ tpsheetFileNames:
 - Assets/Sprites/Nurikabe/Nurikabe Death Upright.tpsheet
 - Assets/Sprites/Nurikabe/Nurikabe Death UpsideDown.tpsheet
 - Assets/Sprites/Red/Dash Contact Effect Spritesheet.tpsheet
+- Assets/Sprites/Red/Red Spritesheet.tpsheet
 - Assets/Sprites/Test Sprites/WaniguchiTest/IdleTest.tpsheet
 - Assets/Sprites/Waniguchi/Waniguchi Sprites.tpsheet
 textureFileNames:
@@ -22,10 +23,12 @@ textureFileNames:
 - Assets/Sprites/Nurikabe/Nurikabe Death Upright.png
 - Assets/Sprites/Nurikabe/Nurikabe Death UpsideDown.png
 - Assets/Sprites/Red/Dash Contact Effect Spritesheet.png
+- Assets/Sprites/Red/Red Spritesheet.png
 - Assets/Sprites/Test Sprites/WaniguchiTest/IdleTest.png
 - Assets/Sprites/Waniguchi/Waniguchi Sprites.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
 - 
 - 
 - 
