@@ -39,11 +39,12 @@ public class BasanAttackState : FSMState
             //turn on flamethrower coroutine
             //ec.BasanAttack();
             anim.SetBool("Attack", true);
-            bf.ActivateFlamethrower();
+            //bf.ActivateFlamethrower();
             attackStart = true;
         } 
         else
         {
+            Debug.Log("deactive flame");
             anim.SetBool("Attack", false);
             bf.DeactivateFlamethrower();
         }
