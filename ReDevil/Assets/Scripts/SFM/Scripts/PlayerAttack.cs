@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     //to compare if we hit a weakspot
     public PhysicsMaterial2D weakSpot;
     public GameObject soulShot;
+    public GameObject attackSpritePrefab;
 
     //damage amounts for each hit of the ground hit chain
     public float groundHit1;
@@ -388,6 +389,10 @@ public class PlayerAttack : MonoBehaviour
                 attackVector = ec.transform.position - pc.transform.position;
 
                 ec.SetEnemyFlinch(true);
+
+                // Display animated sprite
+                //hits[i].point
+                Instantiate(attackSpritePrefab, hits[i].point, attackSpritePrefab.transform.rotation);
 
                 attacking = false;
                 if (pc.GetisGrounded())
