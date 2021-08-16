@@ -3,6 +3,7 @@ importPivots: 1
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 - Assets/Sprites/Basan/Basan Sprites.tpsheet
+- Assets/Sprites/Basan/Fire/Basan Fire.tpsheet
 - Assets/Sprites/Chochin Obake/Chochin Obake Fireball.tpsheet
 - Assets/Sprites/Chochin Obake/Chochin Sprites.tpsheet
 - Assets/Sprites/Nodeppou/Nodeppou Animations.tpsheet
@@ -13,6 +14,7 @@ tpsheetFileNames:
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
 - Assets/Sprites/Basan/Basan Sprites.png
+- Assets/Sprites/Basan/Fire/Basan Fire.png
 - Assets/Sprites/Chochin Obake/Chochin Obake Fireball.png
 - Assets/Sprites/Chochin Obake/Chochin Sprites.png
 - Assets/Sprites/Nodeppou/Nodeppou Animations.png
@@ -22,6 +24,7 @@ textureFileNames:
 - Assets/Sprites/Waniguchi/Waniguchi Sprites.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
 - 
 - 
 - 

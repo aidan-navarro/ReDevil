@@ -952,6 +952,7 @@ MonoBehaviour:
   projectileSpeed: 4
   currentPos: {x: 0, y: 0}
   isGrounded: 0
+  facingRight: 0
   airborneEnemy: 0
   isHit: 0
   enemyFlinch: 0
