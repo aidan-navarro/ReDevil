@@ -8,9 +8,9 @@ using UnityEngine;
 //INCLUDING INDIVIDUAL DAMAGE VARIABLES AND HITBOXES
 public class PlayerAttack : MonoBehaviour
 {
-    // consider making a specific attack collider for dash attacks?
-
     public Collider2D attackCollider;
+    private Vector2 attackColliderPos;
+
     public SpriteRenderer sprite;
     //to compare if we hit a weakspot
     public PhysicsMaterial2D weakSpot;
@@ -77,6 +77,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         pc = gameObject.GetComponent<PlayerFSMController>();
+        attackColliderPos = attackCollider.transform.localPosition;
         attacking = false;
         firstDashContact = false;
         airAttackContact = false;
@@ -322,6 +323,8 @@ public class PlayerAttack : MonoBehaviour
         //StartCoroutine("EnableDashAttack");
         //Debug.Log("Start Dash Attack");
         attacking = true; // use the same attacking variable?
+        Vector2 tempPos = new Vector2(pc.transform.right.x, 0);
+        attackCollider.transform.localPosition = tempPos*2;
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -333,7 +336,7 @@ public class PlayerAttack : MonoBehaviour
     public void StartAirDashAttack(Vector2 position)
     {
         attacking = true;
-        attackCollider.transform.localPosition = position;
+        attackCollider.transform.localPosition = position*3;
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -623,8 +626,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void RevertHitbox()
     {
-        attackCollider.transform.localPosition = new Vector2(1.0f, 0.0f);
-        attackCollider.transform.localScale = new Vector2(1.0f, 1.0f);
+        attackCollider.transform.localPosition = attackColliderPos;
+        attackCollider.transform.localScale = new Vector2(1.3f, 1.0f);
     }
 
     //------------------------------------------------------------
