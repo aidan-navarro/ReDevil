@@ -23,7 +23,7 @@ public class AirAttackState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
-
+        Animator anim = pc.GetComponent<Animator>();
         //prevGravScale = rig.gravityScale;
         //float attackGravity = prevGravScale/2;
         //rig.gravityScale = attackGravity;
@@ -34,7 +34,12 @@ public class AirAttackState : FSMState
         if (airTime < patk.GetAirAttackTime() && !patk.airAttackContact) // this is keeping it locked
         {
             Debug.Log("Airstrike");
-            patk.AirAttack();
+            patk.attacking = true;
+            patk.didAirAttack = true;
+            //patk.AirAttack();
+
+            // must test this out
+            anim.SetBool("AirAttack", patk.didAirAttack);
             
         } 
         else if (patk.airAttackContact)

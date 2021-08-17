@@ -18,9 +18,14 @@ public class MoveState : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        Animator anim = pc.GetComponent<Animator>();
+        anim.SetBool("ResetIdle", false);
+        anim.SetBool("AirAttack", false);
+
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
         isMoving = true;
+
         bool grounded = pc.GetisGrounded();
 
         // moving and attacking
@@ -128,8 +133,9 @@ public class MoveState : FSMState
             rig.velocity = newMoveSpeed;
             isMoving = false;
         }
+        anim.SetBool("Moving", isMoving);
 
-        
+
     }
 
     //Reason: Put any possible transitions here

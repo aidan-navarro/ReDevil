@@ -18,19 +18,20 @@ public class JumpingState : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
-
+        Animator anim = pc.GetComponent<Animator>();
+        anim.SetBool("ResetIdle", false);
         pc.SetNoFrictionMaterial();
 
         pc.TouchingFloorCeilingWall();
         bool grounded = pc.GetisGrounded();
 
-        
         pc.UpdateState("Jump");
 
         if(grounded)
         {
 
             //Player has begun to jump
+            // SET THIS IN THE ANIMATION
             Vector2 newVel = rig.velocity;
             newVel.y = pc.GetJumpPower();
             rig.velocity = newVel;
@@ -39,8 +40,8 @@ public class JumpingState : FSMState
             Debug.Log("Player State: Jumping");
             hasJumped = true;
         }
-            
-        
+
+        anim.SetTrigger("Jump");
     }
 
     //Reason: Put any possible transitions here

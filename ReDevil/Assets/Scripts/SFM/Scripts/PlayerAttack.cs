@@ -70,7 +70,7 @@ public class PlayerAttack : MonoBehaviour
     public Vector2 GetNormalizedAttackVector() { return attackVector.normalized; }
     public void SetAttackVector(Vector2 inAttackVector) {  attackVector = inAttackVector; }
 
-
+    // reference to player fsm controller
     private PlayerFSMController pc;
 
     // Start is called before the first frame update
@@ -108,6 +108,7 @@ public class PlayerAttack : MonoBehaviour
     //------------------------------------------------------------
     #region //click the plus sign beside region to hide/unhide code
 
+    // called in the attack animations
     public void GroundAttack()
     {
         //Start the coroutine
@@ -123,13 +124,28 @@ public class PlayerAttack : MonoBehaviour
         StopCoroutine("EnableGroundHit");
     }
 
+    // this will actually end the animation
+    public void EndGroundAttack()
+    {
+        //turn off the hitbox
+        //TurnOffHitbox();
+
+        groundHitCounter = 0;
+
+        //we can't check for a cancel anymore, set to false
+        checkCancel = false;
+        attacking = false;
+
+        idleTransition = true;
+    }
+
     public IEnumerator EnableGroundHit()
     {
         attacking = true;
         
         //update the combo count
         groundHitCounter++;
-        Debug.Log("GroundHitCount: " + groundHitCounter);
+        // Debug.Log("GroundHitCount: " + groundHitCounter);
         //Turn the hitbox on to deal massive damage
         TurnOnHitbox();
 
@@ -178,19 +194,12 @@ public class PlayerAttack : MonoBehaviour
         pc.SetAttackButtonDown(false);
         //play the animation here
 
-        //wait for the attack to end.  During this timeframe the attack can be cancelled
-        yield return new WaitForSeconds(endlag);
+        // TEST
+        ////wait for the attack to end.  During this timeframe the attack can be cancelled
+        //yield return new WaitForSeconds(endlag);
 
-        //turn off the hitbox
-        TurnOffHitbox();
+        //EndGroundAttack();
 
-        groundHitCounter = 0;
-
-        //we can't check for a cancel anymore, set to false
-        checkCancel = false;
-        attacking = false;
-
-        idleTransition = true;
         Debug.Log("attack coroutine end");
     }
 
@@ -250,8 +259,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void AirAttack()
     {
-        attacking = true;
-        didAirAttack = true;
+        // calling the bottom two lines in the air attack state
+        //attacking = true;
+        //didAirAttack = true;
         Debug.Log("Air Attack Trigger");
         damage = airAttackValue;
         TurnOnHitbox();
@@ -608,7 +618,7 @@ public class PlayerAttack : MonoBehaviour
     private void TurnOnHitbox()
     {
         attackCollider.enabled = true;
-        sprite.enabled = true;
+        //sprite.enabled = true;
     }
 
     //for end of the coroutine, turn off the hitbox
@@ -621,13 +631,13 @@ public class PlayerAttack : MonoBehaviour
     // Dash Attack Specific, scaling down the hitbox so that the player is a bit closer to the enemy on dash
     private void ShrinkHitbox()
     {
-        attackCollider.transform.localScale = new Vector2(0.5f, 0.5f);
+        attackCollider.transform.localScale = new Vector2(1.0f, 1.0f);
     }
 
     private void RevertHitbox()
     {
         attackCollider.transform.localPosition = attackColliderPos;
-        attackCollider.transform.localScale = new Vector2(1.3f, 1.0f);
+        attackCollider.transform.localScale = new Vector2(2.6f, 2.0f);
     }
 
     //------------------------------------------------------------

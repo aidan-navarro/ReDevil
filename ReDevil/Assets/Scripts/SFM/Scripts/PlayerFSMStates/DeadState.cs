@@ -19,7 +19,9 @@ public class DeadState : FSMState
 	{
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         pc.UpdateState("Dead");
-       pc.PlayPlayerDead();
+        // PLAY THE DEATH ANIMATION AND CALL PLAY PLAYER DEAD IN THAT ANIMATION
+        // slow down the frame speed in the inspector
+        pc.PlayPlayerDead();
       
         //do nothing
     }
