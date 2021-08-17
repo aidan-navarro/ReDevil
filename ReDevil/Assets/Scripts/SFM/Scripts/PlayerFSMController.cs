@@ -911,16 +911,21 @@ public class PlayerFSMController : AdvancedFSM
         //equation values to determine if the player is on the ground
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
-        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
+        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(resizeColFloor.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
-        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
+
+        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(resizeColHead.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.5f), 0f, groundLayer.value);
+        Vector2 resizeColWall = Vector2.Scale(col.size, transform.localScale);
+
+        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, resizeColWall.y - 0.5f), 0f, groundLayer.value);
     }
 
     public void TouchingInvisibleWall()

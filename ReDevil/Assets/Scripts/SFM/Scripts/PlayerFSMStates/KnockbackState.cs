@@ -5,11 +5,18 @@ using UnityEngine;
 public class KnockbackState : FSMState
 {
     private InvincibleTimer timer;
+    private bool isHit;
 
     //Constructor
     public KnockbackState()
     {
         stateID = FSMStateID.KnockedBack;
+    }
+
+    public override void EnterStateInit()
+    {
+        base.EnterStateInit();
+        isHit = false;
     }
 
     //Act: What are we doing in this state?
@@ -19,6 +26,14 @@ public class KnockbackState : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
+
+        anim.SetBool("ResetIdle", false);
+        if (!isHit)
+        {
+            anim.SetTrigger("Flinch");
+            isHit = true;
+        }
 
         patk.StopGroundAttack();
         patk.StopAirAttack();

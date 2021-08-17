@@ -471,7 +471,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 69f2d5e806ae7e846a6e9e05fa9587ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ffd4bd174d398eb48ba9379d186668df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -562,6 +562,8 @@ MonoBehaviour:
   airDashLimit: 0
   dashPath: {x: 0, y: 0}
   respawnPoint: {fileID: 0}
+  jumpButtonDown: 0
+  groundJump: 0
   isGrounded: 0
   isTouchingInvisibleWall: 0
   isTouchingNurikabe: 0
@@ -583,6 +585,7 @@ MonoBehaviour:
   sprite: {fileID: 1575489276433007823}
   weakSpot: {fileID: 6200000, guid: dd161e460515f9e4eb7d7fa25e747d2c, type: 2}
   soulShot: {fileID: 27731022402932077, guid: 34cabb45380e83342bebaac6efe2cc72, type: 3}
+  attackSpritePrefab: {fileID: 0}
   groundHit1: 10
   groundHit2: 20
   groundHit3: 40
@@ -655,7 +658,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 1.62, y: 2.56}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
