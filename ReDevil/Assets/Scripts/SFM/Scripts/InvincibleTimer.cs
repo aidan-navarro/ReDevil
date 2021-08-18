@@ -8,6 +8,8 @@ public class InvincibleTimer : MonoBehaviour
     public float iFrameTime; //the number of iFrames AFTER being immobile in seconds
     public float dashKnockbackTimer;
     private PlayerFSMController pc;
+    [SerializeField]
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +37,11 @@ public class InvincibleTimer : MonoBehaviour
 
         //immobile timer has expired.  player can now move but will remain invinicble for a bit longer
         pc.SetImmobile(false);
+        animator.SetTrigger("IFrames");
 
         //begin timer for extra seconds on invincibility
         yield return new WaitForSeconds(iFrameTime);
-
+        animator.SetTrigger("DisableIFrames");
 
         //invincibility has ended.  Player can now be hit again
         pc.SetInvincible(false);
