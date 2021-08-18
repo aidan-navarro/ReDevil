@@ -15,6 +15,7 @@ public class InvincibleTimer : MonoBehaviour
     void Start()
     {
         pc = GetComponent<PlayerFSMController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

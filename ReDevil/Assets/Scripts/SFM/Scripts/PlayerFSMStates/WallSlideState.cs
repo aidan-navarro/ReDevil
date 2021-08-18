@@ -34,6 +34,7 @@ public class WallSlideState : FSMState
         }
 
         patk.firstDashContact = false;
+        patk.StopAirAttack();
         // touching the wall will reset the air dash count
         pc.ResetAirDashCount();
         pc.CheckAirDash();

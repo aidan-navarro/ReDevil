@@ -22,16 +22,17 @@ public class AirDownStrikeState : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
-
+        Animator anim = pc.GetComponent<Animator>();
         pc.UpdateState("Falling Strike");
 
         if (!attackStarted)
         {
-            patk.AirDownStrikeAttack();
+            anim.SetTrigger("FallingStrike");
             attackStarted = true;
         }
         if (pc.GetisGrounded())
         {
+            anim.SetTrigger("Landed");
             pc.SetFrictionMaterial();
         }
 
