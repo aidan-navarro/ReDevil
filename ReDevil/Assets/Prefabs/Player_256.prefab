@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a03144883243f6045aaae8720083ad63, type: 3}
   m_Color: {r: 0.033018887, g: 0.5035117, b: 1, a: 0.56078434}
   m_FlipX: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_ScreenY: 0.546
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.269
-  m_DeadZoneHeight: 0.401
+  m_DeadZoneHeight: 0.301
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511205095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -23.809525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455885226}
@@ -296,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575489276325362631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -10}
+  m_LocalPosition: {x: 20.421555, y: 7.9797063, z: -23.809525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1575489276398568402}
@@ -409,7 +409,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player_256
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -422,7 +422,7 @@ Transform:
   m_GameObject: {fileID: 1575489276398568413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.42, y: 0.42, z: 0.42}
   m_Children:
   - {fileID: 1575489276325362491}
   - {fileID: 1575489276433007818}
@@ -470,16 +470,17 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ffd4bd174d398eb48ba9379d186668df, type: 3}
+  m_SortingOrder: 20
+  m_Sprite: {fileID: -9217039764094678607, guid: 0014cf2d0afb5114384b5524f3912c01,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 3.76, y: 4.97}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1575489276398568412
@@ -492,7 +493,7 @@ Animator:
   m_GameObject: {fileID: 1575489276398568413}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5799467f45cfb15408efc95fe41899e7, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd011a6c89063c640ae253f0d387343f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -585,7 +586,8 @@ MonoBehaviour:
   sprite: {fileID: 1575489276433007823}
   weakSpot: {fileID: 6200000, guid: dd161e460515f9e4eb7d7fa25e747d2c, type: 2}
   soulShot: {fileID: 27731022402932077, guid: 34cabb45380e83342bebaac6efe2cc72, type: 3}
-  attackSpritePrefab: {fileID: 0}
+  attackSpritePrefab: {fileID: 5575385851860745246, guid: 574ebb8d18248204f89e74b46f41865e,
+    type: 3}
   groundHit1: 10
   groundHit2: 20
   groundHit3: 40
@@ -638,8 +640,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.69, y: 1.92}
+  m_Offset: {x: 0, y: -0.53}
+  m_Size: {x: 1.97, y: 4.98}
   m_Direction: 0
 --- !u!61 &1575489276398568400
 BoxCollider2D:
@@ -657,9 +659,9 @@ BoxCollider2D:
   m_Offset: {x: -0.061088234, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.62, y: 2.56}
-    newSize: {x: 2.56, y: 2.56}
+    pivot: {x: 0.441489, y: 0.645875}
+    oldSize: {x: 3.76, y: 4.97}
+    newSize: {x: 3.76, y: 4.97}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -758,8 +760,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575489276433007819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 1, z: 1}
+  m_LocalPosition: {x: 3.39, y: 0, z: 0}
+  m_LocalScale: {x: 2.6, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1575489276398568402}
   m_RootOrder: 1
