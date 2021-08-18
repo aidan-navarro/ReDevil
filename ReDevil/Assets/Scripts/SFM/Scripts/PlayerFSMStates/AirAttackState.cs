@@ -132,10 +132,10 @@ public class AirAttackState : FSMState
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.Idle);
         }
+        // consider switching this logic to be at the end of the animation time
         if (airTime >= patk.GetAirAttackTime())
         {
             patk.StopAirAttack();
-            
 
             if (!isGrounded || isCeiling)
             {
