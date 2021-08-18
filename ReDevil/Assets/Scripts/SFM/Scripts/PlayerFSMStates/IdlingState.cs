@@ -24,7 +24,12 @@ public class IdlingState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         Animator anim = pc.GetComponent<Animator>();
-
+        anim.SetTrigger("Grounded");
+        // reset all possible booleans
+        anim.ResetTrigger("Jump");
+        anim.SetBool("Moving", false);
+        anim.SetBool("Midair", false);
+        anim.SetBool("AirAttack", false); 
         anim.SetBool("ResetIdle", true);
         pc.TouchingInvisibleWall();
 
