@@ -1056,6 +1056,19 @@ public class PlayerFSMController : AdvancedFSM
 
     // fine for single hit functions, but for lasting projectiles like a flamethrower
     // this will bust some logic
+
+    //Player has begun to jump
+    // SET THIS IN THE ANIMATION
+    public void Jump()
+    {
+        Vector2 newVel = rig.velocity;
+        rig.velocity = Vector2.zero;
+        newVel.y = GetJumpPower();
+        rig.velocity = newVel;
+
+        soundManager.PlayJump();
+        Debug.Log("Player State: Jumping");
+    }
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
         if (selectedArament.IsActive)

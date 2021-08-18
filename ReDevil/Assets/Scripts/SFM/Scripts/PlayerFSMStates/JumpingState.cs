@@ -29,19 +29,19 @@ public class JumpingState : FSMState
 
         if(grounded)
         {
+            ////Player has begun to jump
+            //// SET THIS IN THE ANIMATION
+            //Vector2 newVel = rig.velocity;
+            //newVel.y = pc.GetJumpPower();
+            //rig.velocity = newVel;
 
-            //Player has begun to jump
-            // SET THIS IN THE ANIMATION
-            Vector2 newVel = rig.velocity;
-            newVel.y = pc.GetJumpPower();
-            rig.velocity = newVel;
-
-            pc.soundManager.PlayJump();
-            Debug.Log("Player State: Jumping");
+            //pc.soundManager.PlayJump();
+            //Debug.Log("Player State: Jumping");
             hasJumped = true;
+            anim.SetTrigger("Jump");
+
         }
 
-        anim.SetTrigger("Jump");
     }
 
     //Reason: Put any possible transitions here

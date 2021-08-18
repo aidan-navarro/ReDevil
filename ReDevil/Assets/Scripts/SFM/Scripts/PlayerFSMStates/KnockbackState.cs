@@ -31,7 +31,8 @@ public class KnockbackState : FSMState
         anim.SetBool("ResetIdle", false);
         if (!isHit)
         {
-            anim.SetTrigger("Flinch");
+            //anim.SetTrigger("Flinch");
+            anim.Play("Flinch", 0, 0);
             isHit = true;
         }
 

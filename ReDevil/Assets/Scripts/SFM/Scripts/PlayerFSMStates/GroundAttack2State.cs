@@ -23,6 +23,7 @@ public class GroundAttack2State : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
 
         //set friction material
         pc.SetFrictionMaterial();
@@ -35,8 +36,7 @@ public class GroundAttack2State : FSMState
 
         if (!attackStarted)
         {
-            Debug.Log("something being called");
-            patk.GroundAttack();
+            anim.SetTrigger("Attack2");
             attackStarted = true;
         }
 
