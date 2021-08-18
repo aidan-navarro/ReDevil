@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/MAIN.strings.bank
   Name: MAIN.strings
   StudioPath: bank:/MAIN.strings
-  lastModified: 637645427326735113
+  lastModified: 637648018865691244
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -669,7 +669,7 @@ MonoBehaviour:
   - {fileID: 3745258490317736878}
   StringsBanks:
   - {fileID: -7649732291532254933}
-  stringsBankWriteTime: 637645427326735113
+  stringsBankWriteTime: 637648018865691244
   cacheVersion: 6
 --- !u!114 &91175235257437251
 MonoBehaviour:
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/MAIN.bank
   Name: MAIN
   StudioPath: bank:/MAIN
-  lastModified: 637645427326685059
+  lastModified: 637648018865676239
   LoadResult: 0
   FileSizes: []
   Exists: 1

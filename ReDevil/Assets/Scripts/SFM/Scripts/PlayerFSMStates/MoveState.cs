@@ -18,9 +18,11 @@ public class MoveState : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Animator anim = pc.GetComponent<Animator>();
         anim.SetBool("ResetIdle", false);
         anim.SetBool("AirAttack", false);
+        patk.StopAirAttack();
 
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");

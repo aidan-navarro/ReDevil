@@ -92,7 +92,7 @@ public class AirAttackState : FSMState
         pc.CheckAirDash();
         if (!invincible && pc.GetKbTransition())
         {
-            patk.StopAirAttack();
+            //patk.StopAirAttack();
             attackStarted = false;
             //rig.gravityScale = prevGravScale;
             patk.ReInitializeTransitions();
@@ -100,7 +100,7 @@ public class AirAttackState : FSMState
         }
         if (patk.dashTransition) //if dash cancel = true, change to dash state
         {
-            patk.StopAirAttack();
+            //patk.StopAirAttack();
             attackStarted = false;
             //rig.gravityScale = prevGravScale;
             patk.ReInitializeTransitions();
@@ -110,7 +110,7 @@ public class AirAttackState : FSMState
         {
             patk.StopAirAttack();
             attackStarted = false;
-            patk.StopAirAttack();
+            //patk.StopAirAttack();
             patk.didAirAttack = false;
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.WallSlide);
@@ -135,7 +135,7 @@ public class AirAttackState : FSMState
         // consider switching this logic to be at the end of the animation time
         if (airTime >= patk.GetAirAttackTime())
         {
-            patk.StopAirAttack();
+            //patk.StopAirAttack();
 
             if (!isGrounded || isCeiling)
             {
@@ -147,7 +147,7 @@ public class AirAttackState : FSMState
 
             else if (isGrounded)
             {
-                patk.StopAirAttack();
+                //patk.StopAirAttack();
 
                 attackStarted = false;
                 patk.idleTransition = true;

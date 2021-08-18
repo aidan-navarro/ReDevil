@@ -24,13 +24,15 @@ public class IdlingState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         Animator anim = pc.GetComponent<Animator>();
-        // reset all possible booleans
+        // reset all possible booleans and attacks
         anim.ResetTrigger("Jump");
         anim.SetBool("Moving", false);
         anim.SetBool("Midair", false);
         anim.SetBool("AirAttack", false);
         anim.SetBool("OnWall", false);
         anim.SetBool("ResetIdle", true);
+        patk.StopAirAttack();
+
         pc.TouchingInvisibleWall();
 
         rig.velocity = new Vector2(rig.velocity.x, 0);

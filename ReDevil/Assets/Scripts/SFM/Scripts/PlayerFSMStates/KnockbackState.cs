@@ -29,6 +29,8 @@ public class KnockbackState : FSMState
         Animator anim = pc.GetComponent<Animator>();
 
         anim.SetBool("ResetIdle", false);
+        anim.SetBool("AirAttack", false);
+
         if (!isHit)
         {
             //anim.SetTrigger("Flinch");
