@@ -32,6 +32,7 @@ public class MidairState : FSMState
         // enter animation checks
         anim.SetBool("Midair", true);
         anim.SetBool("AirAttack", false); // should be false
+        anim.SetBool("OnWall", false);
 
         pc.TouchingInvisibleWall();
 

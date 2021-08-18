@@ -618,7 +618,7 @@ public class PlayerAttack : MonoBehaviour
     private void TurnOnHitbox()
     {
         attackCollider.enabled = true;
-        //sprite.enabled = true;
+        sprite.enabled = true;
     }
 
     //for end of the coroutine, turn off the hitbox
