@@ -14,7 +14,6 @@ public class PlayerFSMController : AdvancedFSM
     //*******************************************************************
     //Variables for the player
     //*******************************************************************
-
     //-------------------------------------------------------------------
     //Floor and Wall Collision Variables
     //-------------------------------------------------------------------
@@ -28,6 +27,7 @@ public class PlayerFSMController : AdvancedFSM
     private PhysicsMaterial2D noFriction;
     [SerializeField]
     private PhysicsMaterial2D friction;
+    [SerializeField]
     private Vector2 colliderSize;
     [SerializeField]
     float slopeCheckDistance;
@@ -361,7 +361,7 @@ public class PlayerFSMController : AdvancedFSM
 
         //capsule collider
         col = GetComponent<CapsuleCollider2D>();
-        colliderSize = col.size;
+        colliderSize = Vector2.Scale(col.size, transform.localScale);
 
         //Player Input Setup
         gameplayControls = new GameplayControls();
@@ -911,21 +911,21 @@ public class PlayerFSMController : AdvancedFSM
         //equation values to determine if the player is on the ground
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
-        Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
-        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(resizeColFloor.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        //Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
+        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
-        Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
+        //Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
 
-        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(resizeColHead.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        Vector2 resizeColWall = Vector2.Scale(col.size, transform.localScale);
+        //Vector2 resizeColWall = Vector2.Scale(col.size, transform.localScale);
 
-        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, resizeColWall.y - 0.5f), 0f, groundLayer.value);
+        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.5f), 0f, groundLayer.value);
     }
 
     public void TouchingInvisibleWall()
@@ -938,13 +938,13 @@ public class PlayerFSMController : AdvancedFSM
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
-        bool isTouchingTop = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
+        bool isTouchingTop = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
         //Debug.Log("Touching the top: " + isTouchingCeiling);
 
         //Check if the side is touching an invisible wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, invisWallLayer.value);
+        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.2f), 0f, invisWallLayer.value);
 
         //if either touching side OR top, set is touching invisible wall to true
         if(isTouchingTop || isTouchingSide)

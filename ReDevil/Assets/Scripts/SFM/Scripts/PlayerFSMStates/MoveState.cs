@@ -118,6 +118,7 @@ public class MoveState : FSMState
             else if (grounded && pc.isOnSlope)
             {
                 newMoveSpeed.Set(pc.slopeNormalPerp.x * pc.GetMoveSpeed(), pc.slopeNormalPerp.y * pc.GetMoveSpeed());
+                Debug.Log("New Move Speed: " + newMoveSpeed);
             }
 
             rig.velocity = newMoveSpeed;
