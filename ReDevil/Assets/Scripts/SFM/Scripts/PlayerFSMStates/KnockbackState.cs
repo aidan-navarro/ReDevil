@@ -30,7 +30,7 @@ public class KnockbackState : FSMState
 
         anim.SetBool("ResetIdle", false);
         anim.SetBool("AirAttack", false);
-
+        anim.SetBool("Dashing", false);
         if (!isHit)
         {
             //anim.SetTrigger("Flinch");

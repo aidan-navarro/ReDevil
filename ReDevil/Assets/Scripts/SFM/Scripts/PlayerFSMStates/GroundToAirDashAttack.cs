@@ -25,6 +25,7 @@ public class GroundToAirDashAttack : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
 
         // flamethrower specific 
         //pc.SetKbTransition(false);
@@ -52,25 +53,8 @@ public class GroundToAirDashAttack : FSMState
 
             pc.SetDashStartPos(pc.transform.position);
 
-            //// must change this logic as well
-            //if (pc.moveVector.x > 0f)
-            //{
-            //    pc.direction = 1;
-            //    pc.facingLeft = false;
-
-            //    pc.FlipPlayer();
-            //}
-            //else if (pc.moveVector.x < 0f)
-            //{
-            //    pc.direction = -1;
-            //    pc.facingLeft = true;
-
-            //    pc.FlipPlayer();
-            //}
-            //else
-            //{
-
-            //}
+           
+            anim.SetBool("Dashing", dashAttackStarted);
         }
 
         // total distance of dash... make a different length?

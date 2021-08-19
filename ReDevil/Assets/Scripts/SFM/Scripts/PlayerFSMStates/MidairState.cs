@@ -30,6 +30,7 @@ public class MidairState : FSMState
         Animator anim = pc.GetComponent<Animator>();
 
         // enter animation checks
+        anim.ResetTrigger("Jump");
         anim.SetBool("Midair", true);
         anim.SetBool("AirAttack", false); // should be false
         anim.SetBool("OnWall", false);

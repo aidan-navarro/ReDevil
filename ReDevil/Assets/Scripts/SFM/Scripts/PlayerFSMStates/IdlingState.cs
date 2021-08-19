@@ -61,16 +61,23 @@ public class IdlingState : FSMState
             }
         }
         else
-        {
-            //Debug.Log("NotOnSlope");
-            if (!pc.facingLeft)
+        { //Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
             {
-                pc.SetDashPath(Vector2.right);
+                pc.SetDashPath(pc.moveVector);
             }
-            else if (pc.facingLeft)
-            {
-                pc.SetDashPath(Vector2.left);
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
             }
+           
         }
         //Vector2 slopeVector = pc.GetDashPath();
         //slopeVector.x *= Mathf.Cos(pc.GetSlopeDownAngle());
