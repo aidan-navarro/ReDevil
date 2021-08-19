@@ -452,6 +452,7 @@ public class PlayerAttack : MonoBehaviour
         if(pc.facingLeft)
         {
             soulShotBullet.GetComponent<Bullet>().direction = new Vector2(-1, 0);
+            soulShotBullet.transform.localScale = new Vector2(soulShotBullet.transform.localScale.x, soulShotBullet.transform.localScale.y * -1);
         }
         else
         {
