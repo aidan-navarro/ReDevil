@@ -39,6 +39,8 @@ public class JumpingState : FSMState
             //Debug.Log("Player State: Jumping");
             hasJumped = true;
             anim.SetTrigger("Jump");
+            anim.SetInteger("DashDirection", 0);
+
 
         }
 

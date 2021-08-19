@@ -30,7 +30,9 @@ public class IdlingState : FSMState
         anim.SetBool("Midair", false);
         anim.SetBool("AirAttack", false);
         anim.SetBool("OnWall", false);
+        anim.SetBool("Dashing", false);
         anim.SetBool("ResetIdle", true);
+
         patk.StopAirAttack();
 
         pc.TouchingInvisibleWall();

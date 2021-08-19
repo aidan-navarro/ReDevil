@@ -33,6 +33,7 @@ public class AirDashAttack : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
 
         // flamethrower specific 
         // pc.SetKbTransition(false);
@@ -54,10 +55,23 @@ public class AirDashAttack : FSMState
             pc.SetDashInputAllowed(false);
             dashAttackStarted = true;
             endDash = false;
+            //Debug.Log("Normal Midair Behaviour");
+            if (pc.moveVector.x > 0f)
+            {
+                pc.direction = 1;
+                pc.facingLeft = false;       
+                pc.FlipPlayer();
+            }
+            else if (pc.moveVector.x < 0f)
+            {
+                pc.direction = -1;
+                pc.facingLeft = true;
+                pc.FlipPlayer();
 
+            }
             prevGravityScale = pc.GetRigidbody2D().gravityScale;
             pc.GetRigidbody2D().gravityScale = 0;
-
+            anim.SetBool("Dashing", dashAttackStarted);
             pc.SetDashStartPos(pc.transform.position);
          
         }
@@ -181,7 +195,7 @@ public class AirDashAttack : FSMState
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
-
+        Animator anim = pc.GetComponent<Animator>();
         isGrounded = pc.GetisGrounded();
         onWall = pc.GetisTouchingWall();
         touchingInvisWall = pc.GetisTouchingInvisibleWall();
@@ -193,6 +207,8 @@ public class AirDashAttack : FSMState
         // end of dash
         if (endDash)
         {
+            anim.SetInteger("DashDirection", 0);
+
             if (!invincible && kbTransition)
             {
                 pc.PerformTransition(Transition.Knockback);

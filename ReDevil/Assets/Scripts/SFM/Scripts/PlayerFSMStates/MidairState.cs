@@ -33,6 +33,7 @@ public class MidairState : FSMState
         anim.SetBool("Midair", true);
         anim.SetBool("AirAttack", false); // should be false
         anim.SetBool("OnWall", false);
+        anim.SetBool("Dashing", false);
 
         pc.TouchingInvisibleWall();
 
@@ -60,6 +61,7 @@ public class MidairState : FSMState
                 {
                     pc.SetDashPath(Vector2.right);
                 }
+                anim.SetInteger("DashDirection", 0);             
             }
         }
         //Debug.Log(pc.GetDashPath());

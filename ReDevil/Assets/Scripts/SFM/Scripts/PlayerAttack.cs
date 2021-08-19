@@ -334,7 +334,7 @@ public class PlayerAttack : MonoBehaviour
         //Debug.Log("Start Dash Attack");
         attacking = true; // use the same attacking variable?
         Vector2 tempPos = new Vector2(pc.transform.right.x, 0);
-        attackCollider.transform.localPosition = tempPos*2;
+        attackCollider.transform.localPosition = tempPos*4;
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -346,7 +346,7 @@ public class PlayerAttack : MonoBehaviour
     public void StartAirDashAttack(Vector2 position)
     {
         attacking = true;
-        attackCollider.transform.localPosition = position*3;
+        attackCollider.transform.localPosition = position*4;
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -631,7 +631,7 @@ public class PlayerAttack : MonoBehaviour
     // Dash Attack Specific, scaling down the hitbox so that the player is a bit closer to the enemy on dash
     private void ShrinkHitbox()
     {
-        attackCollider.transform.localScale = new Vector2(1.0f, 1.0f);
+        attackCollider.transform.localScale = new Vector2(1.5f, 1.5f);
     }
 
     private void RevertHitbox()

@@ -232,13 +232,7 @@ public class PlayerFSMController : AdvancedFSM
     public void ResetAirDashCount() { airDashCount = 0; } // air dash only resets upon touching ground or wall
 
 
-    // ----------------- END TEST REGION -----------------------
-
-    // Dash Attack Path functions
-    [SerializeField]
-    protected Vector2 dashPath;
-    public Vector2 GetDashPath() { return dashPath; }
-    public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; } 
+  
  
     //respawn
     public RespawnManager respawnPoint;
@@ -317,6 +311,9 @@ public class PlayerFSMController : AdvancedFSM
     public PlayerInput playerInput { get; private set; }
     private GameplayControls gameplayControls;
 
+    // Animation
+    private Animator anim;
+
     //Player Sound
     public PlayerSoundManager soundManager;
 
@@ -334,6 +331,7 @@ public class PlayerFSMController : AdvancedFSM
         playerTransform = objPlayer.transform;
 
         rig = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         // game isn't paused at the start 
         isPaused = false;
@@ -809,6 +807,42 @@ public class PlayerFSMController : AdvancedFSM
 
         AddFSMState(dead);
 
+    }
+
+    // ----------------- END TEST REGION -----------------------
+
+    // Dash Attack Path functions
+    [SerializeField]
+    protected Vector2 dashPath;
+    public Vector2 GetDashPath() { return dashPath; }
+    public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; 
+    
+        if (inDashPath == Vector2.up)
+        {
+            anim.SetInteger("DashDirection", 1);
+        }
+        else if (inDashPath == Vector2.down)
+        {
+            anim.SetInteger("DashDirection", 4);
+
+        }
+        else if (inDashPath.x <= 1.0f || inDashPath.x > -1.0f)
+        {
+            if (inDashPath.y < 0.0f)
+            {
+                anim.SetInteger("DashDirection", 3);
+
+            }
+            else if (inDashPath.y > 0.0f)
+            {
+                anim.SetInteger("DashDirection", 2);
+            }
+        }
+
+        else if (inDashPath == Vector2.right || inDashPath == Vector2.left)
+        {
+            anim.SetInteger("DashDirection", 0);
+        }
     }
 
     //Unique functions to the player

@@ -22,6 +22,7 @@ public class MoveState : FSMState
         Animator anim = pc.GetComponent<Animator>();
         anim.SetBool("ResetIdle", false);
         anim.SetBool("AirAttack", false);
+        anim.SetBool("Dashing", false);
         patk.StopAirAttack();
 
         //pc.horizontal = Input.GetAxis("Horizontal");
@@ -34,6 +35,28 @@ public class MoveState : FSMState
         bool attackButtonDown = pc.GetAttackButtonDown();
 
         pc.SetNoFrictionMaterial();
+
+        if (pc.GetCanDash())
+        {
+            //Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                pc.SetDashPath(pc.moveVector);
+
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
+        }
+
         pc.SlopeCheck();
         if (pc.isOnSlope)
         {

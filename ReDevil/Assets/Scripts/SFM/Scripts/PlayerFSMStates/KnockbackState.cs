@@ -41,8 +41,10 @@ public class KnockbackState : FSMState
         patk.StopGroundAttack();
         patk.StopAirAttack();
         patk.StopAirDownStrikeAttack();
+        patk.airDashAttackContact = false;
 
         timer = pc.GetComponent<InvincibleTimer>();
+  
         pc.SetKbTransition(false);
 
         // just in case there's a moment where player gets hit during the middle of a dash knockback transition
@@ -82,6 +84,7 @@ public class KnockbackState : FSMState
 
         pc.UpdateState("Knockback");
         pc.TouchingFloorCeilingWall();
+
 
     }
 

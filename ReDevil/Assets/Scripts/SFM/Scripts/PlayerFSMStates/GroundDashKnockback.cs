@@ -16,6 +16,7 @@ public class GroundDashKnockback : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
 
         // utilizing the timer class to activate a timer
         InvincibleTimer timer = pc.GetComponent<InvincibleTimer>();
@@ -26,6 +27,8 @@ public class GroundDashKnockback : FSMState
 
         pc.UpdateState("Hit Enemy");
         pc.CheckAirDash();
+
+        anim.Play("Dash Contact", -1, 0);
 
         if (pc.GetCanDash())
         {

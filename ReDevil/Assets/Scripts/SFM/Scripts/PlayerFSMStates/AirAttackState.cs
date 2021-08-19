@@ -40,7 +40,26 @@ public class AirAttackState : FSMState
 
             // must test this out
             anim.SetBool("AirAttack", patk.didAirAttack);
-            
+
+            if (pc.moveVector.x > 0f)
+            {
+               
+                Vector2 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
+
+                rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+
+            }
+            else if (pc.moveVector.x < 0f)
+            {
+              
+                Vector2 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
+
+                rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+
+            }
+
         } 
         else if (patk.airAttackContact)
         {

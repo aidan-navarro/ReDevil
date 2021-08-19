@@ -37,6 +37,7 @@ public class GroundDashAttack : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>(); // access the rigid body component attached to the player
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
 
         bool enterKnockback = pc.GetKbTransition();
         bool enterDashKnockback = pc.GetDKBTransition();
@@ -82,6 +83,7 @@ public class GroundDashAttack : FSMState
             {
                 //dont change direction
             }
+
         }
 
         Vector2 dashSP = pc.GetDashStartPos();
@@ -95,8 +97,6 @@ public class GroundDashAttack : FSMState
         pc.SlopeCheck();
         if (pc.isOnSlope)
         {
-
-
             Vector2 dashSlopeVector = pc.slopeNormalPerp;
 
             if (!pc.facingLeft)
@@ -126,6 +126,7 @@ public class GroundDashAttack : FSMState
                 pc.SetDashPath(Vector2.left);
             }
         }
+        anim.SetInteger("DashDirection", 0); // 0 means dash forward
 
         // end slope change
         rig.velocity = pc.GetDashPath() * pc.dashSpeed; // commit to the dash
@@ -145,6 +146,7 @@ public class GroundDashAttack : FSMState
             // if we're still in dash and the player hasn't contacted anyone yet
             if (dashDistance < pc.dashLength && !patk.dashAttackContact)
             {
+                anim.SetBool("Dashing", dashAttackStarted);
                 patk.StartDashAttack();
             }
             //dashed max distance or we hit someone, end the dash.

@@ -17,8 +17,9 @@ public class WallSlideState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         Animator anim = pc.GetComponent<Animator>();
-        anim.SetBool("OnWall", true);
 
+        anim.SetBool("OnWall", true);
+        anim.Play("Wall Slide");
         pc.SetNoFrictionMaterial();
 
         pc.TouchingFloorCeilingWall();
