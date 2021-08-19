@@ -88,9 +88,7 @@ public class PlayerFSMController : AdvancedFSM
     {
         healthText.text = health.ToString();
         healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-    }
-    
-
+    }   
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
     [SerializeField]
@@ -313,6 +311,7 @@ public class PlayerFSMController : AdvancedFSM
 
     // Animation
     private Animator anim;
+    private float prevAnimSpeed;
 
     //Player Sound
     public PlayerSoundManager soundManager;
@@ -323,7 +322,6 @@ public class PlayerFSMController : AdvancedFSM
     public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; }
 
 
-
     //initialize FSM
     protected override void Initialize()
     {
@@ -332,6 +330,7 @@ public class PlayerFSMController : AdvancedFSM
 
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        prevAnimSpeed = anim.speed;
 
         // game isn't paused at the start 
         isPaused = false;
@@ -1316,6 +1315,16 @@ public class PlayerFSMController : AdvancedFSM
         yield return new WaitForEndOfFrame();
     }
 
+    private void PauseAnim()
+    {
+        anim.speed = 0;
+    }
+
+    // call in death anim
+    public void ResumeAnim()
+    {
+        anim.speed = prevAnimSpeed;
+    }
 
     // --------------- PAUSING GAME FUNCTIONALITY -----------------
     #region Click below to access pause functionality code

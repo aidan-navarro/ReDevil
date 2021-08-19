@@ -18,11 +18,21 @@ public class DeadState : FSMState
 	public override void Act( Transform player, Transform npc)
 	{
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        Animator anim = pc.GetComponent<Animator>();
+
+        anim.Play("Death");
         pc.UpdateState("Dead");
+        pc.TouchingFloorCeilingWall();
+
+        if (pc.GetisGrounded() || pc.GetisTouchingWall())
+        {
+            pc.ResumeAnim();
+        }
+
         // PLAY THE DEATH ANIMATION AND CALL PLAY PLAYER DEAD IN THAT ANIMATION
         // slow down the frame speed in the inspector
-        pc.PlayPlayerDead();
-      
+        //pc.PlayPlayerDead();
+
         //do nothing
     }
 
