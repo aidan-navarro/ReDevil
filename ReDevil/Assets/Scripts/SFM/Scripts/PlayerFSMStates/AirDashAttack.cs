@@ -59,12 +59,13 @@ public class AirDashAttack : FSMState
             if (pc.moveVector.x > 0f)
             {
                 pc.direction = 1;
-                pc.facingLeft = false;       
+                pc.facingLeft = false;
             }
             else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
                 pc.facingLeft = true;
+
             }
             prevGravityScale = pc.GetRigidbody2D().gravityScale;
             pc.GetRigidbody2D().gravityScale = 0;

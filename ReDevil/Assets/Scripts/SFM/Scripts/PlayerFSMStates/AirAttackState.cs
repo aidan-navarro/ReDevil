@@ -122,6 +122,19 @@ public class AirAttackState : FSMState
             //patk.StopAirAttack();
             attackStarted = false;
             //rig.gravityScale = prevGravScale;
+            if (pc.moveVector.x > 0f)
+            {
+                pc.direction = 1;
+                pc.facingLeft = false;
+                pc.FlipPlayer();
+            }
+            else if (pc.moveVector.x < 0f)
+            {
+                pc.direction = -1;
+                pc.facingLeft = true;
+                pc.FlipPlayer();
+
+            }
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.AirDashAttack);
         }
