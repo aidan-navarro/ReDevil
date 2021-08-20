@@ -27,6 +27,7 @@ public class IdlingState : FSMState
         // reset all possible booleans and attacks
         anim.ResetTrigger("Jump");
         anim.ResetTrigger("Landed");
+        anim.ResetTrigger("FallingStrike");
         anim.SetBool("Moving", false);
         anim.SetBool("Midair", false);
         anim.SetBool("AirAttack", false);

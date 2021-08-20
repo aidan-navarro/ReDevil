@@ -21,6 +21,7 @@ public class MoveState : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Animator anim = pc.GetComponent<Animator>();
         anim.SetBool("ResetIdle", false);
+        anim.SetBool("Midair", false);
         anim.SetBool("AirAttack", false);
         anim.SetBool("Dashing", false);
         patk.StopAirAttack();

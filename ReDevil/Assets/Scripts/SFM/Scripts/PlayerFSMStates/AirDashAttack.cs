@@ -60,14 +60,11 @@ public class AirDashAttack : FSMState
             {
                 pc.direction = 1;
                 pc.facingLeft = false;       
-                pc.FlipPlayer();
             }
             else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
                 pc.facingLeft = true;
-                pc.FlipPlayer();
-
             }
             prevGravityScale = pc.GetRigidbody2D().gravityScale;
             pc.GetRigidbody2D().gravityScale = 0;
