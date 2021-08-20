@@ -33,6 +33,7 @@ public class AirDownStrikeState : FSMState
         if (pc.GetisGrounded())
         {
             anim.SetTrigger("Landed");
+            anim.SetBool("Midair", false);
             pc.SetFrictionMaterial();
         }
 
