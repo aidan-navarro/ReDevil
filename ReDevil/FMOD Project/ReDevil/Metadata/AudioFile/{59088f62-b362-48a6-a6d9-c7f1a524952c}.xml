@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{59088f62-b362-48a6-a6d9-c7f1a524952c}">
+		<property name="assetPath">
+			<value>Waniguchi_Bell0202.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.0892083333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{16e9f75c-d99a-4fa7-b74f-23ae0d431828}</destination>
+		</relationship>
+	</object>
+</objects>
