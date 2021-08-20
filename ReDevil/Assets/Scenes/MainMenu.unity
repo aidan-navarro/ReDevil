@@ -1353,7 +1353,7 @@ MonoBehaviour:
   reader: {fileID: 894729113}
   creditsToggled: 0
   mainLevel: Tutorial Level
-  oniLevel: Tutorial Level Debug
+  oniLevel: Oni Debug Level
 --- !u!1001 &827303171
 PrefabInstance:
   m_ObjectHideFlags: 0
