@@ -164,7 +164,6 @@ public class OniFSMController : EnemyFSMController
         oniIdleState.AddTransition(Transition.OniChase, FSMStateID.OniChasing);
         oniIdleState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
         oniIdleState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
-        oniIdleState.AddTransition(Transition.OniClubSmash, FSMStateID.OniClubSmashing);
 
         OniChaseState oniChaseState = new OniChaseState();
         oniChaseState.AddTransition(Transition.EnemyNoHealth, FSMStateID.EnemyDead);
@@ -373,7 +372,6 @@ public class OniFSMController : EnemyFSMController
 
     public override void TakeDamage(float damage)
     {
-        Debug.Log("Oni is Taking " + damage + " damage");
         health -= damage;
         UpdateHealth();
     }

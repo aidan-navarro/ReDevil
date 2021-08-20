@@ -27,12 +27,14 @@ public class BasanDyingState : FSMState
 
         Debug.Log("BasanDying");
         rig.velocity = Vector2.zero;
+        rig.gravityScale = 0;
         // disable the collider so that the enemy won't damage the player when it's dying
         col.enabled = false;
 
         if (!enterDeath)
         {
             anim.SetTrigger("Death");
+            bc.ActivateDeathParticles();
             enterDeath = true;
         }
     }

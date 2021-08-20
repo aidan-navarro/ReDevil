@@ -27,7 +27,7 @@ public class GroundToAirDashAttack : FSMState
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
 
         // flamethrower specific 
-        pc.SetKbTransition(false);
+        //pc.SetKbTransition(false);
         pc.SetFlameKB(false);
 
         bool enterKnockback = pc.GetKbTransition(); // in the event we get hit by a projectile

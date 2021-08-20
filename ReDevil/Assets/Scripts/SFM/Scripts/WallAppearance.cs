@@ -23,15 +23,8 @@ public class WallAppearance : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-
             characterIn = true;
             animator.SetBool("PlayerIn", true);
-
-            //Raquel if you see this code this is what I was talking about doing for your pickup items
-            //Make a temporary variable (PlayerFSMController pc)
-            //and set its value to be the object you just confirmed is the player you collided with
-            //Then call its function
-            //PlayerFSMController pc = other.GetComponent<PlayerFSMController>();
         }
     }
 
@@ -39,15 +32,8 @@ public class WallAppearance : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-
             characterIn = false;
             animator.SetBool("PlayerIn", false);
-
-            //Raquel if you see this code this is what I was talking about doing for your pickup items
-            //Make a temporary variable (PlayerFSMController pc)
-            //and set its value to be the object you just confirmed is the player you collided with
-            //Then call its function
-            //PlayerFSMController pc = other.GetComponent<PlayerFSMController>();
         }
     }
 }

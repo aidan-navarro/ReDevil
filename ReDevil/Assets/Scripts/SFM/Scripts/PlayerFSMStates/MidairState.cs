@@ -26,6 +26,7 @@ public class MidairState : FSMState
         //Debug.Log("State ID: Midair");
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
         pc.TouchingInvisibleWall();
 
         pc.UpdateState("In Midair");
@@ -58,8 +59,6 @@ public class MidairState : FSMState
         //first check if we are touching a wall or floor
         pc.TouchingFloorCeilingWall();
 
-        //check if a dash is input
-        //pc.CheckDashInput();
         if (!pc.GetDKBTransition()) // if we aren't knocked back from a dash attack
         {
             //Debug.Log("Normal Midair Behaviour");
