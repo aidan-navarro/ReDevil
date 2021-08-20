@@ -16,7 +16,10 @@ public class WallSlideState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
+        Animator anim = pc.GetComponent<Animator>();
 
+        anim.SetBool("OnWall", true);
+        anim.Play("Wall Slide");
         pc.SetNoFrictionMaterial();
 
         pc.TouchingFloorCeilingWall();
@@ -32,6 +35,7 @@ public class WallSlideState : FSMState
         }
 
         patk.firstDashContact = false;
+        patk.StopAirAttack();
         // touching the wall will reset the air dash count
         pc.ResetAirDashCount();
         pc.CheckAirDash();

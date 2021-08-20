@@ -8,13 +8,14 @@ using UnityEngine;
 //INCLUDING INDIVIDUAL DAMAGE VARIABLES AND HITBOXES
 public class PlayerAttack : MonoBehaviour
 {
-    // consider making a specific attack collider for dash attacks?
-
     public Collider2D attackCollider;
+    private Vector2 attackColliderPos;
+
     public SpriteRenderer sprite;
     //to compare if we hit a weakspot
     public PhysicsMaterial2D weakSpot;
     public GameObject soulShot;
+    public GameObject attackSpritePrefab;
 
     //damage amounts for each hit of the ground hit chain
     public float groundHit1;
@@ -69,13 +70,14 @@ public class PlayerAttack : MonoBehaviour
     public Vector2 GetNormalizedAttackVector() { return attackVector.normalized; }
     public void SetAttackVector(Vector2 inAttackVector) {  attackVector = inAttackVector; }
 
-
+    // reference to player fsm controller
     private PlayerFSMController pc;
 
     // Start is called before the first frame update
     void Start()
     {
         pc = gameObject.GetComponent<PlayerFSMController>();
+        attackColliderPos = attackCollider.transform.localPosition;
         attacking = false;
         firstDashContact = false;
         airAttackContact = false;
@@ -106,6 +108,7 @@ public class PlayerAttack : MonoBehaviour
     //------------------------------------------------------------
     #region //click the plus sign beside region to hide/unhide code
 
+    // called in the attack animations
     public void GroundAttack()
     {
         //Start the coroutine
@@ -121,13 +124,28 @@ public class PlayerAttack : MonoBehaviour
         StopCoroutine("EnableGroundHit");
     }
 
+    // this will actually end the animation
+    public void EndGroundAttack()
+    {
+        //turn off the hitbox
+        //TurnOffHitbox();
+
+        groundHitCounter = 0;
+
+        //we can't check for a cancel anymore, set to false
+        checkCancel = false;
+        attacking = false;
+
+        idleTransition = true;
+    }
+
     public IEnumerator EnableGroundHit()
     {
         attacking = true;
         
         //update the combo count
         groundHitCounter++;
-        Debug.Log("GroundHitCount: " + groundHitCounter);
+        // Debug.Log("GroundHitCount: " + groundHitCounter);
         //Turn the hitbox on to deal massive damage
         TurnOnHitbox();
 
@@ -176,19 +194,12 @@ public class PlayerAttack : MonoBehaviour
         pc.SetAttackButtonDown(false);
         //play the animation here
 
-        //wait for the attack to end.  During this timeframe the attack can be cancelled
-        yield return new WaitForSeconds(endlag);
+        // TEST
+        ////wait for the attack to end.  During this timeframe the attack can be cancelled
+        //yield return new WaitForSeconds(endlag);
 
-        //turn off the hitbox
-        TurnOffHitbox();
+        //EndGroundAttack();
 
-        groundHitCounter = 0;
-
-        //we can't check for a cancel anymore, set to false
-        checkCancel = false;
-        attacking = false;
-
-        idleTransition = true;
         Debug.Log("attack coroutine end");
     }
 
@@ -248,8 +259,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void AirAttack()
     {
-        attacking = true;
-        didAirAttack = true;
+        // calling the bottom two lines in the air attack state
+        //attacking = true;
+        //didAirAttack = true;
         Debug.Log("Air Attack Trigger");
         damage = airAttackValue;
         TurnOnHitbox();
@@ -321,6 +333,8 @@ public class PlayerAttack : MonoBehaviour
         //StartCoroutine("EnableDashAttack");
         //Debug.Log("Start Dash Attack");
         attacking = true; // use the same attacking variable?
+        Vector2 tempPos = new Vector2(pc.transform.right.x, 0);
+        attackCollider.transform.localPosition = tempPos*4;
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -332,7 +346,7 @@ public class PlayerAttack : MonoBehaviour
     public void StartAirDashAttack(Vector2 position)
     {
         attacking = true;
-        attackCollider.transform.localPosition = position;
+        attackCollider.transform.localPosition = position*4;
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -389,6 +403,10 @@ public class PlayerAttack : MonoBehaviour
 
                 ec.SetEnemyFlinch(true);
 
+                // Display animated sprite
+                //hits[i].point
+                Instantiate(attackSpritePrefab, hits[i].point, attackSpritePrefab.transform.rotation);
+
                 attacking = false;
                 if (pc.GetisGrounded())
                 {
@@ -434,6 +452,7 @@ public class PlayerAttack : MonoBehaviour
         if(pc.facingLeft)
         {
             soulShotBullet.GetComponent<Bullet>().direction = new Vector2(-1, 0);
+            soulShotBullet.transform.localScale = new Vector2(soulShotBullet.transform.localScale.x, soulShotBullet.transform.localScale.y * -1);
         }
         else
         {
@@ -613,13 +632,13 @@ public class PlayerAttack : MonoBehaviour
     // Dash Attack Specific, scaling down the hitbox so that the player is a bit closer to the enemy on dash
     private void ShrinkHitbox()
     {
-        attackCollider.transform.localScale = new Vector2(0.5f, 0.5f);
+        attackCollider.transform.localScale = new Vector2(1.3f, 1.5f);
     }
 
     private void RevertHitbox()
     {
-        attackCollider.transform.localPosition = new Vector2(1.0f, 0.0f);
-        attackCollider.transform.localScale = new Vector2(1.0f, 1.0f);
+        attackCollider.transform.localPosition = attackColliderPos;
+        attackCollider.transform.localScale = new Vector2(2.6f, 2.0f);
     }
 
     //------------------------------------------------------------

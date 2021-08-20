@@ -554,7 +554,7 @@ MonoBehaviour:
   text: {fileID: 768242600}
   index: 0
   timer: 0
-  maxTime: 10
+  maxTime: 5
 --- !u!1 &674291494
 GameObject:
   m_ObjectHideFlags: 0

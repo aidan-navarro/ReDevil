@@ -15,6 +15,8 @@ public class BasanFlamethrower : MonoBehaviour
     [SerializeField] private float attackActiveTime;
     public float getAttackTime() { return attackActiveTime; }
     public bool attacking;
+
+    public Animator flamethrowerAnim;
     
 
     // reference to the basan this script will be attached to
@@ -36,12 +38,14 @@ public class BasanFlamethrower : MonoBehaviour
         attacking = true;
         flame.enabled = true;
         flameSprite.enabled = true;
+        flamethrowerAnim.SetBool("Attacking", true);
     }
     public void DeactivateFlamethrower()
     {
         attacking = false;
         flame.enabled = false;
         flameSprite.enabled = false;
+        flamethrowerAnim.SetBool("Attacking", false);
     }
 
     public void UndoHitbox()

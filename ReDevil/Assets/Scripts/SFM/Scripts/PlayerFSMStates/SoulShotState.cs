@@ -17,12 +17,25 @@ public class SoulShotState : FSMState
 
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
-
+        Animator anim = pc.GetComponent<Animator>();
         pc.UpdateState("Soul Shot");
+
+        pc.TouchingFloorCeilingWall();
 
         if (!soulShotStarted)
         {
-            patk.SoulShotAttack();
+            // calling soul shot attack in the animation instead
+            //patk.SoulShotAttack();
+
+            if(pc.GetisGrounded())
+            {
+                anim.Play("Soul Shot Ground");
+            } else
+            {
+                anim.Play("Soul Shot Air");
+
+            }
+
             soulShotStarted = true;
         }
 

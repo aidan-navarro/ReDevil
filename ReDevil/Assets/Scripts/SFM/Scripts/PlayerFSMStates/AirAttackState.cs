@@ -23,7 +23,7 @@ public class AirAttackState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
-
+        Animator anim = pc.GetComponent<Animator>();
         //prevGravScale = rig.gravityScale;
         //float attackGravity = prevGravScale/2;
         //rig.gravityScale = attackGravity;
@@ -34,8 +34,32 @@ public class AirAttackState : FSMState
         if (airTime < patk.GetAirAttackTime() && !patk.airAttackContact) // this is keeping it locked
         {
             Debug.Log("Airstrike");
-            patk.AirAttack();
-            
+            patk.attacking = true;
+            patk.didAirAttack = true;
+            //patk.AirAttack();
+
+            // must test this out
+            anim.SetBool("AirAttack", patk.didAirAttack);
+
+            if (pc.moveVector.x > 0f)
+            {
+               
+                Vector2 newMoveSpeed = Vector2.right * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
+
+                rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+
+            }
+            else if (pc.moveVector.x < 0f)
+            {
+              
+                Vector2 newMoveSpeed = Vector2.left * pc.GetMoveSpeed();
+                newMoveSpeed.y = rig.velocity.y;
+
+                rig.velocity = Vector2.Lerp(rig.velocity, newMoveSpeed, Time.deltaTime * pc.airControl);
+
+            }
+
         } 
         else if (patk.airAttackContact)
         {
@@ -87,7 +111,7 @@ public class AirAttackState : FSMState
         pc.CheckAirDash();
         if (!invincible && pc.GetKbTransition())
         {
-            patk.StopAirAttack();
+            //patk.StopAirAttack();
             attackStarted = false;
             //rig.gravityScale = prevGravScale;
             patk.ReInitializeTransitions();
@@ -95,9 +119,22 @@ public class AirAttackState : FSMState
         }
         if (patk.dashTransition) //if dash cancel = true, change to dash state
         {
-            patk.StopAirAttack();
+            //patk.StopAirAttack();
             attackStarted = false;
             //rig.gravityScale = prevGravScale;
+            if (pc.moveVector.x > 0f)
+            {
+                pc.direction = 1;
+                pc.facingLeft = false;
+                pc.FlipPlayer();
+            }
+            else if (pc.moveVector.x < 0f)
+            {
+                pc.direction = -1;
+                pc.facingLeft = true;
+                pc.FlipPlayer();
+
+            }
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.AirDashAttack);
         }
@@ -105,7 +142,7 @@ public class AirAttackState : FSMState
         {
             patk.StopAirAttack();
             attackStarted = false;
-            patk.StopAirAttack();
+            //patk.StopAirAttack();
             patk.didAirAttack = false;
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.WallSlide);
@@ -127,10 +164,10 @@ public class AirAttackState : FSMState
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.Idle);
         }
+        // consider switching this logic to be at the end of the animation time
         if (airTime >= patk.GetAirAttackTime())
         {
-            patk.StopAirAttack();
-            
+            //patk.StopAirAttack();
 
             if (!isGrounded || isCeiling)
             {
@@ -142,7 +179,7 @@ public class AirAttackState : FSMState
 
             else if (isGrounded)
             {
-                patk.StopAirAttack();
+                //patk.StopAirAttack();
 
                 attackStarted = false;
                 patk.idleTransition = true;

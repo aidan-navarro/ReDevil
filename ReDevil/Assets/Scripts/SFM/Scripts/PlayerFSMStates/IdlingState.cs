@@ -23,6 +23,19 @@ public class IdlingState : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
+        Animator anim = pc.GetComponent<Animator>();
+        // reset all possible booleans and attacks
+        anim.ResetTrigger("Jump");
+        anim.ResetTrigger("Landed");
+        anim.ResetTrigger("FallingStrike");
+        anim.SetBool("Moving", false);
+        anim.SetBool("Midair", false);
+        anim.SetBool("AirAttack", false);
+        anim.SetBool("OnWall", false);
+        anim.SetBool("Dashing", false);
+        anim.SetBool("ResetIdle", true);
+
+        patk.StopAirAttack();
 
         pc.TouchingInvisibleWall();
 
@@ -50,16 +63,23 @@ public class IdlingState : FSMState
             }
         }
         else
-        {
-            //Debug.Log("NotOnSlope");
-            if (!pc.facingLeft)
+        { //Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
             {
-                pc.SetDashPath(Vector2.right);
+                pc.SetDashPath(pc.moveVector);
             }
-            else if (pc.facingLeft)
-            {
-                pc.SetDashPath(Vector2.left);
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
             }
+           
         }
         //Vector2 slopeVector = pc.GetDashPath();
         //slopeVector.x *= Mathf.Cos(pc.GetSlopeDownAngle());

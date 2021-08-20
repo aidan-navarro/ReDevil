@@ -4,10 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject retry, restart, withdraw;
+
+    [SerializeField] private TextMeshProUGUI text;
 
     // don't know where the respawn manager is
     private static RespawnManager respawn;
@@ -25,6 +29,22 @@ public class PauseMenu : MonoBehaviour
         pc = FindObjectOfType<PlayerFSMController>();
 
     }
+    private void Update()
+    {
+        if(EventSystem.current.currentSelectedGameObject == retry)
+        {
+            text.SetText("Retry the level from the last reached checkpoint");
+        }
+        else if(EventSystem.current.currentSelectedGameObject == restart)
+        {
+            text.SetText("Restart the level from the beginning");
+        }
+        else
+        {
+            text.SetText("Return to the main menu");
+        }
+    }
+
     public void RestartOption()
     {
         //pc.SetIsPaused(false);

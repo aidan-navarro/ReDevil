@@ -18,15 +18,46 @@ public class MoveState : FSMState
     {
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
+        PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
+        anim.SetBool("ResetIdle", false);
+        anim.SetBool("Midair", false);
+        anim.SetBool("AirAttack", false);
+        anim.SetBool("Dashing", false);
+        patk.StopAirAttack();
+
         //pc.horizontal = Input.GetAxis("Horizontal");
         //pc.vertical = Input.GetAxis("Vertical");
         isMoving = true;
+
         bool grounded = pc.GetisGrounded();
 
         // moving and attacking
         bool attackButtonDown = pc.GetAttackButtonDown();
 
         pc.SetNoFrictionMaterial();
+
+        if (pc.GetCanDash())
+        {
+            //Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                pc.SetDashPath(pc.moveVector);
+
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
+        }
+
         pc.SlopeCheck();
         if (pc.isOnSlope)
         {
@@ -111,6 +142,7 @@ public class MoveState : FSMState
             else if (grounded && pc.isOnSlope)
             {
                 newMoveSpeed.Set(pc.slopeNormalPerp.x * pc.GetMoveSpeed(), pc.slopeNormalPerp.y * pc.GetMoveSpeed());
+                Debug.Log("New Move Speed: " + newMoveSpeed);
             }
 
             rig.velocity = newMoveSpeed;
@@ -128,8 +160,9 @@ public class MoveState : FSMState
             rig.velocity = newMoveSpeed;
             isMoving = false;
         }
+        anim.SetBool("Moving", isMoving);
 
-        
+
     }
 
     //Reason: Put any possible transitions here

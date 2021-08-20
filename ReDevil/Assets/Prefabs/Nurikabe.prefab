@@ -152,8 +152,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   rig: {fileID: 0}
-  health: 30
-  maxHealth: 30
+  health: 50
+  maxHealth: 50
   range: 10
   damage: 10
   attackInterval: 1
@@ -162,6 +162,7 @@ MonoBehaviour:
   projectileSpeed: 0
   currentPos: {x: 0, y: 0}
   isGrounded: 0
+  facingRight: 0
   airborneEnemy: 1
   isHit: 0
   enemyFlinch: 0

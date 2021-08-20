@@ -5,11 +5,18 @@ using UnityEngine;
 public class KnockbackState : FSMState
 {
     private InvincibleTimer timer;
+    private bool isHit;
 
     //Constructor
     public KnockbackState()
     {
         stateID = FSMStateID.KnockedBack;
+    }
+
+    public override void EnterStateInit()
+    {
+        base.EnterStateInit();
+        isHit = false;
     }
 
     //Act: What are we doing in this state?
@@ -19,12 +26,25 @@ public class KnockbackState : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
+
+        anim.SetBool("ResetIdle", false);
+        anim.SetBool("AirAttack", false);
+        anim.SetBool("Dashing", false);
+        if (!isHit)
+        {
+            //anim.SetTrigger("Flinch");
+            anim.Play("Flinch", 0, 0);
+            isHit = true;
+        }
 
         patk.StopGroundAttack();
         patk.StopAirAttack();
         patk.StopAirDownStrikeAttack();
+        patk.airDashAttackContact = false;
 
         timer = pc.GetComponent<InvincibleTimer>();
+  
         pc.SetKbTransition(false);
 
         // just in case there's a moment where player gets hit during the middle of a dash knockback transition
@@ -64,6 +84,7 @@ public class KnockbackState : FSMState
 
         pc.UpdateState("Knockback");
         pc.TouchingFloorCeilingWall();
+
 
     }
 

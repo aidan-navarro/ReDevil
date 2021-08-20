@@ -27,6 +27,15 @@ public class MidairState : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
+
+        // enter animation checks
+        anim.ResetTrigger("Jump");
+        anim.SetBool("Midair", true);
+        anim.SetBool("AirAttack", false); // should be false
+        anim.SetBool("OnWall", false);
+        anim.SetBool("Dashing", false);
+
         pc.TouchingInvisibleWall();
 
         pc.UpdateState("In Midair");
@@ -53,6 +62,7 @@ public class MidairState : FSMState
                 {
                     pc.SetDashPath(Vector2.right);
                 }
+                anim.SetInteger("DashDirection", 0);             
             }
         }
         //Debug.Log(pc.GetDashPath());
@@ -102,6 +112,7 @@ public class MidairState : FSMState
     {
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
 
         bool grounded = pc.GetisGrounded();
         bool onWall = pc.GetisTouchingWall();
@@ -166,7 +177,7 @@ public class MidairState : FSMState
         {
             pc.soundManager.PlayLanding();
             patk.didAirAttack = false;
-           
+
             //pc.SetDashPath(Vector2.zero); // reset the dash path
             pc.PerformTransition(Transition.Idle);
         }

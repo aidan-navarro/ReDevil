@@ -14,7 +14,6 @@ public class PlayerFSMController : AdvancedFSM
     //*******************************************************************
     //Variables for the player
     //*******************************************************************
-
     //-------------------------------------------------------------------
     //Floor and Wall Collision Variables
     //-------------------------------------------------------------------
@@ -28,6 +27,7 @@ public class PlayerFSMController : AdvancedFSM
     private PhysicsMaterial2D noFriction;
     [SerializeField]
     private PhysicsMaterial2D friction;
+    [SerializeField]
     private Vector2 colliderSize;
     [SerializeField]
     float slopeCheckDistance;
@@ -88,9 +88,7 @@ public class PlayerFSMController : AdvancedFSM
     {
         healthText.text = health.ToString();
         healthBar.transform.localScale = new Vector3(health / MaxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-    }
-    
-
+    }   
 
     //soul is a meter that builds when hitting enemies.  allows use of soul armaments and soul shot
     [SerializeField]
@@ -232,13 +230,7 @@ public class PlayerFSMController : AdvancedFSM
     public void ResetAirDashCount() { airDashCount = 0; } // air dash only resets upon touching ground or wall
 
 
-    // ----------------- END TEST REGION -----------------------
-
-    // Dash Attack Path functions
-    [SerializeField]
-    protected Vector2 dashPath;
-    public Vector2 GetDashPath() { return dashPath; }
-    public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; } 
+  
  
     //respawn
     public RespawnManager respawnPoint;
@@ -317,6 +309,10 @@ public class PlayerFSMController : AdvancedFSM
     public PlayerInput playerInput { get; private set; }
     private GameplayControls gameplayControls;
 
+    // Animation
+    private Animator anim;
+    private float prevAnimSpeed;
+
     //Player Sound
     public PlayerSoundManager soundManager;
 
@@ -326,7 +322,6 @@ public class PlayerFSMController : AdvancedFSM
     public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; }
 
 
-
     //initialize FSM
     protected override void Initialize()
     {
@@ -334,6 +329,8 @@ public class PlayerFSMController : AdvancedFSM
         playerTransform = objPlayer.transform;
 
         rig = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        prevAnimSpeed = anim.speed;
 
         // game isn't paused at the start 
         isPaused = false;
@@ -361,7 +358,7 @@ public class PlayerFSMController : AdvancedFSM
 
         //capsule collider
         col = GetComponent<CapsuleCollider2D>();
-        colliderSize = col.size;
+        colliderSize = Vector2.Scale(col.size, transform.localScale);
 
         //Player Input Setup
         gameplayControls = new GameplayControls();
@@ -811,6 +808,42 @@ public class PlayerFSMController : AdvancedFSM
 
     }
 
+    // ----------------- END TEST REGION -----------------------
+
+    // Dash Attack Path functions
+    [SerializeField]
+    protected Vector2 dashPath;
+    public Vector2 GetDashPath() { return dashPath; }
+    public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; 
+    
+        if (inDashPath == Vector2.up)
+        {
+            anim.SetInteger("DashDirection", 1);
+        }
+        else if (inDashPath == Vector2.down)
+        {
+            anim.SetInteger("DashDirection", 4);
+
+        }
+        else if (inDashPath.x <= 1.0f || inDashPath.x > -1.0f)
+        {
+            if (inDashPath.y < 0.0f)
+            {
+                anim.SetInteger("DashDirection", 3);
+
+            }
+            else if (inDashPath.y > 0.0f)
+            {
+                anim.SetInteger("DashDirection", 2);
+            }
+        }
+
+        else if (inDashPath == Vector2.right || inDashPath == Vector2.left)
+        {
+            anim.SetInteger("DashDirection", 0);
+        }
+    }
+
     //Unique functions to the player
     public void FlipPlayer()
     {
@@ -911,16 +944,21 @@ public class PlayerFSMController : AdvancedFSM
         //equation values to determine if the player is on the ground
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
-        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        //Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
+        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
-        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        //Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
+
+        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.5f), 0f, groundLayer.value);
+        //Vector2 resizeColWall = Vector2.Scale(col.size, transform.localScale);
+
+        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.5f), 0f, groundLayer.value);
     }
 
     public void TouchingInvisibleWall()
@@ -933,13 +971,13 @@ public class PlayerFSMController : AdvancedFSM
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
-        bool isTouchingTop = Physics2D.OverlapBox(headPos, new Vector2(col.size.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
+        bool isTouchingTop = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, invisWallLayer.value);
         //Debug.Log("Touching the top: " + isTouchingCeiling);
 
         //Check if the side is touching an invisible wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, col.size.y - 0.2f), 0f, invisWallLayer.value);
+        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.2f), 0f, invisWallLayer.value);
 
         //if either touching side OR top, set is touching invisible wall to true
         if(isTouchingTop || isTouchingSide)
@@ -1051,6 +1089,19 @@ public class PlayerFSMController : AdvancedFSM
 
     // fine for single hit functions, but for lasting projectiles like a flamethrower
     // this will bust some logic
+
+    //Player has begun to jump
+    // SET THIS IN THE ANIMATION
+    public void Jump()
+    {
+        Vector2 newVel = rig.velocity;
+        rig.velocity = Vector2.zero;
+        newVel.y = GetJumpPower();
+        rig.velocity = newVel;
+
+        soundManager.PlayJump();
+        Debug.Log("Player State: Jumping");
+    }
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
         if (selectedArament.IsActive)
@@ -1264,6 +1315,16 @@ public class PlayerFSMController : AdvancedFSM
         yield return new WaitForEndOfFrame();
     }
 
+    private void PauseAnim()
+    {
+        anim.speed = 0;
+    }
+
+    // call in death anim
+    public void ResumeAnim()
+    {
+        anim.speed = prevAnimSpeed;
+    }
 
     // --------------- PAUSING GAME FUNCTIONALITY -----------------
     #region Click below to access pause functionality code

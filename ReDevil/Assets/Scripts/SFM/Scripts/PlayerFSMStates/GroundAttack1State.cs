@@ -21,6 +21,8 @@ public class GroundAttack1State : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
+        anim.SetBool("ResetIdle", false);
 
         //set friction material
         pc.SetFrictionMaterial();
@@ -33,7 +35,8 @@ public class GroundAttack1State : FSMState
 
         if (!attackStarted)
         {
-            patk.GroundAttack();
+            //patk.GroundAttack();
+            anim.SetTrigger("Attack1");
             attackStarted = true;
         }
 
@@ -49,6 +52,7 @@ public class GroundAttack1State : FSMState
         Rigidbody2D rig = player.GetComponent<Rigidbody2D>();
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
+        Animator anim = pc.GetComponent<Animator>();
 
         bool invincible = pc.GetInvincible();
 

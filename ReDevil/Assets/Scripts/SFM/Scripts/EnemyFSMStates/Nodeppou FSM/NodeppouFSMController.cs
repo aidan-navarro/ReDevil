@@ -90,7 +90,7 @@ public class NodeppouFSMController : EnemyFSMController
     // animator must call a void function with no parameters
     public void NodeppouProjectile()
     {
-        InstantiateProjectile(bullet, firepoint.position, firepoint.rotation, atkDirectionRight, projectileSpeed);
+        InstantiateProjectile(bullet, firepoint.position, firepoint.rotation, atkDirectionRight, projectileSpeed, facingRight);
     }
 
     public override void FlinchEnemy(Vector2 flinchKB)
