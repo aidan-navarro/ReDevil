@@ -47,15 +47,20 @@ public class GroundToAirDashAttack : FSMState
             pc.SetDashInputAllowed(false);
             dashAttackStarted = true;
             endDash = false;
+            anim.SetBool("Dashing", dashAttackStarted);
+
             if (pc.moveVector.x > 0f)
             {
                 pc.direction = 1;
                 pc.facingLeft = false;
+                pc.FlipPlayer();
             }
             else if (pc.moveVector.x < 0f)
             {
                 pc.direction = -1;
                 pc.facingLeft = true;
+                pc.FlipPlayer();
+
             }
             prevGravityScale = pc.GetRigidbody2D().gravityScale;
             pc.GetRigidbody2D().gravityScale = 0;
@@ -63,7 +68,6 @@ public class GroundToAirDashAttack : FSMState
             pc.SetDashStartPos(pc.transform.position);
 
            
-            anim.SetBool("Dashing", dashAttackStarted);
         }
 
         // total distance of dash... make a different length?
