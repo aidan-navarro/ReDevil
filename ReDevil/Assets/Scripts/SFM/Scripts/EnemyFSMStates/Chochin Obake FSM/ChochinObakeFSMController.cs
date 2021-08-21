@@ -122,6 +122,7 @@ public class ChochinObakeFSMController : EnemyFSMController
     
     private void ChochinDeathSound()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
         FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Yokai_Death");
     }
 }

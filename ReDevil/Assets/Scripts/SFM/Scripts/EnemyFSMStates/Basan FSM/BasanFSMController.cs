@@ -146,6 +146,7 @@ public class BasanFSMController : EnemyFSMController
 
     private void BasanDeathSound()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
         FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Yokai_Death");
     }
 
