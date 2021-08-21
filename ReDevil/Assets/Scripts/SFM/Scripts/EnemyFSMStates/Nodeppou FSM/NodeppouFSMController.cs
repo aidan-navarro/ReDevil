@@ -111,4 +111,13 @@ public class NodeppouFSMController : EnemyFSMController
         deathConfirmed = true;
     }
 
+    private void NodeppouDeathSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Yokai_Death");
+    }
+
+    private void NodeppouFlinchSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
+    }
 }
