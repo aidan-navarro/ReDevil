@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: c40160bebb482b14bb2de6124ed6af49
   - enabled: 1
     path: Assets/Scenes/Oni Debug Level.unity
-    guid: 99e131e597e25384da6bda4deb78b154
+    guid: 3cc97cf6d50a2954eb547851f04e8821
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 68283c0b758a3bb4894630ba86605bc6,
       type: 2}

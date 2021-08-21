@@ -632,7 +632,7 @@ public class PlayerAttack : MonoBehaviour
     // Dash Attack Specific, scaling down the hitbox so that the player is a bit closer to the enemy on dash
     private void ShrinkHitbox()
     {
-        attackCollider.transform.localScale = new Vector2(1.3f, 1.5f);
+        attackCollider.transform.localScale = new Vector2(1.2f, 1.5f);
     }
 
     private void RevertHitbox()
