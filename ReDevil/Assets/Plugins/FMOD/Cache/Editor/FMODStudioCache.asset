@@ -123,11 +123,11 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/MAIN.strings.bank
   Name: MAIN.strings
   StudioPath: bank:/MAIN.strings
-  lastModified: 637645427326735113
+  lastModified: 637650873085562185
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1062
+    Value: 1248
   Exists: 1
 --- !u!114 &-7562228971820476429
 MonoBehaviour:
@@ -171,6 +171,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-7404692049820318081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stage_Music
+  m_EditorClassIdentifier: 
+  Path: event:/Stage_Music
+  guid: dabfd390fa06574b93c4a6489dc3ade2
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 76137
 --- !u!114 &-7357640540652031958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +355,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1587
+--- !u!114 &-5246302396856673505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/Enemy_Impact
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/Enemy_Impact
+  guid: 5023cf6b0222274192478730f46ccaf6
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 400
 --- !u!114 &-5136405049944984179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,12 +710,16 @@ MonoBehaviour:
   - {fileID: 8646040088643492480}
   - {fileID: 153365820112675351}
   - {fileID: 7441958347354411990}
+  - {fileID: -5246302396856673505}
+  - {fileID: 1830365777477238979}
+  - {fileID: 8589034198664025977}
+  - {fileID: -7404692049820318081}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3745258490317736878}
   StringsBanks:
   - {fileID: -7649732291532254933}
-  stringsBankWriteTime: 637645427326735113
+  stringsBankWriteTime: 637650873085562185
   cacheVersion: 6
 --- !u!114 &91175235257437251
 MonoBehaviour:
@@ -715,7 +765,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 1290
+  Length: 264
 --- !u!114 &522659206947823168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,6 +897,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 164625
+--- !u!114 &1830365777477238979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/City_Ambiance
+  m_EditorClassIdentifier: 
+  Path: event:/City_Ambiance
+  guid: 544d9aebefa399468e303d586c96343d
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 76137
 --- !u!114 &2000856774422279758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1227,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/MAIN.bank
   Name: MAIN
   StudioPath: bank:/MAIN
-  lastModified: 637645427326685059
+  lastModified: 637650873085522135
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1626,6 +1699,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 254
+--- !u!114 &8589034198664025977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/WANIGUCHI/Waniguchi_Attack
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/WANIGUCHI/Waniguchi_Attack
+  guid: a25ebda942c03b44b012c10624b50b06
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1768
 --- !u!114 &8646040088643492480
 MonoBehaviour:
   m_ObjectHideFlags: 0

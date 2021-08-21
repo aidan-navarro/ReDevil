@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasanDyingState : FSMState
 {
     private bool enterDeath;
+    
     public BasanDyingState()
     {
         Debug.Log("CreateDyingState");

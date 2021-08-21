@@ -185,4 +185,14 @@ public class WaniguchiFSMController : EnemyFSMController
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Yokai_Death");
     }
+
+    private void WaniguchiAttackSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/WANIGUCHI/Waniguchi_Attack");
+    }
+
+    private void WaniguchiFlinchSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
+    }
 }

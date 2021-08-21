@@ -1326,6 +1326,13 @@ public class PlayerFSMController : AdvancedFSM
         anim.speed = prevAnimSpeed;
     }
 
+    //FMOD AUDIO
+
+    public void PlayerSwordSwing()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/SwordSwing");
+    }
+
     // --------------- PAUSING GAME FUNCTIONALITY -----------------
     #region Click below to access pause functionality code
     public void Pause()
