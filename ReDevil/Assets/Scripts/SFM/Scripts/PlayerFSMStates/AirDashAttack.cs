@@ -16,6 +16,7 @@ public class AirDashAttack : FSMState
 
     // force breakout timer
     private float dashTimer;
+    private Vector2 posCheck;
 
     public AirDashAttack()
     {
@@ -34,6 +35,8 @@ public class AirDashAttack : FSMState
         PlayerFSMController pc = player.GetComponent<PlayerFSMController>();
         PlayerAttack patk = player.GetComponent<PlayerAttack>();
         Animator anim = pc.GetComponent<Animator>();
+
+        posCheck = player.position;
 
         // flamethrower specific 
         // pc.SetKbTransition(false);
@@ -99,8 +102,8 @@ public class AirDashAttack : FSMState
         // during dash
         if (!endDash)
         {
-            //dashTimer += Time.deltaTime;
-
+            dashTimer += Time.deltaTime;
+            Debug.Log("DashTimer: " + dashTimer);
             // checking the square magnitude of the dash distance, to circumvent a sqrt check
             if (dashDistance < pc.dashLength * pc.dashLength && !patk.airDashAttackContact)
             {
@@ -136,7 +139,7 @@ public class AirDashAttack : FSMState
                 endDash = true;
                 patk.EndDashAttack();
             }
-            if (onWall)
+            else if (onWall)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
@@ -148,7 +151,7 @@ public class AirDashAttack : FSMState
             // check for if we land on the ground mid dash? 
             // account for slanted platforms down the line?
 
-            if (isGrounded)
+            else if (isGrounded)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
@@ -158,7 +161,7 @@ public class AirDashAttack : FSMState
                 patk.EndDashAttack();
             }
 
-            if (touchingInvisWall)
+            else if (touchingInvisWall)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
@@ -167,7 +170,7 @@ public class AirDashAttack : FSMState
                 endDash = true;
             }
 
-            if (isCeiling)
+            else if (isCeiling)
             {
                 pc.SetCanDash(true);
                 pc.GetRigidbody2D().gravityScale = prevGravityScale;
@@ -175,6 +178,8 @@ public class AirDashAttack : FSMState
                 dashAttackStarted = false;
                 endDash = true;
             }
+
+           
 
             //// we must create a condition where if the player is stuck on something, break out of the condition
             //if (dashTimer >= 2)
