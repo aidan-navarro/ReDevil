@@ -51,7 +51,7 @@ public class AirDashAttack : FSMState
         pc.UpdateDashIcons();
         pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
-
+        pc.CheckAirDash();
         if (!dashAttackStarted)
         {
             pc.SetCanDash(false);

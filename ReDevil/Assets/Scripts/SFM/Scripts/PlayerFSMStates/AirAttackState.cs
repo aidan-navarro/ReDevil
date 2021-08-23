@@ -117,7 +117,7 @@ public class AirAttackState : FSMState
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.Knockback);
         }
-        if (patk.dashTransition) //if dash cancel = true, change to dash state
+        if (patk.dashTransition && pc.GetCanDash()) //if dash cancel = true, change to dash state
         {
             //patk.StopAirAttack();
             attackStarted = false;
@@ -135,6 +135,7 @@ public class AirAttackState : FSMState
                 pc.FlipPlayer();
 
             }
+            pc.IncrementAirDashCount();
             patk.ReInitializeTransitions();
             pc.PerformTransition(Transition.AirDashAttack);
         }
