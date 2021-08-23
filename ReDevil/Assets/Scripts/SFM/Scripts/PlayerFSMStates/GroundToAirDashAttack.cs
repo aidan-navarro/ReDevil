@@ -48,6 +48,7 @@ public class GroundToAirDashAttack : FSMState
             dashAttackStarted = true;
             endDash = false;
             anim.SetBool("Dashing", dashAttackStarted);
+            anim.SetBool("ResetIdle", false);
 
             if (pc.moveVector.x > 0f)
             {
