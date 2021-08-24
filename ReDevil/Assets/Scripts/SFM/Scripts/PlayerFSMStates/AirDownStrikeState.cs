@@ -27,7 +27,7 @@ public class AirDownStrikeState : FSMState
 
         if (!attackStarted)
         {
-            anim.SetTrigger("FallingStrike");
+            anim.Play("Falling Strike 1", 0, 0.0f);
             attackStarted = true;
         }
         if (pc.GetisGrounded())

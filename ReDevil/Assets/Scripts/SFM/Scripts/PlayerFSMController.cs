@@ -955,7 +955,7 @@ public class PlayerFSMController : AdvancedFSM
         headPos.y += col.bounds.extents.y;
         //Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
 
-        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, groundLayer.value);
+        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.05f, 0.1f), 0f, groundLayer.value);
 
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
@@ -1408,6 +1408,12 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         Gizmos.DrawWireCube(sidePos, new Vector2(0.1f, colliderSize.y - 0.05f));
+
+        Gizmos.color = Color.white;
+        Vector2 headPos = col.bounds.center;
+        headPos.y += col.bounds.extents.y;
+        //Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
+        Gizmos.DrawWireCube(headPos, new Vector2(colliderSize.x - 0.05f, 0.1f));
 
     }
 }

@@ -38,7 +38,8 @@ public class JumpingState : FSMState
             //pc.soundManager.PlayJump();
             //Debug.Log("Player State: Jumping");
             hasJumped = true;
-            anim.SetTrigger("Jump");
+            //anim.SetTrigger("Jump");
+            anim.Play("Jump Start", 0, 0.0f);
             anim.SetInteger("DashDirection", 0);
 
 

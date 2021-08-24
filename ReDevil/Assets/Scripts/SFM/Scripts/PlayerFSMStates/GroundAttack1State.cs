@@ -36,7 +36,7 @@ public class GroundAttack1State : FSMState
         if (!attackStarted)
         {
             //patk.GroundAttack();
-            anim.SetTrigger("Attack1");
+            anim.Play("GroundAttack", 0, 0.0f);
             attackStarted = true;
         }
 

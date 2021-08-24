@@ -17,6 +17,7 @@ public class AirAttackState : FSMState
     {
         base.EnterStateInit();
         airTime = 0.0f;
+        attackStarted = false;
     }
     public override void Act(Transform player, Transform npc)
     {
@@ -31,15 +32,19 @@ public class AirAttackState : FSMState
         pc.UpdateState("Air Attack");
         airTime += Time.deltaTime;
 
-        if (airTime < patk.GetAirAttackTime() && !patk.airAttackContact) // this is keeping it locked
+        if (!attackStarted)
         {
-            Debug.Log("Airstrike");
+            anim.Play("Air Attack", 0, 0.0f);
             patk.attacking = true;
             patk.didAirAttack = true;
-            //patk.AirAttack();
+            attackStarted = true;
+        }
 
+
+        if (!patk.airAttackContact) // this is keeping it locked
+        {
+            
             // must test this out
-            anim.SetBool("AirAttack", patk.didAirAttack);
 
             if (pc.moveVector.x > 0f)
             {
