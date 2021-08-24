@@ -325,6 +325,10 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetIsPaused() { return isPaused; }
     public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; }
 
+    // AirStrikeDownCheck 
+    [SerializeField]
+    private float airStrikeDownGroundDistanceRequirement = 12.0f;
+
 
     //initialize FSM
     protected override void Initialize()
@@ -1327,6 +1331,30 @@ public class PlayerFSMController : AdvancedFSM
     public void ResumeAnim()
     {
         anim.speed = prevAnimSpeed;
+    }
+
+    // Ground Distance check
+    public bool IsClearForAirDownStrike()
+    {
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.TransformPoint(col.bounds.center), col.size, 0.0f, Vector2.down, airStrikeDownGroundDistanceRequirement * 2.0f, groundLayer);
+
+        if (raycastHit2D.collider != null)
+        {
+            Debug.LogWarning(Vector2.Distance(raycastHit2D.point, transform.TransformPoint(col.bounds.center)));
+            if (Vector2.Distance(raycastHit2D.point, transform.TransformPoint(col.bounds.center)) > airStrikeDownGroundDistanceRequirement)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     //FMOD AUDIO

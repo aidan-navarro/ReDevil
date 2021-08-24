@@ -74009,6 +74009,10 @@ PrefabInstance:
       propertyPath: healthBackground
       value: 
       objectReference: {fileID: 719969067}
+    - target: {fileID: 123211769, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
+      propertyPath: airStrikeDownGroundDistanceRequirement
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 243560147, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.99035305
@@ -74061,12 +74065,12 @@ PrefabInstance:
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.292704
+      value: 21.476055
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.74377
+      value: 6.5771036
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276398568400, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -74101,7 +74105,7 @@ PrefabInstance:
     - target: {fileID: 1575489276398568402, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.8
+      value: 4.29
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276398568402, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}

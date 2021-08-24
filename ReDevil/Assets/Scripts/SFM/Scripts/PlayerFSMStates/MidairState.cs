@@ -132,7 +132,7 @@ public class MidairState : FSMState
         }
 
         //attack transition
-        if (attackButtonDown && pc.moveVector.y <= -0.45f )
+        if (attackButtonDown && pc.moveVector.y <= -0.45f && pc.IsClearForAirDownStrike())
         {
             pc.PerformTransition(Transition.AirDownStrike);
         }

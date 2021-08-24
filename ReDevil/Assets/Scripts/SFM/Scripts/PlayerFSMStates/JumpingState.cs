@@ -68,7 +68,7 @@ public class JumpingState : FSMState
         //attack transition
         // note: vertical has not been used yet
         //       Vertical is being used when the analog stick is being pointed downward.
-        if (pc.GetAttackButtonDown() && pc.moveVector.y <= -0.45f) 
+        if (pc.GetAttackButtonDown() && pc.moveVector.y <= -0.45f && pc.IsClearForAirDownStrike()) 
         {
             pc.PerformTransition(Transition.AirDownStrike);
         }
