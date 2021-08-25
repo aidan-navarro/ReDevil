@@ -19,7 +19,7 @@ public class WallSlideState : FSMState
         Animator anim = pc.GetComponent<Animator>();
 
         anim.SetBool("OnWall", true);
-        anim.Play("Wall Slide");
+        anim.Play("Wall Slide", 0, 0.0f);
         pc.SetNoFrictionMaterial();
 
         pc.TouchingFloorCeilingWall();

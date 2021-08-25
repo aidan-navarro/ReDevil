@@ -64,22 +64,7 @@ public class GroundDashAttack : FSMState
 
             pc.SetDashStartPos(pc.transform.position); // utilize some of the existing dash logic
 
-            if (pc.moveVector.x > 0f)
-            {
-                pc.direction = 1;
-                pc.facingLeft = false;
-            }
-            else if (pc.moveVector.x < 0f)
-            {
-                pc.direction = -1;
-                pc.facingLeft = true;
-
-
-            }
-            else //no input detected.  stop speed and set bool to not moving to transition to idle
-            {
-                //dont change direction
-            }
+           
 
         }
 
