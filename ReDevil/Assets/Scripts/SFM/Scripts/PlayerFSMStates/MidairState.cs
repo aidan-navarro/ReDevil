@@ -44,27 +44,10 @@ public class MidairState : FSMState
         // Setting the Dash Vector, we only want to change this whenever the player hasn't gone
         // into dash. That way we avoid mid-air path change
         // We're using the move vector from the Player FSM Controller to dictate the dash path
-        if (pc.GetCanDash())
-        {
+       
             //Debug.Log("Changing dash path");
-            if (pc.moveVector != Vector2.zero)
-            {
-                pc.SetDashPath(pc.moveVector);
-               
-            }
-            else
-            { // should the analog stick not be pointed, the player should still dash horizontally
-                if (pc.facingLeft)
-                {
-                    pc.SetDashPath(Vector2.left);
-                }
-                else if (!pc.facingLeft)
-                {
-                    pc.SetDashPath(Vector2.right);
-                }
-                anim.SetInteger("DashDirection", 0);             
-            }
-        }
+           
+        
         //Debug.Log(pc.GetDashPath());
         //first check if we are touching a wall or floor
         pc.TouchingFloorCeilingWall();
@@ -156,6 +139,22 @@ public class MidairState : FSMState
         {
             // this does work
             //Debug.Log("Commence Air Dash Attack");
+            //if (pc.moveVector != Vector2.zero)
+            //{
+            //    pc.SetDashPath(pc.moveVector);
+            //}
+            //else
+            //{ // should the analog stick not be pointed, the player should still dash horizontally
+            //    if (pc.facingLeft)
+            //    {
+            //        pc.SetDashPath(Vector2.left);
+            //    }
+            //    else if (!pc.facingLeft)
+            //    {
+            //        pc.SetDashPath(Vector2.right);
+            //    }
+            //}
+                            pc.SetDashPath(pc.moveVector);
 
             pc.IncrementAirDashCount();
             pc.PerformTransition(Transition.AirDashAttack);

@@ -824,7 +824,11 @@ public class PlayerFSMController : AdvancedFSM
     public Vector2 GetDashPath() { return dashPath; }
     public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; 
     
-        if (inDashPath == Vector2.up)
+        if (inDashPath == Vector2.right || inDashPath == Vector2.left)
+        {
+            anim.SetInteger("DashDirection", 0);
+        }
+        else if (inDashPath == Vector2.up)
         {
             anim.SetInteger("DashDirection", 1);
         }
@@ -846,10 +850,6 @@ public class PlayerFSMController : AdvancedFSM
             }
         }
 
-        else if (inDashPath == Vector2.right || inDashPath == Vector2.left)
-        {
-            anim.SetInteger("DashDirection", 0);
-        }
     }
 
     //Unique functions to the player
@@ -953,7 +953,7 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
         //Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
-        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x-0.05f, 0.1f), 0f, groundLayer.value);
+        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x-0.025f, 0.1f), 0f, groundLayer.value);
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
@@ -965,7 +965,7 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         //Vector2 resizeColWall = Vector2.Scale(col.size, transform.localScale);
-        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.05f), 0f, groundLayer.value);
+        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.025f), 0f, groundLayer.value);
     }
 
     public void TouchingInvisibleWall()
@@ -1430,12 +1430,12 @@ public class PlayerFSMController : AdvancedFSM
         Gizmos.color = Color.blue;
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
-        Gizmos.DrawWireCube(feetPos, new Vector2(colliderSize.x-0.05f, 0.1f));
+        Gizmos.DrawWireCube(feetPos, new Vector2(colliderSize.x-0.025f, 0.1f));
 
         Gizmos.color = Color.green;
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        Gizmos.DrawWireCube(sidePos, new Vector2(0.1f, colliderSize.y - 0.05f));
+        Gizmos.DrawWireCube(sidePos, new Vector2(0.1f, colliderSize.y - 0.025f));
 
         Gizmos.color = Color.white;
         Vector2 headPos = col.bounds.center;

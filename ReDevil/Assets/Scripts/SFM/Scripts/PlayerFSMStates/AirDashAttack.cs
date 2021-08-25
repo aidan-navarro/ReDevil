@@ -52,24 +52,45 @@ public class AirDashAttack : FSMState
         pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
         pc.CheckAirDash();
+
+       
         if (!dashAttackStarted)
         {
+            Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                if (pc.moveVector.x > 0f)
+                {
+                    pc.direction = 1;
+                    pc.facingLeft = false;
+                    pc.FlipPlayer();
+                }
+                else if (pc.moveVector.x < 0f)
+                {
+                    pc.direction = -1;
+                    pc.facingLeft = true;
+                    pc.FlipPlayer();
+
+                }
+                pc.SetDashPath(pc.moveVector);
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
             pc.SetCanDash(false);
             pc.SetDashInputAllowed(false);
             dashAttackStarted = true;
             endDash = false;
             //Debug.Log("Normal Midair Behaviour");
-            if (pc.moveVector.x > 0f)
-            {
-                pc.direction = 1;
-                pc.facingLeft = false;
-            }
-            else if (pc.moveVector.x < 0f)
-            {
-                pc.direction = -1;
-                pc.facingLeft = true;
-
-            }
+            
             prevGravityScale = pc.GetRigidbody2D().gravityScale;
             pc.GetRigidbody2D().gravityScale = 0;
             anim.SetBool("Dashing", dashAttackStarted);
@@ -103,7 +124,6 @@ public class AirDashAttack : FSMState
         if (!endDash)
         {
             dashTimer += Time.deltaTime;
-            Debug.Log("DashTimer: " + dashTimer);
             // checking the square magnitude of the dash distance, to circumvent a sqrt check
             if (dashDistance < pc.dashLength * pc.dashLength && !patk.airDashAttackContact)
             {

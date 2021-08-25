@@ -40,7 +40,26 @@ public class GroundToAirDashAttack : FSMState
         pc.UpdateDashIcons();
         pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
+        if (pc.GetCanDash())
+        {
+            Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                pc.SetDashPath(pc.moveVector);
 
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
+        }
         if (!dashAttackStarted)
         {
             pc.SetCanDash(false);

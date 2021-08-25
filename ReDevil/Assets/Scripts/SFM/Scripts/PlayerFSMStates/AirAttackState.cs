@@ -77,26 +77,7 @@ public class AirAttackState : FSMState
         patk.CheckKnockbackCancel();
         pc.CheckAirDash();
 
-        if (pc.GetCanDash())
-        {
-            Debug.Log("Changing dash path");
-            if (pc.moveVector != Vector2.zero)
-            {
-                pc.SetDashPath(pc.moveVector);
-
-            }
-            else
-            { // should the analog stick not be pointed, the player should still dash horizontally
-                if (pc.facingLeft)
-                {
-                    pc.SetDashPath(Vector2.left);
-                }
-                else if (!pc.facingLeft)
-                {
-                    pc.SetDashPath(Vector2.right);
-                }
-            }
-        }
+      
 
     }
 
