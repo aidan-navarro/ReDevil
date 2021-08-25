@@ -17,7 +17,7 @@ public class PlayerFSMController : AdvancedFSM
     //-------------------------------------------------------------------
     //Floor and Wall Collision Variables
     //-------------------------------------------------------------------
-    private BoxCollider2D col; //the players box collider
+    private CapsuleCollider2D col; //the players box collider
     public LayerMask groundLayer;
     public LayerMask invisWallLayer;
     public LayerMask nurikabeLayer; // specific Nurikabe functionality *** not currently being used rn
@@ -365,7 +365,7 @@ public class PlayerFSMController : AdvancedFSM
 
 
         //capsule collider
-        col = GetComponent<BoxCollider2D>();
+        col = GetComponent<CapsuleCollider2D>();
         colliderSize = Vector2.Scale(col.size, transform.localScale);
 
         //Player Input Setup
