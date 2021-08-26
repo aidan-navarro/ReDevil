@@ -953,7 +953,7 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
         //Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
-        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x-0.025f, 0.1f), 0f, groundLayer.value);
+        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x - 0.2f, 0.25f), 0f, groundLayer.value);
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
@@ -965,7 +965,7 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         //Vector2 resizeColWall = Vector2.Scale(col.size, transform.localScale);
-        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.025f), 0f, groundLayer.value);
+        isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.5f), 0f, groundLayer.value);
     }
 
     public void TouchingInvisibleWall()
@@ -1336,12 +1336,14 @@ public class PlayerFSMController : AdvancedFSM
     // Ground Distance check
     public bool IsClearForAirDownStrike()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.TransformPoint(col.bounds.center), col.size, 0.0f, Vector2.down, airStrikeDownGroundDistanceRequirement * 2.0f, groundLayer);
-
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, colliderSize, 0.0f, Vector2.down, Mathf.Infinity, groundLayer);
         if (raycastHit2D.collider != null)
         {
-            Debug.LogWarning(Vector2.Distance(raycastHit2D.point, transform.TransformPoint(col.bounds.center)));
-            if (Vector2.Distance(raycastHit2D.point, transform.TransformPoint(col.bounds.center)) > airStrikeDownGroundDistanceRequirement)
+            Debug.LogWarning(Vector2.Distance(raycastHit2D.point, transform.position));
+            Debug.LogWarning(raycastHit2D.collider.name);
+            Debug.DrawLine(raycastHit2D.point, transform.position);
+
+            if (Vector2.Distance(raycastHit2D.point, transform.position) > airStrikeDownGroundDistanceRequirement)
             {
                 return true;
             }
@@ -1430,12 +1432,14 @@ public class PlayerFSMController : AdvancedFSM
         Gizmos.color = Color.blue;
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
-        Gizmos.DrawWireCube(feetPos, new Vector2(colliderSize.x-0.025f, 0.1f));
+        //Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
+        //isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x - 0.05f, 0.6f), 0f, groundLayer.value);
+        Gizmos.DrawWireCube(feetPos, new Vector2(colliderSize.x - 0.2f, 0.25f));
 
         Gizmos.color = Color.green;
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        Gizmos.DrawWireCube(sidePos, new Vector2(0.1f, colliderSize.y - 0.025f));
+        Gizmos.DrawWireCube(sidePos, new Vector2(0.1f, colliderSize.y - 0.5f));
 
         Gizmos.color = Color.white;
         Vector2 headPos = col.bounds.center;
