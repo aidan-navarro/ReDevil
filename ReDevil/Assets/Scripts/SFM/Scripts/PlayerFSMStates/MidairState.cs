@@ -174,6 +174,8 @@ public class MidairState : FSMState
         //sometimes it also determines your touching the ground
         if (grounded)
         {
+            pc.SetFrictionMaterial();
+
             pc.soundManager.PlayLanding();
             patk.didAirAttack = false;
 

@@ -40,6 +40,8 @@ public class GroundToAirDashAttack : FSMState
         pc.UpdateDashIcons();
         pc.TouchingFloorCeilingWall();
         pc.TouchingInvisibleWall();
+        pc.SetNoFrictionMaterial();
+
         if (pc.GetCanDash())
         {
             Debug.Log("Changing dash path");
