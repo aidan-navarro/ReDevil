@@ -123,6 +123,7 @@ public class AirDashAttack : FSMState
         // during dash
         if (!endDash)
         {
+            pc.SetNoFrictionMaterial();
             dashTimer += Time.deltaTime;
             // checking the square magnitude of the dash distance, to circumvent a sqrt check
             if (dashDistance < pc.dashLength * pc.dashLength && !patk.airDashAttackContact)
