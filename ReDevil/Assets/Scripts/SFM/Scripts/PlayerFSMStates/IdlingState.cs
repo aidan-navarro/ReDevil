@@ -40,7 +40,7 @@ public class IdlingState : FSMState
 
         pc.TouchingInvisibleWall();
 
-        rig.velocity = new Vector2(rig.velocity.x, 0);
+        rig.velocity = Vector2.zero;
         //set friction material
         pc.SlopeCheck();
 

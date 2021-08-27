@@ -32,9 +32,10 @@ public class AirDownStrikeState : FSMState
         }
         if (pc.GetisGrounded())
         {
+            rig.velocity = Vector2.zero;
+            pc.SetFrictionMaterial();
             anim.SetTrigger("Landed");
             anim.SetBool("Midair", false);
-            pc.SetFrictionMaterial();
         }
 
         //check for a knockback cancel
