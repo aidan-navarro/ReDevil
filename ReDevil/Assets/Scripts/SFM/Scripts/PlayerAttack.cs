@@ -334,7 +334,7 @@ public class PlayerAttack : MonoBehaviour
         //Debug.Log("Start Dash Attack");
         attacking = true; // use the same attacking variable?
         Vector2 tempPos = new Vector2(pc.transform.right.x, 0);
-        attackCollider.transform.localPosition = tempPos*4;
+        attackCollider.transform.localPosition = tempPos*2.25f;
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -346,7 +346,15 @@ public class PlayerAttack : MonoBehaviour
     public void StartAirDashAttack(Vector2 position)
     {
         attacking = true;
-        attackCollider.transform.localPosition = position*4;
+        if (!pc.GetCanDash())
+        {
+            attackCollider.transform.localPosition = position * 2f;
+            if (pc.moveVector.y < 0.0f)
+            {
+                attackCollider.transform.localPosition = position * 4.0f;
+
+            }
+        }
         TurnOnHitbox();
         ShrinkHitbox();
         damage = dashAttackValue;
@@ -372,7 +380,14 @@ public class PlayerAttack : MonoBehaviour
         // should the hit register`
         for (int i = 0; i < numHits; i++)
         {
-            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy") && attacking) // this only registers frame 1
+            if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Wall") && attacking)
+            {
+
+                Debug.Log("Turn Off");
+                TurnOffHitbox();
+            }
+
+            else if (!hits[i].collider.isTrigger && hits[i].collider.CompareTag("Enemy") && attacking) // this only registers frame 1
             {
                 EnemyFSMController ec = hits[i].transform.GetComponent<EnemyFSMController>();
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
