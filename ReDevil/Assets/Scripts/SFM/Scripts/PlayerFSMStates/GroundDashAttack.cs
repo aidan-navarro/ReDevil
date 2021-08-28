@@ -53,6 +53,35 @@ public class GroundDashAttack : FSMState
         pc.UpdateDashIcons();
         if (!dashAttackStarted)
         {
+            Debug.Log("Changing dash path");
+            if (pc.moveVector != Vector2.zero)
+            {
+                if (pc.moveVector.x > 0f)
+                {
+                    pc.direction = 1;
+                    pc.facingLeft = false;
+                    pc.FlipPlayer();
+                }
+                else if (pc.moveVector.x < 0f)
+                {
+                    pc.direction = -1;
+                    pc.facingLeft = true;
+                    pc.FlipPlayer();
+
+                }
+                pc.SetDashPath(pc.moveVector);
+            }
+            else
+            { // should the analog stick not be pointed, the player should still dash horizontally
+                if (pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.left);
+                }
+                else if (!pc.facingLeft)
+                {
+                    pc.SetDashPath(Vector2.right);
+                }
+            }
             pc.SetCanDash(false);
             pc.SetDashInputAllowed(false);
             dashAttackStarted = true; // so that we don't trigger this again
