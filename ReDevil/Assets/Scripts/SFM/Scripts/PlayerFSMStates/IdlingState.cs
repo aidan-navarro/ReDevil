@@ -94,6 +94,7 @@ public class IdlingState : FSMState
         pc.TouchingFloorCeilingWall();
         pc.CheckAirDash(); // to reset the air dash
         pc.TouchingInvisibleWall();
+        pc.SetDidSoulAttack(false);
 
         pc.SetKbTransition(false);
         pc.SetDKBTransition(false);

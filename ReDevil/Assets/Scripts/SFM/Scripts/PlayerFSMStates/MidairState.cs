@@ -120,7 +120,7 @@ public class MidairState : FSMState
             pc.PerformTransition(Transition.AirDownStrike);
         }
 
-        if (soulAttackButtonDown && pc.GetSoul() >= player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost)
+        if (soulAttackButtonDown && pc.GetSoul() >= player.GetComponent<PlayerAttack>().soulShot.GetComponent<SoulShot>().soulCost && !pc.GetDidSoulAttack())
         {
             pc.PerformTransition(Transition.SoulShot);
         }

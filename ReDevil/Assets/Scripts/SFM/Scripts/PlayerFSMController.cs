@@ -229,13 +229,8 @@ public class PlayerFSMController : AdvancedFSM
     public void DecrementAirDashCount() { airDashCount--; } // decrementing air dash should only happen when you kill an enemy
     public void ResetAirDashCount() { airDashCount = 0; } // air dash only resets upon touching ground or wall
 
-
-  
- 
     //respawn
-    public RespawnManager respawnPoint;
-
-    
+    public RespawnManager respawnPoint;   
 
     //-------------------------------------------------------------------
     //variables to detect controller input
@@ -263,9 +258,22 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetGroundJump() { return groundJump; }
     public void SetGroundJump(bool inGroundJump) { groundJump = inGroundJump; }
 
+    // Soul Shot ability
     [System.NonSerialized]
     private bool soulAttackButtonDown;
     public bool GetSoulAttackButtonDown() { return soulAttackButtonDown; }
+
+    // Exit condition for Soul Shot
+    [System.NonSerialized]
+    private bool soulAttackActive;
+    public bool GetSoulAttackActive() { return soulAttackActive; }
+    public void SetSoulAttackActive(bool inSoulAttackActive) { soulAttackActive = inSoulAttackActive; }
+    public void DeactivateSoulAttack() { soulAttackActive = false; }
+
+    [System.NonSerialized]
+    private bool didSoulAttack;
+    public bool GetDidSoulAttack() { return didSoulAttack; }
+    public void SetDidSoulAttack(bool inDidSoulAttack) { didSoulAttack = inDidSoulAttack; }
 
     //variables for determining direction faced
     [System.NonSerialized]

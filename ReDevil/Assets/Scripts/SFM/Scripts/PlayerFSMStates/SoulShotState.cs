@@ -8,8 +8,14 @@ public class SoulShotState : FSMState
 
     public SoulShotState()
     {
-        soulShotStarted = false;
         stateID = FSMStateID.SoulShot;
+    }
+
+    public override void EnterStateInit()
+    {
+        base.EnterStateInit();
+        soulShotStarted = false;
+
     }
     public override void Act(Transform player, Transform npc)
     {
@@ -26,17 +32,19 @@ public class SoulShotState : FSMState
         {
             // calling soul shot attack in the animation instead
             //patk.SoulShotAttack();
-
+            Debug.Log("Play soul shot");
             if(pc.GetisGrounded())
             {
                 anim.Play("Soul Shot Ground");
-            } else
+            } 
+            else
             {
                 anim.Play("Soul Shot Air");
-
             }
 
             soulShotStarted = true;
+            pc.SetDidSoulAttack(soulShotStarted);
+            pc.SetSoulAttackActive(soulShotStarted);
         }
 
         pc.TouchingFloorCeilingWall();
@@ -55,24 +63,30 @@ public class SoulShotState : FSMState
         //knockback transition
         if (!invincible && pc.GetKbTransition()) //if the player isnt in iframes, do a knockback
         {
-            soulShotStarted = false;
+            //soulShotStarted = false;
             pc.PerformTransition(Transition.Knockback);
         }
 
-        if (patk.idleTransition)
+        if (!pc.GetSoulAttackActive())
         {
-            soulShotStarted = false;
-            patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.Idle);
-        }
+            if (patk.idleTransition)
+            {
+                //soulShotStarted = false;
+                patk.ReInitializeTransitions();
+                pc.PerformTransition(Transition.Idle);
+            }
 
-        if (!grounded)
-        {
-            soulShotStarted = false;
-            patk.ReInitializeTransitions();
-            pc.PerformTransition(Transition.Airborne);
-        }
+            if (!grounded)
+            {
+                //soulShotStarted = false;
+                Debug.Log("Soul Shot End");
 
+                patk.ReInitializeTransitions();
+                pc.PerformTransition(Transition.Airborne);
+            }
+
+            // check wall too
+        }
         //dead transition
         if (pc.GetHealth() <= 0)
         {
