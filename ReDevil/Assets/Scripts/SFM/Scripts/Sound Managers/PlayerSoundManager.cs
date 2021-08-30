@@ -106,8 +106,9 @@ public class PlayerSoundManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
     }
 
-    public void PlayerPlayRandomSoundThatDoesntExist()
+    public void PlayerWallSlideSound()
     {
-        //This was a ridiculous function used as a test to make sure this script can be called in the Players animation timeline
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_WallSlide");
+        //commented out for now because the sound doesnt end once it starts.  will need to make start + stop functions for it
     }
 }
