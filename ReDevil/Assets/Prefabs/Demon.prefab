@@ -993,7 +993,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  playerPointLineRange: 0.5
   idleWaitTime: 1.5
   chaseTime: 2
   jumpDistanceRequirement: 6
