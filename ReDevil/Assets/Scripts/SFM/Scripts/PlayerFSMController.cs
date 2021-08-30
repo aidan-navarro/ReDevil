@@ -229,8 +229,13 @@ public class PlayerFSMController : AdvancedFSM
     public void DecrementAirDashCount() { airDashCount--; } // decrementing air dash should only happen when you kill an enemy
     public void ResetAirDashCount() { airDashCount = 0; } // air dash only resets upon touching ground or wall
 
+
+  
+ 
     //respawn
-    public RespawnManager respawnPoint;   
+    public RespawnManager respawnPoint;
+
+    
 
     //-------------------------------------------------------------------
     //variables to detect controller input
@@ -258,22 +263,9 @@ public class PlayerFSMController : AdvancedFSM
     public bool GetGroundJump() { return groundJump; }
     public void SetGroundJump(bool inGroundJump) { groundJump = inGroundJump; }
 
-    // Soul Shot ability
     [System.NonSerialized]
     private bool soulAttackButtonDown;
     public bool GetSoulAttackButtonDown() { return soulAttackButtonDown; }
-
-    // Exit condition for Soul Shot
-    [System.NonSerialized]
-    private bool soulAttackActive;
-    public bool GetSoulAttackActive() { return soulAttackActive; }
-    public void SetSoulAttackActive(bool inSoulAttackActive) { soulAttackActive = inSoulAttackActive; }
-    public void DeactivateSoulAttack() { soulAttackActive = false; }
-
-    [System.NonSerialized]
-    private bool didSoulAttack;
-    public bool GetDidSoulAttack() { return didSoulAttack; }
-    public void SetDidSoulAttack(bool inDidSoulAttack) { didSoulAttack = inDidSoulAttack; }
 
     //variables for determining direction faced
     [System.NonSerialized]
@@ -293,10 +285,6 @@ public class PlayerFSMController : AdvancedFSM
     private bool isTouchingWall;
     public bool GetisTouchingWall() { return isTouchingWall; }
     public void SetisTouchingWall(bool inIsTouchingWall) { isTouchingWall = inIsTouchingWall; }
-    
-    private bool isTouchingWallBack;
-    public bool GetisTouchingWallBack() { return isTouchingWallBack; }
-    public void SetisTouchingWallBack(bool inIsTouchingWallBack) { isTouchingWallBack = inIsTouchingWallBack; }
 
     private bool isTouchingCeiling;
     public bool GetisTouchingCeiling() { return isTouchingCeiling; }
@@ -332,10 +320,6 @@ public class PlayerFSMController : AdvancedFSM
     private bool isPaused;
     public bool GetIsPaused() { return isPaused; }
     public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; }
-
-    // AirStrikeDownCheck 
-    [SerializeField]
-    private float airStrikeDownGroundDistanceRequirement = 12.0f;
 
 
     //initialize FSM
@@ -454,6 +438,7 @@ public class PlayerFSMController : AdvancedFSM
                     else
                     {
                         OnToggleSoulArament(obj);
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_Shield");
                     }
                 }
             }
@@ -832,11 +817,7 @@ public class PlayerFSMController : AdvancedFSM
     public Vector2 GetDashPath() { return dashPath; }
     public void SetDashPath(Vector2 inDashPath) { dashPath = inDashPath; 
     
-        if (inDashPath == Vector2.right || inDashPath == Vector2.left)
-        {
-            anim.SetInteger("DashDirection", 0);
-        }
-        else if (inDashPath == Vector2.up)
+        if (inDashPath == Vector2.up)
         {
             anim.SetInteger("DashDirection", 1);
         }
@@ -858,6 +839,10 @@ public class PlayerFSMController : AdvancedFSM
             }
         }
 
+        else if (inDashPath == Vector2.right || inDashPath == Vector2.left)
+        {
+            anim.SetInteger("DashDirection", 0);
+        }
     }
 
     //Unique functions to the player
@@ -961,18 +946,19 @@ public class PlayerFSMController : AdvancedFSM
         Vector2 feetPos = col.bounds.center;
         feetPos.y -= col.bounds.extents.y;
         //Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
-        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x - 0.2f, 0.25f), 0f, groundLayer.value);
+        isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         Vector2 headPos = col.bounds.center;
         headPos.y += col.bounds.extents.y;
         //Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
 
-        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.05f, 0.1f), 0f, groundLayer.value);
+        isTouchingCeiling = Physics2D.OverlapBox(headPos, new Vector2(colliderSize.x - 0.2f, 0.1f), 0f, groundLayer.value);
 
         //equation values to determine if the player is on a wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
         //Vector2 resizeColWall = Vector2.Scale(col.size, transform.localScale);
+
         isTouchingWall = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.5f), 0f, groundLayer.value);
     }
 
@@ -992,7 +978,7 @@ public class PlayerFSMController : AdvancedFSM
         //Check if the side is touching an invisible wall
         Vector2 sidePos = col.bounds.center;
         sidePos.x += col.bounds.extents.x * direction;
-        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.1f), 0f, invisWallLayer.value);
+        bool isTouchingSide = Physics2D.OverlapBox(sidePos, new Vector2(0.1f, colliderSize.y - 0.2f), 0f, invisWallLayer.value);
 
         //if either touching side OR top, set is touching invisible wall to true
         if(isTouchingTop || isTouchingSide)
@@ -1341,38 +1327,33 @@ public class PlayerFSMController : AdvancedFSM
         anim.speed = prevAnimSpeed;
     }
 
-    // Ground Distance check
-    public bool IsClearForAirDownStrike()
-    {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, colliderSize, 0.0f, Vector2.down, Mathf.Infinity, groundLayer);
-        if (raycastHit2D.collider != null)
-        {
-            Debug.LogWarning(Vector2.Distance(raycastHit2D.point, transform.position));
-            Debug.LogWarning(raycastHit2D.collider.name);
-            Debug.DrawLine(raycastHit2D.point, transform.position);
-
-            if (Vector2.Distance(raycastHit2D.point, transform.position) > airStrikeDownGroundDistanceRequirement)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-        
-    }
-
+    
     //FMOD AUDIO
 
     public void PlayerSwordSwing()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/SwordSwing");
     }
+
+    public void PlayerDashSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_Dash");
+    }
+
+    public void PlayerSoulShotSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_SoulShot");
+    }
+
+    public void PlayerFlinchSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
+    }
+
+    //public void PlayerWallSlideSound()
+    //{
+    //     FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_WallSlide");
+    //}
 
     // --------------- PAUSING GAME FUNCTIONALITY -----------------
     #region Click below to access pause functionality code
@@ -1434,26 +1415,4 @@ public class PlayerFSMController : AdvancedFSM
     }
 
     #endregion
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Vector2 feetPos = col.bounds.center;
-        feetPos.y -= col.bounds.extents.y;
-        //Vector2 resizeColFloor = Vector2.Scale(col.size, transform.localScale);
-        //isGrounded = Physics2D.OverlapBox(feetPos, new Vector2(colliderSize.x - 0.05f, 0.6f), 0f, groundLayer.value);
-        Gizmos.DrawWireCube(feetPos, new Vector2(colliderSize.x - 0.2f, 0.25f));
-
-        Gizmos.color = Color.green;
-        Vector2 sidePos = col.bounds.center;
-        sidePos.x += col.bounds.extents.x * direction;
-        Gizmos.DrawWireCube(sidePos, new Vector2(0.1f, colliderSize.y - 0.5f));
-
-        Gizmos.color = Color.white;
-        Vector2 headPos = col.bounds.center;
-        headPos.y += col.bounds.extents.y;
-        //Vector2 resizeColHead = Vector2.Scale(col.size, transform.localScale);
-        Gizmos.DrawWireCube(headPos, new Vector2(colliderSize.x - 0.05f, 0.1f));
-
-    }
 }
