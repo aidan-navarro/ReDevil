@@ -127,11 +127,13 @@ public class NurikabeFSMController : EnemyFSMController
         if (facingRight)
         {
             rig.AddForce(flinchVector, ForceMode2D.Impulse);
-        } 
+            FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
+    } 
         else
         {
             flinchVector.x *= -1;
             rig.AddForce(flinchVector, ForceMode2D.Impulse);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
 
         }
     }
@@ -147,5 +149,16 @@ public class NurikabeFSMController : EnemyFSMController
         Gizmos.DrawWireSphere(idlePoint, 0.1f);
         Gizmos.DrawWireSphere(activePoint, 0.1f);
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    public void NurikabeRiseSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/NURIKABE/Nurikabe_Rise");
+    }
+
+    public void NurikabeDeathSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ ENEMIES/Yokai_Death");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/NURIKABE/Nurikabe_Death");
     }
 }

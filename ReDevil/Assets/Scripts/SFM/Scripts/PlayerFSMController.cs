@@ -438,6 +438,7 @@ public class PlayerFSMController : AdvancedFSM
                     else
                     {
                         OnToggleSoulArament(obj);
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_Shield");
                     }
                 }
             }
@@ -1326,12 +1327,33 @@ public class PlayerFSMController : AdvancedFSM
         anim.speed = prevAnimSpeed;
     }
 
+    
     //FMOD AUDIO
 
     public void PlayerSwordSwing()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/SwordSwing");
     }
+
+    public void PlayerDashSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_Dash");
+    }
+
+    public void PlayerSoulShotSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_SoulShot");
+    }
+
+    public void PlayerFlinchSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
+    }
+
+    //public void PlayerWallSlideSound()
+    //{
+    //     FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_WallSlide");
+    //}
 
     // --------------- PAUSING GAME FUNCTIONALITY -----------------
     #region Click below to access pause functionality code
@@ -1393,5 +1415,4 @@ public class PlayerFSMController : AdvancedFSM
     }
 
     #endregion
-
 }

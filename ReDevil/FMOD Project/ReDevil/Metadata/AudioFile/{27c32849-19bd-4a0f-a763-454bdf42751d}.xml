@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{27c32849-19bd-4a0f-a763-454bdf42751d}">
+		<property name="assetPath">
+			<value>PC_Shield04.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.96785416666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{16e9f75c-d99a-4fa7-b74f-23ae0d431828}</destination>
+		</relationship>
+	</object>
+</objects>
