@@ -18,9 +18,10 @@ public class PlayerSoundManager : MonoBehaviour
 
     FMOD.Studio.EventInstance jumping;
     FMOD.Studio.EventInstance landing;
+    FMOD.Studio.EventInstance shot;
 
     //Player Attack Sound
-    
+
 
 
     // Start is called before the first frame update
@@ -81,5 +82,32 @@ public class PlayerSoundManager : MonoBehaviour
     public void PlayLanding()
     {
         landing.start();
+    }
+
+    //FMOD AUDIO
+
+    public void PlayerSwordSwing()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/SwordSwing");
+    }
+
+    public void PlayerDashSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_Dash");
+    }
+
+    public void PlayerSoulShotSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/PLAYER/Player_SoulShot");
+    }
+
+    public void PlayerFlinchSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Enemy_Impact");
+    }
+
+    public void PlayerPlayRandomSoundThatDoesntExist()
+    {
+        //This was a ridiculous function used as a test to make sure this script can be called in the Players animation timeline
     }
 }

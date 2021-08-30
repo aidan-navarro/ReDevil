@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000027A2E948868 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000024543F4F6E8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -19,198 +19,48 @@
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
 [LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 2922592
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 37600
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6051776
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 52352
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E0B434EF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000055A14FF0B8
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF8683F7B10
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF8683F7AE0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF8683F7BE0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF8683F7CA0
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002793C540118
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFB14A67B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFB14A67AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFB14A67BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFB14A67CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002462A690D78
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Chonchin Obake', format=5, channels=1, frequency=48000, lengthbytes=10464, lengthpcm=53782, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.300334.
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='SoulShot', format=5, channels=1, frequency=48000, lengthbytes=7968, lengthpcm=48000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.366337.
+[LOG] SoundI::release                          :  (000002462DF8F978)
+[LOG] SoundI::release                          :     SoulShot (00000243336E9C08)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] SystemI::createSound                     : filename = FMOD Project\ReDevil\Build\Desktop/MAIN.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 0000027A2E8D5C78 : node = 00000279A8F4D570
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027A2EF450F8.  list count = 0
-[LOG] SystemI::createSound                     : filename = FMOD Project\ReDevil\Build\Desktop/MAIN.bank : mode 02010082
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000027A2E8D5C78
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             :     Create name='FMOD Project\ReDevil\Build\Desktop/MAIN.bank', mode=0x02010082
-[LOG] SystemI::createSound                     :     setdata soundi = 0000027A2E8D69F8 : node = 00000279A8F4D6B0
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000027A2EF450F8.  list count = 0
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2922592
-[LOG] SystemI::createSound                     :     filename = FMOD Project\ReDevil\Build\Desktop/MAIN.bank : mode 02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 37600
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSound                     :     setdata soundi = 0000027A2E8D5FD8 : node = 00000279A8F4DBB0
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000279A8F4D680
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000027A2EF450F8.  list count = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSound                     :     filename = FMOD Project\ReDevil\Build\Desktop/MAIN.bank : mode 02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSound                     :     setdata soundi = 0000027A2E8D6188 : node = 00000279A8F4D7F0
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000027A2EF450F8.  list count = 2
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='StageMusic2 GUITAR _AUDIO', format=5, channels=1, frequency=48000, lengthbytes=522944, lengthpcm=3654621, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.179452.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000027A2E8D5C78
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000027A2E8D69F8
-[LOG] SystemI::createSoundInternal             :     Create name='FMOD Project\ReDevil\Build\Desktop/MAIN.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2922592
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 37600
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000279A8F4D7C0
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='StageMusic2 DRUMS AUDIO', format=5, channels=1, frequency=48000, lengthbytes=539776, lengthpcm=3654621, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.231246.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000027A2E8D69F8
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000027A2E8D5FD8
-[LOG] SystemI::createSoundInternal             :     Create name='FMOD Project\ReDevil\Build\Desktop/MAIN.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2922592
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 37600
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000279A8F4DCC0
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='StageMusic2 FLUTE AUDIO', format=5, channels=1, frequency=48000, lengthbytes=464800, lengthpcm=3654621, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.134076.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000027A2E8D5FD8
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000027A2E8D6188
-[LOG] SystemI::createSoundInternal             :     Create name='FMOD Project\ReDevil\Build\Desktop/MAIN.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2922592
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 37600
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000279A8F4D900
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='StageMusic2 BASS AUDIO', format=5, channels=1, frequency=48000, lengthbytes=371648, lengthpcm=3654621, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.147730.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000027A2E8D6188
-[LOG] SoundI::release                          : StageMusic2 BASS AUDIO (0000027A2E8D4D48)
-[LOG] SoundI::release                          :     StageMusic2 BASS AUDIO (0000027A2DAD7228)
-[LOG] SoundI::release                          :     StageMusic2 BASS AUDIO (0000027A2E8D8A08)
-[LOG] SoundI::release                          : StageMusic2 FLUTE AUDIO (0000027A2E8D4688)
-[LOG] SoundI::release                          :     StageMusic2 FLUTE AUDIO (0000027A2DAD7F28)
-[LOG] SoundI::release                          :     StageMusic2 FLUTE AUDIO (0000027A2E8DA358)
-[LOG] SoundI::release                          : StageMusic2 DRUMS AUDIO (0000027A2E8D09C8)
-[LOG] SoundI::release                          :     StageMusic2 DRUMS AUDIO (0000027A2DAD7A48)
-[LOG] SoundI::release                          :     StageMusic2 DRUMS AUDIO (0000027A2E8D9278)
-[LOG] SoundI::release                          : StageMusic2 GUITAR _AUDIO (0000027A2E8D3AB8)
-[LOG] SoundI::release                          :     StageMusic2 GUITAR _AUDIO (000002793B9863F8)
-[LOG] SoundI::release                          :     StageMusic2 GUITAR _AUDIO (0000027A2E8CF078)
-[LOG] SoundI::release                          : StageMusic2 BASS AUDIO (0000027A2E8D6188)
-[LOG] SoundI::release                          :     StageMusic2 BASS AUDIO (0000027A2DAD78A8)
-[LOG] SoundI::release                          :     StageMusic2 BASS AUDIO (0000027A2E8DDE68)
-[LOG] SoundI::release                          : StageMusic2 FLUTE AUDIO (0000027A2E8D5FD8)
-[LOG] SoundI::release                          :     StageMusic2 FLUTE AUDIO (0000027A2DAD7D88)
-[LOG] SoundI::release                          :     StageMusic2 FLUTE AUDIO (0000027A2E8DC878)
-[LOG] SoundI::release                          : StageMusic2 DRUMS AUDIO (0000027A2E8D69F8)
-[LOG] SoundI::release                          :     StageMusic2 DRUMS AUDIO (0000027A2DAD7568)
-[LOG] SoundI::release                          :     StageMusic2 DRUMS AUDIO (0000027A2E8DED98)
-[LOG] SoundI::release                          : StageMusic2 GUITAR _AUDIO (0000027A2E8D5C78)
-[LOG] SoundI::release                          :     StageMusic2 GUITAR _AUDIO (0000027A2DAD73C8)
-[LOG] SoundI::release                          :     StageMusic2 GUITAR _AUDIO (0000027A2E8DE018)
-[LOG] SoundI::release                          : City_Ambiance (0000027A2E8D29D8)
-[LOG] SoundI::release                          :     City_Ambiance (000002793B9860B8)
-[LOG] SoundI::release                          :     City_Ambiance (0000027A2E8D50A8)
-[LOG] SoundI::release                          :  (00000279FF3E0C18)
-[LOG] SoundI::release                          :     Chonchin Obake (000002793F227A98)
-[LOG] SoundI::release                          :  (00000279E82B8908)
-[LOG] SoundI::release                          :     PC_Step01-003 (000002793E44F938)
-[LOG] SoundI::release                          :  (00000279E82BF7B8)
-[LOG] SoundI::release                          :     PC_Step01-004 (000002793B67C378)
-[LOG] SoundI::release                          :  (00000279E82BEAC8)
-[LOG] SoundI::release                          :     PC_Step01-005 (000002793B67C518)
-[LOG] SoundI::release                          :  (00000279E82BA5C8)
-[LOG] SoundI::release                          :     PC_Step01-006 (000002793E44D578)
-[LOG] SoundI::release                          :  (00000279E82BE678)
-[LOG] SoundI::release                          :     PC_Step01-001 (000002793B67CED8)
-[LOG] SoundI::release                          :  (00000279E82BA738)
-[LOG] SoundI::release                          :     PC_Step01-002 (000002793E44D718)
-[LOG] SoundI::release                          :  (00000279E82B8BE8)
-[LOG] SoundI::release                          :     PC_Step_Cloth01 (000002793E44FC78)
-[LOG] SoundI::release                          :  (00000279E82BE958)
-[LOG] SoundI::release                          :     PC_Step_Cloth02 (00000279FED5C3B8)
-[LOG] SoundI::release                          :  (00000279E82BFD78)
-[LOG] SoundI::release                          :     PC_Step_Cloth03 (00000279FEE60278)
-[LOG] SoundI::release                          :  (00000279E82BE228)
-[LOG] SoundI::release                          :     PC_Step_Cloth04 (00000279FEE605B8)
-[LOG] SoundI::release                          :  (00000279E82B8D58)
-[LOG] SoundI::release                          :     PC_Step_Cloth05 (000002793E450B18)
-[LOG] SoundI::release                          :  (00000279E82BFC08)
-[LOG] SoundI::release                          :     PC_Step_Cloth06 (00000279FEE60418)
-[LOG] SoundI::release                          :  (00000279E82BF1F8)
-[LOG] SoundI::release                          :     PC_Jump_Feet01 (000002793B67C9F8)
-[LOG] SoundI::release                          :  (00000279E82BA8A8)
-[LOG] SoundI::release                          :     PC_Jump_Feet02 (000002793E44D8B8)
-[LOG] SoundI::release                          :  (00000279E82BE398)
-[LOG] SoundI::release                          :     PC_Jump_Feet03 (00000279FEE600D8)
-[LOG] SoundI::release                          :  (00000279E82BEDA8)
-[LOG] SoundI::release                          :     PC_Jump_Feet04 (00000279FED5CA38)
-[LOG] SoundI::release                          :  (00000279E82B8798)
-[LOG] SoundI::release                          :     PC_Jump_Cloth01 (000002793E44EDD8)
-[LOG] SoundI::release                          :  (00000279E82BDC68)
-[LOG] SoundI::release                          :     PC_Jump_Cloth02 (000002793B67C1D8)
-[LOG] SoundI::release                          :  (00000279E82BEF18)
-[LOG] SoundI::release                          :     PC_Jump_Cloth03 (0000027920155558)
-[LOG] SoundI::release                          :  (00000279E82BC3F8)
-[LOG] SoundI::release                          :     PC_Jump_Cloth04 (000002793E44E8F8)
-[LOG] SoundI::release                          :  (00000279E82BC568)
-[LOG] SoundI::release                          :     Pc_Land_Cloth03 (000002793E44F5F8)
-[LOG] SoundI::release                          :  (00000279E82B8348)
-[LOG] SoundI::release                          :     Pc_Land_Cloth04 (000002793E44EC38)
-[LOG] SoundI::release                          :  (00000279E82BACF8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth05 (000002793E4507D8)
-[LOG] SoundI::release                          :  (00000279E82BD258)
-[LOG] SoundI::release                          :     Pc_Land_Cloth06 (000002793E44F798)
-[LOG] SoundI::release                          :  (00000279E82B8EC8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth01 (000002793E44E0D8)
-[LOG] SoundI::release                          :  (00000279E82BD3C8)
-[LOG] SoundI::release                          :     Pc_Land_Cloth02 (000002793E450E58)
-[LOG] SoundI::release                          :  (00000279E82BF088)
-[LOG] SoundI::release                          :     PC_Land_Feet03 (000002793B67C858)
-[LOG] SoundI::release                          :  (00000279E82BE508)
-[LOG] SoundI::release                          :     PC_Land_Feet04 (00000279FED5C6F8)
-[LOG] SoundI::release                          :  (00000279E82BE0B8)
-[LOG] SoundI::release                          :     PC_Land_Feet05 (00000279FED5C558)
-[LOG] SoundI::release                          :  (00000279E82B91A8)
-[LOG] SoundI::release                          :     PC_Land_Feet06 (000002793E44DF38)
-[LOG] SoundI::release                          :  (00000279E82B8A78)
-[LOG] SoundI::release                          :     PC_Land_Feet01 (000002793E44FAD8)
-[LOG] SoundI::release                          :  (00000279E82B8628)
-[LOG] SoundI::release                          :     PC_Land_Feet02 (000002793E44D098)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6051776
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 52352
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000055A14FF0B8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFB14A67B10
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFB14A67AE0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFB14A67BE0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFB14A67CA0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002462A690748
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='SoulShot', format=5, channels=1, frequency=48000, lengthbytes=7968, lengthpcm=48000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.366337.
+[LOG] SoundI::release                          :  (000002462DF8E9A8)
+[LOG] SoundI::release                          :     SoulShot (00000243336E9DA8)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
@@ -218,12 +68,3 @@
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] SystemI::close                           : Closed.
-[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         : FMOD file thread finished.

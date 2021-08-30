@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9132689824501795553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/Player_Dash
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/Player_Dash
+  guid: 7f37f39ede15ef4795a9825c03c4a935
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 693
 --- !u!114 &-9115821394515919172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,11 +146,11 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/MAIN.strings.bank
   Name: MAIN.strings
   StudioPath: bank:/MAIN.strings
-  lastModified: 637650891782518741
+  lastModified: 637659446073852146
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1248
+    Value: 1622
   Exists: 1
 --- !u!114 &-7562228971820476429
 MonoBehaviour:
@@ -193,7 +216,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 76137
+  Length: 132413
 --- !u!114 &-7357640540652031958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +513,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 254
+--- !u!114 &-2873400355170939405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/NURIKABE/Nurikabe_Rise
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/NURIKABE/Nurikabe_Rise
+  guid: ac27764d0ae6c648b271af7d4f4764d3
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1209
 --- !u!114 &-1594980174211382560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,12 +760,18 @@ MonoBehaviour:
   - {fileID: 1830365777477238979}
   - {fileID: 8589034198664025977}
   - {fileID: -7404692049820318081}
+  - {fileID: 4487819519848001163}
+  - {fileID: 3897967363379820287}
+  - {fileID: -9132689824501795553}
+  - {fileID: -2873400355170939405}
+  - {fileID: 7648008259692113826}
+  - {fileID: 166110047022817919}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3745258490317736878}
   StringsBanks:
   - {fileID: -7649732291532254933}
-  stringsBankWriteTime: 637650891782518741
+  stringsBankWriteTime: 637659446073852146
   cacheVersion: 6
 --- !u!114 &91175235257437251
 MonoBehaviour:
@@ -766,6 +818,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 264
+--- !u!114 &166110047022817919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/Player_Shield
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/Player_Shield
+  guid: f0696f8f82bcb74c9c6aa9a57f6be136
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 994
 --- !u!114 &522659206947823168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,7 +988,7 @@ MonoBehaviour:
   guid: 544d9aebefa399468e303d586c96343d
   Banks:
   - {fileID: 3745258490317736878}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters: []
@@ -1227,7 +1302,7 @@ MonoBehaviour:
   Path: FMOD Project/ReDevil/Build/Desktop/MAIN.bank
   Name: MAIN
   StudioPath: bank:/MAIN
-  lastModified: 637650891782488720
+  lastModified: 637659446073812089
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1253,6 +1328,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1587
+--- !u!114 &3897967363379820287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/Player_WallSlide
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/Player_WallSlide
+  guid: 5daabc95f8d6184ea05d34af96c35c37
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7250
 --- !u!114 &3921735367077764756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,6 +1461,29 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1062
   Exists: 1
+--- !u!114 &4487819519848001163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PLAYER/Player_SoulShot
+  m_EditorClassIdentifier: 
+  Path: event:/PLAYER/Player_SoulShot
+  guid: 585883fa3512b442a864fa323682baf8
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1000
 --- !u!114 &4601264043492200658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,6 +1709,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1290
+--- !u!114 &7648008259692113826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ENEMIES/NURIKABE/Nurikabe_Death
+  m_EditorClassIdentifier: 
+  Path: event:/ENEMIES/NURIKABE/Nurikabe_Death
+  guid: ecefc90a1f1a0f4489cb22b88c85704f
+  Banks:
+  - {fileID: 3745258490317736878}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1447
 --- !u!114 &7741002538185011133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,7 +1865,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 1768
+  Length: 1798
 --- !u!114 &8646040088643492480
 MonoBehaviour:
   m_ObjectHideFlags: 0

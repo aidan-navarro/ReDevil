@@ -43,8 +43,8 @@ public class SoulShotState : FSMState
             }
 
             soulShotStarted = true;
-            pc.SetDidSoulAttack(soulShotStarted);
-            pc.SetSoulAttackActive(soulShotStarted);
+           pc.SetDidSoulAttack(soulShotStarted);
+           pc.SetSoulAttackActive(soulShotStarted);
         }
 
         pc.TouchingFloorCeilingWall();
