@@ -60,8 +60,8 @@ public class OniFSMController : EnemyFSMController
     [SerializeField]
     private List<Transform> arenaPoints;
     public List<Transform> ArenaTransforms => arenaPoints;
-    [SerializeField]
-    private float playerPointLineRange = 0.5f;
+    //[SerializeField]
+    //private float playerPointLineRange = 0.5f;
     [SerializeField]
     private float idleWaitTime = 1.0f;
     public float IdleWaitTime => idleWaitTime;
