@@ -158,7 +158,7 @@ public class NurikabeFSMController : EnemyFSMController
 
     public void NurikabeDeathSound()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/ ENEMIES/Yokai_Death");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/Yokai_Death");
         FMODUnity.RuntimeManager.PlayOneShot("event:/ENEMIES/NURIKABE/Nurikabe_Death");
     }
 }

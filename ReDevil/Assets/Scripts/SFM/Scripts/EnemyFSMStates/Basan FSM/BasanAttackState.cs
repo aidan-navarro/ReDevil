@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasanAttackState : FSMState
 {
-    private bool attackStart; //used to track if the attack has already begun
+    //private bool attackStart; //used to track if the attack has already begun
     private float attackDuration;
     //Constructor
     public BasanAttackState()
@@ -15,7 +15,7 @@ public class BasanAttackState : FSMState
     public override void EnterStateInit()
     {
         base.EnterStateInit();
-        attackStart = false;
+        //attackStart = false;
         attackDuration = 0.0f;
     }
 
@@ -40,7 +40,7 @@ public class BasanAttackState : FSMState
             //ec.BasanAttack();
             anim.SetBool("Attack", true);
             //bf.ActivateFlamethrower();
-            attackStart = true;
+            //attackStart = true;
         } 
         else
         {
