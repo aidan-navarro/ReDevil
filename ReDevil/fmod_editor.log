@@ -2,27 +2,160 @@
 [LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=20107 (113487), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=8, nSamplesPerSec=48000, nAvgBytesPerSec=1536000, nBlockAlign=32, wBitsPerSample=32, cbSize=22.
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x0000063F, SubFormat=00000003-0000-0010-8000-00AA00389B71.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
-[LOG] DownMix::init                            : dspbuffersize: 1024  rate: 48000. output speaker mode: 7, input speaker mode 3
-[LOG] DownMix::init                            : done.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001FB0CFCDBC8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000010BFF6B82B8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SoundI::release                          :  (0000010B6C943D78)
+[LOG] SoundI::release                          :     MeleeImpact_Punch01 (0000010B4B88E4E8)
+[LOG] SoundI::release                          :  (0000010BFF2FAF98)
+[LOG] SoundI::release                          :     MeleeImpact_Punch02 (0000010B4B88FEE8)
+[LOG] SoundI::release                          :  (0000010B6C9444A8)
+[LOG] SoundI::release                          :     MeleeImpact_Punch03 (0000010B4B88F868)
+[LOG] SoundI::release                          :  (0000010B6C944D48)
+[LOG] SoundI::release                          :     MeleeImpact_Crack01 (0000010B4B88D988)
+[LOG] SoundI::release                          :  (0000010BFF2F9B78)
+[LOG] SoundI::release                          :     MeleeImpact_Crack02 (0000010B4B88B5C8)
+[LOG] SoundI::release                          :  (0000010B6C944BD8)
+[LOG] SoundI::release                          :     MeleeImpact_Crack03 (0000010B4B890708)
+[LOG] SoundI::release                          :  (0000010BB2247848)
+[LOG] SoundI::release                          :     YokaiDeathVOX01 (0000010B4B88D4A8)
+[LOG] SoundI::release                          :  (0000010BB22476D8)
+[LOG] SoundI::release                          :     YokaiDeathVOX02 (0000010B4B88CE28)
+[LOG] SoundI::release                          :  (0000010B6C4D4C38)
+[LOG] SoundI::release                          :     YokaiDeathVOX03 (0000010B4B88DB28)
+[LOG] SoundI::release                          :  (0000010BB22452E8)
+[LOG] SoundI::release                          :     YokaiDeathVOX04 (0000010B4B88E828)
+[LOG] SoundI::release                          :  (0000010BFF2FC0D8)
+[LOG] SoundI::release                          :     City_Ambiance (0000010B473D8D78)
+[LOG] SoundI::release                          :  (0000010BFF08EB78)
+[LOG] SoundI::release                          :     YokaiDeathWhistle01 (0000010B4B88C7A8)
+[LOG] SoundI::release                          :  (0000010BFF08DA38)
+[LOG] SoundI::release                          :     YokaiDeathWhistle02 (0000010B4B88F388)
+[LOG] SoundI::release                          :  (0000010BB2243EC8)
+[LOG] SoundI::release                          :     YokaiDeathWhistle03 (0000010B4B88E348)
+[LOG] SoundI::release                          :  (0000010BB22424E8)
+[LOG] SoundI::release                          :     YokaiDeathWhistle04 (0000010B4B88B908)
+[LOG] SoundI::release                          :  (0000010B6C945E88)
+[LOG] SoundI::release                          :     PC_Sword_Swings01 (0000010B4B88E688)
+[LOG] SoundI::release                          :  (0000010B6C945D18)
+[LOG] SoundI::release                          :     PC_Sword_Swings02 (0000010B4B88DCC8)
+[LOG] SoundI::release                          :  (0000010B6C944338)
+[LOG] SoundI::release                          :     PC_Sword_Swings03 (0000010B4B88F6C8)
+[LOG] SoundI::release                          :  (0000010BB2244E98)
+[LOG] SoundI::release                          :     Nurikabe_Death0302 (0000010B4B88F1E8)
+[LOG] SoundI::release                          : StageMusic3Bass (0000010B474A6D98)
+[LOG] SoundI::release                          :     StageMusic3Bass (0000010B4B8908A8)
+[LOG] SoundI::release                          :     StageMusic3Bass (0000010B474A8898)
+[LOG] SoundI::release                          : StageMusic3Flute (0000010B474A7CC8)
+[LOG] SoundI::release                          :     StageMusic3Flute (0000010B4B88CFC8)
+[LOG] SoundI::release                          :     StageMusic3Flute (0000010B474A97C8)
+[LOG] SoundI::release                          : StageMusic3Drums (0000010BFEFA2EF8)
+[LOG] SoundI::release                          :     StageMusic3Drums (0000010B4B88E9C8)
+[LOG] SoundI::release                          :     StageMusic3Drums (0000010BFEFA6F18)
+[LOG] SoundI::release                          : StageMusic3Guitar (0000010BFEFA3258)
+[LOG] SoundI::release                          :     StageMusic3Guitar (0000010B473D8898)
+[LOG] SoundI::release                          :     StageMusic3Guitar (0000010BFEFA7FF8)
+[LOG] SoundI::release                          :  (0000010BB2245B88)
+[LOG] SoundI::release                          :     Nurikabe_Death0303 (0000010B4B88F048)
+[LOG] SoundI::release                          :  (0000010BB2242C18)
+[LOG] SoundI::release                          :     Nurikabe_Death0301 (0000010B4B88FBA8)
+[LOG] SoundI::release                          :  (0000010BB2242378)
+[LOG] SoundI::release                          :     Nurikabe_Death0201 (0000010B4B88DE68)
+[LOG] SoundI::release                          :  (0000010BB2243A78)
+[LOG] SoundI::release                          :     Nurikabe_Death0202 (0000010B4B890A48)
+[LOG] SoundI::release                          :  (0000010BB2245738)
+[LOG] SoundI::release                          :     Nurikabe_Death0203 (0000010B4B88BDE8)
+[LOG] SoundI::release                          :  (0000010BB2246148)
+[LOG] SoundI::release                          :     Nurikabe_Death0101 (0000010B4B88F528)
+[LOG] SoundI::release                          :  (0000010BB2245E68)
+[LOG] SoundI::release                          :     Nurikabe_Death0102 (0000010B4B88EEA8)
+[LOG] SoundI::release                          :  (0000010BB22462B8)
+[LOG] SoundI::release                          :     Nurikabe_Death0103 (0000010B4B88D168)
+[LOG] SoundI::release                          :  (0000010BFF2FD7D8)
+[LOG] SoundI::release                          :     PC_Step01-003 (0000010B473DB958)
+[LOG] SoundI::release                          :  (0000010B2B2AE7C8)
+[LOG] SoundI::release                          :     PC_Step01-004 (0000010B4B891748)
+[LOG] SoundI::release                          :  (0000010B2B2AF908)
+[LOG] SoundI::release                          :     PC_Step01-005 (0000010B4B88D648)
+[LOG] SoundI::release                          :  (0000010BFF2FD218)
+[LOG] SoundI::release                          :     PC_Step01-006 (0000010B473D9F58)
+[LOG] SoundI::release                          :  (0000010B6C9434D8)
+[LOG] SoundI::release                          :     PC_Step01-001 (0000010B4B88D7E8)
+[LOG] SoundI::release                          :  (0000010BFF2863C8)
+[LOG] SoundI::release                          :     PC_Step01-002 (0000010B473DA5D8)
+[LOG] SoundI::release                          :  (0000010BFF2F9168)
+[LOG] SoundI::release                          :     PC_Step_Cloth01 (0000010B473D9C18)
+[LOG] SoundI::release                          :  (0000010BFF286F48)
+[LOG] SoundI::release                          :     PC_Step_Cloth02 (0000010B4B88EB68)
+[LOG] SoundI::release                          :  (0000010BFF284FA8)
+[LOG] SoundI::release                          :     PC_Step_Cloth03 (0000010B4B88C2C8)
+[LOG] SoundI::release                          :  (0000010B2B2AFEC8)
+[LOG] SoundI::release                          :     PC_Step_Cloth04 (0000010B4B88CC88)
+[LOG] SoundI::release                          :  (0000010BFF2FEED8)
+[LOG] SoundI::release                          :     PC_Step_Cloth05 (0000010B473DA298)
+[LOG] SoundI::release                          :  (0000010B2B2AFD58)
+[LOG] SoundI::release                          :     PC_Step_Cloth06 (0000010B4B891408)
+[LOG] SoundI::release                          :  (0000010B2B2AEAA8)
+[LOG] SoundI::release                          :     PC_Jump_Feet01 (0000010B4B88BC48)
+[LOG] SoundI::release                          :  (0000010BFF286DD8)
+[LOG] SoundI::release                          :     PC_Jump_Feet02 (0000010B4B88C468)
+[LOG] SoundI::release                          :  (0000010BFF284E38)
+[LOG] SoundI::release                          :     PC_Jump_Feet03 (0000010B4B88CAE8)
+[LOG] SoundI::release                          :  (0000010BFF2849E8)
+[LOG] SoundI::release                          :     PC_Jump_Feet04 (0000010B4B88C948)
+[LOG] SoundI::release                          :  (0000010BFF2FD4F8)
+[LOG] SoundI::release                          :     PC_Jump_Cloth01 (0000010B473DB7B8)
+[LOG] SoundI::release                          :  (0000010B2B2B0038)
+[LOG] SoundI::release                          :     PC_Jump_Cloth02 (0000010B4B88C128)
+[LOG] SoundI::release                          :  (0000010B2B2AE4E8)
+[LOG] SoundI::release                          :     PC_Jump_Cloth03 (0000010B4B88B428)
+[LOG] SoundI::release                          :  (0000010BFF2FC528)
+[LOG] SoundI::release                          :     PC_Jump_Cloth04 (0000010B473D9258)
+[LOG] SoundI::release                          :  (0000010B6C4D6A68)
+[LOG] SoundI::release                          :     PC_Wall_Slide (0000010B4B890568)
+[LOG] SoundI::release                          :  (0000010BFF2FDAB8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth03 (0000010B473D8BD8)
+[LOG] SoundI::release                          :  (0000010BFF2FBDF8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth04 (0000010B473D86F8)
+[LOG] SoundI::release                          :  (0000010BFF2FED68)
+[LOG] SoundI::release                          :     Pc_Land_Cloth05 (0000010B473DA0F8)
+[LOG] SoundI::release                          :  (0000010BFF2FC3B8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth06 (0000010B473D93F8)
+[LOG] SoundI::release                          :  (0000010BFF287AC8)
+[LOG] SoundI::release                          :     Pc_Land_Cloth01 (0000010B473DA438)
+[LOG] SoundI::release                          :  (0000010BFF2FDC28)
+[LOG] SoundI::release                          :     Pc_Land_Cloth02 (0000010B473D8F18)
+[LOG] SoundI::release                          :  (0000010B2B2AF628)
+[LOG] SoundI::release                          :     PC_Land_Feet03 (0000010B4B88FA08)
+[LOG] SoundI::release                          :  (0000010BFF284708)
+[LOG] SoundI::release                          :     PC_Land_Feet04 (0000010B4B88BF88)
+[LOG] SoundI::release                          :  (0000010BFF284CC8)
+[LOG] SoundI::release                          :     PC_Land_Feet05 (0000010B4B88E008)
+[LOG] SoundI::release                          :  (0000010BFF2FD948)
+[LOG] SoundI::release                          :     PC_Land_Feet06 (0000010B473DAC58)
+[LOG] SoundI::release                          :  (0000010BFF2FE7A8)
+[LOG] SoundI::release                          :     PC_Land_Feet01 (0000010B473D9598)
+[LOG] SoundI::release                          :  (0000010BFF2FDD98)
+[LOG] SoundI::release                          :     PC_Land_Feet02 (0000010B473D90B8)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -30,3 +163,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.

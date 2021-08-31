@@ -1340,9 +1340,9 @@ public class PlayerFSMController : AdvancedFSM
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, colliderSize, 0.0f, Vector2.down, Mathf.Infinity, groundLayer);
         if (raycastHit2D.collider != null)
         {
-            Debug.LogWarning(Vector2.Distance(raycastHit2D.point, transform.position));
-            Debug.LogWarning(raycastHit2D.collider.name);
-            Debug.DrawLine(raycastHit2D.point, transform.position);
+           // Debug.LogWarning(Vector2.Distance(raycastHit2D.point, transform.position));
+            //Debug.LogWarning(raycastHit2D.collider.name);
+           // Debug.DrawLine(raycastHit2D.point, transform.position);
             if (Vector2.Distance(raycastHit2D.point, transform.position) > airStrikeDownGroundDistanceRequirement)
             {
                 return true;
