@@ -8,8 +8,6 @@ public class BasanDyingState : FSMState
     
     public BasanDyingState()
     {
-        Debug.Log("CreateDyingState");
-
         stateID = FSMStateID.BasanDying;
     }
 
@@ -26,7 +24,6 @@ public class BasanDyingState : FSMState
         Animator anim = bc.GetComponent<Animator>();
         Collider2D col = bc.GetComponent<Collider2D>();
 
-        Debug.Log("BasanDying");
         rig.velocity = Vector2.zero;
         rig.gravityScale = 0;
         // disable the collider so that the enemy won't damage the player when it's dying
@@ -47,7 +44,6 @@ public class BasanDyingState : FSMState
         // the animator will have its event triggered
         if (bc.GetDeathConfirmed())
         {
-            Debug.Log("BasanDies");
             bc.PerformTransition(Transition.EnemyNoHealth);
         }
     }

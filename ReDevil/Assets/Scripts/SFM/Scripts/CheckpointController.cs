@@ -20,6 +20,7 @@ public class CheckpointController : MonoBehaviour
          
             cpReached = true;
             animator.SetBool("CheckpointReached", true);
+            StatsTrackerScript.instance.OnCheckPointHit();
 
             //Raquel if you see this code this is what I was talking about doing for your pickup items
             //Make a temporary variable (PlayerFSMController pc)

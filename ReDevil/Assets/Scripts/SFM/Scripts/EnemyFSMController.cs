@@ -19,6 +19,7 @@ public class EnemyFSMController : AdvancedFSM
 
     public float health;
     public float maxHealth;
+    public int points;
     //get and set functions for health
 
     public float range;//The enemy will only attack in this range
@@ -254,7 +255,9 @@ public class EnemyFSMController : AdvancedFSM
     }
     public void Killed()
     {
-        Destroy(this.gameObject);
+        Debug.LogError("EnemyDed");
+        StatsTrackerScript.instance.OnEnemyDeath(gameObject.name, points, transform.position);
+        Destroy(gameObject);
     }
     private void OnDrawGizmos()
     {

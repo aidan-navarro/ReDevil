@@ -52,14 +52,14 @@ public class IdlingState : FSMState
             {
 
                 pc.SetDashPath(-dashSlopeVector);
-                Debug.Log("Facing Right On Slope -> " + pc.GetDashPath());
+                //Debug.Log("Facing Right On Slope -> " + pc.GetDashPath());
                 Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
             }
             else if (pc.facingLeft)
             {
 
                 pc.SetDashPath(dashSlopeVector);
-                Debug.Log("Facing Left On Slope -> " + pc.GetDashPath());
+                //Debug.Log("Facing Left On Slope -> " + pc.GetDashPath());
                 Debug.DrawRay(pc.transform.position, pc.GetDashPath(), Color.red);
             }
         }

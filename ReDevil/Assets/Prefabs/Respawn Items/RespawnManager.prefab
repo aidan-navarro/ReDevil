@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6301762571246052152}
   - component: {fileID: 6301762571246052159}
+  - component: {fileID: 650828072}
   m_Layer: 0
   m_Name: RespawnManager
   m_TagString: Respawn
@@ -48,3 +49,20 @@ MonoBehaviour:
   initialized: 0
   rand: 0
   sceneID: 
+--- !u!114 &650828072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301762571246052158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56977242896fa942b093aa66303d1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSceneNames:
+  - Tutorial Level
+  - Oni Level
+  PointsUpPrefab: {fileID: 6122354172718858784, guid: ba0d2002cc730024281c0fa6e083d65b,
+    type: 3}

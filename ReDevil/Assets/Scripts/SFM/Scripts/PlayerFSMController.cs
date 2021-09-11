@@ -53,11 +53,35 @@ public class PlayerFSMController : AdvancedFSM
     [SerializeField] private GameObject SoulLv2Bar;
     [SerializeField] private GameObject SoulLv3Bar;
     [SerializeField] private GameObject SoulBackground;
+    [SerializeField] private TMPro.TextMeshProUGUI scoreText;
+    [SerializeField] private float scoreIncreaseTime = 1.0f; // How long does it take for the score on display to match up with the current score;
+    private int scoreOnDisplay = 0;
     public GameObject GetSoulBackground() { return SoulBackground; }
     public void ChangeSoulBackgroundColor()
     {
         Debug.Log("TriggerNoSoul");
         StartCoroutine("SoulShiftColor");
+    }
+
+    public void UpdateScoreDisplay()
+    {
+        StopCoroutine(ChangeScoreDisplay());
+        StartCoroutine(ChangeScoreDisplay());
+    }
+
+    private IEnumerator ChangeScoreDisplay()
+    {
+        float timer = 0;
+        int startScore = scoreOnDisplay;
+        int endScore = StatsTrackerScript.instance.getCurrentGameStats().score;
+
+        while (timer < scoreIncreaseTime)
+        {
+            timer += Time.deltaTime;
+            scoreOnDisplay = ((int)Mathf.Lerp(startScore, endScore, timer / scoreIncreaseTime));
+            scoreText.text = scoreOnDisplay.ToString();
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     private IEnumerator SoulShiftColor()
@@ -388,6 +412,8 @@ public class PlayerFSMController : AdvancedFSM
         if(respawnPoint.initialized)
         {
             transform.position = respawnPoint.respawnPoint;
+            health = StatsTrackerScript.instance.getCurrentGameStats().currentHealth;
+            soul = StatsTrackerScript.instance.getCurrentGameStats().currentSoulAmount;
         }
         
     }
@@ -1110,7 +1136,7 @@ public class PlayerFSMController : AdvancedFSM
         rig.velocity = newVel;
 
         soundManager.PlayJump();
-        Debug.Log("Player State: Jumping");
+        //Debug.Log("Player State: Jumping");
     }
     public void KnockbackTransition(float dmg, float kbPower, Vector2 ePos)
     {
