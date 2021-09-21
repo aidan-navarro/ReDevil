@@ -151,7 +151,7 @@ public class ResultsScript : MonoBehaviour
         healthPoints = (int)gameresults.currentHealth * pointsPerHealth;
         soulPoints = (int)gameresults.currentSoulAmount * pointsPerSoul;
         enemyPoints = Mathf.Abs(gameresults.numEnemies - gameresults.totalNumEnemies) * pointsPerEnemy;
-        clearTimePoints = (int)Mathf.Abs((levelStats.bestClearTime / gameresults.gameTime) * maxClearTimePoints);
+        clearTimePoints = (int)Mathf.Abs(levelStats.bestClearTime / gameresults.gameTime * maxClearTimePoints);
         retryPoints = gameresults.numRetries * pointsPerRetry;
         totalPoints = scorePoints + healthPoints + soulPoints + enemyPoints + clearTimePoints + retryPoints;
     }
@@ -162,9 +162,6 @@ public class ResultsScript : MonoBehaviour
         enemyResultDisplay.text = Mathf.Abs(gameresults.numEnemies - gameresults.totalNumEnemies).ToString() + "/" + gameresults.totalNumEnemies.ToString();
         int minutes = (int)(gameresults.gameTime / 60);
         int seconds = (int)(gameresults.gameTime - minutes * 60);
-        Debug.LogWarning(gameresults.gameTime);
-        Debug.LogWarning(minutes);
-        Debug.LogWarning(seconds);
         clearTimeResultDisplay.text = minutes.ToString() + "'" + seconds.ToString();
         retryResultDisplay.text = gameresults.numRetries.ToString();
         string levelGrade = "D-";
@@ -220,6 +217,7 @@ public class ResultsScript : MonoBehaviour
     public void UpdateMissionPoints()
     {
         missionDisplayLine.SetActive(true);
+        StartCoroutine(ChangePointsDisplay(missionPointsDisplay, missionClearPoints));
     }
 
     public void UpdateHealthPoints()

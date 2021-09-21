@@ -129,6 +129,7 @@ public class CineMachineSwitcher : MonoBehaviour
         playerHUD.SetActive(false);
         oniHealthBar.gameObject.SetActive(false);
         oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().Play("EndCutscene");
+        StatsTrackerScript.instance.OnLevelCompleted();
         StartCoroutine(OniFadeAway(oniBoss, oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
         yield return new WaitForSeconds(oniBoss.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single); // Return to the regular level;
@@ -170,6 +171,7 @@ public class CineMachineSwitcher : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         fadeOutCutsceneHolder.gameObject.SetActive(true);
         fadeOutCutsceneHolder.GetComponent<Animator>().Play("FadeOut");
+        StatsTrackerScript.instance.OnLevelCompleted();
         yield return new WaitForSeconds(fadeOutCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single); // Return to the regular level;
 

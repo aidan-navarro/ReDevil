@@ -349,7 +349,7 @@ public class PlayerFSMController : AdvancedFSM
     // Pause boolean
     private bool isPaused;
     public bool GetIsPaused() { return isPaused; }
-    public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; StatsTrackerScript.instance.SetIsTrackingTime(inIsPaused); }
+    public void SetIsPaused(bool inIsPaused) { isPaused = inIsPaused; StatsTrackerScript.instance.SetIsTrackingTime(!inIsPaused); }
 
     // AirStrikeDownCheck 
     [SerializeField]
