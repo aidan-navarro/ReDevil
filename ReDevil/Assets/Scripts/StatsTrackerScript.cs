@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Linq;
 
 public enum Achivements
 {
@@ -15,16 +17,19 @@ public enum Achivements
 [System.Serializable]
 public struct GameStats
 {
+    public string levelName;
     public int score;
     public float gameTime;
-    public int damageTaken;
+    public float damageTaken;
     public float currentHealth;
     public float currentSoulAmount;
+    public int numRetries;
     public bool usedCheckpoint; // Used a checkpoint to continue game and not passed a checkpoint
     public Dictionary<Achivements, bool> achivementList;
     public int numEnemies; // Active Enemies
     public int totalNumEnemies; // Total Enemies Within A Level
     public Dictionary<string, bool> enemyAliveStatusList; // Which enemies are still alive and which are dead (used by the respawn manager to deactivate enemies that are "dead" when the level reloads)
+    public Dictionary<string, bool> importantEnemiesAliveStatusList; // This other list is for important enemies that the player must defeat in other to progress through the level (related to the PACIFIST achievement)
 }
 
 public class StatsTrackerScript : MonoBehaviour
@@ -48,7 +53,7 @@ public class StatsTrackerScript : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private List<string> levelSceneNames; // Which Scenes are actual game levels which the Stats&Respawn script need to reset
+    private List<string> levelSceneNames; // Which Scenes are actual game levels which the Stats&Respawn script needs to reset for
     [SerializeField]
     private GameObject PointsUpPrefab;
     private string levelSceneName;
@@ -88,6 +93,8 @@ public class StatsTrackerScript : MonoBehaviour
         else if (levelSceneName == scene.name)
         {
             SetIsTrackingTime(true);
+            RespawnManager.instance.SetEnemyStatus(GetEnemyStatusList());
+            RespawnManager.instance.SetPlayerStatus(getCurrentGameStats());
         }
     }
 
@@ -99,6 +106,11 @@ public class StatsTrackerScript : MonoBehaviour
             currentGameStats.numEnemies--;
             currentGameStats.enemyAliveStatusList[enemyName] = false;
         }
+        else if (currentGameStats.importantEnemiesAliveStatusList.ContainsKey(enemyName))
+        {
+            currentGameStats.numEnemies--;
+            currentGameStats.importantEnemiesAliveStatusList[enemyName] = false;
+        }
         PointsPopUp pointsPopUp = Instantiate(PointsUpPrefab).GetComponent<PointsPopUp>();
         pointsPopUp.transform.position = enemyWorldPosition;
         pointsPopUp.ChangePoints(enemyPoints);
@@ -106,7 +118,7 @@ public class StatsTrackerScript : MonoBehaviour
         player.UpdateScoreDisplay();
     }
 
-    public void OnDamageTaken(int damage)
+    public void OnDamageTaken(float damage)
     {
         currentGameStats.damageTaken += damage;
 
@@ -129,6 +141,7 @@ public class StatsTrackerScript : MonoBehaviour
     {
         SetIsTrackingTime(false);
         savedGameStats.usedCheckpoint = true;
+        savedGameStats.numRetries++;
         currentGameStats = savedGameStats;
     }
 
@@ -137,6 +150,9 @@ public class StatsTrackerScript : MonoBehaviour
         currentGameStats = new GameStats();
         currentGameStats.achivementList = new Dictionary<Achivements, bool>();
         currentGameStats.enemyAliveStatusList = new Dictionary<string, bool>();
+        currentGameStats.importantEnemiesAliveStatusList = new Dictionary<string, bool>();
+
+        currentGameStats.levelName = SceneManager.GetActiveScene().name;
 
         foreach (Achivements achivementIndex in System.Enum.GetValues(typeof(Achivements)))
         {
@@ -148,7 +164,14 @@ public class StatsTrackerScript : MonoBehaviour
 
         foreach (EnemyFSMController enemy in FindObjectsOfType<EnemyFSMController>())
         {
-            currentGameStats.enemyAliveStatusList.Add(enemy.gameObject.name, true);
+            if (enemy.importantEnemy)
+            {
+                currentGameStats.importantEnemiesAliveStatusList.Add(enemy.gameObject.name, true);
+            }
+            else
+            {
+                currentGameStats.enemyAliveStatusList.Add(enemy.gameObject.name, true);
+            }
             currentGameStats.numEnemies++;
             currentGameStats.totalNumEnemies++;
         }
@@ -161,8 +184,34 @@ public class StatsTrackerScript : MonoBehaviour
     public void OnLevelCompleted()
     {
         SetIsTrackingTime(false);
+        bool importantEnemiesAllKilled = true;
         
         // Set the status of the achievements
+        if (currentGameStats.usedCheckpoint)
+        {
+            currentGameStats.achivementList[Achivements.NO_CHECKPOINTS] = false;
+        }
+        foreach(KeyValuePair<string, bool> enemyStatus in currentGameStats.enemyAliveStatusList)
+        {
+            if (enemyStatus.Value != true)
+            {
+                currentGameStats.achivementList[Achivements.PACIFIST] = false;
+                break;
+            }
+        }
+        foreach(KeyValuePair<string, bool> importantEnemyStatus in currentGameStats.importantEnemiesAliveStatusList)
+        {
+            if (importantEnemyStatus.Value == true)
+            {
+                importantEnemiesAllKilled = false;
+                break;
+            }
+        }
+
+        if (importantEnemiesAllKilled && currentGameStats.achivementList[Achivements.PACIFIST])
+        {
+            currentGameStats.achivementList[Achivements.SLAYER] = true;
+        }
     }
 
 
@@ -174,5 +223,13 @@ public class StatsTrackerScript : MonoBehaviour
     public void SetIsTrackingTime(bool tracking)
     {
         trackTime = tracking;
+    }
+
+    public Dictionary<string, bool> GetEnemyStatusList()
+    {
+        Dictionary<string, bool> totalEnemyList = new Dictionary<string, bool>();
+        currentGameStats.enemyAliveStatusList.ToList().ForEach(x => totalEnemyList.Add(x.Key, x.Value));
+        currentGameStats.importantEnemiesAliveStatusList.ToList().ForEach(x => totalEnemyList.Add(x.Key, x.Value));
+        return totalEnemyList;
     }
 }

@@ -945,6 +945,7 @@ MonoBehaviour:
   health: 200
   maxHealth: 200
   points: 2000
+  importantEnemy: 0
   range: 15
   damage: 15
   attackInterval: 2

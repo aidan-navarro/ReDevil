@@ -64827,12 +64827,12 @@ PrefabInstance:
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.7801149
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -23.809525
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362628, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -126302,6 +126302,11 @@ PrefabInstance:
       propertyPath: cutsceneHolder
       value: 
       objectReference: {fileID: 392269810}
+    - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
+        type: 3}
+      propertyPath: importantEnemy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872567, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
       propertyPath: oniEnragedSprite

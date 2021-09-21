@@ -20,6 +20,7 @@ public class EnemyFSMController : AdvancedFSM
     public float health;
     public float maxHealth;
     public int points;
+    public bool importantEnemy = false; // This bool allows the StatTracker to figure out which enemies are critical to the level and which ones arent (for the PACIFIST achievement) 
     //get and set functions for health
 
     public float range;//The enemy will only attack in this range
@@ -255,7 +256,6 @@ public class EnemyFSMController : AdvancedFSM
     }
     public void Killed()
     {
-        Debug.LogError("EnemyDed");
         StatsTrackerScript.instance.OnEnemyDeath(gameObject.name, points, transform.position);
         Destroy(gameObject);
     }

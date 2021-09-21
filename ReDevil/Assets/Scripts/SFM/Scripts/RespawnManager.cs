@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class RespawnManager : MonoBehaviour
 {
@@ -37,14 +38,18 @@ public class RespawnManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void SetEnemyStatus(Dictionary<string, bool> enemyList)
     {
-        
+        enemyList.ToList().ForEach(x => GameObject.Find(x.Key)?.gameObject.SetActive(x.Value)); // For every enemy in the scene set their active state based on the saved data from the stat tracker
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetPlayerStatus(GameStats gameStats)
     {
-        
+        PlayerFSMController player = FindObjectOfType<PlayerFSMController>();
+
+        player.SetHealth(gameStats.currentHealth);
+        player.SetSoul(gameStats.currentSoulAmount);
+        player.UpdateScoreDisplay();
     }
+    
 }

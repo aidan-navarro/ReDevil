@@ -55,6 +55,7 @@ public class PauseMenu : MonoBehaviour
 
         //loadingScreen.LoadLevelAsync(sceneID);
         LoadingData.sceneToLoad = sceneID;
+        StatsTrackerScript.instance.OnResetCheckpoint();
         SceneManager.LoadScene("LoadingScreen");
     }
 
@@ -77,6 +78,7 @@ public class PauseMenu : MonoBehaviour
         sceneID = respawn.sceneID;
 
         Destroy(respawn);
+        StatsTrackerScript.instance.OnResetLevel();
         LoadingData.sceneToLoad = sceneID;
         SceneManager.LoadScene("LoadingScreen");
         //loadingScreen.LoadLevelAsync("SampleScene");
