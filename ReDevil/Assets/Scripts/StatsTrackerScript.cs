@@ -25,11 +25,28 @@ public struct GameStats
     public float currentSoulAmount;
     public int numRetries;
     public bool usedCheckpoint; // Used a checkpoint to continue game and not passed a checkpoint
-    public Dictionary<Achivements, bool> achivementList;
     public int numEnemies; // Active Enemies
     public int totalNumEnemies; // Total Enemies Within A Level
+    public Dictionary<Achivements, bool> achivementList;
     public Dictionary<string, bool> enemyAliveStatusList; // Which enemies are still alive and which are dead (used by the respawn manager to deactivate enemies that are "dead" when the level reloads)
     public Dictionary<string, bool> importantEnemiesAliveStatusList; // This other list is for important enemies that the player must defeat in other to progress through the level (related to the PACIFIST achievement)
+
+    public void CopyStats(GameStats other)
+    {
+        levelName = other.levelName;
+        score = other.score;
+        gameTime = other.gameTime;
+        damageTaken = other.damageTaken;
+        currentHealth = other.currentHealth;
+        currentSoulAmount = other.currentSoulAmount;
+        numRetries = other.numRetries;
+        usedCheckpoint = other.usedCheckpoint;
+        numEnemies = other.numEnemies;
+        totalNumEnemies = other.totalNumEnemies;
+        achivementList = new Dictionary<Achivements, bool>(other.achivementList);
+        enemyAliveStatusList = new Dictionary<string, bool>(other.enemyAliveStatusList);
+        importantEnemiesAliveStatusList = new Dictionary<string, bool>(other.importantEnemiesAliveStatusList);
+    }
 }
 
 public class StatsTrackerScript : MonoBehaviour
@@ -105,11 +122,13 @@ public class StatsTrackerScript : MonoBehaviour
         {
             currentGameStats.numEnemies--;
             currentGameStats.enemyAliveStatusList[enemyName] = false;
+            Debug.Log(savedGameStats.enemyAliveStatusList[enemyName]);
         }
         else if (currentGameStats.importantEnemiesAliveStatusList.ContainsKey(enemyName))
         {
             currentGameStats.numEnemies--;
             currentGameStats.importantEnemiesAliveStatusList[enemyName] = false;
+            Debug.Log(savedGameStats.importantEnemiesAliveStatusList[enemyName]);
         }
         PointsPopUp pointsPopUp = Instantiate(PointsUpPrefab).GetComponent<PointsPopUp>();
         pointsPopUp.transform.position = enemyWorldPosition;
@@ -131,7 +150,7 @@ public class StatsTrackerScript : MonoBehaviour
     {
         currentGameStats.currentHealth = player.GetHealth();
         currentGameStats.currentSoulAmount = player.GetSoul();
-        savedGameStats = currentGameStats;
+        savedGameStats.CopyStats(currentGameStats);
     }
     public void OnResetLevel()
     {
@@ -142,7 +161,7 @@ public class StatsTrackerScript : MonoBehaviour
         SetIsTrackingTime(false);
         savedGameStats.usedCheckpoint = true;
         savedGameStats.numRetries++;
-        currentGameStats = savedGameStats;
+        currentGameStats.CopyStats(savedGameStats);
     }
 
     private void ResetStatTracker()
@@ -176,7 +195,7 @@ public class StatsTrackerScript : MonoBehaviour
             currentGameStats.totalNumEnemies++;
         }
 
-        savedGameStats = currentGameStats;
+        OnCheckPointHit();
         DontDestroyOnLoad(gameObject);
         SetIsTrackingTime(true);
     }
@@ -232,4 +251,5 @@ public class StatsTrackerScript : MonoBehaviour
         currentGameStats.importantEnemiesAliveStatusList.ToList().ForEach(x => totalEnemyList.Add(x.Key, x.Value));
         return totalEnemyList;
     }
+
 }

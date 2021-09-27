@@ -89,7 +89,7 @@ public class PauseMenu : MonoBehaviour
         Destroy(respawn);
         pc.SetIsPaused(false);
         pc.UnPause();
-
+        StatsTrackerScript.instance.OnResetLevel();
         SceneManager.LoadScene("MainMenu");
     }
 }
