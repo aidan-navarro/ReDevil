@@ -1001,6 +1001,9 @@ MonoBehaviour:
   clubCollider: {fileID: 0}
   jumpAttackCollider: {fileID: 0}
   healthBar: {fileID: 538834143}
+  weakpointCollider: {fileID: 0}
+  bulletWeakMaterial: {fileID: 0}
+  generalWeakMaterial: {fileID: 0}
   IsEnraged: 0
   oniEnragedCutsceneHolder: {fileID: 0}
   oniEnragedSprite: {fileID: 0}

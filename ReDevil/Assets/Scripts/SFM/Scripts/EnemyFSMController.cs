@@ -240,6 +240,11 @@ public class EnemyFSMController : AdvancedFSM
         }
     }
 
+    public virtual void OnWeakPointHit()
+    {
+
+    }
+
     public void ActivateDeathParticles()
     {
         int direction = 0;
