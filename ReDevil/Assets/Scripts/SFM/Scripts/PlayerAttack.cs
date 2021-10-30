@@ -12,8 +12,9 @@ public class PlayerAttack : MonoBehaviour
     private Vector2 attackColliderPos;
 
     public SpriteRenderer sprite;
-    //to compare if we hit a weakspot
-    public PhysicsMaterial2D weakSpot;
+    //to compare if we hit a melee weakspot
+    public PhysicsMaterial2D meleeWeakSpot;
+    public PhysicsMaterial2D generalWeakSpot;
     public GameObject soulShot;
     public GameObject attackSpritePrefab;
 
@@ -92,14 +93,16 @@ public class PlayerAttack : MonoBehaviour
     }
 
     //Weakspot detection function
-    public void DetectWeakspot(Collider2D enemyMaterial)
+    public bool DetectWeakspot(Collider2D enemyMaterial)
     {
         //weakspot detection
-        if (enemyMaterial.sharedMaterial == weakSpot)
-        {
-            Debug.Log("Weakspot Detected. Deal extra damage");
-            damage = damage * 1.5f;
-        }
+            if (enemyMaterial.sharedMaterial == meleeWeakSpot || enemyMaterial.sharedMaterial == generalWeakSpot)
+            {
+                Debug.Log("Weakspot Detected. Deal extra damage");
+                damage = damage * 1.5f;
+                return true;
+            }
+        return false;
     }
 
 
@@ -220,7 +223,10 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
                 // register a hit
-                DetectWeakspot(eCollider);
+                if (DetectWeakspot(eCollider))
+                {
+                    ec.OnWeakPointHit();
+                }
 
                 //Vector3 position = this.gameObject.transform.position;  // this isn't getting used
 
@@ -295,7 +301,10 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
                 // register a hit
-                DetectWeakspot(eCollider);
+                if (DetectWeakspot(eCollider))
+                {
+                    ec.OnWeakPointHit();
+                }
 
                 //store the amount of hp the enemy has before the initial hit
                 float pastHealth = ec.health;
@@ -393,7 +402,10 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D eCollider = hits[i].collider.GetComponent<Collider2D>();
 
                 ec.SetIsHit(true);
-                DetectWeakspot(eCollider);
+                if (DetectWeakspot(eCollider))
+                {
+                    ec.OnWeakPointHit();
+                }
 
                 //store the amount of hp the enemy has before the initial hit
                 float pastHealth = ec.health;
@@ -586,7 +598,10 @@ public class PlayerAttack : MonoBehaviour
                 Vector3 position = this.gameObject.transform.position;
 
                 //check for weakspot
-                DetectWeakspot(eCollider);
+                if (DetectWeakspot(eCollider))
+                {
+                    ec.OnWeakPointHit();
+                }
 
                 //if the enemy hitbox isnt in the list, add to the list
                 if (enemyHitboxes.Contains(eCollider))

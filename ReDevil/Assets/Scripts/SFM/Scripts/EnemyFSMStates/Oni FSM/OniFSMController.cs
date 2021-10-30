@@ -93,6 +93,14 @@ public class OniFSMController : EnemyFSMController
  
     [SerializeField]
     private GameObject healthBar;
+    [SerializeField]
+    private Collider2D weakpointCollider;
+    [SerializeField]
+    private PhysicsMaterial2D bulletWeakMaterial;
+    [SerializeField]
+    private PhysicsMaterial2D generalWeakMaterial;
+
+
 
     public bool IsEnraged;
     public bool IsBreaked;
@@ -412,8 +420,6 @@ public class OniFSMController : EnemyFSMController
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
-<<<<<<< Updated upstream
-=======
     public override void OnWeakPointHit()
     {
         if (weakpointCollider.sharedMaterial == bulletWeakMaterial)
@@ -424,7 +430,6 @@ public class OniFSMController : EnemyFSMController
         }
     }
 
->>>>>>> Stashed changes
     private void SetSpawnPoints()
     {
         
