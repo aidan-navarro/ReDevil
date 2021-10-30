@@ -82,7 +82,9 @@ public enum Transition
     NurikabeRise,
     NurikabeActive,
     NurikabeFlinch, // to add later
-    NurikabeDead
+    NurikabeDead,
+
+    BossBreak
 }
 
 public enum FSMStateID
@@ -158,6 +160,7 @@ public enum FSMStateID
     OniJumpSmashing,
     OniJumpAway,
     OniEnraged,
+    OniBreak,
     OniDeath,
 
     // Nurikabe

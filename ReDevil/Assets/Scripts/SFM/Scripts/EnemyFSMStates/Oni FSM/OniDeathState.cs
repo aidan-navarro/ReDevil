@@ -31,9 +31,10 @@ public class OniDeathState : FSMState
     {
         oc.oniDeathCutsceneHolder.gameObject.SetActive(true);
         oc.OnOniBeginDeath?.Invoke();
-        oc.oniDeathCutsceneHolder.GetComponent<Animator>().Play("EndCutscene");
-        yield return new WaitForSeconds(oc.oniDeathCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
-        oc.OnOniEndDeath.Invoke();
+        //oc.oniDeathCutsceneHolder.GetComponent<Animator>().Play("EndCutscene");
+        oc.OniAnimator.Play("OniFadeAway");
+        yield return new WaitForSeconds(oc.OniAnimator.GetCurrentAnimatorStateInfo(0).length);
+        //oc.OnOniEndDeath.Invoke();
         oc.Killed();
     }
 

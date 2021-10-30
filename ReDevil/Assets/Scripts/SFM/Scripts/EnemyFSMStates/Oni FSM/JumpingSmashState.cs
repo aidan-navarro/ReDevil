@@ -96,6 +96,14 @@ public class JumpingSmashState : FSMState
             return;
         }
 
+        if (oc.IsWeakpointHit && !oc.IsBreaked && jumpEnded)
+        {
+            oc.StopAllCoroutines();
+            oc.DisableIFrames();
+            oc.PerformTransition(Transition.BossBreak);
+            return;
+        }
+
         if (!oc.IsEnraged && oc.IsUnderHalfHealth() && jumpEnded)
         {
             oc.StopAllCoroutines();

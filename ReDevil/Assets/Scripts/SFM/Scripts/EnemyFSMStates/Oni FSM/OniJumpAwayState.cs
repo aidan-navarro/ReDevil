@@ -88,6 +88,14 @@ public class OniJumpAwayState : FSMState
             return;
         }
 
+        if (oc.IsWeakpointHit && !oc.IsBreaked)
+        {
+            oc.StopAllCoroutines();
+            oc.DisableIFrames();
+            oc.PerformTransition(Transition.BossBreak);
+            return;
+        }
+
         if (!oc.IsEnraged && oc.IsUnderHalfHealth() && jumpEnded)
         {
             oc.StopAllCoroutines();

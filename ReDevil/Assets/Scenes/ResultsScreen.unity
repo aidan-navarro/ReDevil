@@ -154,7 +154,7 @@ RectTransform:
   - {fileID: 974453699}
   - {fileID: 751219843}
   m_Father: {fileID: 464931100}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1001,7 +1001,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1237259311}
-  - {fileID: 1905399445}
   - {fileID: 1380965994}
   - {fileID: 1787855863}
   - {fileID: 912506439}
@@ -1009,6 +1008,7 @@ RectTransform:
   - {fileID: 84078111}
   - {fileID: 1104205133}
   - {fileID: 905155974}
+  - {fileID: 1905399445}
   - {fileID: 1888933009}
   - {fileID: 625058695}
   m_Father: {fileID: 1184162163}
@@ -1883,7 +1883,7 @@ RectTransform:
   - {fileID: 972053876}
   - {fileID: 757532532}
   m_Father: {fileID: 464931100}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1921,7 +1921,7 @@ RectTransform:
   - {fileID: 1929683393}
   - {fileID: 208265728}
   m_Father: {fileID: 464931100}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2364,7 +2364,7 @@ RectTransform:
   - {fileID: 1373085370}
   - {fileID: 1815210089}
   m_Father: {fileID: 464931100}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2519,7 +2519,7 @@ GameObject:
   - component: {fileID: 1184162161}
   - component: {fileID: 1184162160}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ResultsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3041,7 +3041,7 @@ RectTransform:
   - {fileID: 933408800}
   - {fileID: 1795867121}
   m_Father: {fileID: 464931100}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3164,7 +3164,7 @@ RectTransform:
   - {fileID: 1717103176}
   - {fileID: 1119485983}
   m_Father: {fileID: 464931100}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3746,7 +3746,7 @@ PrefabInstance:
     - target: {fileID: 3887584137886580551, guid: 7c8717c2fde9d3d4490cbee61a65da75,
         type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Next Screen Button
       objectReference: {fileID: 0}
     - target: {fileID: 4964616965570465778, guid: 7c8717c2fde9d3d4490cbee61a65da75,
         type: 3}
@@ -3907,7 +3907,7 @@ RectTransform:
   - {fileID: 1842202279}
   - {fileID: 1578706267}
   m_Father: {fileID: 464931100}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4522,7 +4522,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 464931100}
-  m_RootOrder: 1
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -252,4 +252,9 @@ public class StatsTrackerScript : MonoBehaviour
         return totalEnemyList;
     }
 
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single); // Return to the regular level;
+    }
+
 }

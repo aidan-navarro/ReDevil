@@ -296,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575489276325362631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.373562, y: 7.6701827, z: -23.809525}
+  m_LocalPosition: {x: 0, y: 0, z: -23.809525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1575489276398568402}
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1059789039}
   - component: {fileID: 569388361}
   m_Layer: 0
-  m_Name: Player_256
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -538,6 +538,8 @@ MonoBehaviour:
   SoulLv2Bar: {fileID: 0}
   SoulLv3Bar: {fileID: 0}
   SoulBackground: {fileID: 0}
+  scoreText: {fileID: 0}
+  scoreIncreaseTime: 1
   DashIcon1: {fileID: 0}
   DashIcon2: {fileID: 0}
   PauseMenu: {fileID: 0}
@@ -586,7 +588,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 1575489276433007816}
   sprite: {fileID: 1575489276433007823}
-  weakSpot: {fileID: 6200000, guid: dd161e460515f9e4eb7d7fa25e747d2c, type: 2}
+  meleeWeakSpot: {fileID: 0}
+  generalWeakSpot: {fileID: 0}
   soulShot: {fileID: 27731022402932077, guid: 34cabb45380e83342bebaac6efe2cc72, type: 3}
   attackSpritePrefab: {fileID: 5575385851860745246, guid: 574ebb8d18248204f89e74b46f41865e,
     type: 3}

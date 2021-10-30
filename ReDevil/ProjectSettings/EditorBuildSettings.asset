@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ThanksForPlaying.unity
     guid: c40160bebb482b14bb2de6124ed6af49
   - enabled: 1
-    path: Assets/Scenes/Oni Debug Level.unity
+    path: Assets/Scenes/Test Scenes/Oni Debug Level.unity
     guid: 5e00606d14f7c024fa1762e8373ac6a3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 68283c0b758a3bb4894630ba86605bc6,

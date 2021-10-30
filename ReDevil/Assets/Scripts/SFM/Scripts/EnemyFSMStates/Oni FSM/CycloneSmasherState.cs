@@ -58,6 +58,15 @@ public class CycloneSmasherState : FSMState
             return;
         }
 
+        if (oc.IsWeakpointHit && !oc.IsBreaked)
+        {
+            oc.StopAllCoroutines();
+            oc.PerformTransition(Transition.BossBreak);
+            UnityEngine.Object.Destroy(pillar);
+            npc.GetComponent<SpriteRenderer>().color = Color.white;
+            return;
+        }
+
         if (!enteredState && pillar == null)
         {
             oc.DisableIFrames();

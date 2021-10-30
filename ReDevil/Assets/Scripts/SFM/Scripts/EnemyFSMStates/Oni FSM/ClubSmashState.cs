@@ -40,7 +40,15 @@ public class ClubSmashState : FSMState
             return;
         }
 
-        if (!oc.IsEnraged && oc.IsUnderHalfHealth())
+        if (oc.IsWeakpointHit && !oc.IsBreaked)
+        {
+            oc.StopAllCoroutines();
+            oc.DisableIFrames();
+            oc.PerformTransition(Transition.BossBreak);
+            return;
+        }
+
+            if (!oc.IsEnraged && oc.IsUnderHalfHealth())
         {
             oc.StopAllCoroutines();
             oc.DisableIFrames();

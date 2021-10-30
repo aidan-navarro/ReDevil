@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using System;
+using UnityEngine.Playables;
 
 public class CineMachineSwitcher : MonoBehaviour
 {
@@ -18,11 +19,15 @@ public class CineMachineSwitcher : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera vcam2; //room cam
 
-    private Animator animator;
-    //[SerializeField]
-    //private bool playerCamera = true;
+    [SerializeField]
+
+    private CinemachineVirtualCamera vcam3; // oni cam
+
     [SerializeField]
     private GameObject fadeOutCutsceneHolder;
+
+    [SerializeField]
+    private PlayableDirector cutsceneManager;
 
     public GameObject invisiWall;
 
@@ -63,6 +68,7 @@ public class CineMachineSwitcher : MonoBehaviour
         if (oniBoss != null)
         {
             oniBoss.OnOniBeginEnraged += StartOniEnragedCutscene;
+            oniBoss.OnOniBeginBreak += StartOniBreakCutscene;
             oniBoss.OnOniBeginDeath += StartOniDeathCutscene;
         }
         player = FindObjectOfType<PlayerFSMController>();
@@ -118,9 +124,29 @@ public class CineMachineSwitcher : MonoBehaviour
         playerHUD.SetActive(true);
     }
 
+    private void StartOniBreakCutscene()
+    {
+        StartCoroutine(OniBreakCutscene());
+    }
+
+    private IEnumerator OniBreakCutscene()
+    {
+        player.GetComponent<PlayerInput>().enabled = false;
+        playerHUD.SetActive(false);
+        vcam1.Priority = 0;
+        vcam3.Priority = 1;
+        yield return new WaitForSeconds(oniBoss.oniBreakCutsceneHolder.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        oniBoss.OnOniEndBreak?.Invoke();
+        vcam1.Priority = 1;
+        vcam3.Priority = 0;
+        player.GetComponent<PlayerInput>().enabled = true;
+        playerHUD.SetActive(true);
+    }
+
     private void StartOniDeathCutscene()
     {
-        StartCoroutine(OniDeathCutscene());
+        //StartCoroutine(OniDeathCutscene());
+        cutsceneManager.Play();
     }
 
     private IEnumerator OniDeathCutscene()
@@ -176,5 +202,7 @@ public class CineMachineSwitcher : MonoBehaviour
         SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single); // Return to the regular level;
 
     }
+
+
 
 }

@@ -205,8 +205,9 @@ MonoBehaviour:
     m_SingletonActionBindings: []
   vcam1: {fileID: 2013697264}
   vcam2: {fileID: 1800377832}
-  playerCamera: 1
+  vcam3: {fileID: 0}
   fadeOutCutsceneHolder: {fileID: 8678418497847240419}
+  cutsceneManager: {fileID: 0}
   invisiWall: {fileID: 2058069329}
   oniHealthBar: {fileID: 1128619796}
   touchBox: {fileID: 140899061}
@@ -463,26 +464,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 511205097, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.59733176
+      value: -0.59733164
       objectReference: {fileID: 0}
     - target: {fileID: 511205097, guid: 69c30ee0916387442bdeef7357d4a1e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5600035
+      value: 1.5600034
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.59733176
+      value: -0.59733164
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5600035
+      value: 1.5600034
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362491, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -23.809525
       objectReference: {fileID: 0}
     - target: {fileID: 1575489276325362628, guid: 69c30ee0916387442bdeef7357d4a1e1,
         type: 3}
@@ -761,6 +762,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comboKeys: 630000006f0000006d000000620000006f000000
   waitTimeBetweenKeys: 2
+  ComboStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  ComboFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  ComboFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &475093332
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,12 +1021,12 @@ PrefabInstance:
     - target: {fileID: 2235937426850047248, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.435
+      value: -2.16625
       objectReference: {fileID: 0}
     - target: {fileID: 2235937426850047248, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8050001
+      value: -0.85375
       objectReference: {fileID: 0}
     - target: {fileID: 2235937427701872563, guid: 96824b6c9d5d5ab41a41c814f74d59cb,
         type: 3}
@@ -1541,8 +1551,9 @@ MonoBehaviour:
       m_Flags: 0
   vcam1: {fileID: 0}
   vcam2: {fileID: 0}
-  playerCamera: 1
+  vcam3: {fileID: 0}
   fadeOutCutsceneHolder: {fileID: 0}
+  cutsceneManager: {fileID: 0}
   invisiWall: {fileID: 0}
   oniHealthBar: {fileID: 0}
   touchBox: {fileID: 0}
@@ -1843,6 +1854,31 @@ PrefabInstance:
     - target: {fileID: 4374260188259431746, guid: 362ebfc693b1ff64185bf4b00c123f5f,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188109197589757004, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188109197589757004, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188109197589757004, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188109197589757004, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188109197589757004, guid: 362ebfc693b1ff64185bf4b00c123f5f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7984964300399422856, guid: 362ebfc693b1ff64185bf4b00c123f5f,

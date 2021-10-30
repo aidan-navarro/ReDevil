@@ -55,6 +55,9 @@ public class OniFSMController : EnemyFSMController
     private float cycloneSpeed;
     public float CycloneSpeed => cycloneSpeed;
     [SerializeField]
+    private Animator oniAnimator;
+    public Animator OniAnimator => oniAnimator;
+    [SerializeField]
     private TMPro.TextMeshProUGUI stateText;
 
     [SerializeField]
@@ -82,6 +85,8 @@ public class OniFSMController : EnemyFSMController
     public UnityAction OnOniBossStart;
     public UnityAction OnOniBeginEnraged;
     public UnityAction OnOniEndEnraged;
+    public UnityAction OnOniBeginBreak;
+    public UnityAction OnOniEndBreak;
     public UnityAction OnOniBeginDeath;
     public UnityAction OnOniEndDeath;
 
@@ -90,9 +95,12 @@ public class OniFSMController : EnemyFSMController
     private GameObject healthBar;
 
     public bool IsEnraged;
+    public bool IsBreaked;
+    public bool IsWeakpointHit;
 
     public GameObject oniEnragedCutsceneHolder;
     public GameObject oniEnragedSprite;
+    public GameObject oniBreakCutsceneHolder;
     public GameObject oniDeathCutsceneHolder;
 
     public float GetHealth() { return health; }
@@ -157,6 +165,11 @@ public class OniFSMController : EnemyFSMController
 
         oniEnragedState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
 
+        OniBreakState oniBreakState = new OniBreakState();
+        oniBreakState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
+        oniBreakState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
+        oniBreakState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+
         OniIdleState oniIdleState = new OniIdleState();
 
         oniIdleState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
@@ -166,6 +179,7 @@ public class OniFSMController : EnemyFSMController
         oniIdleState.AddTransition(Transition.OniChase, FSMStateID.OniChasing);
         oniIdleState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
         oniIdleState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+        oniIdleState.AddTransition(Transition.BossBreak, FSMStateID.OniBreak);
 
         OniChaseState oniChaseState = new OniChaseState();
         oniChaseState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
@@ -174,31 +188,37 @@ public class OniFSMController : EnemyFSMController
         oniChaseState.AddTransition(Transition.OniClubSmash, FSMStateID.OniClubSmashing);
         oniChaseState.AddTransition(Transition.OniCycloneSmash, FSMStateID.OniCycloneSmashing);
         oniChaseState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+        oniChaseState.AddTransition(Transition.BossBreak, FSMStateID.OniBreak);
 
         BoulderPuttState boulderPuttState = new BoulderPuttState();
         boulderPuttState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
         boulderPuttState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         boulderPuttState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+        boulderPuttState.AddTransition(Transition.BossBreak, FSMStateID.OniBreak);
 
         ClubSmashState clubSmashState = new ClubSmashState();
         clubSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         clubSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         clubSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+        clubSmashState.AddTransition(Transition.BossBreak, FSMStateID.OniBreak);
 
         JumpingSmashState jumpingSmashState = new JumpingSmashState();
         jumpingSmashState.AddTransition(Transition.OniJumpAway, FSMStateID.OniJumpAway);
         jumpingSmashState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         jumpingSmashState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+        jumpingSmashState.AddTransition(Transition.BossBreak, FSMStateID.OniBreak);
 
         OniJumpAwayState jumpAwayState = new OniJumpAwayState();
         jumpAwayState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
         jumpAwayState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         jumpAwayState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+        jumpAwayState.AddTransition(Transition.BossBreak, FSMStateID.OniBreak);
 
         CycloneSmasherState cycloneSmasherState = new CycloneSmasherState();
         cycloneSmasherState.AddTransition(Transition.OniIdle, FSMStateID.OniIdling);
         cycloneSmasherState.AddTransition(Transition.EnemyNoHealth, FSMStateID.OniDeath);
         cycloneSmasherState.AddTransition(Transition.OniEnraged, FSMStateID.OniEnraged);
+        cycloneSmasherState.AddTransition(Transition.BossBreak, FSMStateID.OniBreak); 
 
         //Create the Dead state
         OniDeathState oniDeath = new OniDeathState();
@@ -392,6 +412,19 @@ public class OniFSMController : EnemyFSMController
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
+<<<<<<< Updated upstream
+=======
+    public override void OnWeakPointHit()
+    {
+        if (weakpointCollider.sharedMaterial == bulletWeakMaterial)
+        {
+            weakpointCollider.sharedMaterial = generalWeakMaterial;
+            IsWeakpointHit = true;
+            Debug.Log("Opened weakpoint on oni to melee attacks");
+        }
+    }
+
+>>>>>>> Stashed changes
     private void SetSpawnPoints()
     {
         
