@@ -26,7 +26,7 @@ public class OniEnragedState : FSMState
         OniFSMController oc = npc.GetComponent<OniFSMController>();
         if (enteredState)
         {
-            oc.oniEnragedSprite.gameObject.SetActive(true);
+            //oc.oniEnragedSprite.gameObject.SetActive(true);
             oc.oniEnragedCutsceneHolder.GetComponent<Animator>().Play("OniSprite");
             Debug.Log("Cutscene played");
             enteredState = false;
